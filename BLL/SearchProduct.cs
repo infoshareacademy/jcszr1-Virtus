@@ -8,9 +8,7 @@ namespace BLL
         public List<Product> SearchByName(List<Product> productList, string searchValue)
         {
             var returnList = new List<Product>();
-
-            //return productList.Where(x => x.ProductName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase)).ToList();
-
+            
             foreach (var product in productList)
             {
                 if (product.productName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase))

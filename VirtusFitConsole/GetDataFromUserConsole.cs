@@ -10,9 +10,10 @@ namespace Ex3
         {
             productName = GetSearchByNameData();
         }
-        public void GetDataFromUser(out int minCaloriesValue, out int maxCaloriesValue, out int exactCaloriesValue)
+        public int GetDataFromUser(out int minCaloriesValue, out int maxCaloriesValue)
         {
-            GetSearchByCaloriesData(out exactCaloriesValue, out minCaloriesValue, out maxCaloriesValue);
+            var exactCaloriesValue = GetSearchByCaloriesData(out minCaloriesValue, out maxCaloriesValue);
+            return exactCaloriesValue;
         }
 
         private string GetSearchByNameData()
@@ -22,11 +23,10 @@ namespace Ex3
             return productName;
         }
 
-        private void GetSearchByCaloriesData(out int searchValue, out int minValue, out int maxValue)
+        private int GetSearchByCaloriesData(out int minValue, out int maxValue)
         {
             minValue = 0;
             maxValue = 0;
-            searchValue = 0;
             Console.WriteLine("Would You like to search by exact Calories value or by range?");
             var cursorPos = Console.CursorTop;
             var userDecision = "";
@@ -42,8 +42,8 @@ namespace Ex3
                     if (userDecision == "Search by value")
                     {
                         Console.Write("Enter Calories value: ");
-                        var valueEntered = int.TryParse(Console.ReadLine(), out searchValue);
-                        if (valueEntered) return;
+                        var valueEntered = int.TryParse(Console.ReadLine(), out int searchValue);
+                        if (valueEntered) return searchValue;
                         throw new ArgumentException("Calories value must be a valid number.");
                     }
 
@@ -53,7 +53,7 @@ namespace Ex3
                         var minValueEntered = int.TryParse(Console.ReadLine(), out minValue);
                         Console.Write("Enter max value: ");
                         var maxValueEntered = int.TryParse(Console.ReadLine(), out maxValue);
-                        if (minValueEntered && maxValueEntered) return;
+                        if (minValueEntered && maxValueEntered) return 0;
                         throw new ArgumentException("Calories value must be a valid number.");
                     }
                 }
@@ -67,15 +67,15 @@ namespace Ex3
             } while (true);
         }
 
-        private static readonly string[] _searchByCaloriesOptions = { "Search by value", "Search by range" };
-        private static int _currentLine = 0;
+        private static readonly string[] SearchByCaloriesOptions = { "Search by value", "Search by range" };
+        private static int _currentLine;
 
         private string DisplayOptions(int cursorPos)
         {
 
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, cursorPos);
-            for (int i = 0; i < _searchByCaloriesOptions.GetLength(0); i++)
+            for (int i = 0; i < SearchByCaloriesOptions.GetLength(0); i++)
             {
                 if (i == _currentLine)
                 {
@@ -83,7 +83,7 @@ namespace Ex3
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
 
-                Console.WriteLine(_searchByCaloriesOptions[i]);
+                Console.WriteLine(SearchByCaloriesOptions[i]);
                 Console.ResetColor();
             }
 
@@ -91,7 +91,7 @@ namespace Ex3
 
             if (keyPressed.Key == ConsoleKey.DownArrow)
             {
-                if (_currentLine == _searchByCaloriesOptions.GetLength(0) - 1)
+                if (_currentLine == SearchByCaloriesOptions.GetLength(0) - 1)
                 {
                     _currentLine = 0;
                 }
@@ -104,7 +104,7 @@ namespace Ex3
             {
                 if (_currentLine <= 0)
                 {
-                    _currentLine = _searchByCaloriesOptions.GetLength(0) - 1;
+                    _currentLine = SearchByCaloriesOptions.GetLength(0) - 1;
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace Ex3
             }
             else if (keyPressed.Key == ConsoleKey.Enter)
             {
-                return _searchByCaloriesOptions[_currentLine];
+                return SearchByCaloriesOptions[_currentLine];
             }
             return "";
         }
