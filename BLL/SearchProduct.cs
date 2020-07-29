@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using BLL;
 
-
-namespace VirtusFitConsole
+namespace BLL
 {
     public class SearchProduct
     {
