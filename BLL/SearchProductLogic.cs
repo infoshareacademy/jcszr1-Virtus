@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BLL
 {
-    public class SearchProduct
+    public class SearchProductLogic
     {
         public List<Product> SearchByName(List<Product> productList, string searchValue)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace Ex3
+namespace VirtusFitConsole
 {
     class GetDataFromUserConsole
     {
@@ -29,7 +29,7 @@ namespace Ex3
             maxValue = 0;
             Console.WriteLine("Would You like to search by exact Calories value or by range?");
             var cursorPos = Console.CursorTop;
-            var userDecision = "";
+            string userDecision;
             do
             {
                 userDecision = DisplayOptions(cursorPos);

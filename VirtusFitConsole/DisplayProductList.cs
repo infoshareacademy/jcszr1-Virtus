@@ -17,7 +17,7 @@ namespace VirtusFitConsole
             Console.WriteLine("".PadRight(4) + "".PadRight(15) + "".PadRight(10) + "".PadRight(8) + "In Fat".PadRight(10)
                               + "".PadRight(14) + "Carbohydrates".PadRight(14) + "".PadRight(8) + "".PadRight(8) + "".PadRight(8));
             Console.WriteLine("All values refer to 100g portion.");
-            for (var i = 0; i < 95; i++) Console.Write("#");
+            for (var i = 0; i < 99; i++) Console.Write("#");
             Console.WriteLine();
             Console.WriteLine();
             
