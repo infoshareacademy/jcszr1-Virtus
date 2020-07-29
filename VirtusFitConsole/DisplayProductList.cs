@@ -21,13 +21,14 @@ namespace VirtusFitConsole
             Console.WriteLine();
             Console.WriteLine();
             
+            if (_productList.Count <= 0) Console.WriteLine("There are no items to display.");
             foreach (var product in _productList)
             {
-                Console.WriteLine((product.ProductId + ".").PadRight(4) + product.ProductName.PadRight(15)
-                                                                        + (product.Energy + "kcal").PadRight(10) + (product.Fat + "g").PadRight(8)
-                                                                        + (product.SaturatesInFat + "g").PadRight(8) + (product.Carbohydrates + "g").PadRight(13)
-                                                                        + (product.SugarsInCarbohydrates + "g").PadRight(13) + (product.Protein + "g").PadRight(8)
-                                                                        + (product.Salt + "g").PadRight(8) + (product.IsVegetarian + "g").PadRight(8));
+                Console.WriteLine((product.productId + ".").PadRight(4) + product.productName.PadRight(15)
+                                                                        + (product.energy + "kcal").PadRight(10) + (product.fat + "g").PadRight(8)
+                                                                        + (product.saturatesInFat + "g").PadRight(10) + (product.carbohydrates + "g").PadRight(14)
+                                                                        + (product.sugarsInCarbohydrates + "g").PadRight(14) + (product.protein + "g").PadRight(8)
+                                                                        + (product.salt + "g").PadRight(8) + product.isVegetarian.ToString().PadRight(8));
             }
 
             Console.WriteLine();

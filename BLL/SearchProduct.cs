@@ -6,7 +6,7 @@ using BLL;
 
 namespace VirtusFitConsole
 {
-    class SearchProduct
+    public class SearchProduct
     {
         public List<Product> SearchByName(List<Product> productList, string searchValue)
         {
@@ -16,7 +16,7 @@ namespace VirtusFitConsole
 
             foreach (var product in productList)
             {
-                if (product.ProductName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase))
+                if (product.productName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase))
                 {
                     returnList.Add(product);
                 }
@@ -30,7 +30,7 @@ namespace VirtusFitConsole
 
             foreach (var product in productList)
             {
-                if (product.Energy == searchValue)
+                if (product.energy == searchValue)
                 {
                     returnList.Add(product);
                 }
@@ -44,7 +44,7 @@ namespace VirtusFitConsole
 
             foreach (var product in productList)
             {
-                if (product.Energy >= minValue && product.Energy <= maxValue)
+                if (product.energy >= minValue && product.energy <= maxValue)
                 {
                     returnList.Add(product);
                 }
