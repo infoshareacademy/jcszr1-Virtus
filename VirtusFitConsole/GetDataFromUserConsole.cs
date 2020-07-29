@@ -12,7 +12,7 @@ namespace Ex3
         }
         public void GetDataFromUser(out int minCaloriesValue, out int maxCaloriesValue, out int exactCaloriesValue)
         {
-            exactCaloriesValue = GetSearchByCaloriesData(out minCaloriesValue, out maxCaloriesValue);
+            GetSearchByCaloriesData(out exactCaloriesValue, out minCaloriesValue, out maxCaloriesValue);
         }
 
         private string GetSearchByNameData()
@@ -21,12 +21,12 @@ namespace Ex3
             var productName = Console.ReadLine();
             return productName;
         }
-        
-        public int GetSearchByCaloriesData(out int minValue, out int maxValue)
+
+        private void GetSearchByCaloriesData(out int searchValue, out int minValue, out int maxValue)
         {
             minValue = 0;
             maxValue = 0;
-            var searchValue = 0;
+            searchValue = 0;
             Console.WriteLine("Would You like to search by exact Calories value or by range?");
             var cursorPos = Console.CursorTop;
             var userDecision = "";
@@ -35,44 +35,45 @@ namespace Ex3
                 userDecision = DisplayOptions(cursorPos);
             } while (userDecision != "Search by value" && userDecision != "Search by range");
 
-            try
+            do
             {
-                if (userDecision == "Search by value")
+                try
                 {
-                    Console.Write("Enter Calories value: ");
-                    var valueEntered = int.TryParse(Console.ReadLine(), out searchValue);
-                    if (valueEntered) return searchValue;
-                    throw new ArgumentException("Calories value must be a valid number.");
-                }
+                    if (userDecision == "Search by value")
+                    {
+                        Console.Write("Enter Calories value: ");
+                        var valueEntered = int.TryParse(Console.ReadLine(), out searchValue);
+                        if (valueEntered) return;
+                        throw new ArgumentException("Calories value must be a valid number.");
+                    }
 
-                if (userDecision == "Search by range")
+                    if (userDecision == "Search by range")
+                    {
+                        Console.Write("Enter min value: ");
+                        var minValueEntered = int.TryParse(Console.ReadLine(), out minValue);
+                        Console.Write("Enter max value: ");
+                        var maxValueEntered = int.TryParse(Console.ReadLine(), out maxValue);
+                        if (minValueEntered && maxValueEntered) return;
+                        throw new ArgumentException("Calories value must be a valid number.");
+                    }
+                }
+                catch (ArgumentException e)
                 {
-                    Console.Write("Enter min value: ");
-                    var minValueEntered = int.TryParse(Console.ReadLine(), out minValue);
-                    Console.Write("Enter max value: ");
-                    var maxValueEntered = int.TryParse(Console.ReadLine(), out maxValue);
-                    if (minValueEntered && maxValueEntered) return searchValue;
-                    throw new ArgumentException("Calories value must be a valid number.");
+                    Console.WriteLine();
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Press any key to continue. Or ESC to leave.");
+                    if (Console.ReadKey().Key == ConsoleKey.Escape) Environment.Exit(0);
                 }
-            }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine();
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Press any key to continue.");
-                Console.ReadKey();
-                throw;
-            }
-
-            return searchValue;
+            } while (true);
         }
 
         private static readonly string[] _searchByCaloriesOptions = { "Search by value", "Search by range" };
         private static int _currentLine = 0;
 
-        public string DisplayOptions(int cursorPos)
+        private string DisplayOptions(int cursorPos)
         {
-            
+
+            Console.CursorVisible = false;
             Console.SetCursorPosition(0, cursorPos);
             for (int i = 0; i < _searchByCaloriesOptions.GetLength(0); i++)
             {
