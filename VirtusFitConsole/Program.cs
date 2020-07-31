@@ -1,15 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using BLL;
+=======
+using System.Runtime.CompilerServices;
+using BLL;
+using Console = System.Console;
+>>>>>>> master
 
 namespace VirtusFitConsole
 {
     class Program
     {
+<<<<<<< HEAD
         
         static void Main(string[] args)
         {
             AddProductFromConsole();
+=======
+        public static List<Product> ListOfProducts = new List<Product>();
+        static void Main(string[] args)
+        {
+
+            foreach (var item in ProductLoader.GetProductsFromFile())
+            {
+                ListOfProducts.Add(item);
+            }
+>>>>>>> master
         }
         public static void AddProductFromConsole()
         {
