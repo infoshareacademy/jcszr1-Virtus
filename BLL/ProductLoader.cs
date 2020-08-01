@@ -9,11 +9,11 @@ namespace BLL
     {
         public static readonly List<Product> _staticListOfProducts = new List<Product>
         {
-          new Product {productId = 1, productName = "something1", productWeight = 2, energy = 1, saturatesInFat = 20, carbohydrates = 32, fat = 5, sugarsInCarbohydrates = 35, protein = 61, salt = 8, isVegetarian = true},
-          new Product {productId = 2, productName = "something2", productWeight = 1, energy = 9, saturatesInFat = 70, carbohydrates = 84, fat = 75, sugarsInCarbohydrates = 80, protein = 8, salt = 20, isVegetarian = false},
-          new Product {productId = 3, productName = "something3", productWeight = 7, energy = 5, saturatesInFat = 37, carbohydrates = 99, fat = 535, sugarsInCarbohydrates = 50, protein = 23, salt = 1, isVegetarian = true},
-          new Product {productId = 4, productName = "something4", productWeight = 8, energy = 90, saturatesInFat = 213, carbohydrates = 16, fat = 15, sugarsInCarbohydrates = 156, protein = 78, salt = 3, isVegetarian = false},
-         new Product {productId = 5, productName = "something5", productWeight = 9, energy = 11, saturatesInFat = 11, carbohydrates = 3, fat = 25, sugarsInCarbohydrates = 119, protein = 120, salt = 66, isVegetarian = true},
+          new Product {ProductId = 1, ProductName = "something1", ProductWeight = 2, Energy = 1, SaturatesInFat = 20, Carbohydrates = 32, Fat = 5, SugarsInCarbohydrates = 35, Protein = 61, Salt = 8, IsVegetarian = true},
+          new Product {ProductId = 2, ProductName = "something2", ProductWeight = 1, Energy = 9, SaturatesInFat = 70, Carbohydrates = 84, Fat = 75, SugarsInCarbohydrates = 80, Protein = 8, Salt = 20, IsVegetarian = false},
+          new Product {ProductId = 3, ProductName = "something3", ProductWeight = 7, Energy = 5, SaturatesInFat = 37, Carbohydrates = 99, Fat = 535, SugarsInCarbohydrates = 50, Protein = 23, Salt = 1, IsVegetarian = true},
+          new Product {ProductId = 4, ProductName = "something4", ProductWeight = 8, Energy = 90, SaturatesInFat = 213, Carbohydrates = 16, Fat = 15, SugarsInCarbohydrates = 156, Protein = 78, Salt = 3, IsVegetarian = false},
+         new Product {ProductId = 5, ProductName = "something5", ProductWeight = 9, Energy = 11, SaturatesInFat = 11, Carbohydrates = 3, Fat = 25, SugarsInCarbohydrates = 119, Protein = 120, Salt = 66, IsVegetarian = true},
         };
 
         public static List<Product> GetProductsFromFile()

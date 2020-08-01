@@ -12,13 +12,10 @@ namespace BLL
            listOfProducts.AddRange(ProductLoader._staticListOfProducts);
        }
 
-        public static void AddNewProduct(int _id, string _productName, int _productWeight, int _energy, double _fat, double _saturatesInFat, double _carbohydrates, double _sugarsInCarbohydrates,  double _protein, double _salt, bool _isVegetarian)
+        public static void AddNewProduct(int id, string productName, int productWeight, int energy, double fat, double saturatesInFat, double carbohydrates, double sugarsInCarbohydrates,  double protein, double salt, bool isVegetarian)
         {
-            //Product newProduct2 = new Product(_id, _productName, _productWeight, _energy, _fat, _saturatesInFat, _carbohydrates, _sugarsInCarbohydrates, _protein, _salt, _isVegetarian); - CANNOT CREATE VIA CONSTRUCTOR, WHY?!
-            Product newProduct = new Product{productId = _id, productName = _productName, productWeight = _productWeight, energy = _energy, fat = _fat, saturatesInFat = _saturatesInFat, carbohydrates = _carbohydrates, sugarsInCarbohydrates = _sugarsInCarbohydrates, protein = _protein, salt = _salt, isVegetarian = _isVegetarian};
+            Product newProduct = new Product(id, productName, productWeight, energy, fat, saturatesInFat, carbohydrates, sugarsInCarbohydrates, protein, salt, isVegetarian); 
             listOfProducts.Add(newProduct);
-            // listOfProducts.Add(newProduct2);
-
         }
-    }// 1, "Apple", 3, 4, 5, 2, 1, 4,2, 7, true
+    }
 }
