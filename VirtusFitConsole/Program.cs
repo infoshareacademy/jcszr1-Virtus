@@ -16,6 +16,9 @@ namespace VirtusFitConsole
             {
                 ListOfProducts.Add(item);
             }
+            
+            SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
+            testSearch.SearchProductInterface(ListOfProducts);
         }
     }
 }
