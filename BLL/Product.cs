@@ -8,7 +8,6 @@ namespace BLL
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public int ProductWeight { get; set; }
         public int Energy { get; set; }
         public double Fat { get; set; }
         public double Carbohydrates { get; set; }

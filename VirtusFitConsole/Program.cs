@@ -12,20 +12,26 @@ namespace VirtusFitConsole
         static void Main(string[] args)
         {
 
-            foreach (var item in ProductLoader.GetProductsFromFile())
+            try
             {
-                ListOfProducts.Add(item);
+                foreach (var item in ProductLoader.GetProductsFromFile())
+                {
+                    ListOfProducts.Add(item);
+                }
+
+                //foreach (var item in ListOfProducts)
+                //{
+                //    Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
+                //}
+
+                SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
+                testSearch.SearchProductInterface(ListOfProducts);
             }
-
-
-            foreach (var item in ListOfProducts)
+            catch (Exception e)
             {
-                Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.ProductWeight + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
+                Console.WriteLine($"An error occured: {e.Message} \nPress any key.");
+                Console.ReadKey();
             }
-
-            
-            SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
-            testSearch.SearchProductInterface(ListOfProducts);
 
         }
     }
