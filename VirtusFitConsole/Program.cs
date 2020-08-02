@@ -28,6 +28,17 @@ namespace VirtusFitConsole
             {
                 Console.WriteLine(product.ProductId + product.ProductName);
             }
+
+
+            foreach (var item in ListOfProducts)
+            {
+                Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.ProductWeight + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
+            }
+
+            
+            SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
+            testSearch.SearchProductInterface(ListOfProducts);
+
         }
 
         private static int ID = 5;
