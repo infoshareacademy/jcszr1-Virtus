@@ -16,6 +16,11 @@ namespace VirtusFitConsole
             {
                 ListOfProducts.Add(item);
             }
+
+            foreach (var item in ListOfProducts)
+            {
+                Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.ProductWeight + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
+            }
         }
     }
 }
