@@ -11,7 +11,7 @@ namespace BLL
             
             foreach (var product in productList)
             {
-                if (product.productName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase))
+                if (product.ProductName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase))
                 {
                     returnList.Add(product);
                 }
@@ -25,7 +25,7 @@ namespace BLL
 
             foreach (var product in productList)
             {
-                if (product.energy == searchValue)
+                if (product.Energy == searchValue)
                 {
                     returnList.Add(product);
                 }
@@ -39,7 +39,7 @@ namespace BLL
 
             foreach (var product in productList)
             {
-                if (product.energy >= minValue && product.energy <= maxValue)
+                if (product.Energy >= minValue && product.Energy <= maxValue)
                 {
                     returnList.Add(product);
                 }

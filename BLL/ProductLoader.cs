@@ -16,14 +16,7 @@ namespace BLL
 {
     public class ProductLoader
     {
-        private static readonly List<Product> _staticListOfProducts = new List<Product>
-        {
-            new Product {ProductId = 1, ProductName = "something1", ProductWeight = 2, Energy = 1, Carbohydrates = 32, Fat = 5, Protein = 61, Salt = 8},
-            new Product {ProductId = 2, ProductName = "something2", ProductWeight = 1, Energy = 9, Carbohydrates = 84, Fat = 75, Protein = 8, Salt = 20},
-            new Product {ProductId = 3, ProductName = "something3", ProductWeight = 7, Energy = 5, Carbohydrates = 99, Fat = 535, Protein = 23, Salt = 1},
-            new Product {ProductId = 4, ProductName = "something4", ProductWeight = 8, Energy = 90, Carbohydrates = 16, Fat = 15, Protein = 78, Salt = 3},
-            new Product {ProductId = 5, ProductName = "something5", ProductWeight = 9, Energy = 11, Carbohydrates = 3, Fat = 25, Protein = 120, Salt = 66},
-        };
+        private static readonly List<Product> _staticListOfProducts = new List<Product>();
 
         public static List<Product> GetProductsFromFile()
         {
@@ -34,7 +27,6 @@ namespace BLL
             {
                 var internalProductId = Convert.ToInt32(products.Data[i].Id);
                 var internalProductName = products.Data[i].DisplayNameTranslations.En;
-                var internalProductWeight = Convert.ToInt32(products.Data[i].PortionQuantity);
                 int internalEnergy;
                 int internalFat;
                 int internalCarbohydrates;
@@ -128,7 +120,7 @@ namespace BLL
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-                _staticListOfProducts.Add(new Product() { ProductId = internalProductId, ProductName = internalProductName, ProductWeight = internalProductWeight, Energy = internalEnergy, Carbohydrates = internalCarbohydrates, Fat = internalFat, Protein = internalProtein, Salt = internalSalt, Fiber = internalFiber, Sugar = internalSugar, PortionQuantity = internalPortionQuantity, PortionUnit = internalPortionUnit, Quantity = internalQuantity});
+                _staticListOfProducts.Add(new Product() { ProductId = internalProductId, ProductName = internalProductName, Energy = internalEnergy, Carbohydrates = internalCarbohydrates, Fat = internalFat, Protein = internalProtein, Salt = internalSalt, Fiber = internalFiber, Sugar = internalSugar, PortionQuantity = internalPortionQuantity, PortionUnit = internalPortionUnit, Quantity = internalQuantity});
                 i++;
             }
             return _staticListOfProducts;
