@@ -112,10 +112,10 @@ namespace BLL
                 switch (products.Data[i].Unit)
                     {
                         case PortionUnitEnum.G:
-                            internalPortionUnit = "G";
+                            internalPortionUnit = "g";
                             break;
                         case PortionUnitEnum.ML:
-                            internalPortionUnit = "ML";
+                            internalPortionUnit = "ml";
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();

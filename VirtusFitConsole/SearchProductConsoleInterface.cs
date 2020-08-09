@@ -61,6 +61,7 @@ namespace VirtusFitConsole
         private readonly GetDataFromUserConsole _newData = new GetDataFromUserConsole();
         public void SearchProductInterface(List<Product> productList)
         {
+            Console.WriteLine();
             Console.WriteLine("Choose the type of searching:");
             var cursorPos = Console.CursorTop;
             string userDecision;
