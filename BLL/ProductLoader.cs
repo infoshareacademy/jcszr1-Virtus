@@ -20,7 +20,8 @@ namespace BLL
 
         public static List<Product> GetProductsFromFile()
         {
-            var jsonString = File.ReadAllText(@"food_source.json");
+            var path = Environment.CurrentDirectory + "\\food_source.json";
+            var jsonString = File.ReadAllText(path);
             SampleProductClass products = JsonConvert.DeserializeObject<SampleProductClass>(jsonString);
             int i = 0;
             foreach (var item in products.Data)

@@ -24,8 +24,11 @@ namespace VirtusFitConsole
                 //    Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
                 //}
 
-                SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
-                testSearch.SearchProductInterface(ListOfProducts);
+                DisplayProductList.DisplayList(ListOfProducts);
+                EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
+                testInterface.EditProductInterface(ListOfProducts);
+
+                DisplayProductList.DisplayList(ListOfProducts);
             }
             catch (Exception e)
             {
