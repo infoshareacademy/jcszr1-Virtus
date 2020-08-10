@@ -24,13 +24,6 @@ namespace VirtusFitConsole
             if (productList.Count <= 0) Console.WriteLine("There are no items to display.");
             foreach (var product in productList)
             {
-<<<<<<< HEAD
-          //     Console.WriteLine((product.productId + ".").PadRight(4) + product.productName.PadRight(15)
-          //                                                             + (product.energy + "kcal").PadRight(10) + (product.fat + "g").PadRight(8)
-          //                                                             + (product.saturatesInFat + "g").PadRight(10) + (product.carbohydrates + "g").PadRight(14)
-          //                                                             + (product.sugarsInCarbohydrates + "g").PadRight(14) + (product.protein + "g").PadRight(8)
-          //                                                             + (product.salt + "g").PadRight(8) + product.isVegetarian.ToString().PadRight(8));
-=======
                 Console.WriteLine((product.ProductId + ".").PadRight(6) + product.ProductName.PadRight(50)
                                                                         + (product.Quantity + product.PortionUnit).PadRight(11)
                                                                         + (product.PortionQuantity + product.PortionUnit).PadRight(11)
@@ -41,7 +34,6 @@ namespace VirtusFitConsole
                                                                         + (product.Protein + "g").PadRight(8)
                                                                         + (product.Salt + "g").PadRight(8) 
                                                                         + (product.Fiber + "g").PadRight(8));
->>>>>>> master
             }
 
             Console.WriteLine();

@@ -10,35 +10,6 @@ namespace VirtusFitConsole
         {
             ProductService.addStaticList();
 
-<<<<<<< HEAD
-           // foreach (var item in ProductLoader.GetProductsFromFile())
-            {
-               // ListOfProducts.Add(item);
-            }
-
-         //  foreach (var product in ProductService.listOfProducts)
-         //  {
-         //      Console.WriteLine(product.ProductId + product.ProductName);
-         //  }
-
-            AddProductFromConsole(); 
-            AddProductFromConsole();
-            foreach (var product in ProductService.listOfProducts)
-            {
-                Console.WriteLine(product.ProductId + product.ProductName + product.PortionQuantity + product.PortionUnit);
-            }
-
-
-         //   foreach (var item in ListOfProducts)
-         //   {
-         //       Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.ProductWeight + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
-         //   }
-         //
-         //   
-         //   SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
-         //   testSearch.SearchProductInterface(ListOfProducts);
-
-=======
             try
             {
                 foreach (var item in ProductLoader.GetProductsFromFile())
@@ -60,7 +31,6 @@ namespace VirtusFitConsole
                 Console.ReadKey();
             }
 
->>>>>>> master
         }
 
         private static int ID = 5;
