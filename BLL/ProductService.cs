@@ -12,10 +12,11 @@ namespace BLL
            listOfProducts.AddRange(ProductLoader._staticListOfProducts);
        }
 
-        public static void AddNewProduct(int id, string productName, int productWeight, int energy, double fat, double saturatesInFat, double carbohydrates, double sugarsInCarbohydrates,  double protein, double salt, bool isVegetarian)
+        public static void AddNewProduct(int id, string productName, string portionUnit, int quantity, int portionQuantity, int energy, double fat, double carbohydrates,  double protein, int sugar, double salt, int fiber )
         {
-            Product newProduct = new Product(id, productName, productWeight, energy, fat, saturatesInFat, carbohydrates, sugarsInCarbohydrates, protein, salt, isVegetarian); 
+            Product newProduct = new Product(id, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar ,salt, fiber); 
             listOfProducts.Add(newProduct);
         }
     }
 }
+// int productId, string productName, string portionUnit, int quantity,  int portionQuantity, int energy, double fat, double carbohydrates, double protein, int sugar, double salt, int fiber)

@@ -74,23 +74,23 @@ namespace VirtusFitConsole
                 case "Search by name":
                 {
                     _newData.GetDataFromUser(out var productName);
-                    var searchList = _newSearch.SearchByName(productList, productName);
-                    DisplayProductList.DisplayList(searchList);
-                    break;
-                }
-                case "Search by calories":
-                {
-                    var searchValue = _newData.GetDataFromUser(out var minValue, out var maxValue);
-                    if (searchValue != 0)
-                    {
-                        var searchList = _newSearch.SearchByCalories(productList, searchValue);
-                        DisplayProductList.DisplayList(searchList);
-                    }
-                    else
-                    {
-                        var searchList = _newSearch.SearchByCalories(productList, minValue, maxValue);
-                        DisplayProductList.DisplayList(searchList);
-                    }
+              //     var searchList = _newSearch.SearchByName(productList, productName);
+              //     DisplayProductList.DisplayList(searchList);
+              //     break;
+              // }
+              // case "Search by calories":
+              // {
+              //     var searchValue = _newData.GetDataFromUser(out var minValue, out var maxValue);
+              //     if (searchValue != 0)
+              //     {
+              //         var searchList = _newSearch.SearchByCalories(productList, searchValue);
+              //         DisplayProductList.DisplayList(searchList);
+              //     }
+              //     else
+              //     {
+              //         var searchList = _newSearch.SearchByCalories(productList, minValue, maxValue);
+              //         DisplayProductList.DisplayList(searchList);
+              //     }
                     break;
                 }
             }

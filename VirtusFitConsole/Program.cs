@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using BLL;
-using System.Runtime.CompilerServices;
+﻿using BLL;
+using System;
 using Console = System.Console;
 
 namespace VirtusFitConsole
@@ -12,32 +10,32 @@ namespace VirtusFitConsole
         {
             ProductService.addStaticList();
 
-            foreach (var item in ProductLoader.GetProductsFromFile())
+           // foreach (var item in ProductLoader.GetProductsFromFile())
             {
                // ListOfProducts.Add(item);
             }
 
-            foreach (var product in ProductService.listOfProducts)
-            {
-                Console.WriteLine(product.ProductId + product.ProductName);
-            }
+         //  foreach (var product in ProductService.listOfProducts)
+         //  {
+         //      Console.WriteLine(product.ProductId + product.ProductName);
+         //  }
 
             AddProductFromConsole(); 
             AddProductFromConsole();
             foreach (var product in ProductService.listOfProducts)
             {
-                Console.WriteLine(product.ProductId + product.ProductName);
+                Console.WriteLine(product.ProductId + product.ProductName + product.PortionQuantity + product.PortionUnit);
             }
 
 
-            foreach (var item in ListOfProducts)
-            {
-                Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.ProductWeight + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
-            }
-
-            
-            SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
-            testSearch.SearchProductInterface(ListOfProducts);
+         //   foreach (var item in ListOfProducts)
+         //   {
+         //       Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.ProductWeight + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
+         //   }
+         //
+         //   
+         //   SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
+         //   testSearch.SearchProductInterface(ListOfProducts);
 
         }
 
@@ -48,40 +46,34 @@ namespace VirtusFitConsole
             {
                 Console.WriteLine("Product name:");
                 string productName = Console.ReadLine();
+                Console.WriteLine("Weight unit (G for gramms/ML for mililiters):");
+                string portionUnit = Console.ReadLine().ToUpper();
+                if (portionUnit != "G" && portionUnit !="ML")
+                {
+                    throw (new ArgumentException("Incorrect input, only 'G' or 'ML' is acceptable."));
+                }
                 Console.WriteLine("Product weight:");
-                int productWeight = int.Parse(Console.ReadLine());
-                Console.WriteLine("Energy:");
+                int quantity = int.Parse(Console.ReadLine());
+                Console.WriteLine("Portion weight:");
+                int portionQuantity = int.Parse(Console.ReadLine());
+                Console.WriteLine($"Energy in 100{portionUnit}:");
                 int energy = int.Parse(Console.ReadLine());
-                Console.WriteLine("Fat:");
+                Console.WriteLine($"Fat in 100{portionUnit}");
                 double fat = double.Parse(Console.ReadLine());
-                Console.WriteLine("Saturates in fats:");
-                double saturatesInFat = double.Parse(Console.ReadLine());
-                Console.WriteLine("Carbohydrates:");
+                Console.WriteLine($"Carbohydrates in 100{portionUnit}:");
                 double carbohydrates = double.Parse(Console.ReadLine());
-                Console.WriteLine("Sugars in carbohydrates:");
-                double sugarsInCarbohydrates = double.Parse(Console.ReadLine());
-                Console.WriteLine("Protein:");
+                Console.WriteLine($"Protein in 100{portionUnit}:");
                 double protein = double.Parse(Console.ReadLine());
-                Console.WriteLine("Salt:");
+                Console.WriteLine($"Salt in 100{portionUnit}");
                 double salt = double.Parse(Console.ReadLine());
-                Console.WriteLine("Is the product vegetarian? Y/N");
-                string isVegetarianString = Console.ReadLine().ToUpper();
-                bool isVegetarian = false;  
-                if (isVegetarianString == "Y")
-                {
-                    isVegetarian = true;
-                }
-                else if (isVegetarianString =="N")
-                {
-                    isVegetarian = false;  
-                }
-                else
-                {
-                    throw (new ArgumentException("Incorrect input, only 'Y' or 'N' is acceptable."));
-                }
+                Console.WriteLine($"Fiber in 100{portionUnit}:");
+                int fiber = int.Parse(Console.ReadLine());
+                Console.WriteLine($"Sugar in 100{portionUnit}:");
+                int sugar = int.Parse(Console.ReadLine());
                 ID++;
-                ProductService.AddNewProduct(ID, productName, productWeight, energy, fat, saturatesInFat, carbohydrates, sugarsInCarbohydrates, protein, salt, isVegetarian);
+                ProductService.AddNewProduct(ID, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar, salt, fiber);
             }
+            //int productId, string productName, string portionUnit, int quantity,  int portionQuantity, int energy, double fat, double carbohydrates, double protein, int sugar, double salt, int fiber)
             catch (Exception error)
             {
                 Console.WriteLine(error.Message);
