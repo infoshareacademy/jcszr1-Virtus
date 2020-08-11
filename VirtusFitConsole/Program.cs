@@ -1,14 +1,16 @@
 ﻿using BLL;
 using System;
+using System.Collections.Generic;
 using Console = System.Console;
 
 namespace VirtusFitConsole
 {
     class Program
     {
+        public static List<Product> ListOfProducts = new List<Product>();
+
         static void Main(string[] args)
         {
-            ProductService.addStaticList();
 
             try
             {
@@ -21,6 +23,9 @@ namespace VirtusFitConsole
                 //{
                 //    Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
                 //}
+                DisplayProductList.DisplayList(ListOfProducts);
+
+                AddProductFromConsole();
 
                 SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
                 testSearch.SearchProductInterface(ListOfProducts);
@@ -30,7 +35,6 @@ namespace VirtusFitConsole
                 Console.WriteLine($"An error occured: {e.Message} \nPress any key.");
                 Console.ReadKey();
             }
-
         }
 
         private static int ID = 5;
@@ -50,20 +54,48 @@ namespace VirtusFitConsole
                 int quantity = int.Parse(Console.ReadLine());
                 Console.WriteLine("Portion weight:");
                 int portionQuantity = int.Parse(Console.ReadLine());
-                Console.WriteLine($"Energy in 100{portionUnit}:");
+                if (portionQuantity > quantity)
+                {
+                    throw (new ArgumentException("Portion weight cannot be bigger that the Product weight"));
+                }
+                Console.WriteLine($"Energy (kCal) in 100{portionUnit}:");
                 int energy = int.Parse(Console.ReadLine());
                 Console.WriteLine($"Fat in 100{portionUnit}");
                 double fat = double.Parse(Console.ReadLine());
+                if (fat > 100)
+                {
+                    throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
+                }
                 Console.WriteLine($"Carbohydrates in 100{portionUnit}:");
                 double carbohydrates = double.Parse(Console.ReadLine());
+                if (fat + carbohydrates > 100)
+                {
+                    throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
+                }
                 Console.WriteLine($"Protein in 100{portionUnit}:");
                 double protein = double.Parse(Console.ReadLine());
+                if (fat + carbohydrates + protein> 100)
+                {
+                    throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
+                }
                 Console.WriteLine($"Salt in 100{portionUnit}");
                 double salt = double.Parse(Console.ReadLine());
+                if (salt + fat + carbohydrates + protein > 100)
+                {
+                    throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
+                }
                 Console.WriteLine($"Fiber in 100{portionUnit}:");
                 int fiber = int.Parse(Console.ReadLine());
+                if (fiber + salt + fat + carbohydrates + protein > 100)
+                {
+                    throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
+                }
                 Console.WriteLine($"Sugar in 100{portionUnit}:");
                 int sugar = int.Parse(Console.ReadLine());
+                if (sugar>carbohydrates)
+                {
+                    throw (new ArgumentException("The weight of sugars cannot be bigger that weight of carbohydrates"));
+                }
                 ID++;
                 ProductService.AddNewProduct(ID, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar, salt, fiber);
             }
