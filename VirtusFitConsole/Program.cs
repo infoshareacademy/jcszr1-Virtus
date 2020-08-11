@@ -27,8 +27,11 @@ namespace VirtusFitConsole
 
                 AddProductFromConsole();
 
-                SearchProductConsoleInterface testSearch = new SearchProductConsoleInterface();
-                testSearch.SearchProductInterface(ListOfProducts);
+                DisplayProductList.DisplayList(ListOfProducts);
+                EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
+                testInterface.EditProductInterface(ListOfProducts);
+
+                DisplayProductList.DisplayList(ListOfProducts);
             }
             catch (Exception e)
             {
