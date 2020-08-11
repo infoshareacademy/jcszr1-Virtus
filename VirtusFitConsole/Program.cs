@@ -33,9 +33,9 @@ namespace VirtusFitConsole
             Console.WriteLine();
             Console.WriteLine("Choose option:");
             Console.WriteLine();
-            Console.WriteLine("1. Search for a product by calorific value");
-            Console.WriteLine("2. Search for a product by name");
-            Console.WriteLine("3. Advanced product search");
+            Console.WriteLine("1. Simple product search");
+            Console.WriteLine("2. Advanced product search");
+            Console.WriteLine("3. Edit product");
             Console.WriteLine("4. Enter a new product");
             Console.WriteLine("5. Create a diet plan");
             Console.WriteLine("6. Exit");
@@ -69,11 +69,13 @@ namespace VirtusFitConsole
                 switch (userInput)
                 {
                     case 1:
-                        new SearchProductConsoleInterface();
+                        new SearchProductConsoleInterface().SearchProductInterface(ListOfProducts);
                         break;
                     case 2:
+                        
                         break;
                     case 3:
+                        new EditDataFromConsoleInterface().EditProductInterface();
                         break;
                     case 4:
                         break;
