@@ -11,22 +11,18 @@ namespace VirtusFitConsole
         public static List<Product> ListOfProducts = new List<Product>();
         static void Main(string[] args)
         {
+            ProductLoader.GetProductsFromFile();
 
             try
             {
-                foreach (var item in ProductLoader.GetProductsFromFile())
+                foreach (var item in ProductLoader.productsFromJson)
                 {
                     ListOfProducts.Add(item);
                 }
 
-                //foreach (var item in ListOfProducts)
-                //{
-                //    Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
-                //}
-
                 DisplayProductList.DisplayList(ListOfProducts);
                 EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
-                testInterface.EditProductInterface(ListOfProducts);
+                testInterface.EditProductInterface();
 
                 DisplayProductList.DisplayList(ListOfProducts);
             }
