@@ -11,9 +11,8 @@ namespace VirtusFitConsole
         public static List<Product> ListOfProducts = new List<Product>();
         static void Main(string[] args)
         {
-            Console.WriteLine("---------------------------------------------------");
-            Console.WriteLine("Witaj w programie do tworzenia planu dietetycznego!");
-            Console.WriteLine("---------------------------------------------------");
+            ProductLoader.GetProductsFromFile();
+            Console.WriteLine(">>>Welcome in dietetic planer!<<<");
             Console.WriteLine();
             int userInput = 1;
             do
@@ -32,27 +31,29 @@ namespace VirtusFitConsole
         static public int DisplayMenu()
         {
             Console.WriteLine();
-            Console.WriteLine("Wybierz opcję:");
+            Console.WriteLine("Choose option:");
             Console.WriteLine();
-            Console.WriteLine("1. Wyszukaj produkt po kaloryczności");
-            Console.WriteLine("2. Wyszukaj produkt po nazwie");
-            Console.WriteLine("3. Zawansowane wyszukiwanie produktu");
-            Console.WriteLine("4. Wprowadź nowy produkt");
-            Console.WriteLine("5. Stwórz plan dietetyczny");
-            Console.WriteLine("6. Zakończ");
+            Console.WriteLine("1. Search for a product by calorific value");
+            Console.WriteLine("2. Search for a product by name");
+            Console.WriteLine("3. Advanced product search");
+            Console.WriteLine("4. Enter a new product");
+            Console.WriteLine("5. Create a diet plan");
+            Console.WriteLine("6. Exit");
             Console.WriteLine();
 
-            int _result=1;
+            int _result;
             bool _itsNumeric;
-            _itsNumeric = false;
-
+ 
+            _itsNumeric = int.TryParse(Console.ReadLine().ToString(), out _result);
             while (_itsNumeric == false)
             {
+                Console.WriteLine("Enter number between 1 and 6");
                 _itsNumeric = int.TryParse(Console.ReadLine().ToString(), out _result);
             }
 
             while (!BetweenRanges(1, 6, _result))
             {
+                Console.WriteLine("Enter number between 1 and 6");
                 _itsNumeric = int.TryParse(Console.ReadLine().ToString(), out _result);
             }
 

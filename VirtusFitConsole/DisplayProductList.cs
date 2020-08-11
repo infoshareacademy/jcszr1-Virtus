@@ -4,7 +4,8 @@ using BLL;
 
 namespace VirtusFitConsole
 {
-    static class DisplayProductList
+    static class 
+        DisplayProductList
     {
         public static void DisplayList(List<Product> productList)
         {
