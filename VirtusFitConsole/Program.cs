@@ -11,10 +11,15 @@ namespace VirtusFitConsole
         public static List<Product> ListOfProducts = new List<Product>();
         static void Main(string[] args)
         {
-            int userInput = 0;
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine("Witaj w programie do tworzenia planu dietetycznego!");
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine("");
+            int userInput = 1;
             do
             {
                 userInput = DisplayMenu();
+
             } while (userInput != 6);
             /*try
             {
@@ -52,15 +57,15 @@ namespace VirtusFitConsole
             Console.WriteLine("5. Stwórz plan dietetyczny");
             Console.WriteLine("6. Zakończ");
             
-            int result=1;
+            int _result=1;
             bool itsNumeric=false;
             
             while (itsNumeric == false)
             {
-                itsNumeric = int.TryParse(Console.ReadLine().ToString(), out result);
+                itsNumeric = int.TryParse(Console.ReadLine().ToString(), out _result);
             }
 
-            return result;
+            return _result;
         }
     }
 }
