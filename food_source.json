@@ -1,0 +1,3448 @@
+{
+  "data": [
+    {
+      "id": 1000,
+      "country": "CH",
+      "barcode": "8001772000030",
+      "name_translations": {
+        "de": "Bio Spaghetti  ",
+        "en": "Bio Spaghetti ",
+        "fr": "Spaghetti Bio"
+      },
+      "display_name_translations": {
+        "de": "Bio Spaghetti  ",
+        "fr": "Spaghetti Bio",
+        "it": "Bio Spaghetti ",
+        "en": "Bio Spaghetti "
+      },
+      "ingredients_translations": {
+        "de": "Teigwaren aus erstklassigem Hartweizengriess\r\n\r\nZutaten : Hartweizengriess, Wasser\r\n\r\nAlle landwirtschaftlichen Zutaten stammen aus biologischer Produktion.",
+        "en": "Superior quality durum wheat Pasta\r\n\r\nIngredients: Durum wheat, water\r\n\r\nAll agricultural ingredients are products of organic farming",
+        "fr": "Pâtes de semoule de blé dur de qualité supérieure\r\n\r\nIngredients: semoule de blé dur, eau.\r\n\r\nTous les ingrédients agricoles sont issus de la production biologique"
+      },
+      "origin_translations": {
+        "de": "[\"Italien\"]",
+        "en": "[\"Italy\"]",
+        "fr": "[\"Italie\"]",
+        "it": "[\"Italia\"]"
+      },
+      "status": "complete",
+      "quantity": 500,
+      "unit": "g",
+      "portion_quantity": 50,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 11,
+          "per_portion": 5.5,
+          "per_day": 11
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 75,
+          "per_portion": 37.5,
+          "per_day": 13
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.42,
+          "per_portion": 0.21,
+          "per_day": 0
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 359,
+          "per_portion": 179,
+          "per_day": 9
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1500,
+          "per_portion": 150,
+          "per_day": 9
+        }
+      },
+      "created_at": "2016-06-01T11:42:22.908Z",
+      "updated_at": "2019-10-30T13:46:32.651Z"
+    },
+    {
+      "id": 1001,
+      "country": "CH",
+      "barcode": "7610809001066",
+      "name_translations": {
+        "de": "Naturaplan Mozzarella",
+        "en": "Naturaplan Mozzarella",
+        "fr": "Naturaplan Mozzarella"
+      },
+      "display_name_translations": {
+        "de": "Naturaplan Mozzarella",
+        "fr": "Naturaplan Mozzarella",
+        "it": "Naturaplan Mozzarella",
+        "en": "Naturaplan Mozzarella"
+      },
+      "ingredients_translations": {
+        "de": "Bio Milch (Schweiz), Kochsalz",
+        "en": "Bio Milk (Switzerland), kitchen salt",
+        "fr": "Lait Bio (Suisse), sel de cuisine "
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "en": "[\"Switzerland\"]",
+        "fr": "[\"Suisse\"]",
+        "it": "[\"Svizzera\"]"
+      },
+      "status": "complete",
+      "quantity": 150,
+      "unit": "g",
+      "portion_quantity": 75,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": 0.38,
+          "per_day": 6
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 19,
+          "per_portion": 14.25,
+          "per_day": 28
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": 0,
+          "per_day": 0
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 1.5,
+          "per_portion": 1.13,
+          "per_day": 1
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 1.5,
+          "per_portion": 1.13,
+          "per_day": 0
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 11,
+          "per_portion": 8.25,
+          "per_day": 41
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 18,
+          "per_portion": 13.5,
+          "per_day": 19
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 242,
+          "per_portion": 181,
+          "per_day": 9
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1010,
+          "per_portion": 758,
+          "per_day": 9
+        }
+      },
+      "created_at": "2016-06-01T11:42:25.111Z",
+      "updated_at": "2019-10-30T13:47:12.174Z"
+    },
+    {
+      "id": 1002,
+      "country": "CH",
+      "barcode": "8002530159021",
+      "name_translations": {
+        "de": "Caffè Mauro - Bio Kaffe ",
+        "en": "Caffè Mauro - Roasted organic coffee blend",
+        "fr": "Caffè Mauro - café bio "
+      },
+      "display_name_translations": {
+        "de": "Caffè Mauro - Bio Kaffe ",
+        "fr": "Caffè Mauro - café bio ",
+        "it": "Caffè Mauro - Roasted organic coffee blend",
+        "en": "Caffè Mauro - Roasted organic coffee blend"
+      },
+      "ingredients_translations": {
+        "de": "100%  Kaffe Arabica",
+        "en": "100%  coffee Arabica",
+        "fr": "100%  café Arabica"
+      },
+      "origin_translations": {
+        "de": "[\"Italien\"]",
+        "en": "[\"Italy\"]",
+        "fr": "[\"Italie\"]",
+        "it": "[\"Italia\"]"
+      },
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "g",
+      "portion_quantity": 0,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0.25,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 19.05,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 0.25,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 52.68,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 3.03,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 12.08,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 325,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1358.3,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-01T11:42:25.900Z",
+      "updated_at": "2019-10-30T13:48:12.635Z"
+    },
+    {
+      "id": 993,
+      "country": "CH",
+      "barcode": "7610827901010",
+      "name_translations": {
+        "de": "Naturaplan Bio Mozzarella ",
+        "en": "Naturaplan Bio Mozzarella ",
+        "fr": "Naturaplan Mozzarella Bio",
+        "it": "Naturaplan Mozzarella Bio"
+      },
+      "display_name_translations": {
+        "de": "Naturaplan Bio Mozzarella ",
+        "fr": "Naturaplan Mozzarella Bio",
+        "it": "Naturaplan Mozzarella Bio",
+        "en": "Naturaplan Bio Mozzarella "
+      },
+      "ingredients_translations": {
+        "de": "Bio Milch pasteurisiert (Schweiz), Kochsalz",
+        "en": "Pasteurised Milk (Bio), kitchen salt",
+        "fr": "Lait Bio pasteurisé (Suisse), sel de cuisine ",
+        "it": "Latte bio pastorizzato (Svizzera), sale da cucina"
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "en": "[\"Switzerland\"]",
+        "fr": "[\"Suisse\"]",
+        "it": "[\"Svizzera\"]"
+      },
+      "status": "complete",
+      "quantity": 450,
+      "unit": "g",
+      "portion_quantity": 75,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0.4,
+          "per_portion": 0.3,
+          "per_day": 5
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 20,
+          "per_portion": 15,
+          "per_day": 30
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": 0,
+          "per_day": 0
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 1,
+          "per_portion": 0.75,
+          "per_day": 0
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 1,
+          "per_portion": 0.75,
+          "per_day": 0
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 12,
+          "per_portion": 9,
+          "per_day": 45
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 20,
+          "per_portion": 15,
+          "per_day": 21
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 263,
+          "per_portion": 197,
+          "per_day": 10
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1100,
+          "per_portion": 825,
+          "per_day": 10
+        }
+      },
+      "created_at": "2016-06-01T11:42:18.023Z",
+      "updated_at": "2019-07-03T14:53:20.779Z"
+    },
+    {
+      "id": 994,
+      "country": "CH",
+      "barcode": "0071018022018",
+      "name_translations": {
+        "en": "LEAVITT'S AMERICANA, Fancy Mixed Nuts"
+      },
+      "display_name_translations": {
+        "de": "LEAVITT'S AMERICANA, Fancy Mixed Nuts",
+        "fr": "LEAVITT'S AMERICANA, Fancy Mixed Nuts",
+        "it": "LEAVITT'S AMERICANA, Fancy Mixed Nuts",
+        "en": "LEAVITT'S AMERICANA, Fancy Mixed Nuts"
+      },
+      "ingredients_translations": {
+        "de": "Cashew Nusskerne, Mandeln, Paranüsse, Haselnüsse, Pekannüsse, Erdnussöl, Salz",
+        "fr": "noix de cajou, amandes, noix du Brésil, noisettes et noix de pécan, huile d'arachide, sel"
+      },
+      "origin_translations": {
+        "en": "[\"USA\"]"
+      },
+      "status": "rescan",
+      "quantity": 284,
+      "unit": "g",
+      "portion_quantity": 0,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {},
+      "created_at": "2016-06-01T11:42:18.878Z",
+      "updated_at": "2019-07-04T13:38:41.768Z"
+    },
+    {
+      "id": 995,
+      "country": "CH",
+      "barcode": "7610809035863",
+      "name_translations": {
+        "de": "Wienerli",
+        "en": "Vieniese Sausages",
+        "fr": "Saucisses de Vienne",
+        "it": "Salsiccia di Vienna "
+      },
+      "display_name_translations": {
+        "de": "Wienerli",
+        "fr": "Saucisses de Vienne",
+        "it": "Salsiccia di Vienna ",
+        "en": "Vieniese Sausages"
+      },
+      "ingredients_translations": {
+        "de": "Schweinefleisch 29 % (Schweiz), Rindfleisch 23 % (Schweiz), Eis, Speck (Schweiz), Schwarten, Nitritpökelsalz (Kochsalz, Konservierungstoff [E 250]), Kartoffelstärke, Gewürze, Acerolaextrakt, Aromen, Gewürzextrakt, Kochsalz jodiert. Wursthülle: Schafsdarm.",
+        "fr": "viande de porc 29 % (Suisse), viande de boeuf 23 % (Suisse), glace, lard (Suisse), couennes, sel nitrité (sel de cuisine, conservateur [E 250]), feculé de pomme de terre, épices, extrait d´acérola, arôme, extrait d'épices, sel de cuisine iodé. Enveloppe: boyau de mouton.",
+        "it": "Carne di maiale 29% (Svizzera), carne di manzo (Svizzera), ghiaccio, lardo di (Svizzera), cotenne, sale nitritato (sale da cucina, conservante [E 250]), amido di patate, spezie, estratto di acerola, aroma, estratti di spezie, sale da cuccina iodato. Involucro di insaccati: budello di pecora."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "en": "[\"Switzerland\"]",
+        "fr": "[\"Suisse\"]",
+        "it": "[\"Svizzera\"]"
+      },
+      "status": "complete",
+      "quantity": 200,
+      "unit": "g",
+      "portion_quantity": 50,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 1.7,
+          "per_portion": 0.9,
+          "per_day": 15
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 16,
+          "per_portion": 8,
+          "per_day": 16
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": 0,
+          "per_day": 0
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": 0,
+          "per_day": 0
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 1.5,
+          "per_portion": 0.8,
+          "per_day": 0
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 8,
+          "per_portion": 4,
+          "per_day": 20
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 20,
+          "per_portion": 10,
+          "per_day": 14
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 249,
+          "per_portion": 124,
+          "per_day": 6
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1040,
+          "per_portion": 520,
+          "per_day": 6
+        }
+      },
+      "created_at": "2016-06-01T11:42:18.979Z",
+      "updated_at": "2019-07-01T09:08:49.953Z"
+    },
+    {
+      "id": 996,
+      "country": "CH",
+      "barcode": "7610818970506",
+      "name_translations": {
+        "de": "Naturaplan Bio Mandeln ganz",
+        "en": "Naturaplan Bio whole Almonds ",
+        "fr": "Naturaplan Amandes  entières Bio",
+        "it": "Naturaplan Mandorle  intere Bio "
+      },
+      "display_name_translations": {
+        "de": "Naturaplan Bio Mandeln ganz",
+        "fr": "Naturaplan Amandes  entières Bio",
+        "it": "Naturaplan Mandorle  intere Bio ",
+        "en": "Naturaplan Bio whole Almonds "
+      },
+      "ingredients_translations": {
+        "de": " Bio Mandeln ",
+        "en": "Bio Almonds",
+        "fr": "Amandes  Bio",
+        "it": "Mandorle  Bio "
+      },
+      "origin_translations": {},
+      "status": "complete",
+      "quantity": 200,
+      "unit": "g",
+      "portion_quantity": 30,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": 0,
+          "per_day": 0
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 22,
+          "per_portion": 6.6,
+          "per_day": 13
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 14,
+          "per_portion": 4.2,
+          "per_day": 7
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 3.5,
+          "per_portion": 1.05,
+          "per_day": 1
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 5,
+          "per_portion": 1.5,
+          "per_day": 0
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 4.5,
+          "per_portion": 1.35,
+          "per_day": 6
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 54,
+          "per_portion": 16.2,
+          "per_day": 23
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 615,
+          "per_portion": 184,
+          "per_day": 9
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 2570,
+          "per_portion": 771,
+          "per_day": 9
+        }
+      },
+      "created_at": "2016-06-01T11:42:19.745Z",
+      "updated_at": "2016-08-18T08:01:23.140Z"
+    },
+    {
+      "id": 997,
+      "country": "CH",
+      "barcode": "7610829175808",
+      "name_translations": {
+        "de": "Naturaplan Cipollata Kalb",
+        "en": "Naturaplan Cipollata veal",
+        "fr": "Naturaplan Cipollata veau",
+        "it": "Naturaplan Cipollata vitello"
+      },
+      "display_name_translations": {
+        "de": "Naturaplan Cipollata Kalb",
+        "fr": "Naturaplan Cipollata veau",
+        "it": "Naturaplan Cipollata vitello",
+        "en": "Naturaplan Cipollata veal"
+      },
+      "ingredients_translations": {
+        "de": "Fleiscineugnis aus Kalb- und Schweinefleisch mit Milch\r\n\r\nKalbfleisch 41% (Schweiz), Milch 23% (Schweiz), Speck (Schweiz)\r\nSchweinefleisch 5% (Schweiz), Schwarten, Kochsalz iodiert, Gewürze, Säuerungsmittel (E 331), Glucosesirup, Zucker. Wursthülle: Schafsdarm. \r\n\r\nAlle landwirtschaftlichen Zutaten stammen aus biologischer Zuch/Anbau. ",
+        "en": "Veal, porc and milk based product \r\n\r\nVeal 41% (Switzerland), 23% milk (Switzerland), bacon (Switzerland) porc 5% (Switzerland). Rinds, iodised salt, spices, acidifier (E331), glucose syrup, sugar. Envelope: sheep gut.\r\n\r\nAll agricultural ingredients from farming / biological I'agriculture",
+        "fr": "Produit à la base de viandes de veau et de porc avec du lait\r\n\r\nViande de veau 41% (Suisse), lait 23% (Suisse), lard (Suisse) viande de porc 5 % (Suisse). Couennes, sel de cuisine iodé, épices, acidifiant (E331), sirop de glucose, sucre. Enveloppe: boyau de mouton. \r\n\r\nTous les ingrédients agricoles sont issus de l'élevage /I'agriculture biologique",
+        "it": "Prodotto a base di carne di vitello e di maiale, con latte\r\n\r\nCarne di vitello 41% (Svizzera), Latte 23% (Svizzera), lardo (Svizzera), carne di maiale 5% (Svizzera), cotenne, sale di cuicina iodato, spezie, acidificante (E 331),  sciroppo di glucosio, zucchero. Involucro insaccati ö\r\nbudello di pecore. \r\n\r\nTutti ingredienti agricoli provengono da allevamenti/coltivazioni biologici"
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "en": "[\"Switzerland\"]",
+        "fr": "[\"Suisse\"]",
+        "it": "[\"Svizzera\"]"
+      },
+      "status": "complete",
+      "quantity": 150,
+      "unit": "g",
+      "portion_quantity": 43,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 1.7,
+          "per_portion": 0.73,
+          "per_day": 12
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 12,
+          "per_portion": 5.16,
+          "per_day": 10
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": 0,
+          "per_day": 0
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 1,
+          "per_portion": 0.43,
+          "per_day": 0
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 1,
+          "per_portion": 0.43,
+          "per_day": 0
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 8,
+          "per_portion": 3.44,
+          "per_day": 17
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 21,
+          "per_portion": 9.03,
+          "per_day": 12
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 239,
+          "per_portion": 103,
+          "per_day": 5
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1000,
+          "per_portion": 430,
+          "per_day": 5
+        }
+      },
+      "created_at": "2016-06-01T11:42:20.454Z",
+      "updated_at": "2016-08-18T08:01:36.059Z"
+    },
+    {
+      "id": 998,
+      "country": "CH",
+      "barcode": "3390390000122",
+      "name_translations": {
+        "de": "Jean Hervé - Mandeln Purée",
+        "en": "Jean Hervé - Almond Purée",
+        "fr": "Jean Hervé - Purée d'amande complete",
+        "it": "Jean Hervé - Purè di Mandorle"
+      },
+      "display_name_translations": {
+        "de": "Jean Hervé - Mandeln Purée",
+        "fr": "Jean Hervé - Purée d'amande complete",
+        "it": "Jean Hervé - Purè di Mandorle",
+        "en": "Jean Hervé - Almond Purée"
+      },
+      "ingredients_translations": {
+        "de": "Bio Mandeln ",
+        "en": "Bio Almonds",
+        "fr": "Amandes Bio",
+        "it": "Mandorle Bio"
+      },
+      "origin_translations": {
+        "de": "[\"Frankreich\"]",
+        "en": "[\"France\"]",
+        "fr": "[\"France\"]",
+        "it": "[\"Francia\"]"
+      },
+      "status": "complete",
+      "quantity": 700,
+      "unit": "g",
+      "portion_quantity": 0,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "vitamin_e_tocopherol": {
+          "name_translations": {
+            "de": "Vitamin E (Tocopherol)",
+            "en": "Vitamin E (Tocopherol)",
+            "fr": "Vitamine E (Tocopherol)",
+            "it": "Vitamina E (Tocopherol)"
+          },
+          "unit": "mg",
+          "per_hundred": 12.7,
+          "per_portion": null,
+          "per_day": null
+        },
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0.02,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 21.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 12,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 4.6,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 5.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 4.9,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 58.3,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 659,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 2754,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-01T11:42:21.332Z",
+      "updated_at": "2019-07-03T13:17:30.453Z"
+    },
+    {
+      "id": 999,
+      "country": "CH",
+      "barcode": "5032722312937",
+      "name_translations": {
+        "de": "Raw health Bio - Weiße Chiasamen",
+        "en": "Raw health Bio - White Chia Seeds ",
+        "fr": "Raw health Bio - Graines de chia blanc ",
+        "it": "Raw health Bio - Semi di chia bianco"
+      },
+      "display_name_translations": {
+        "de": "Raw health Bio - Weiße Chiasamen",
+        "fr": "Raw health Bio - Graines de chia blanc ",
+        "it": "Raw health Bio - Semi di chia bianco",
+        "en": "Raw health Bio - White Chia Seeds "
+      },
+      "ingredients_translations": {
+        "de": "Weiße Chiasamen",
+        "en": "White Chia Seeds ",
+        "fr": "Graines de chia blanc",
+        "it": "Semi di chia bianco"
+      },
+      "origin_translations": {},
+      "status": "complete",
+      "quantity": 450,
+      "unit": "g",
+      "portion_quantity": 15,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0.02,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 21.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 31.4,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 0.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 4.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 3.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 31.4,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 444,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1832,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-01T11:42:22.276Z",
+      "updated_at": "2019-03-13T13:58:21.819Z"
+    },
+	{
+      "id": 1120,
+      "country": "CH",
+      "barcode": "3038354220901",
+      "name_translations": {
+        "fr": "PANZANI"
+      },
+      "display_name_translations": {
+        "de": "PANZANI",
+        "fr": "PANZANI",
+        "it": "PANZANI",
+        "en": "PANZANI"
+      },
+      "ingredients_translations": {
+        "fr": "Pulpe de tomates fraîches avec morceaux det purées de tomates fraîches (85%), légumes frais 9% (carottes, oignons), huile de tournesol, sucre, sel, plantes aromatiques, amidon transformé de maïs, arômes."
+      },
+      "origin_translations": {},
+      "status": "complete",
+      "quantity": 400,
+      "unit": "g",
+      "portion_quantity": 100,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 1.18,
+          "per_portion": 1.18,
+          "per_day": 19
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 1.3,
+          "per_portion": 1.3,
+          "per_day": 2
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 3.6,
+          "per_portion": 3.6,
+          "per_day": 4
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 7.1,
+          "per_portion": 7.1,
+          "per_day": 2
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.3,
+          "per_portion": 0.3,
+          "per_day": 1
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 2.5,
+          "per_portion": 2.5,
+          "per_day": 3
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 59,
+          "per_portion": 59,
+          "per_day": 3
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 247,
+          "per_portion": 247,
+          "per_day": 3
+        }
+      },
+      "created_at": "2016-06-03T12:11:13.485Z",
+      "updated_at": "2016-08-18T08:19:52.998Z"
+    },
+    {
+      "id": 1121,
+      "country": "CH",
+      "barcode": "3490390201014",
+      "name_translations": {
+        "de": "Lou mas: Sonnenblumenöl",
+        "en": "Lou mas: Sunflower oil",
+        "fr": "Lou mas : Huile de tournesol",
+        "it": "Lou mas: olio di girasole"
+      },
+      "display_name_translations": {
+        "de": "Lou mas: Sonnenblumenöl",
+        "fr": "Lou mas : Huile de tournesol",
+        "it": "Lou mas: olio di girasole",
+        "en": "Lou mas: Sunflower oil"
+      },
+      "ingredients_translations": {
+        "de": "Sonnenblumen-Pflanzenöl 100%.",
+        "en": "Sunflower vegetable oil 100%.",
+        "fr": "Huile végétale de tournesol 100%.",
+        "it": "Olio vegetale di girasole 100%."
+      },
+      "origin_translations": {},
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 100,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 900,
+          "per_portion": null,
+          "per_day": null
+        },
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 12,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 3700,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:13.773Z",
+      "updated_at": "2018-11-23T08:42:10.515Z"
+    },
+    {
+      "id": 1122,
+      "country": "CH",
+      "barcode": "8076809523547",
+      "name_translations": {
+        "de": "Barilla: der Pesti, rotes Pesto",
+        "en": "Barilla: the Pesti, red pesto",
+        "fr": "Barilla: le Pesti, pesto rouge",
+        "it": "Barilla : i Pesti, pesto rosso"
+      },
+      "display_name_translations": {
+        "de": "Barilla: der Pesti, rotes Pesto",
+        "fr": "Barilla: le Pesti, pesto rouge",
+        "it": "Barilla : i Pesti, pesto rosso",
+        "en": "Barilla: the Pesti, red pesto"
+      },
+      "ingredients_translations": {
+        "de": "Tomatenfruchtfleisch 34,8%, Sonnenblumenöl, Tomatenmarkkoncentrat 15%, Glukosesirup, Grana Padano-Käse g.U. 4% (Lysozym aus Ei), Cashenüsse, Salz, Basilikum 2,2%, Balsamico-Essig 'Aceto balsamico di Modena' g.g.A. 2%, Molkepulver, Pecorino Romano-Käseg.U. 1%, Zucker, Reisstärke, Knoblauch, Säureregulator: Milchsäure, Aroma (Milch). Kann Spuren von anderen Schalenfrüchten enthalten.",
+        "en": "tomato pulp 34.8%, sunflower oil, tomato concentrate 15%, glucose syrup, Grana Padano cheese PDO 4% (egg lysozyme), cashew nuts, salt, basil 2.2%, balsamic vinegar Aceto balsamico di Modena 'IGP 2%, whey powder, cheese Pecorino Romano PDO 1%, sugar, rice starch, garlic, acidity corrector: lactic acid, flavor (milk). May contain traces of other nuts.",
+        "fr": "pulpe de tomate 34,8%, huile de tournesol, concentré de tomate 15%, sirop de glucose, fromage Grana Padano AOP 4% (lysozyme d'oeuf), noix de cajou, sel, basilic 2,2%, vinaigre balsamique 'Aceto balsamico di Modena' IGP 2%, lactosérum en poudre, fromage Pecorino Romano AOP 1%, sucre, amidon de riz, ail, correcteur d'acidité: acide lactique, arôme (lait). Peut contenir des traces d'autres fruits à coque.",
+        "it": "polpa di pomodoro 34,8%, olio di girasole, concentrato di pomodoro 15%, scirppo di glucosio, Grana Padano DOP 4% (lisozima da uovo, anacardi, sale, basilico 2,2%, Aceto Balsamico di Modena IGP 2%, siero di latte in polvere, Pecorino Romano DOP 1%, zucchero, amido di riso, correttore di acidità: acido lattico, aroma (latte). Può contenere tracce di altra frutta a guscio."
+      },
+      "origin_translations": {},
+      "status": "complete",
+      "quantity": 200,
+      "unit": "g",
+      "portion_quantity": 0,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 3,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 3.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 8.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 10.7,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 3.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 29.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 324,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1354,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:17.544Z",
+      "updated_at": "2018-11-23T08:44:00.896Z"
+    },
+    {
+      "id": 1123,
+      "country": "CH",
+      "barcode": "8076809517751",
+      "name_translations": {
+        "de": "Barilla: die Pesti, Kalabrier",
+        "en": "Barilla: the Pesti, Calabrian",
+        "fr": "Barilla: le Pesti, Calabrian",
+        "it": "Barilla : i Pesti, alla calabrese"
+      },
+      "display_name_translations": {
+        "de": "Barilla: die Pesti, Kalabrier",
+        "fr": "Barilla: le Pesti, Calabrian",
+        "it": "Barilla : i Pesti, alla calabrese",
+        "en": "Barilla: the Pesti, Calabrian"
+      },
+      "ingredients_translations": {
+        "de": "rote Gemüsepaprika 37%, Sonnenblumenöl, Ricotta-Käse (Molke, Milch) 14%, Glukosesirup, Zwiebeln, Tomatenmarkkonzentrat 3%, Salz, Molkepulver, Pecorino Romana g.U. Käse 1,6%, Grana Padano g.U. Käse 1,4% (Lysozym aus Ei), Reisstärke, Zucker; Säureregulator: Milchsäure, Chilischoten 0,1%, Oregano 0,08%, naturliche Aromen (Milch).",
+        "en": "red peppers 37%, sunflower oil, ricoatta cheese (lactic acid, milk) 1.4%, glucose syrup, onions, tomato paste 3%, salt, whey powder, Pecorino Romano PDO cheese 1.6%, Grana cheese Padano PDO 1.4% (egg lysozym), rice starch, sugar, acidity corrector: lactic acid, chilli 0,1%, oregano 0,08%, natural flavors (milk).",
+        "fr": "poivrons rouges 37%, huile de tournesol, fromage ricoatta (lactsérum, lait) 1,4%, sirop de glucose, oignons, concentré de tomates 3%, sel, lactosérum en poudre, fromage Pecorino Romano AOP 1,6%, fromage Grana Padano AOP 1,4% (Lysozym d'oeuf), amidon de riz, sucre, correcteur d'acidité: acide lactique,  piment 0,1%, origan 0,08%, arômes naturels (lait).",
+        "it": "peperoni rossi 37%, olio di semi di girasole, ricotta (siero di latte, latte) 14% siroppo di glucosio, cipolla, concentrato di pomodoro 3%, sale, siero di latte in polvere, Pecerino Romano DOP 1,6%, Grana Padano 1,4% (risozima da uovo), amido di riso, zucchero, correttore di acidità: acido lattico, peperonicino 0,1%, origano 0,08%, aroma naturale (latte)."
+      },
+      "origin_translations": {},
+      "status": "complete",
+      "quantity": 190,
+      "unit": "g",
+      "portion_quantity": 0,
+      "portion_unit": "g",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 2.75,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 3,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fiber": {
+          "name_translations": {
+            "de": "Ballaststoffe",
+            "en": "Fiber",
+            "fr": "Fibres alimentaires",
+            "it": "Fibre"
+          },
+          "unit": "g",
+          "per_hundred": 1.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 6,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 12.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 4,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 29,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 321,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 1343,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:18.869Z",
+      "updated_at": "2018-11-23T08:47:40.653Z"
+    },
+    {
+      "id": 1124,
+      "country": "CH",
+      "barcode": "3258561180113",
+      "name_translations": {
+        "de": "Belle France: Apfelessig, Normandie",
+        "en": "Belle France: cider vinegar, Normandy",
+        "fr": "Belle france : vinaigre de cidre, de normandie",
+        "it": "Belle Francia: aceto di mele, Normandia"
+      },
+      "display_name_translations": {
+        "de": "Belle France: Apfelessig, Normandie",
+        "fr": "Belle france : vinaigre de cidre, de normandie",
+        "it": "Belle Francia: aceto di mele, Normandia",
+        "en": "Belle France: cider vinegar, Normandy"
+      },
+      "ingredients_translations": {},
+      "origin_translations": {},
+      "status": "rescan",
+      "quantity": 750,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {},
+      "created_at": "2016-06-03T12:11:19.797Z",
+      "updated_at": "2018-11-23T08:49:20.244Z"
+    },
+    {
+      "id": 1125,
+      "country": "CH",
+      "barcode": "7610235004884",
+      "name_translations": {
+        "de": "Granini: Orange-Mango",
+        "en": "granini: orange-mango",
+        "fr": "granini : orange-mangue",
+        "it": "granini: arancia-mango"
+      },
+      "display_name_translations": {
+        "de": "Granini: Orange-Mango",
+        "fr": "granini : orange-mangue",
+        "it": "granini: arancia-mango",
+        "en": "granini: orange-mango"
+      },
+      "ingredients_translations": {
+        "de": "Wasser, Orangensaft aus Konzentrat (34%), Mangomark (11%), Zucker, konzentrierter Zitronensaft.",
+        "en": "water, concentrated orange juice (34%), mango puree (11%), sugar, lemon juice concentrate.",
+        "fr": "eau, jus d'orange à base de concentré (34%), purée de mangue (11%), sucre, jus de concentré de citron.",
+        "it": "acqua, succo d'arancia concentrato (34%), purea di mango (11%), zucchero, concentrato di succo di limone."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 11.4,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 11.4,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 51,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 212,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:26.127Z",
+      "updated_at": "2018-11-23T08:51:17.652Z"
+    },
+    {
+      "id": 1126,
+      "country": "CH",
+      "barcode": "7610235006581",
+      "name_translations": {
+        "de": "Granini: Ananas",
+        "en": "granini: pineapple",
+        "fr": "granini : ananas",
+        "it": "granini: ananas"
+      },
+      "display_name_translations": {
+        "de": "Granini: Ananas",
+        "fr": "granini : ananas",
+        "it": "granini: ananas",
+        "en": "granini: pineapple"
+      },
+      "ingredients_translations": {
+        "de": "Ananassaft aus Konzentrat (50%), Wasser, Zucker, konzentrierter Zitronensaft, Stabilisator: Pektin, Antioxidationsmittel: Ascorbinsäure.",
+        "en": "pineapple juice made from concentrate (50%), water, sugar, concentrated lemon juice, stabilizer: pectin, antioxidant: ascorbic acid.",
+        "fr": "jus d'ananas à base de concentré (50%), eau, sucre, jus concentré de citron, stabilisant: pectine, antioxydant: acide ascorbique.",
+        "it": "succo di ananas a base di concentrato (50%), acqua, zucchero, succo di limone concentrato, stabilizzante: pectina, antiossidante: acido ascorbico."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 11.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 11.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 51,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 214,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:26.787Z",
+      "updated_at": "2018-11-23T08:52:50.713Z"
+    },
+    {
+      "id": 1127,
+      "country": "CH",
+      "barcode": "7610235006765",
+      "name_translations": {
+        "de": "Granini: Angeln",
+        "en": "granini: peach",
+        "fr": "granini : pêche",
+        "it": "granini: pesca"
+      },
+      "display_name_translations": {
+        "de": "Granini: Angeln",
+        "fr": "granini : pêche",
+        "it": "granini: pesca",
+        "en": "granini: peach"
+      },
+      "ingredients_translations": {
+        "de": "Pfirsichmark (50%), Wasser, Zucker, konzentrierter Zitronensaft, Antioxidationsmittel: Ascorbinsäure.",
+        "en": "peach puree (50%), water, sugar, concentrated lemon juice, antioxidant: ascorbic acid.",
+        "fr": "purée de pêche (50%), eau, sucre, jus concentré de citron, antioxydant: acide ascorbique."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 11.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 11.9,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 52,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 218,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:28.431Z",
+      "updated_at": "2018-11-23T08:55:19.441Z"
+    },
+    {
+      "id": 1128,
+      "country": "CH",
+      "barcode": "7610235004860",
+      "name_translations": {
+        "de": "Granini: Orange 100%, ohne Fruchtfleisch",
+        "en": "granini: Orange 100%, without pulp",
+        "fr": "granini : Orange 100%, sans pulpe",
+        "it": "granini: arancia 100%, senza polpa"
+      },
+      "display_name_translations": {
+        "de": "Granini: Orange 100%, ohne Fruchtfleisch",
+        "fr": "granini : Orange 100%, sans pulpe",
+        "it": "granini: arancia 100%, senza polpa",
+        "en": "granini: Orange 100%, without pulp"
+      },
+      "ingredients_translations": {
+        "de": "100% Orangensaft aus Konzentrat, ohne Fruchtfleisch, pasteurisiert.",
+        "en": "100% orange juice concentrate, pulp free, pasteurized.",
+        "fr": "100% jus d'orange à base de concentré, sans pulpe, pasteurisé."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.7,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 8.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 8.8,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 44,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 183,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:37.073Z",
+      "updated_at": "2018-11-23T08:57:16.997Z"
+    },
+    {
+      "id": 1129,
+      "country": "CH",
+      "barcode": "7610235004877",
+      "name_translations": {
+        "de": "granini : Fruchtcocktail",
+        "fr": "granini : Cocktail de fruits",
+        "it": "granini: cocktail di frutta"
+      },
+      "display_name_translations": {
+        "de": "granini : Fruchtcocktail",
+        "fr": "granini : Cocktail de fruits",
+        "it": "granini: cocktail di frutta",
+        "en": "granini : Fruchtcocktail"
+      },
+      "ingredients_translations": {
+        "de": "Wasser, konzentrierter Mehrfruchtsaft (Orange (42%), Marocuja (4%), Ananas (1%)), Zucker, Bananen- (1%), Pfirisch- (1%), Mirabellen-, Birnen- und Mangomark, Säuerungsmittel: Zitronensäure, Vitamin C, Niacin, Vitamin E, Pantathensäure,Beta-Carotin, Vitamin B6, B2, B1, Folsäure, Biotin und Vitamin B12.",
+        "fr": "eau, jus concentré de fruits (orange (42%), fruit de la passion (4%), ananas (1%)), sucre, purée de: banane (1%), pêche (1%), mirabelle, poire et mangue, acidifiant: acide citrique, vitamine C, niacine, vitamine E, acide pantathénique, béta-carotine, vitamines B6, B2, B1, acide folique, biotine et vitamine B12.",
+        "it": "acqua, concentrato di succo di frutta (arancia (42%), frutto della passione (4%), ananas (1%)), zucchero, purè: banana (1%), pesca (1%), prugna, pera e mango, acidificante: acido citrico, vitamina C, niacina, vitamina E, acido pantatenico, beta-carotina, vitamine B6, B2, B1, acido folico, biotina e vitamina B12."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "vitamin_b2_riboflavin": {
+          "name_translations": {
+            "de": "Vitamin B2 (Riboflavin)",
+            "en": "Vitamin B2 (Riboflavin)",
+            "fr": "Vitamine B2 (Riboflavine)",
+            "it": "Vitamina B2 (Riboflavin)"
+          },
+          "unit": "mg",
+          "per_hundred": 0.35,
+          "per_portion": null,
+          "per_day": null
+        },
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 11.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 11.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 52,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 216,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:37.341Z",
+      "updated_at": "2018-11-23T08:58:39.896Z"
+    },
+    {
+      "id": 1130,
+      "country": "CH",
+      "barcode": "7610235006604",
+      "name_translations": {
+        "de": "granini : pink grapefruit",
+        "en": "granini: pink grapefruit",
+        "fr": "granini : pamplemousse rose",
+        "it": "granini: pompelmo rosa"
+      },
+      "display_name_translations": {
+        "de": "granini : pink grapefruit",
+        "fr": "granini : pamplemousse rose",
+        "it": "granini: pompelmo rosa",
+        "en": "granini: pink grapefruit"
+      },
+      "ingredients_translations": {
+        "de": "Pinkgrapefruitsaft aus Konzentrat (60%), Wasser, Zucker.",
+        "en": "pink grapefruit juice made from concentrate (60%), water, sugar.",
+        "fr": "jus de pamplemousse rose à base de concentré (60%), eau, sucre."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 1000,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 8.9,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 8.9,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 41,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 173,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:40.944Z",
+      "updated_at": "2018-11-23T09:09:48.457Z"
+    },
+    {
+      "id": 1131,
+      "country": "CH",
+      "barcode": "7613035184244",
+      "name_translations": {
+        "de": "granini : My Moment, Pink Grapefruit - Cranberry",
+        "en": "granini: My Moment, Pink Grapefruit - Cranberry",
+        "fr": "granini : My Moment, Pamplemousse rose - canneberge"
+      },
+      "display_name_translations": {
+        "de": "granini : My Moment, Pink Grapefruit - Cranberry",
+        "fr": "granini : My Moment, Pamplemousse rose - canneberge",
+        "it": "granini: My Moment, Pink Grapefruit - Cranberry",
+        "en": "granini: My Moment, Pink Grapefruit - Cranberry"
+      },
+      "ingredients_translations": {
+        "de": "Wasser, Orangensaft aus Konzentrat (26%), Cranberrysaft aus Konzentrat (10%), Zucker, Pink Grapefruitsaft aus Konzentrat (6%), Grapefruitfruchtfleisch (3%), konzentrierter Zitronensaft, konzentrierter Karottensaft.",
+        "en": "water, concentrated orange juice (26%), concentrate-based cranberry juice (6%), concentrated grapefruit juice (6%), grapefruit pulp (3%), juice of lemon concentrate, carrot concentrate juice.",
+        "fr": "eau, jus d'orange à base de concentré (26%), jus de canneberge à base de concentré (6%), sucre jus de pamplemousse rose à base de concentré (6%), pulpe de pamplemousse (3%), jus de concentré de citron, jus de concentré de carotte."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 330,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 11.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 11.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 51,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 212,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:43.622Z",
+      "updated_at": "2018-11-23T09:11:52.346Z"
+    },
+    {
+      "id": 1132,
+      "country": "CH",
+      "barcode": "7613034075437",
+      "name_translations": {
+        "de": "granini : My Moment, Zitrone-Limette",
+        "en": "granini: My Moment, Lemon-Lemon",
+        "fr": "granini : My Moment, Citron-Limette"
+      },
+      "display_name_translations": {
+        "de": "granini : My Moment, Zitrone-Limette",
+        "fr": "granini : My Moment, Citron-Limette",
+        "it": "granini: My Moment, Lemon-Lemon",
+        "en": "granini: My Moment, Lemon-Lemon"
+      },
+      "ingredients_translations": {
+        "de": "Wasser, Orangensaft aus Konzentrat (10%), Zucker, Limettesaft aus\r\nKonzentrat (6%), Zitronensaft aus Konzentrat (4%), Antioxydanttionsmittel: Ascorbicsäure, Stabilisator: Pektin und Johannisbrotkernmehl, natürliche Aromen.",
+        "en": "water, concentrated orange juice (10%), sugar, concentrate-based lime juice (6%), concentrate-based lemon juice (4%), antioxidant: ascorbic acid, stabilizers: pectin and carob gum, natural flavors.",
+        "fr": "eau, jus d'orange à base de concentré (10%), sucre, jus de limette à base de concentré (6%), jus de citron à base de concentré (4%), antioxydant: acide ascorbique, stabilisants: pectine et gomme de caroube, arômes naturels."
+      },
+      "origin_translations": {},
+      "status": "complete",
+      "quantity": 330,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 8.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 8.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 36,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 151,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:47.751Z",
+      "updated_at": "2018-11-23T09:16:31.056Z"
+    },
+    {
+      "id": 1133,
+      "country": "CH",
+      "barcode": "7610235004693",
+      "name_translations": {
+        "de": "GRANINI: 100% ORANGE",
+        "en": "GRANINI: 100% ORANGE",
+        "fr": "GRANINI : ORANGE 100%"
+      },
+      "display_name_translations": {
+        "de": "GRANINI: 100% ORANGE",
+        "fr": "GRANINI : ORANGE 100%",
+        "it": "GRANINI: 100% ORANGE",
+        "en": "GRANINI: 100% ORANGE"
+      },
+      "ingredients_translations": {
+        "de": "100% Orangensaft aus Konzentrat, ohne Fruchtfleisch, pasterisiert.",
+        "en": "100% orange juice based on concentrate. Without pulp. Pasteurized.",
+        "fr": "100% jus d'orange à base de concentré. Sans pulpe. Pasteurisé."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 330,
+      "unit": "mL",
+      "portion_quantity": 250,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": 0,
+          "per_day": 0
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 1,
+          "per_portion": 2.5,
+          "per_day": 5
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 8.8,
+          "per_portion": 22,
+          "per_day": 24
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 8.8,
+          "per_portion": 22,
+          "per_day": 8
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": 0.25,
+          "per_day": 1
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": 1.25,
+          "per_day": 1
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 44,
+          "per_portion": 109,
+          "per_day": 5
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 183,
+          "per_portion": 458,
+          "per_day": 5
+        }
+      },
+      "created_at": "2016-06-03T12:11:50.739Z",
+      "updated_at": "2018-11-23T09:22:19.746Z"
+    },
+    {
+      "id": 1134,
+      "country": "CH",
+      "barcode": "7610057001078",
+      "name_translations": {
+        "de": "RAMSEIER : SÜESSMOST, naturrein",
+        "en": "RAMSEIER: APPLE JUICE, natural",
+        "fr": "RAMSEIER : JUS DE POMME, naturel",
+        "it": "RAMSEIER: SUCCO DI MELA, naturale"
+      },
+      "display_name_translations": {
+        "de": "RAMSEIER : SÜESSMOST, naturrein",
+        "fr": "RAMSEIER : JUS DE POMME, naturel",
+        "it": "RAMSEIER: SUCCO DI MELA, naturale",
+        "en": "RAMSEIER: APPLE JUICE, natural"
+      },
+      "ingredients_translations": {
+        "de": "Schweizer Apfelsaft (min. 90%) und Schweizer Bimensaft (max 10% ) aus Konzentrat, Kohlensäure. Pasteurisiert.",
+        "en": "Swiss apple juice (min.90%) and Swiss pear juice (max 10%) based on concentrated, carbonic acid. Pasteurized.",
+        "fr": "Jus de pomme Suisse (min.90%) et jus de poire suisse (max 10%) à base de concentré, acide carbonique. Pasteurisé.",
+        "it": "Succo di mele svizzero (min. 90%) e succo di pera svizzero (max 10%) a base di acido carbonico concentrato. Pastorizzato."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 500,
+      "unit": "mL",
+      "portion_quantity": 250,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": 0.5,
+          "per_day": 1
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 11,
+          "per_portion": 27.5,
+          "per_day": 10
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": 0.5,
+          "per_day": 1
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 45,
+          "per_portion": 114,
+          "per_day": 6
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 190,
+          "per_portion": 475,
+          "per_day": 6
+        }
+      },
+      "created_at": "2016-06-03T12:11:54.001Z",
+      "updated_at": "2018-11-23T13:01:27.123Z"
+    },
+    {
+      "id": 1135,
+      "country": "CH",
+      "barcode": "7610057012654",
+      "name_translations": {
+        "de": "RAMSEIER : HOCHSTÄMMER, obstsaft naturtrüe",
+        "fr": "RAMSEIER : HAUTE-TIGE, jus de pomme et de poire non filtré",
+        "it": "RAMSEIER: HIGH-ROD, succo di mela e pera non filtrata"
+      },
+      "display_name_translations": {
+        "de": "RAMSEIER : HOCHSTÄMMER, obstsaft naturtrüe",
+        "fr": "RAMSEIER : HAUTE-TIGE, jus de pomme et de poire non filtré",
+        "it": "RAMSEIER: HIGH-ROD, succo di mela e pera non filtrata",
+        "en": "RAMSEIER : HOCHSTÄMMER, obstsaft naturtrüe"
+      },
+      "ingredients_translations": {
+        "de": "Schweizer Apfelsaft (75%) und Sweizer Bimensaft (25%) aus konzentrat. Ohne Kohlensäure. Pasteurisiert.",
+        "fr": "Jus de pomme suisse (75%) et jus de poire suisse (25%) à base de concentré. Non  gazeux. Pasteurisé.",
+        "it": "Succo di mele svizzero (75%) e succo di pera svizzero (25%) a base di concentrato. Nessun gas. Pastorizzato."
+      },
+      "origin_translations": {
+        "de": "[\"Schweiz\"]",
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 500,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 11,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 45,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 190,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:11:56.675Z",
+      "updated_at": "2018-11-23T13:03:18.902Z"
+    },
+    {
+      "id": 1136,
+      "country": "CH",
+      "barcode": "7610235008004",
+      "name_translations": {
+        "de": "granini : Fruchtig & Prickelnd, Apfel",
+        "en": "granini: Fruity & tingling, apple",
+        "it": "granini: fruttato e frizzante, mela"
+      },
+      "display_name_translations": {
+        "de": "granini : Fruchtig & Prickelnd, Apfel",
+        "fr": "granini: Fruity & tingling, apple",
+        "it": "granini: fruttato e frizzante, mela",
+        "en": "granini: Fruity & tingling, apple"
+      },
+      "ingredients_translations": {
+        "de": "natürliches Mineralwasser, Apfelsaft aus Konzentrat, Zucker, konzentrierter Zitronensaft, Kohlensäure.",
+        "en": "natural mineral water, concentrated apple juice, sugar, concentrated lemon juice, carbonic acid.",
+        "fr": "eau minérale naturelle, jus de pomme à base de concentré, sucre, jus concentré de citron, acide carbonique."
+      },
+      "origin_translations": {
+        "de": "[\"Deutschland\"]",
+        "fr": "[\"Allemagne\"]"
+      },
+      "status": "complete",
+      "quantity": 500,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "salt": {
+          "name_translations": {
+            "de": "Salz",
+            "en": "Salt",
+            "fr": "Sel",
+            "it": "Sale"
+          },
+          "unit": "g",
+          "per_hundred": 0,
+          "per_portion": null,
+          "per_day": null
+        },
+        "protein": {
+          "name_translations": {
+            "de": "Eiweiss",
+            "en": "Protein",
+            "fr": "Protéines",
+            "it": "Proteine"
+          },
+          "unit": "g",
+          "per_hundred": 0.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "sugars": {
+          "name_translations": {
+            "de": "Zucker",
+            "en": "Sugars",
+            "fr": "Sucres",
+            "it": "Zuccheri"
+          },
+          "unit": "g",
+          "per_hundred": 7.5,
+          "per_portion": null,
+          "per_day": null
+        },
+        "carbohydrates": {
+          "name_translations": {
+            "de": "Kohlenhydrate",
+            "en": "Carbohydrates",
+            "fr": "Glucides",
+            "it": "Carboidrati"
+          },
+          "unit": "g",
+          "per_hundred": 7.6,
+          "per_portion": null,
+          "per_day": null
+        },
+        "saturated_fat": {
+          "name_translations": {
+            "de": "Gesättigte Fettsäuren",
+            "en": "Saturated fat",
+            "fr": "Acides gras saturés",
+            "it": "Acidi grassi saturi"
+          },
+          "unit": "g",
+          "per_hundred": 0.1,
+          "per_portion": null,
+          "per_day": null
+        },
+        "fat": {
+          "name_translations": {
+            "de": "Fett",
+            "en": "Fat",
+            "fr": "Matières grasses",
+            "it": "Grassi"
+          },
+          "unit": "g",
+          "per_hundred": 0.2,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy_kcal": {
+          "name_translations": {
+            "de": "Energie (kCal)",
+            "en": "Energy (kCal)",
+            "fr": "Énergie (kCal)",
+            "it": "Energia (kCal)"
+          },
+          "unit": "kCal",
+          "per_hundred": 32,
+          "per_portion": null,
+          "per_day": null
+        },
+        "energy": {
+          "name_translations": {
+            "de": "Energie",
+            "en": "Energy",
+            "fr": "Énergie",
+            "it": "Energia"
+          },
+          "unit": "kJ",
+          "per_hundred": 135,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:12:09.351Z",
+      "updated_at": "2018-11-23T13:06:00.478Z"
+    },
+    {
+      "id": 1137,
+      "country": "CH",
+      "barcode": "7610534012108",
+      "name_translations": {
+        "de": "CRISTALP",
+        "en": "CRISTALP",
+        "fr": "CRISTALP",
+        "it": "CRISTALP"
+      },
+      "display_name_translations": {
+        "de": "CRISTALP",
+        "fr": "CRISTALP",
+        "it": "CRISTALP",
+        "en": "CRISTALP"
+      },
+      "ingredients_translations": {
+        "de": "Natürliches Mineralwasser aus den Walliser Alpen.\r\nCharakteristische Komponenten (mg / l):\r\nCa ++ 115\r\nMg ++ 40\r\nNa + 19,9\r\nK + 1,8\r\nHC03-306\r\nCl-11,5\r\nNO3-1,8\r\nS04 - 221\r\nF-1,4\r\nMineralisierung insgesamt 118\r\nEnthält Fluorid.",
+        "en": "Natural mineral water from the Valais Alps.\r\nCharacteristic components (mg / l):\r\nCa ++ 115\r\nMg ++ 40\r\nNa + 19.9\r\nK + 1.8\r\nHC03-306\r\nCl- 11.5\r\nNO3- 1.8\r\nS04-- 221\r\nF-1.4\r\nTotal mineralization 118\r\nContains fluoride.",
+        "fr": "Eau minérale naturelle des alpes valaisannes.\r\nComposants caractéristiques (mg/l) : \r\nCa++ 115 \r\nMg++ 40\r\nNa+ 19,9\r\nK+ 1.8 \r\nHC03- 306 \r\nCl- 11,5\r\nNO3- 1,8\r\nS04-- 221 \r\nF- 1,4\r\nMinéralisation totale 118\r\nContient du fluor.",
+        "it": "Acqua minerale naturale delle Alpi vallesane.\r\nComponenti caratteristici (mg / l):\r\nCa ++ 115\r\nMg ++ 40\r\nNa + 19,9\r\nK + 1,8\r\nHC03- 306\r\nCl- 11.5\r\nNO3- 1.8\r\nS04-- 221\r\nF 1.4\r\nMineralizzazione totale 118\r\nContiene fluoruro."
+      },
+      "origin_translations": {
+        "fr": "[\"Suisse\"]"
+      },
+      "status": "complete",
+      "quantity": 500,
+      "unit": "mL",
+      "portion_quantity": 0,
+      "portion_unit": "mL",
+      "alcohol_by_volume": 0,
+      "nutrients": {
+        "sodium": {
+          "name_translations": {
+            "de": "Natrium",
+            "en": "Sodium",
+            "fr": "Sodium",
+            "it": "Sodio"
+          },
+          "unit": "g",
+          "per_hundred": 19.9,
+          "per_portion": null,
+          "per_day": null
+        },
+        "magnesium": {
+          "name_translations": {
+            "de": "Magnesium",
+            "en": "Magnesium",
+            "fr": "Magnesium",
+            "it": "Magnesio"
+          },
+          "unit": "mg",
+          "per_hundred": 40,
+          "per_portion": null,
+          "per_day": null
+        },
+        "calcium": {
+          "name_translations": {
+            "de": "Kalzium",
+            "en": "Calcium",
+            "fr": "Calcium",
+            "it": "Calcio"
+          },
+          "unit": "mg",
+          "per_hundred": 115,
+          "per_portion": null,
+          "per_day": null
+        }
+      },
+      "created_at": "2016-06-03T12:12:12.432Z",
+      "updated_at": "2019-03-15T13:16:14.733Z"
+    }
+  ],
+}

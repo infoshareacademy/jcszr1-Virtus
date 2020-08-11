@@ -16,116 +16,32 @@ namespace BLL
 {
     public class ProductLoader
     {
-        private static readonly List<Product> _staticListOfProducts = new List<Product>();
-
-        public static List<Product> GetProductsFromFile()
+        public static List<Product> productsFromJson = new List<Product>();
+        public static void GetProductsFromFile()
         {
             var path = Environment.CurrentDirectory + "\\food_source.json";
             var jsonString = File.ReadAllText(path);
-            SampleProductClass products = JsonConvert.DeserializeObject<SampleProductClass>(jsonString);
-            int i = 0;
-            foreach (var item in products.Data)
+            dynamic deserializedJson = JsonConvert.DeserializeObject(jsonString);
+            foreach (var product in deserializedJson.data)
             {
-                var internalProductId = Convert.ToInt32(products.Data[i].Id);
-                var internalProductName = products.Data[i].DisplayNameTranslations.En;
-                int internalEnergy;
-                int internalFat;
-                int internalCarbohydrates;
-                int internalProtein;
-                int internalSalt;
-                int internalFiber;
-                int internalSugar;
-                int internalQuantity;
-                int internalPortionQuantity;
-                string internalPortionUnit;
-                try
+                productsFromJson.Add(new Product
                 {
-                    internalEnergy = (int)products.Data[i].Nutrients["energy"].PerHundred;
-                }
-                catch (Exception e)
-                {
-                    internalEnergy = 0;
-                }
-                try
-                {
-                    internalFat = (int)products.Data[i].Nutrients["fat"].PerHundred;
-                }
-                catch (Exception e)
-                {
-                    internalFat = 0;
-                }
-                try
-                {
-                    internalCarbohydrates = (int)products.Data[i].Nutrients["carbohydrates"].PerHundred;
-                }
-                catch (Exception e)
-                {
-                    internalCarbohydrates = 0;
-                }
-                try
-                {
-                    internalProtein = (int)products.Data[i].Nutrients["protein"].PerHundred;
-                }
-                catch (Exception e)
-                {
-                    internalProtein = 0;
-                }
-                try
-                {
-                    internalSalt = (int)products.Data[i].Nutrients["salt"].PerHundred;
-                }
-                catch (Exception e)
-                {
-                    internalSalt = 0;
-                }
-                try
-                {
-                    internalFiber = (int)products.Data[i].Nutrients["fiber"].PerHundred;
-                }
-                catch (Exception e)
-                {
-                    internalFiber = 0;
-                }
-                try
-                {
-                    internalSugar = (int)products.Data[i].Nutrients["sugar"].PerHundred;
-                }
-                catch (Exception e)
-                {
-                    internalSugar = 0;
-                }
-                try
-                {
-                    internalQuantity = (int)products.Data[i].Quantity;
-                }
-                catch (Exception e)
-                {
-                    internalQuantity = 0;
-                }
-                try
-                {
-                    internalPortionQuantity = (int)products.Data[i].PortionQuantity;
-                }
-                catch (Exception e)
-                {
-                    internalPortionQuantity = 0;
-                }
-                switch (products.Data[i].Unit)
-                {
-                    case PortionUnitEnum.G:
-                        internalPortionUnit = "g";
-                        break;
-                    case PortionUnitEnum.ML:
-                        internalPortionUnit = "ml";
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-                _staticListOfProducts.Add(new Product() { ProductId = internalProductId, ProductName = internalProductName, Energy = internalEnergy, Carbohydrates = internalCarbohydrates, Fat = internalFat, Protein = internalProtein, Salt = internalSalt, Fiber = internalFiber, Sugar = internalSugar, PortionQuantity = internalPortionQuantity, PortionUnit = internalPortionUnit, Quantity = internalQuantity });
-                i++;
-            }
-            return _staticListOfProducts;
-        }
+                    ProductId = product.id,
+                    ProductName = product.display_name_translations.en,
+                    Energy = product.nutrients?.energy?.per_portion == null ? 0 : product.nutrients?.energy?.per_portion,
+                    Fat = product.nutrients?.fat?.per_portion == null ? 0 : product.nutrients?.fat?.per_portion,
+                    Carbohydrates = product.nutrients?.carbohydrates?.per_portion == null ? 0 : product.nutrients?.carbohydrates?.per_portion,
+                    Protein = product.nutrients?.protein?.per_portion == null ? 0 : product.nutrients?.protein?.per_portion,
+                    Salt = product.nutrients?.salt?.per_portion == null ? 0 : product.nutrients?.salt?.per_portion,
+                    Fiber = product.nutrients?.fiber?.per_portion == null ? 0 : product.nutrients?.fiber?.per_portion,
+                    Sugar = product.nutrients?.sugar?.per_portion == null ? 0 : product.nutrients?.sugar?.per_portion,
+                    Quantity = product.quantity == null ? 0 : product.quantity,
+                    PortionQuantity = product.portion_quantity == null ? 0 : product.portion_quantity,
+                    PortionUnit = product.portion_unit == null ? 0 : product.portion_unit,
+                });
 
+            }
+
+        }
     }
 }

@@ -11,25 +11,22 @@ namespace VirtusFitConsole
 
         static void Main(string[] args)
         {
+            ProductLoader.GetProductsFromFile();
 
             try
             {
-                foreach (var item in ProductLoader.GetProductsFromFile())
+                foreach (var item in ProductLoader.productsFromJson)
                 {
                     ListOfProducts.Add(item);
                 }
-
-                //foreach (var item in ListOfProducts)
-                //{
-                //    Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
-                //}
-                DisplayProductList.DisplayList(ListOfProducts);
-                AddProductFromConsole();
 
                 DisplayProductList.DisplayList(ListOfProducts);
                 EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
                 testInterface.EditProductInterface();
 
+                AddProductFromConsole();
+                DisplayProductList.DisplayList(ListOfProducts);
+                testInterface.EditProductInterface();
                 DisplayProductList.DisplayList(ListOfProducts);
             }
             catch (Exception e)
@@ -101,7 +98,6 @@ namespace VirtusFitConsole
                 ID++;
                 ProductService.AddNewProduct(ID, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar, salt, fiber, ListOfProducts);
             }
-            //int productId, string productName, string portionUnit, int quantity,  int portionQuantity, int energy, double fat, double carbohydrates, double protein, int sugar, double salt, int fiber)
             catch (Exception error)
             {
                 Console.WriteLine(error.Message);
