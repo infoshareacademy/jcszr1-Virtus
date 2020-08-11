@@ -24,12 +24,11 @@ namespace VirtusFitConsole
                 //    Console.WriteLine(item.ProductName + item.ProductId + item.PortionQuantity + item.PortionUnit + item.Energy + item.Fat + item.Fiber + item.Sugar);
                 //}
                 DisplayProductList.DisplayList(ListOfProducts);
-
                 AddProductFromConsole();
 
                 DisplayProductList.DisplayList(ListOfProducts);
                 EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
-                testInterface.EditProductInterface(ListOfProducts);
+                testInterface.EditProductInterface();
 
                 DisplayProductList.DisplayList(ListOfProducts);
             }
@@ -40,7 +39,7 @@ namespace VirtusFitConsole
             }
         }
 
-        private static int ID = 5;
+        private static int ID = 9000;
         public static void AddProductFromConsole()
         {
             try
@@ -100,7 +99,7 @@ namespace VirtusFitConsole
                     throw (new ArgumentException("The weight of sugars cannot be bigger that weight of carbohydrates"));
                 }
                 ID++;
-                ProductService.AddNewProduct(ID, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar, salt, fiber);
+                ProductService.AddNewProduct(ID, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar, salt, fiber, ListOfProducts);
             }
             //int productId, string productName, string portionUnit, int quantity,  int portionQuantity, int energy, double fat, double carbohydrates, double protein, int sugar, double salt, int fiber)
             catch (Exception error)
