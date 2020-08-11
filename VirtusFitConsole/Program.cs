@@ -72,14 +72,34 @@ namespace VirtusFitConsole
                         new SearchProductConsoleInterface().SearchProductInterface(ListOfProducts);
                         break;
                     case 2:
-                        
+                        //
                         break;
                     case 3:
+                        try
+                        {
+                            foreach (var item in ProductLoader.GetProductsFromFile())
+                            {
+                                ListOfProducts.Add(item);
+                            }
+
+                            DisplayProductList.DisplayList(ListOfProducts);
+                            EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
+                            testInterface.EditProductInterface();
+
+                            DisplayProductList.DisplayList(ListOfProducts);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine($"An error occured: {e.Message} \nPress any key.");
+                            Console.ReadKey();
+                        }
                         new EditDataFromConsoleInterface().EditProductInterface();
                         break;
                     case 4:
+                        //
                         break;
                     case 5:
+                        //
                         break;
                     default:
                         break;

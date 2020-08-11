@@ -64,18 +64,7 @@ namespace VirtusFitConsole
             Console.WriteLine("Provide the ID of the product that you would like to update");
             string productId = Console.ReadLine();
             var productToBeUpdated = Program.ListOfProducts.Where(product => product.ProductId.Equals(Convert.ToInt32(productId))).ToList();
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             if (productToBeUpdated[0] == null)
             {
                 throw new ArgumentException("The product could not be found.");
