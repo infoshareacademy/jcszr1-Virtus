@@ -128,7 +128,7 @@ namespace VirtusFitConsole
                         Console.WriteLine("Product carbohydrates value has been updated!");
                         break;
                     }
-                case "Protein":
+                case "Proteins":
                     {
                         Console.WriteLine("Please provide new protein value: ");
                         var valueEntered = int.TryParse(Console.ReadLine(), out newIntValue);
