@@ -19,15 +19,18 @@ namespace VirtusFitConsole
                     ListOfProducts.Add(item);
                 }
 
-                //DisplayProductList.DisplayList(ListOfProducts);
-                //EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
-                //testInterface.EditProductInterface();
-                //
-                //DisplayProductList.DisplayList(ListOfProducts);
-
                 Console.WindowWidth = 150;
-                SearchProductConsoleInterface newSearch = new SearchProductConsoleInterface();
-                newSearch.SearchProductInterface(ListOfProducts);
+
+                DisplayProductList.DisplayList(ListOfProducts);
+                EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
+                testInterface.EditProductInterface();
+
+                DisplayProductList.DisplayList(ListOfProducts);
+
+                //-------------Search Logic test block----------------//
+
+                //SearchProductConsoleInterface newSearch = new SearchProductConsoleInterface();
+                //newSearch.SearchProductInterface(ListOfProducts);
             }
             catch (Exception e)
             {
