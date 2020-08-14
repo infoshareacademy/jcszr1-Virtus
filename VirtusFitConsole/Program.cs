@@ -1,7 +1,6 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using BLL;
 using Console = System.Console;
 
 namespace VirtusFitConsole
@@ -20,11 +19,15 @@ namespace VirtusFitConsole
                     ListOfProducts.Add(item);
                 }
 
-                DisplayProductList.DisplayList(ListOfProducts);
-                EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
-                testInterface.EditProductInterface();
+                //DisplayProductList.DisplayList(ListOfProducts);
+                //EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
+                //testInterface.EditProductInterface();
+                //
+                //DisplayProductList.DisplayList(ListOfProducts);
 
-                DisplayProductList.DisplayList(ListOfProducts);
+                Console.WindowWidth = 150;
+                SearchProductConsoleInterface newSearch = new SearchProductConsoleInterface();
+                newSearch.SearchProductInterface(ListOfProducts);
             }
             catch (Exception e)
             {
