@@ -1,12 +1,12 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
-using BLL;
 
 namespace VirtusFitConsole
 {
     class SearchProductConsoleInterface
     {
-        private static readonly string[] SearchOptions = { "Search by name", "Search by calories" };
+        private static readonly string[] SearchOptions = { "Search by name", "Search by calories", "Search by fat", "Search by carbohydrates", "Search by protein" };
         private static int _currentLine;
 
         private string DisplayOptions(int cursorPos)
@@ -68,30 +68,78 @@ namespace VirtusFitConsole
             do
             {
                 userDecision = DisplayOptions(cursorPos);
-            } while (userDecision != "Search by name" && userDecision != "Search by calories");
+            } while (userDecision != "Search by name" && userDecision != "Search by calories" && userDecision != "Search by fat" && userDecision != "Search by carbohydrates" && userDecision != "Search by protein");
 
             switch (userDecision)
             {
                 case "Search by name":
+                    {
+                        _newData.GetDataFromUser(out var productName);
+                        var searchList = _newSearch.SearchByName(productList, productName);
+                        DisplayProductList.DisplayList(searchList);
+                        break;
+                    }
+                case "Search by calories":
+                    {
+                        var searchValue = _newData.GetDataFromUser(out var minValue, out var maxValue);
+                        if (searchValue != 0)
+                        {
+                            var searchList = _newSearch.SearchByCalories(productList, searchValue);
+                            DisplayProductList.DisplayList(searchList);
+                        }
+                        else
+                        {
+                            var searchList = _newSearch.SearchByCalories(productList, minValue, maxValue);
+                            DisplayProductList.DisplayList(searchList);
+                        }
+                        break;
+                    }
+                case "Search by fat":
+                    {
+                        string macro = "fat";
+                        var searchValue = _newData.GetDataFromUser(macro, out var minValue, out var maxValue);
+                        if (searchValue != 0)
+                        {
+                            var searchList = _newSearch.SearchByFat(productList, searchValue);
+                            DisplayProductList.DisplayList(searchList);
+                        }
+                        else
+                        {
+                            var searchList = _newSearch.SearchByFat(productList, minValue, maxValue);
+                            DisplayProductList.DisplayList(searchList);
+                        }
+                        break;
+                    }
+                case "Search by carbohydrates":
                 {
-                    _newData.GetDataFromUser(out var productName);
-              //     var searchList = _newSearch.SearchByName(productList, productName);
-              //     DisplayProductList.DisplayList(searchList);
-              //     break;
-              // }
-              // case "Search by calories":
-              // {
-              //     var searchValue = _newData.GetDataFromUser(out var minValue, out var maxValue);
-              //     if (searchValue != 0)
-              //     {
-              //         var searchList = _newSearch.SearchByCalories(productList, searchValue);
-              //         DisplayProductList.DisplayList(searchList);
-              //     }
-              //     else
-              //     {
-              //         var searchList = _newSearch.SearchByCalories(productList, minValue, maxValue);
-              //         DisplayProductList.DisplayList(searchList);
-              //     }
+                    string macro = "carbohydrates";
+                    var searchValue = _newData.GetDataFromUser(macro, out var minValue, out var maxValue);
+                    if (searchValue != 0)
+                    {
+                        var searchList = _newSearch.SearchByCarbohydrates(productList, searchValue);
+                        DisplayProductList.DisplayList(searchList);
+                    }
+                    else
+                    {
+                        var searchList = _newSearch.SearchByCarbohydrates(productList, minValue, maxValue);
+                        DisplayProductList.DisplayList(searchList);
+                    }
+                    break;
+                }
+                case "Search by protein":
+                {
+                    string macro = "protein";
+                    var searchValue = _newData.GetDataFromUser(macro, out var minValue, out var maxValue);
+                    if (searchValue != 0)
+                    {
+                        var searchList = _newSearch.SearchByProtein(productList, searchValue);
+                        DisplayProductList.DisplayList(searchList);
+                    }
+                    else
+                    {
+                        var searchList = _newSearch.SearchByProtein(productList, minValue, maxValue);
+                        DisplayProductList.DisplayList(searchList);
+                    }
                     break;
                 }
             }

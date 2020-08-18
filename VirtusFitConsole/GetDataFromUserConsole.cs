@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 
 namespace VirtusFitConsole
@@ -14,6 +13,12 @@ namespace VirtusFitConsole
         {
             var exactCaloriesValue = GetSearchByCaloriesData(out minCaloriesValue, out maxCaloriesValue);
             return exactCaloriesValue;
+        }
+
+        public double GetDataFromUser(string macro, out double minMacroValue, out double maxMacroValue)
+        {
+            var exactMacroValue = GetSearchByMacrosData(macro, out minMacroValue, out maxMacroValue);
+            return exactMacroValue;
         }
 
         private string GetSearchByNameData()
@@ -67,7 +72,51 @@ namespace VirtusFitConsole
             } while (true);
         }
 
-        private static readonly string[] SearchByCaloriesOptions = { "Search by value", "Search by range" };
+        private double GetSearchByMacrosData(string macro, out double minValue, out double maxValue)
+        {
+            minValue = 0;
+            maxValue = 0;
+            Console.WriteLine($"Would You like to search by exact {macro} value or by range?");
+            var cursorPos = Console.CursorTop;
+            string userDecision;
+            do
+            {
+                userDecision = DisplayOptions(cursorPos);
+            } while (userDecision != "Search by value" && userDecision != "Search by range");
+
+            do
+            {
+                try
+                {
+                    if (userDecision == "Search by value")
+                    {
+                        Console.Write("Enter Calories value: ");
+                        var valueEntered = double.TryParse(Console.ReadLine(), out double searchValue);
+                        if (valueEntered) return searchValue;
+                        throw new ArgumentException("The value must be a valid number.");
+                    }
+
+                    if (userDecision == "Search by range")
+                    {
+                        Console.Write("Enter min value: ");
+                        var minValueEntered = double.TryParse(Console.ReadLine(), out minValue);
+                        Console.Write("Enter max value: ");
+                        var maxValueEntered = double.TryParse(Console.ReadLine(), out maxValue);
+                        if (minValueEntered && maxValueEntered) return 0;
+                        throw new ArgumentException("The value must be a valid number.");
+                    }
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Press any key to continue. Or ESC to leave.");
+                    if (Console.ReadKey().Key == ConsoleKey.Escape) Environment.Exit(0);
+                }
+            } while (true);
+        }
+
+        private static readonly string[] SearchByValueOptions = { "Search by value", "Search by range" };
         private static int _currentLine;
 
         private string DisplayOptions(int cursorPos)
@@ -75,7 +124,7 @@ namespace VirtusFitConsole
 
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, cursorPos);
-            for (int i = 0; i < SearchByCaloriesOptions.GetLength(0); i++)
+            for (int i = 0; i < SearchByValueOptions.GetLength(0); i++)
             {
                 if (i == _currentLine)
                 {
@@ -83,7 +132,7 @@ namespace VirtusFitConsole
                     Console.ForegroundColor = ConsoleColor.Black;
                 }
 
-                Console.WriteLine(SearchByCaloriesOptions[i]);
+                Console.WriteLine(SearchByValueOptions[i]);
                 Console.ResetColor();
             }
 
@@ -91,7 +140,7 @@ namespace VirtusFitConsole
 
             if (keyPressed.Key == ConsoleKey.DownArrow)
             {
-                if (_currentLine == SearchByCaloriesOptions.GetLength(0) - 1)
+                if (_currentLine == SearchByValueOptions.GetLength(0) - 1)
                 {
                     _currentLine = 0;
                 }
@@ -104,7 +153,7 @@ namespace VirtusFitConsole
             {
                 if (_currentLine <= 0)
                 {
-                    _currentLine = SearchByCaloriesOptions.GetLength(0) - 1;
+                    _currentLine = SearchByValueOptions.GetLength(0) - 1;
                 }
                 else
                 {
@@ -113,7 +162,7 @@ namespace VirtusFitConsole
             }
             else if (keyPressed.Key == ConsoleKey.Enter)
             {
-                return SearchByCaloriesOptions[_currentLine];
+                return SearchByValueOptions[_currentLine];
             }
             return "";
         }

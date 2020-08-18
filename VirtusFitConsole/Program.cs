@@ -20,6 +20,8 @@ namespace VirtusFitConsole
                     ListOfProducts.Add(item);
                 }
 
+                Console.WindowWidth = 150;
+
                 DisplayProductList.DisplayList(ListOfProducts);
                 EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
                 testInterface.EditProductInterface();
@@ -28,6 +30,11 @@ namespace VirtusFitConsole
                 DisplayProductList.DisplayList(ListOfProducts);
                 testInterface.EditProductInterface();
                 DisplayProductList.DisplayList(ListOfProducts);
+
+                //-------------Search Logic test block----------------//
+
+                //SearchProductConsoleInterface newSearch = new SearchProductConsoleInterface();
+                //newSearch.SearchProductInterface(ListOfProducts);
             }
             catch (Exception e)
             {
