@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using BLL;
 
@@ -111,6 +112,12 @@ namespace VirtusFitConsole
                             Console.WriteLine("The fat value must be a number higher than or equal zero");
                             valueEntered = int.TryParse(Console.ReadLine(), out newIntValue);
                         }
+
+                        if (productToBeUpdated[0].Fiber + productToBeUpdated[0].Protein + productToBeUpdated[0].Salt +
+                            productToBeUpdated[0].Carbohydrates + newIntValue > 100)
+                        {
+                            throw new ArgumentException("The weight of macro elements cannot be higher than 100g");
+                        }
                         productToBeUpdated[0].Fat = newIntValue;
                         Console.WriteLine("Product fat value has been updated!");
                         break;
@@ -123,6 +130,11 @@ namespace VirtusFitConsole
                         {
                             Console.WriteLine("The carbohydrates value must be a number higher than or equal zero");
                             valueEntered = int.TryParse(Console.ReadLine(), out newIntValue);
+                        }
+                        if (productToBeUpdated[0].Fiber + productToBeUpdated[0].Protein + productToBeUpdated[0].Salt +
+                            productToBeUpdated[0].Fat + newIntValue > 100)
+                        {
+                            throw new ArgumentException("The weight of macro elements cannot be higher than 100g");
                         }
                         productToBeUpdated[0].Carbohydrates = newIntValue;
                         Console.WriteLine("Product carbohydrates value has been updated!");
@@ -137,6 +149,11 @@ namespace VirtusFitConsole
                             Console.WriteLine("The protein value must be a number higher than or equal zero");
                             valueEntered = int.TryParse(Console.ReadLine(), out newIntValue);
                         }
+                        if (productToBeUpdated[0].Fiber + productToBeUpdated[0].Fat + productToBeUpdated[0].Salt +
+                            productToBeUpdated[0].Carbohydrates + newIntValue > 100)
+                        {
+                            throw new ArgumentException("The weight of macro elements cannot be higher than 100g");
+                        }
                         productToBeUpdated[0].Protein = newIntValue;
                         Console.WriteLine("Product protein value has been updated!");
                         break;
@@ -149,6 +166,11 @@ namespace VirtusFitConsole
                         {
                             Console.WriteLine("The salt value must be a number higher than or equal zero");
                             valueEntered = int.TryParse(Console.ReadLine(), out newIntValue);
+                        }
+                        if (productToBeUpdated[0].Fiber + productToBeUpdated[0].Protein + productToBeUpdated[0].Fat +
+                            productToBeUpdated[0].Carbohydrates + newIntValue > 100)
+                        {
+                            throw new ArgumentException("The weight of macro elements cannot be higher than 100g");
                         }
                         productToBeUpdated[0].Salt = newIntValue;
                         Console.WriteLine("Product protein value has been updated!");
@@ -175,6 +197,11 @@ namespace VirtusFitConsole
                         {
                             Console.WriteLine("The salt value must be a number higher than or equal zero");
                             valueEntered = int.TryParse(Console.ReadLine(), out newIntValue);
+                        }
+
+                        if (newIntValue > productToBeUpdated[0].Carbohydrates)
+                        {
+                            throw new ArgumentException("The weight of sugars cannot be bigger that weight of carbohydrates");
                         }
                         productToBeUpdated[0].Sugar = newIntValue;
                         Console.WriteLine("Product sugar value has been updated!");
