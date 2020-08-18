@@ -39,6 +39,7 @@ namespace BLL
                     PortionQuantity = product.portion_quantity == null ? 0 : product.portion_quantity,
                     PortionUnit = product.portion_unit == null ? 0 : product.portion_unit,
                 });
+
             }
 
         }
