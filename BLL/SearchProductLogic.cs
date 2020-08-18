@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -7,44 +8,47 @@ namespace BLL
     {
         public List<Product> SearchByName(List<Product> productList, string searchValue)
         {
-            var returnList = new List<Product>();
-            
-            foreach (var product in productList)
-            {
-                if (product.ProductName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    returnList.Add(product);
-                }
-            }
-            return returnList;
+            return productList.Where(product =>
+                product.ProductName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
+
         public List<Product> SearchByCalories(List<Product> productList, int searchValue)
         {
-
-            var returnList = new List<Product>();
-
-            foreach (var product in productList)
-            {
-                if (product.Energy == searchValue)
-                {
-                    returnList.Add(product);
-                }
-            }
-            return returnList;
+            return productList.Where(product => product.Energy == searchValue).ToList();
         }
 
         public List<Product> SearchByCalories(List<Product> productList, int minValue, int maxValue)
         {
-            var returnList = new List<Product>();
+            return productList.Where(product => product.Energy >= minValue && product.Energy <= maxValue).ToList();
+        }
 
-            foreach (var product in productList)
-            {
-                if (product.Energy >= minValue && product.Energy <= maxValue)
-                {
-                    returnList.Add(product);
-                }
-            }
-            return returnList;
+        public List<Product> SearchByFat(List<Product> productList, double searchValue)
+        {
+            return productList.Where(product => product.Fat == searchValue).ToList();
+        }
+
+        public List<Product> SearchByFat(List<Product> productList, double minValue, double maxValue)
+        {
+            return productList.Where(product => product.Fat >= minValue && product.Fat <= maxValue).ToList();
+        }
+
+        public List<Product> SearchByCarbohydrates(List<Product> productList, double searchValue)
+        {
+            return productList.Where(product => product.Carbohydrates == searchValue).ToList();
+        }
+
+        public List<Product> SearchByCarbohydrates(List<Product> productList, double minValue, double maxValue)
+        {
+            return productList.Where(product => product.Carbohydrates >= minValue && product.Carbohydrates <= maxValue).ToList();
+        }
+        public List<Product> SearchByProtein(List<Product> productList, double searchValue)
+        {
+            return productList.Where(product => product.Protein == searchValue).ToList();
+        }
+
+        public List<Product> SearchByProtein(List<Product> productList, double minValue, double maxValue)
+        {
+            return productList.Where(product => product.Protein >= minValue && product.Protein <= maxValue).ToList();
         }
     }
 }
