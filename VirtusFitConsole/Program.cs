@@ -23,12 +23,13 @@ namespace VirtusFitConsole
                 Console.WindowWidth = 150;
 
                 DisplayProductList.DisplayList(ListOfProducts);
-                EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
-                testInterface.EditProductInterface();
+                //EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
+                //testInterface.EditProductInterface();
 
                 AddProductFromConsole();
                 DisplayProductList.DisplayList(ListOfProducts);
-                testInterface.EditProductInterface();
+                AddProductFromConsole();
+                //testInterface.EditProductInterface();
                 DisplayProductList.DisplayList(ListOfProducts);
 
                 //-------------Search Logic test block----------------//
@@ -50,27 +51,43 @@ namespace VirtusFitConsole
             {
                 Console.WriteLine("Product name:");
                 string productName = Console.ReadLine();
-                Console.WriteLine("Weight unit (G for gramms/ML for mililiters):");
-                string portionUnit = Console.ReadLine().ToUpper();
-                if (portionUnit != "G" && portionUnit !="ML")
+                Console.WriteLine("Weight unit (g for gramms/ml for mililiters):");
+                string portionUnit = Console.ReadLine().ToLower();
+                if (portionUnit != "g" && portionUnit !="ml")
                 {
-                    throw (new ArgumentException("Incorrect input, only 'G' or 'ML' is acceptable."));
+                    throw (new ArgumentException("Incorrect input, only 'g' or 'ml' is acceptable."));
                 }
                 Console.WriteLine("Product weight:");
                 int quantity = int.Parse(Console.ReadLine());
+                if (quantity < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
+                }
                 Console.WriteLine("Portion weight:");
-                int portionQuantity = int.Parse(Console.ReadLine());
+                int portionQuantity = int.Parse(Console.ReadLine()); 
+                if (portionQuantity < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
+                }
                 if (portionQuantity > quantity)
                 {
                     throw (new ArgumentException("Portion weight cannot be bigger that the Product weight"));
                 }
                 Console.WriteLine($"Energy (kCal) in 100{portionUnit}:");
                 int energy = int.Parse(Console.ReadLine());
+                if (energy <0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
+                }
                 Console.WriteLine($"Fat in 100{portionUnit}");
                 double fat = double.Parse(Console.ReadLine());
                 if (fat > 100)
                 {
                     throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
+                }
+                if (fat < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
                 }
                 Console.WriteLine($"Carbohydrates in 100{portionUnit}:");
                 double carbohydrates = double.Parse(Console.ReadLine());
@@ -78,11 +95,19 @@ namespace VirtusFitConsole
                 {
                     throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
                 }
+                if (carbohydrates < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
+                }
                 Console.WriteLine($"Protein in 100{portionUnit}:");
                 double protein = double.Parse(Console.ReadLine());
                 if (fat + carbohydrates + protein> 100)
                 {
                     throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
+                }
+                if (protein < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
                 }
                 Console.WriteLine($"Salt in 100{portionUnit}");
                 double salt = double.Parse(Console.ReadLine());
@@ -90,17 +115,29 @@ namespace VirtusFitConsole
                 {
                     throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
                 }
+                if (salt < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
+                }
                 Console.WriteLine($"Fiber in 100{portionUnit}:");
                 int fiber = int.Parse(Console.ReadLine());
                 if (fiber + salt + fat + carbohydrates + protein > 100)
                 {
                     throw (new ArgumentException("The weight of macro elements cannot be bigger that 100g"));
                 }
+                if (fiber < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
+                }
                 Console.WriteLine($"Sugar in 100{portionUnit}:");
                 int sugar = int.Parse(Console.ReadLine());
                 if (sugar>carbohydrates)
                 {
                     throw (new ArgumentException("The weight of sugars cannot be bigger that weight of carbohydrates"));
+                }
+                if (sugar < 0)
+                {
+                    throw (new ArgumentException("The input cannot have negative value"));
                 }
                 ID++;
                 ProductService.AddNewProduct(ID, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar, salt, fiber, ListOfProducts);
