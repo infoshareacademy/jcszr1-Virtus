@@ -28,7 +28,7 @@ namespace BLL
                 {
                     ProductId = product.id,
                     ProductName = product.display_name_translations.en,
-                    Energy = product.nutrients?.energy?.per_portion == null ? 0 : product.nutrients?.energy?.per_portion,
+                    Energy = product.nutrients?.energy_kcal?.per_portion == null ? 0 : product.nutrients?.energy_kcal?.per_portion,
                     Fat = product.nutrients?.fat?.per_portion == null ? 0 : product.nutrients?.fat?.per_portion,
                     Carbohydrates = product.nutrients?.carbohydrates?.per_portion == null ? 0 : product.nutrients?.carbohydrates?.per_portion,
                     Protein = product.nutrients?.protein?.per_portion == null ? 0 : product.nutrients?.protein?.per_portion,
