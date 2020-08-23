@@ -21,21 +21,62 @@ namespace VirtusFitConsole
                 }
 
                 Console.WindowWidth = 150;
-
-                DisplayProductList.DisplayList(ListOfProducts);
-                //EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
-                //testInterface.EditProductInterface();
-
-                AddProductFromConsole();
-                DisplayProductList.DisplayList(ListOfProducts);
-                AddProductFromConsole();
-                //testInterface.EditProductInterface();
-                DisplayProductList.DisplayList(ListOfProducts);
-
-                //-------------Search Logic test block----------------//
-
-                //SearchProductConsoleInterface newSearch = new SearchProductConsoleInterface();
-                //newSearch.SearchProductInterface(ListOfProducts);
+                bool terminate = false;
+                while (terminate == false)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Welcome to VirtusFit application.");
+                    Console.WriteLine("----------------------------------");
+                    Console.WriteLine("Available options:");
+                    Console.WriteLine("1. Display full list of products.");
+                    Console.WriteLine("2. Search for products.");
+                    Console.WriteLine("3. Add new product.");
+                    Console.WriteLine("4. Edit product.");
+                    Console.WriteLine("5. Prepare diet plan.");
+                    Console.WriteLine("6. Close application.");
+                    Console.WriteLine("----------------------------------");
+                    Console.WriteLine("Please choose your action:");
+                    string userChoice = (Console.ReadLine());
+                    if (userChoice != "1" && userChoice != "2" && userChoice != "3" && userChoice != "4" && userChoice != "5" && userChoice != "6")
+                    {
+                        Console.WriteLine("Incorrect input");
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to continue.");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        int _userChoice = int.Parse(userChoice);
+                        switch (_userChoice)
+                        {
+                            case 1:
+                                DisplayProductList.DisplayList(ListOfProducts);
+                                break;
+                            case 2:
+                                SearchProductConsoleInterface newSearch = new SearchProductConsoleInterface();
+                                newSearch.SearchProductInterface(ListOfProducts);
+                                break;
+                            case 3:
+                                AddProductFromConsole();
+                                break;
+                            case 4:
+                                DisplayProductList.DisplayList(ListOfProducts);
+                                EditDataFromConsoleInterface testInterface = new EditDataFromConsoleInterface();
+                                testInterface.EditProductInterface();
+                                break;
+                            case 5:
+                                Console.WriteLine("There will be a super cool diet planner");
+                                Console.WriteLine();
+                                Console.WriteLine("Press any key to continue.");
+                                Console.ReadKey();
+                                break;
+                            case 6:
+                                terminate = true;
+                                break;
+                        }
+                    }
+                   
+                }
             }
             catch (Exception e)
             {
@@ -145,6 +186,9 @@ namespace VirtusFitConsole
             catch (Exception error)
             {
                 Console.WriteLine(error.Message);
+                Console.WriteLine();
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
         }
         
