@@ -182,6 +182,10 @@ namespace VirtusFitConsole
                 }
                 ID++;
                 ProductService.AddNewProduct(ID, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, sugar, salt, fiber, ListOfProducts);
+                Console.WriteLine($"Product {productName} been added to the product list.");
+                Console.WriteLine();
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
             }
             catch (Exception error)
             {
