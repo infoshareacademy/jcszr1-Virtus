@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-
-namespace BLL
+﻿namespace BLL
 {
     public class Product
     {
@@ -33,9 +29,6 @@ namespace BLL
            this.Fiber = fiber;
            this.Sugar = sugar;
         }
-        //            Product newProduct = new Product(id, productName, portionUnit, quantity, portionQuantity, energy, fat, carbohydrates, protein, salt, fiber, sugar); 
-
-        //id, productName, quantity, portionQuantity, energy, fat, carbohydrates, protein, salt, fiber, sugar
         public Product()
         {
         }
