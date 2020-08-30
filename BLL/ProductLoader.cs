@@ -16,9 +16,9 @@ namespace BLL
 {
     public class ProductLoader
     {
-        public static List<Product> productsFromJson = new List<Product>();
-        public static void GetProductsFromFile()
+        public List<Product> GetProductsFromFile()
         {
+            List<Product> productsFromJson = new List<Product>();
             var path = Environment.CurrentDirectory + "\\food_source.json";
             var jsonString = File.ReadAllText(path);
             dynamic deserializedJson = JsonConvert.DeserializeObject(jsonString);
@@ -38,10 +38,11 @@ namespace BLL
                     Quantity = product.quantity == null ? 0 : product.quantity,
                     PortionQuantity = product.portion_quantity == null ? 0 : product.portion_quantity,
                     PortionUnit = product.portion_unit == null ? 0 : product.portion_unit,
-                });
-
+                }
+                );
             }
 
+            return productsFromJson;
         }
     }
 }
