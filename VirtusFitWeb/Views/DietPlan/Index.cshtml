@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BLL.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Diet Plan</h1>
+
+<p>
+    <a asp-action="Add">Add New</a>
+</p>
+@if ()
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Energy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carbohydrates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fiber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sugar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortionQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortionUnit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Energy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carbohydrates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Protein)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sugar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortionQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortionUnit)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
