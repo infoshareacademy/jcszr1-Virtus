@@ -7,7 +7,13 @@ namespace VirtusFitWeb.Services
 {
     public class DietPlanService : IDietPlanService
     {
-        private static List<DietPlan> _dietPlans = new List<DietPlan>();
+        private static List<DietPlan> _dietPlans = new List<DietPlan>
+        {
+            new DietPlan
+            {
+                Id = 1, StartDate = new DateTime(2020,09,07), EndDate = new DateTime(2020,09,17), CaloriesPerDay = 2000
+            }
+        };
         public IEnumerable<DietPlan> ListAll()
         {
             return _dietPlans;

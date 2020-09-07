@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
     public class DietPlanController : Controller
     {
+        private readonly IDietPlanService _dietPlanService;
+
+        public DietPlanController(IDietPlanService dietPlanService)
+        {
+            _dietPlanService = dietPlanService;
+        }
         // GET: DietPlanController
         public ActionResult Index()
         {
-            return View();
+            return View(_dietPlanService.ListAll().ToList());
         }
 
         // GET: DietPlanController/Details/5
