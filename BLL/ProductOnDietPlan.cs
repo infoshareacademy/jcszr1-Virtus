@@ -1,6 +1,6 @@
 ﻿namespace BLL
 {
-    class ProductOnList
+    class ProductOnDietPlan
     {
         public Product Product { get; set; }
         public int PortionSize { get; set; }

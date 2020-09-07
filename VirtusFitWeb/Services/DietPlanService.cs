@@ -12,6 +12,12 @@ namespace VirtusFitWeb.Services
         {
             return _dietPlans;
         }
+
+        public DietPlan GetDietPlan(int id)
+        {
+            return _dietPlans.FirstOrDefault(p => p.Id == id);
+        }
+
         public DietPlan Create(DietPlan newDietPlan)
         {
             newDietPlan.Id = _dietPlans.Max(plan => plan.Id) + 1;
