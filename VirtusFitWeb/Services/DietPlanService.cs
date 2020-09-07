@@ -7,13 +7,18 @@ namespace VirtusFitWeb.Services
 {
     public class DietPlanService : IDietPlanService
     {
-        private static List<DietPlan> _dietPlans = new List<DietPlan>
+        private static readonly List<DietPlan> _dietPlans = new List<DietPlan>
         {
             new DietPlan
             {
-                Id = 1, StartDate = new DateTime(2020,09,07), EndDate = new DateTime(2020,09,17), CaloriesPerDay = 2000
+                Id = 1, StartDate = new DateTime(2020,09,07), EndDate = new DateTime(2020,09,17), CaloriesPerDay = 1700
+            },
+            new DietPlan
+            {
+                Id = 2, StartDate = new DateTime(2020,09,17), EndDate = new DateTime(2020,09,25), CaloriesPerDay = 1900
             }
         };
+
         public IEnumerable<DietPlan> ListAll()
         {
             return _dietPlans;
@@ -24,6 +29,7 @@ namespace VirtusFitWeb.Services
             return _dietPlans.FirstOrDefault(p => p.Id == id);
         }
 
+
         public DietPlan Create(DietPlan newDietPlan)
         {
             newDietPlan.Id = _dietPlans.Max(plan => plan.Id) + 1;
@@ -31,6 +37,24 @@ namespace VirtusFitWeb.Services
 
             return newDietPlan;
         }
+
+        public IEnumerable<DailyDietPlan> ListDailyDietPlans(int id)
+        {
+            var plan = GetDietPlan(id);
+            plan.DailyDietPlanList = new List<DailyDietPlan>();
+            
+
+            for (int i = 0; i < plan.Duration.Days; i++)
+            {
+                plan.DailyDietPlanList.Add(new DailyDietPlan()
+                    {
+                        DietPlanId = id, DayNumber = i + 1
+                    }
+                );
+            }
+            return plan.DailyDietPlanList;
+        }
+
         public bool Edit(int id, DietPlan dietPlan)
         {
             throw new NotImplementedException();

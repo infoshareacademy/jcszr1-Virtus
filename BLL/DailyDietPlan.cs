@@ -6,6 +6,7 @@ namespace VirtusFitWeb.Models
 {
     public class DailyDietPlan
     {
+        public int DietPlanId { get; set; }
         public int DayNumber { get; set; }
         public DateTime Date { get; set; }
         public int CaloriesSum { get; set; }

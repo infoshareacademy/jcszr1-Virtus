@@ -31,34 +31,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    
-        var startDateToDisplay = item.StartDate.ToShortDateString();
-    var endDateToDisplay = item.EndDate.ToShortDateString();
-    var durationToDisplay = item.Duration.Days.ToString() + " Days";
-    
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => startDateToDisplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => endDateToDisplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => durationToDisplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CaloriesPerDay)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+
+            var startDateToDisplay = item.StartDate.ToShortDateString();
+            var endDateToDisplay = item.EndDate.ToShortDateString();
+            var durationToDisplay = item.Duration.Days.ToString() + " Days";
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => startDateToDisplay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => endDateToDisplay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => durationToDisplay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CaloriesPerDay)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

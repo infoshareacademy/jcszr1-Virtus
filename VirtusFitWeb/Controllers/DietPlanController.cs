@@ -22,7 +22,7 @@ namespace VirtusFitWeb.Controllers
         // GET: DietPlanController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(_dietPlanService.ListDailyDietPlans(id));
         }
 
         // GET: DietPlanController/Create
