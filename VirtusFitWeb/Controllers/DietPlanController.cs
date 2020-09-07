@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BLL;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VirtusFitWeb.Models;
 
 namespace VirtusFitWeb.Controllers
 {
@@ -23,7 +19,7 @@ namespace VirtusFitWeb.Controllers
         }
 
         // GET: DietPlanController/Create
-        public ActionResult Add()
+        public ActionResult Create()
         {
             return View();
         }
@@ -31,7 +27,7 @@ namespace VirtusFitWeb.Controllers
         // POST: DietPlanController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(IFormCollection collection)
+        public ActionResult Create(DietPlan newDietPlan)
         {
             try
             {

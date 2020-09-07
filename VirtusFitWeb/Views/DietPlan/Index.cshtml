@@ -1,53 +1,31 @@
-﻿@model IEnumerable<BLL.Product>
+﻿@model IEnumerable<VirtusFitWeb.Models.DietPlan>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Diet Plan</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Add">Add New</a>
+    <a asp-action="Create">Create New</a>
 </p>
-@if ()
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductId)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Energy)
+                @Html.DisplayNameFor(model => model.EndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fat)
+                @Html.DisplayNameFor(model => model.Duration)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Carbohydrates)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Protein)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Salt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fiber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sugar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PortionQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PortionUnit)
+                @Html.DisplayNameFor(model => model.CaloriesPerDay)
             </th>
             <th></th>
         </tr>
@@ -56,40 +34,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductId)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Energy)
+                @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fat)
+                @Html.DisplayFor(modelItem => item.Duration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Carbohydrates)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Protein)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fiber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sugar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PortionQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PortionUnit)
+                @Html.DisplayFor(modelItem => item.CaloriesPerDay)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
