@@ -16,6 +16,6 @@ namespace VirtusFitWeb.Models
         public TimeSpan Duration { get; set; }
         [Required(ErrorMessage = "Enter daily calories amount.")]
         public int CaloriesPerDay { get; set; }
-        public Dictionary<DateTime, List<Product>> ProductListForDay { get; set; }
+        public List<DailyDietPlan> dailyDietPlans { get; set; }
     }
 }

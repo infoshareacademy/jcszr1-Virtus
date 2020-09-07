@@ -1437,9 +1437,9 @@
       "origin_translations": {},
       "status": "complete",
       "quantity": 1000,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "fat": {
@@ -1846,9 +1846,9 @@
       "origin_translations": {},
       "status": "rescan",
       "quantity": 750,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {},
       "created_at": "2016-06-03T12:11:19.797Z",
@@ -1882,9 +1882,9 @@
       },
       "status": "complete",
       "quantity": 1000,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -2015,9 +2015,9 @@
       },
       "status": "complete",
       "quantity": 1000,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -2147,9 +2147,9 @@
       },
       "status": "complete",
       "quantity": 1000,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -2279,9 +2279,9 @@
       },
       "status": "complete",
       "quantity": 1000,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -2410,9 +2410,9 @@
       },
       "status": "complete",
       "quantity": 1000,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "vitamin_b2_riboflavin": {
@@ -2554,9 +2554,9 @@
       },
       "status": "complete",
       "quantity": 1000,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -2685,9 +2685,9 @@
       },
       "status": "complete",
       "quantity": 330,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -2813,9 +2813,9 @@
       "origin_translations": {},
       "status": "complete",
       "quantity": 330,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -2944,9 +2944,9 @@
       },
       "status": "complete",
       "quantity": 330,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 250,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -3077,9 +3077,9 @@
       },
       "status": "complete",
       "quantity": 500,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 250,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "protein": {
@@ -3172,9 +3172,9 @@
       },
       "status": "complete",
       "quantity": 500,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "protein": {
@@ -3267,9 +3267,9 @@
       },
       "status": "complete",
       "quantity": 500,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "salt": {
@@ -3399,9 +3399,9 @@
       },
       "status": "complete",
       "quantity": 500,
-      "unit": "mL",
+      "unit": "ml",
       "portion_quantity": 0,
-      "portion_unit": "mL",
+      "portion_unit": "ml",
       "alcohol_by_volume": 0,
       "nutrients": {
         "sodium": {
