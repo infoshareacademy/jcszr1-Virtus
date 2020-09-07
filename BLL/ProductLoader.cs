@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
@@ -16,7 +17,7 @@ namespace BLL
 {
     public class ProductLoader
     {
-        public List<Product> GetProductsFromFile()
+        public static List<Product> GetProductsFromFile()
         {
             List<Product> productsFromJson = new List<Product>();
             var path = Environment.CurrentDirectory + "\\food_source.json";
@@ -26,7 +27,7 @@ namespace BLL
             {
                 productsFromJson.Add(new Product
                 {
-                    ProductId = product.id,
+                    ProductId = productsFromJson.Count + 1,
                     ProductName = product.display_name_translations.en,
                     Energy = product.nutrients?.energy_kcal?.per_portion == null ? 0 : product.nutrients?.energy_kcal?.per_portion,
                     Fat = product.nutrients?.fat?.per_portion == null ? 0 : product.nutrients?.fat?.per_portion,
