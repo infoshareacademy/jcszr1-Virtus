@@ -1,5 +1,4 @@
-﻿using BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,9 +12,12 @@ namespace VirtusFitWeb.Models
         public DateTime StartDate { get; set; }
         [Required(ErrorMessage = "Enter end date.")]
         public DateTime EndDate { get; set; }
-        public TimeSpan Duration { get; set; }
+
+        public TimeSpan Duration => EndDate - StartDate;
+
         [Required(ErrorMessage = "Enter daily calories amount.")]
         public int CaloriesPerDay { get; set; }
-        public List<DailyDietPlan> dailyDietPlans { get; set; }
+
+        public List<DailyDietPlan> DailyDietPlanList { get; set; }
     }
 }
