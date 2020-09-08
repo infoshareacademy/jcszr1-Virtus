@@ -1,0 +1,45 @@
+﻿@model IEnumerable<VirtusFitWeb.Models.ProductOnDietPlan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product List for - Diet Plan &#8470; @ViewBag.DietPlanId | Day &#8470; @ViewBag.DayNumber</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortionSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfPortions)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PortionSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfPortions)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Product }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Product }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Product })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

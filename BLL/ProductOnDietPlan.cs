@@ -1,4 +1,6 @@
-﻿namespace BLL
+﻿using BLL;
+
+namespace VirtusFitWeb.Models
 {
     public class ProductOnDietPlan
     {

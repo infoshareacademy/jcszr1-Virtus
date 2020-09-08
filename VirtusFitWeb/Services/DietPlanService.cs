@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtusFitWeb.Models;
@@ -43,7 +44,6 @@ namespace VirtusFitWeb.Services
             var plan = GetDietPlan(id);
             plan.DailyDietPlanList = new List<DailyDietPlan>();
             
-
             for (int i = 0; i < plan.Duration.Days; i++)
             {
                 plan.DailyDietPlanList.Add(new DailyDietPlan()
@@ -53,6 +53,28 @@ namespace VirtusFitWeb.Services
                 );
             }
             return plan.DailyDietPlanList;
+        }
+        public DailyDietPlan GetDailyDietPlan(int id, int dayNumber)
+        {
+            return ListDailyDietPlans(id).FirstOrDefault(d => d.DayNumber == dayNumber);
+        }
+
+        public IEnumerable<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
+        {
+            var dailyPlan = GetDailyDietPlan(id, dayNumber);
+            dailyPlan.ProductListForDay = new List<ProductOnDietPlan>();
+
+            dailyPlan.ProductListForDay.Add(new ProductOnDietPlan()
+            {
+                Product = new Product()
+                {
+                    ProductName = "Bułka",
+                    Energy = 100
+                },
+                PortionSize = 100,
+                NumberOfPortions = 1
+            });
+            return dailyPlan.ProductListForDay;
         }
 
         public bool Edit(int id, DietPlan dietPlan)

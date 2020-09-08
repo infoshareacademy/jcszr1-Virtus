@@ -11,5 +11,7 @@ namespace VirtusFitWeb.Services
         bool DeleteById(int id);
         DietPlan Create(DietPlan newDietPlan);
         IEnumerable<DailyDietPlan> ListDailyDietPlans(int id);
+        public DailyDietPlan GetDailyDietPlan(int id, int dayNumber);
+        public IEnumerable<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber);
     }
 }

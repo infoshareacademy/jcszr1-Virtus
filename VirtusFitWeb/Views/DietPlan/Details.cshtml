@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-    <h1>Day List for Diet Plan:  </h1>
+<h1>Day List for - Diet Plan &#8470; @ViewBag.DietPlanId </h1>
 
 <table class="table">
     <thead>
@@ -53,8 +53,8 @@
                     @Html.DisplayFor(modelItem => item.ProteinSum)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.DayNumber }) |
-         <!--           @Html.ActionLink("Product List", "ProductList", new { id = item.DayNumber })     -->
+                    @Html.ActionLink("Products", "DailyProductList", new { id = item.DietPlanId, dayNumber = item.DayNumber })
+         
                 </td>
             </tr>
         }
