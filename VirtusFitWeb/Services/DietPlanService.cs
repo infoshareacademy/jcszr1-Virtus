@@ -1,5 +1,4 @@
-﻿using BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtusFitWeb.Models;
@@ -64,16 +63,16 @@ namespace VirtusFitWeb.Services
             var dailyPlan = GetDailyDietPlan(id, dayNumber);
             dailyPlan.ProductListForDay = new List<ProductOnDietPlan>();
 
-            dailyPlan.ProductListForDay.Add(new ProductOnDietPlan()
-            {
-                Product = new Product()
-                {
-                    ProductName = "Bułka",
-                    Energy = 100
-                },
-                PortionSize = 100,
-                NumberOfPortions = 1
-            });
+            //dailyPlan.ProductListForDay.Add(new ProductOnDietPlan()
+            //{
+            //    Product = new Product()
+            //    {
+            //        ProductName = "Bułka",
+            //        Energy = 100
+            //    },
+            //    PortionSize = 100,
+            //    NumberOfPortions = 1
+            //});
             return dailyPlan.ProductListForDay;
         }
 

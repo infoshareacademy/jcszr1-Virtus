@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VirtusFitWeb.Logic;
 using VirtusFitWeb.Services;
+
 
 namespace VirtusFitWeb
 {
@@ -19,9 +21,9 @@ namespace VirtusFitWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IDietPlanService, DietPlanService>();
-
             services.AddControllersWithViews();
+            services.AddSingleton<IProductService, ProductService>();
+            services.AddScoped<IDietPlanService, DietPlanService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
