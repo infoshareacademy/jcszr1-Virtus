@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
@@ -16,9 +17,9 @@ namespace BLL
 {
     public class ProductLoader
     {
-        public static List<Product> productsFromJson = new List<Product>();
-        public static void GetProductsFromFile()
+        public static List<Product> GetProductsFromFile()
         {
+            List<Product> productsFromJson = new List<Product>();
             var path = Environment.CurrentDirectory + "\\food_source.json";
             var jsonString = File.ReadAllText(path);
             dynamic deserializedJson = JsonConvert.DeserializeObject(jsonString);
@@ -26,7 +27,7 @@ namespace BLL
             {
                 productsFromJson.Add(new Product
                 {
-                    ProductId = product.id,
+                    ProductId = productsFromJson.Count + 1,
                     ProductName = product.display_name_translations.en,
                     Energy = product.nutrients?.energy_kcal?.per_portion == null ? 0 : product.nutrients?.energy_kcal?.per_portion,
                     Fat = product.nutrients?.fat?.per_portion == null ? 0 : product.nutrients?.fat?.per_portion,
@@ -38,10 +39,11 @@ namespace BLL
                     Quantity = product.quantity == null ? 0 : product.quantity,
                     PortionQuantity = product.portion_quantity == null ? 0 : product.portion_quantity,
                     PortionUnit = product.portion_unit == null ? 0 : product.portion_unit,
-                });
-
+                }
+                );
             }
 
+            return productsFromJson;
         }
     }
 }

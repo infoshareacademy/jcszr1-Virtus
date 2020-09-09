@@ -1,0 +1,105 @@
+﻿@model IEnumerable<BLL.Product>
+@using VirtusFitWeb.Controllers;
+
+@{
+    ViewData["Title"] = "ProductList";
+}
+
+<h1>Product list</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Product">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Energy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carbohydrates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fiber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sugar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortionQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PortionUnit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Energy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carbohydrates)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Protein)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fiber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sugar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PortionQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PortionUnit)
+                </td>
+                <td>
+
+                    <a asp-controller="Product" asp-action="Details" asp-route-id=@item.ProductId>Details</a>
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id=@item.ProductId>Delete</a>
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id=@item.ProductId>Edit</a>
+
+                </td>
+            </tr>
+}
+    </tbody>
+</table>
