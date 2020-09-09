@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VirtusFitWeb.Models;
@@ -19,6 +20,8 @@ namespace VirtusFitWeb.Services
             }
         };
 
+        private readonly List<Product> _products = ProductLoader.GetProductsFromFile();
+
         public IEnumerable<DietPlan> ListAll()
         {
             return _dietPlans;
@@ -27,6 +30,21 @@ namespace VirtusFitWeb.Services
         public DietPlan GetDietPlan(int id)
         {
             return _dietPlans.FirstOrDefault(p => p.Id == id);
+        }
+
+        public IEnumerable<Product> GetProductList()
+        {
+            return _products;
+        }
+
+        public ProductOnDietPlan GetProductToAdd(int id)
+        {
+            var product = _products.FirstOrDefault(p => p.ProductId == id);
+            var productToAdd = new ProductOnDietPlan()
+            {
+                Product = product
+            };
+            return productToAdd;
         }
 
 
@@ -40,18 +58,19 @@ namespace VirtusFitWeb.Services
 
         public IEnumerable<DailyDietPlan> ListDailyDietPlans(int id)
         {
-            var plan = GetDietPlan(id);
-            plan.DailyDietPlanList = new List<DailyDietPlan>();
             
-            for (int i = 0; i < plan.Duration.Days; i++)
+            GetDietPlan(id).DailyDietPlanList = new List<DailyDietPlan>();
+            
+            for (int i = 0; i < GetDietPlan(id).Duration.Days; i++)
             {
-                plan.DailyDietPlanList.Add(new DailyDietPlan()
+                GetDietPlan(id).DailyDietPlanList.Add(new DailyDietPlan()
                     {
                         DietPlanId = id, DayNumber = i + 1
                     }
                 );
             }
-            return plan.DailyDietPlanList;
+
+            return GetDietPlan(id).DailyDietPlanList;
         }
         public DailyDietPlan GetDailyDietPlan(int id, int dayNumber)
         {
@@ -63,17 +82,12 @@ namespace VirtusFitWeb.Services
             var dailyPlan = GetDailyDietPlan(id, dayNumber);
             dailyPlan.ProductListForDay = new List<ProductOnDietPlan>();
 
-            //dailyPlan.ProductListForDay.Add(new ProductOnDietPlan()
-            //{
-            //    Product = new Product()
-            //    {
-            //        ProductName = "Bułka",
-            //        Energy = 100
-            //    },
-            //    PortionSize = 100,
-            //    NumberOfPortions = 1
-            //});
             return dailyPlan.ProductListForDay;
+        }
+
+        public void AddProductToDailyDietPlan(DailyDietPlan dailyDietPlan, ProductOnDietPlan productToAdd)
+        {
+            dailyDietPlan.ProductListForDay = new List<ProductOnDietPlan> {productToAdd};
         }
 
         public bool Edit(int id, DietPlan dietPlan)

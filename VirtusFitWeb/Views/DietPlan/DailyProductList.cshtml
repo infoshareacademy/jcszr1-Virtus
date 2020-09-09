@@ -36,9 +36,9 @@
                         @Html.DisplayFor(modelItem => item.NumberOfPortions)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Product }) |
+   <!--                     @Html.ActionLink("Edit", "Edit", new { id = item.Product }) |
                         @Html.ActionLink("Details", "Details", new { id = item.Product }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Product })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Product })              -->
                     </td>
                 </tr>
             }
@@ -72,5 +72,5 @@ else
     </table>
 }
 <p>
-    <a asp-action="Add">Add product</a>
+    <a asp-action="ProductsToAdd" asp-route-id=@ViewBag.DietPlanId asp-route-dayNumber=@ViewBag.DayNumber>Add product</a>
 </p>

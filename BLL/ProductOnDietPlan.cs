@@ -1,11 +1,16 @@
 ﻿using BLL;
+using System.ComponentModel.DataAnnotations;
 
 namespace VirtusFitWeb.Models
 {
     public class ProductOnDietPlan
     {
         public Product Product { get; set; }
+        [Required]
+        [Range(1,int.MaxValue)]
         public int PortionSize { get; set; }
-        public double NumberOfPortions { get; set; }
+        [Required]
+        [Range(1, int.MaxValue)]
+        public int NumberOfPortions { get; set; }
     }
 }

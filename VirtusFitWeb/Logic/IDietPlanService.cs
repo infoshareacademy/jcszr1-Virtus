@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BLL;
+using System.Collections.Generic;
 using VirtusFitWeb.Models;
 
 namespace VirtusFitWeb.Services
@@ -7,11 +8,14 @@ namespace VirtusFitWeb.Services
     {
         IEnumerable<DietPlan> ListAll();
         DietPlan GetDietPlan(int id);
+        IEnumerable<Product> GetProductList();
+        ProductOnDietPlan GetProductToAdd(int id);
         bool Edit(int id, DietPlan dietPlan);
         bool DeleteById(int id);
         DietPlan Create(DietPlan newDietPlan);
         IEnumerable<DailyDietPlan> ListDailyDietPlans(int id);
         public DailyDietPlan GetDailyDietPlan(int id, int dayNumber);
         public IEnumerable<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber);
+        public void AddProductToDailyDietPlan(DailyDietPlan dailyDietPlan, ProductOnDietPlan productToAdd);
     }
 }

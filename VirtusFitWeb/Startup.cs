@@ -23,7 +23,7 @@ namespace VirtusFitWeb
         {
             services.AddControllersWithViews();
             services.AddSingleton<IProductService, ProductService>();
-            services.AddScoped<IDietPlanService, DietPlanService>();
+            services.AddSingleton<IDietPlanService, DietPlanService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

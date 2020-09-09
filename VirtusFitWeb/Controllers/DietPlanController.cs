@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
@@ -32,6 +33,37 @@ namespace VirtusFitWeb.Controllers
             ViewBag.DietPlanId = _dietPlanService.GetDietPlan(id).Id;
             ViewBag.DayNumber = _dietPlanService.GetDailyDietPlan(id,dayNumber).DayNumber;
             return View(_dietPlanService.ListProductsOnDailyDietPlan(id,dayNumber));
+        }
+
+        public ActionResult ProductsToAdd(int id, int dayNumber)
+        {
+            ViewBag.DailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
+            return View(_dietPlanService.GetProductList());
+        }
+
+        public ActionResult AddProductToPlan(int productId)
+        {
+            var productToAdd = _dietPlanService.GetProductToAdd(productId);
+            return View(productToAdd);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddProductToPlan(DailyDietPlan dailyDietPlan, ProductOnDietPlan productToAdd)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(productToAdd);
+            }
+            try
+            {
+                _dietPlanService.AddProductToDailyDietPlan(dailyDietPlan, productToAdd);
+                return RedirectToAction(nameof(DailyProductList));
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: DietPlanController/Create
