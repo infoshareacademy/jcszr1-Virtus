@@ -1,12 +1,15 @@
-﻿@model VirtusFitWeb.Models.ProductOnDietPlan
+﻿@model BLL.ProductOnDietPlan
 
 @{
     ViewData["Title"] = "Add product to plan";
 }
 
+@{
+    var productId = Model.Product.ProductId;
+}
 <h1>Add product to plan</h1>
 
-<h4>Product</h4>
+<h4>You are adding following product to Diet Plan &#8470; @ViewBag.DietPlanId | Day &#8470; @ViewBag.DayNumber</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -93,7 +96,7 @@
                 </tr>
             </tbody>
         </table>
-        <form asp-action="AddProductToPlan">
+        <form asp-controller="DietPlan" asp-action="AddProductToPlan" asp-route-id="@ViewBag.DietPlanId" asp-route-dayNumber="@ViewBag.DayNumber" asp-route-productId="@productId" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="PortionSize" class="control-label"></label>

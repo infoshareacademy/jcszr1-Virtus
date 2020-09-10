@@ -1,8 +1,7 @@
 ﻿using BLL;
 using System.Collections.Generic;
-using VirtusFitWeb.Models;
 
-namespace VirtusFitWeb.Services
+namespace VirtusFitWeb.Logic
 {
     public interface IDietPlanService
     {
@@ -16,6 +15,7 @@ namespace VirtusFitWeb.Services
         IEnumerable<DailyDietPlan> ListDailyDietPlans(int id);
         public DailyDietPlan GetDailyDietPlan(int id, int dayNumber);
         public IEnumerable<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber);
-        public void AddProductToDailyDietPlan(DailyDietPlan dailyDietPlan, ProductOnDietPlan productToAdd);
+        public void AddProductToDailyDietPlan(int id, int dayNumber, ProductOnDietPlan productToAdd, Product product);
+        public Product GetProductFromList(int id);
     }
 }

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace VirtusFitWeb.Models
+namespace BLL
 {
     public class DietPlan
     {
+        
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Enter start date.")]
@@ -13,7 +14,7 @@ namespace VirtusFitWeb.Models
         [Required(ErrorMessage = "Enter end date.")]
         public DateTime EndDate { get; set; }
 
-        public TimeSpan Duration => EndDate - StartDate;
+        public TimeSpan Duration => (EndDate - StartDate).Add(new TimeSpan(1,0,0,0));
 
         [Required(ErrorMessage = "Enter daily calories amount.")]
         public int CaloriesPerDay { get; set; }

@@ -1,7 +1,6 @@
-﻿using BLL;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace VirtusFitWeb.Models
+namespace BLL
 {
     public class ProductOnDietPlan
     {

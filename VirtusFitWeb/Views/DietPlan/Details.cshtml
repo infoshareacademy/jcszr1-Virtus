@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VirtusFitWeb.Models.DailyDietPlan>
+﻿@model IEnumerable<BLL.DailyDietPlan>
 
 @{
     ViewData["Title"] = "Index";
@@ -54,7 +54,6 @@
                 </td>
                 <td>
                     @Html.ActionLink("Products", "DailyProductList", new { id = item.DietPlanId, dayNumber = item.DayNumber })
-         
                 </td>
             </tr>
         }

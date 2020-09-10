@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BLL;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using VirtusFitWeb.Models;
-using VirtusFitWeb.Services;
+using VirtusFitWeb.Logic;
 
 namespace VirtusFitWeb.Controllers
 {
@@ -37,19 +37,22 @@ namespace VirtusFitWeb.Controllers
 
         public ActionResult ProductsToAdd(int id, int dayNumber)
         {
-            ViewBag.DailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
+            ViewBag.DietPlanId = id;
+            ViewBag.DayNumber = dayNumber;
             return View(_dietPlanService.GetProductList());
         }
 
-        public ActionResult AddProductToPlan(int productId)
+        public ActionResult AddProductToPlan(int productId, int id, int dayNumber)
         {
+            ViewBag.DietPlanId = id;
+            ViewBag.DayNumber = dayNumber;
             var productToAdd = _dietPlanService.GetProductToAdd(productId);
             return View(productToAdd);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddProductToPlan(DailyDietPlan dailyDietPlan, ProductOnDietPlan productToAdd)
+        public ActionResult AddProductToPlan(int id, int dayNumber, ProductOnDietPlan productToAdd, int productId)
         {
             if (!ModelState.IsValid)
             {
@@ -57,8 +60,10 @@ namespace VirtusFitWeb.Controllers
             }
             try
             {
-                _dietPlanService.AddProductToDailyDietPlan(dailyDietPlan, productToAdd);
-                return RedirectToAction(nameof(DailyProductList));
+                var product = _dietPlanService.GetProductFromList(productId);
+                _dietPlanService.AddProductToDailyDietPlan(id, dayNumber, productToAdd, product);
+                return RedirectToAction("DailyProductList", "DietPlan", 
+                    new { id = id, dayNumber = dayNumber });
             }
             catch
             {
@@ -75,10 +80,15 @@ namespace VirtusFitWeb.Controllers
         // POST: DietPlanController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(DietPlan newDietPlan)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(newDietPlan);
+            }
             try
             {
+                newDietPlan = _dietPlanService.Create(newDietPlan);
                 return RedirectToAction(nameof(Index));
             }
             catch

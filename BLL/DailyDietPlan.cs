@@ -1,8 +1,7 @@
-﻿using BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace VirtusFitWeb.Models
+namespace BLL
 {
     public class DailyDietPlan
     {
