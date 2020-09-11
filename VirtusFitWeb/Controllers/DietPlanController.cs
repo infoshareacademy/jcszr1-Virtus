@@ -1,4 +1,6 @@
 ﻿using BLL;
+using FluentValidation.AspNetCore;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -82,6 +84,14 @@ namespace VirtusFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DietPlan newDietPlan)
         {
+            DateValidator validator = new DateValidator();
+            ValidationResult results = validator.Validate(newDietPlan);
+            results.AddToModelState(ModelState, null);
+
+            if (!results.IsValid)
+            {
+                return View(newDietPlan);
+            }
             if (!ModelState.IsValid)
             {
                 return View(newDietPlan);
