@@ -1,4 +1,6 @@
-﻿@model BLL.DietPlan
+﻿@using System.Globalization
+@using System.Threading
+@model BLL.DietPlan
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,7 +16,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
+                <input asp-for="StartDate" class="form-control"/>
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,6 +39,7 @@
 <div>
     <a asp-controller="DietPlan" asp-action="Index">Back to List</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -7,8 +7,8 @@ namespace BLL
         public DateValidator()
         {
             RuleFor(m => m.EndDate)
-                .GreaterThan(m => m.StartDate.Date)
-                .WithMessage("End date must follow Start date");
+                .GreaterThanOrEqualTo(m => m.StartDate.Date)
+                .WithMessage("End date cannot be prior to Start date.");
         }
     }
 }

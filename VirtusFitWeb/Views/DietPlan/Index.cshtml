@@ -36,7 +36,15 @@
 
             var startDateToDisplay = item.StartDate.ToShortDateString();
             var endDateToDisplay = item.EndDate.ToShortDateString();
-            var durationToDisplay = item.Duration.Days.ToString() + " Days";
+            string durationToDisplay;
+            if (item.Duration.Days == 1)
+            {
+                durationToDisplay = item.Duration.Days.ToString() + " Day";
+            }
+            else
+            {
+                durationToDisplay = item.Duration.Days.ToString() + " Days";
+            }
 
             <tr>
                 <td>
