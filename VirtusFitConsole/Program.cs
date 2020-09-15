@@ -11,11 +11,11 @@ namespace VirtusFitConsole
 
         static void Main(string[] args)
         {
-            ProductLoader.GetProductsFromFile();
+            var loader = new ProductLoader();
 
             try
             {
-                foreach (var item in ProductLoader.productsFromJson)
+                foreach (var item in loader.GetProductsFromFile())
                 {
                     ListOfProducts.Add(item);
                 }
