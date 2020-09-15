@@ -114,7 +114,8 @@ namespace VirtusFitWeb.Logic
 
         public bool Edit(int id, DietPlan dietPlan)
         {
-            throw new NotImplementedException();
+            _dietPlans[id-1] = dietPlan;
+            return true;
         }
 
         public bool DeleteById(int id)
