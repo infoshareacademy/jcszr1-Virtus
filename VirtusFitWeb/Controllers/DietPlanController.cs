@@ -1,6 +1,5 @@
 ﻿using BLL;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using VirtusFitWeb.Logic;
@@ -147,16 +146,19 @@ namespace VirtusFitWeb.Controllers
         // GET: DietPlanController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var dietPlan = _dietPlanService.GetDietPlan(id);
+            return View(dietPlan);
         }
 
         // POST: DietPlanController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, DietPlan dietPlanToDelete)
         {
             try
             {
+                _dietPlanService.DeleteById(id);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

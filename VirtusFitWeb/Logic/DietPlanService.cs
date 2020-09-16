@@ -7,7 +7,7 @@ namespace VirtusFitWeb.Logic
 {
     public class DietPlanService : IDietPlanService
     {
-        private static List<DietPlan> _dietPlans = new List<DietPlan>
+        private readonly List<DietPlan> _dietPlans = new List<DietPlan>
         {
             new DietPlan()
             {
@@ -112,15 +112,14 @@ namespace VirtusFitWeb.Logic
             });
         }
 
-        public bool Edit(int id, DietPlan dietPlan)
+        public void Edit(int id, DietPlan dietPlan)
         {
             _dietPlans[id-1] = dietPlan;
-            return true;
         }
 
-        public bool DeleteById(int id)
+        public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            _dietPlans.Remove(GetDietPlan(id));
         }
 
         

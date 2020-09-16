@@ -9,13 +9,13 @@ namespace VirtusFitWeb.Logic
         DietPlan GetDietPlan(int id);
         IEnumerable<Product> GetProductList();
         ProductOnDietPlan GetProductToAdd(int id);
-        bool Edit(int id, DietPlan dietPlan);
-        bool DeleteById(int id);
+        void Edit(int id, DietPlan dietPlan);
+        void DeleteById(int id);
         DietPlan Create(DietPlan newDietPlan);
         IEnumerable<DailyDietPlan> ListDailyDietPlans(int id);
-        public DailyDietPlan GetDailyDietPlan(int id, int dayNumber);
-        public IEnumerable<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber);
-        public void AddProductToDailyDietPlan(int id, int dayNumber, ProductOnDietPlan productToAdd, Product product);
-        public Product GetProductFromList(int id);
+        DailyDietPlan GetDailyDietPlan(int id, int dayNumber);
+        IEnumerable<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber);
+        void AddProductToDailyDietPlan(int id, int dayNumber, ProductOnDietPlan productToAdd, Product product);
+        Product GetProductFromList(int id);
     }
 }
