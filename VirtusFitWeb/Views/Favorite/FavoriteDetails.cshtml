@@ -1,0 +1,90 @@
+﻿@model BLL.Product
+@using VirtusFitWeb.Controllers;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Energy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Energy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Carbohydrates)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Carbohydrates)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Protein)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Protein)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Salt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Salt)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fiber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fiber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sugar)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sugar)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PortionQuantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PortionQuantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PortionUnit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PortionUnit)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="FavoriteList" asp-controller="Favorite">Back to List</a>
+</div>

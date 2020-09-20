@@ -12,10 +12,12 @@ namespace VirtusFitWeb.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IFavoriteService _favoriteService;
 
-        public ProductController(IProductService service)
+        public ProductController(IProductService productService, IFavoriteService favoriteService)
         {
-            _productService = service;
+            _productService = productService;
+            _favoriteService = favoriteService;
         }
 
         public IActionResult ProductList()
