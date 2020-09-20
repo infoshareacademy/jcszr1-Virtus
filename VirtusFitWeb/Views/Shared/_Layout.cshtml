@@ -1,10 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <style>
-    .bg-custom{background-color:rgb(28, 92, 51)
+    .bg-custom
+    {
+        background-color:rgb(28, 92, 51)
         }
-
-    #topheader .navbar-nav li > a {
+/* 
+   #topheader .navbar-nav li > a {
         text-transform: capitalize;
         transition: color .2s;
 	
@@ -12,10 +14,18 @@
      &:focus {
           color: #fff;
       }
+    }
+   
+    #topheader .navbar-nav li.unactive > a {
+        color: #fff;
+        opacity: 0.5;
+    }  
 
     #topheader .navbar-nav li.active > a {
         color: #fff;
-    }  
+    }
+*/
+
 </style>
 <head>
     <meta charset="utf-8"/>
@@ -29,18 +39,18 @@
     <div id="topheader">
         <nav class="navbar navbar-expand-sm navbar-dark bg-custom border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/logo9.png" width="125" height="125"/></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/logo9.png" width="125" height="125" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Product" asp-action="ProductList">Products</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "ProductList" ? "active" : "")" asp-area="" asp-controller="Product" asp-action="ProductList">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link  disabled">BMI Calculator</a>
@@ -66,9 +76,9 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 <script>
-    $( '#topheader .navbar-nav a' ).on( 'click', function () {
-        $( '#topheader .navbar-nav' ).find( 'li.active' ).removeClass( 'active' );
-        $( this ).parent( 'li' ).addClass( 'active' );
+    $('#topheader .navbar-nav a').on('click', function () {
+        $('#topheader .navbar-nav').find('li.active').removeClass('active');
+        $(this).parent('li').addClass('active');
     });
 </script>
 @RenderSection("Scripts", required: false)
