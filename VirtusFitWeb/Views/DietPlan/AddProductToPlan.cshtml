@@ -1,15 +1,15 @@
-﻿@model BLL.ProductOnDietPlan
+﻿@model AddProductToPlanViewModel
 
 @{
     ViewData["Title"] = "Add product to plan";
 }
 
 @{
-    var productId = Model.Product.ProductId;
+    var productId = Model.ProductToAdd.Product.ProductId;
 }
 <h1>Add product to plan</h1>
 
-<h4>You are adding following product to Diet Plan &#8470; @ViewBag.DietPlanId | Day &#8470; @ViewBag.DayNumber</h4>
+<h4>You are adding following product to Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,40 +17,40 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.ProductId)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.ProductId)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.ProductName)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.ProductName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Energy)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Energy)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Fat)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Fat)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Carbohydrates)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Carbohydrates)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Protein)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Protein)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Salt)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Salt)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Fiber)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Fiber)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Sugar)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Sugar)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.Quantity)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.Quantity)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.PortionQuantity)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.PortionQuantity)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Product.PortionUnit)
+                        @Html.DisplayNameFor(model => model.ProductToAdd.Product.PortionUnit)
                     </th>
                     <th></th>
                 </tr>
@@ -58,55 +58,55 @@
             <tbody>
                 <tr>
                     <td>
-                        @Html.DisplayFor(model => model.Product.ProductId)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.ProductId)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.ProductName)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.ProductName)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Energy)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Energy)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Fat)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Fat)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Carbohydrates)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Carbohydrates)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Protein)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Protein)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Salt)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Salt)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Fiber)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Fiber)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Sugar)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Sugar)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.Quantity)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.Quantity)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.PortionQuantity)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.PortionQuantity)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => model.Product.PortionUnit)
+                        @Html.DisplayFor(model => model.ProductToAdd.Product.PortionUnit)
                     </td>
                 </tr>
             </tbody>
         </table>
-        <form asp-controller="DietPlan" asp-action="AddProductToPlan" asp-route-id="@ViewBag.DietPlanId" asp-route-dayNumber="@ViewBag.DayNumber" asp-route-productId="@productId" method="post">
+        <form asp-controller="DietPlan" asp-action="AddProductToPlan" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" asp-route-productId="@productId" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="PortionSize" class="control-label"></label>
-                <input asp-for="PortionSize" class="form-control" />
-                <span asp-validation-for="PortionSize" class="text-danger"></span>
+                <label asp-for="ProductToAdd.PortionSize" class="control-label"></label>
+                <input asp-for="ProductToAdd.PortionSize" class="form-control" />
+                <span asp-validation-for="ProductToAdd.PortionSize" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberOfPortions" class="control-label"></label>
-                <input asp-for="NumberOfPortions" class="form-control" />
-                <span asp-validation-for="NumberOfPortions" class="text-danger"></span>
+                <label asp-for="ProductToAdd.NumberOfPortions" class="control-label"></label>
+                <input asp-for="ProductToAdd.NumberOfPortions" class="form-control" />
+                <span asp-validation-for="ProductToAdd.NumberOfPortions" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Add" class="btn btn-primary" />

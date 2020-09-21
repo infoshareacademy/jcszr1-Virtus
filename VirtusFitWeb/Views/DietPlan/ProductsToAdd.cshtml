@@ -1,5 +1,4 @@
-﻿@model IEnumerable<BLL.Product>
-@using VirtusFitWeb.Controllers;
+﻿@model ProductsToAddViewModel
 
 @{
     ViewData["Title"] = "Product List";
@@ -11,46 +10,46 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductId)
+                @Html.DisplayNameFor(model => model.ProductList[0].ProductId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                @Html.DisplayNameFor(model => model.ProductList[0].ProductName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Energy)
+                @Html.DisplayNameFor(model => model.ProductList[0].Energy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fat)
+                @Html.DisplayNameFor(model => model.ProductList[0].Fat)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Carbohydrates)
+                @Html.DisplayNameFor(model => model.ProductList[0].Carbohydrates)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Protein)
+                @Html.DisplayNameFor(model => model.ProductList[0].Protein)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Salt)
+                @Html.DisplayNameFor(model => model.ProductList[0].Salt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fiber)
+                @Html.DisplayNameFor(model => model.ProductList[0].Fiber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sugar)
+                @Html.DisplayNameFor(model => model.ProductList[0].Sugar)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantity)
+                @Html.DisplayNameFor(model => model.ProductList[0].Quantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PortionQuantity)
+                @Html.DisplayNameFor(model => model.ProductList[0].PortionQuantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PortionUnit)
+                @Html.DisplayNameFor(model => model.ProductList[0].PortionUnit)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.ProductList)
         {
             <tr>
                 <td>
@@ -92,7 +91,7 @@
                 <td>
 
                     <a asp-controller="DietPlan" asp-action="AddProductToPlan" asp-route-productId=@item.ProductId
-                       asp-route-id=@ViewBag.DietPlanId asp-route-dayNumber=@ViewBag.DayNumber>Add</a>
+                       asp-route-id=@Model.DietPlanId asp-route-dayNumber=@Model.DayNumber>Add</a>
 
                 </td>
             </tr>

@@ -1,37 +1,41 @@
-﻿@model IEnumerable<BLL.DailyDietPlan>
+﻿@model PlanDetailsViewModel;
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Day List for - Diet Plan &#8470; @ViewBag.DietPlanId </h1>
+@section Styles {
+    <link href="~/css/dietPlan.css" rel="stylesheet" type="text/css" />
+
+}
+<h1>Day List for - Diet Plan &#8470; @Model.DietPlanId | @Model.PlanCaloriesPerDay Calories per day </h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DayNumber)
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].DayNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CaloriesSum)
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].CaloriesSum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FatSum)
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].FatSum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarbohydratesSum)
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].CarbohydratesSum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProteinSum)
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].ProteinSum)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.DailyDietPlans)
         {
             <tr>
                 <td>
@@ -40,9 +44,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CaloriesSum)
-                </td>
+
+                @if (item.CaloriesSum + 100 < Model.PlanCaloriesPerDay || item.CaloriesSum - 100 > Model.PlanCaloriesPerDay)
+                {
+                    <td class="low-high-calories">
+                        @Html.DisplayFor(modelItem => item.CaloriesSum)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CaloriesSum)
+                    </td>
+                }
+
                 <td>
                     @Html.DisplayFor(modelItem => item.FatSum)
                 </td>
@@ -59,3 +74,7 @@
         }
     </tbody>
 </table>
+<div>
+    <a asp-action="Index" asp-controller="DietPlan">Back to List</a>
+</div>
+

@@ -1,17 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLL
 {
     public class DailyDietPlan
     {
         public int DietPlanId { get; set; }
+
+        [DisplayName("Day Number")]
         public int DayNumber { get; set; }
+
+        [DisplayName("Date")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+
+        [DisplayName("Calories Total")]
         public int CaloriesSum { get; set; }
-        public int FatSum { get; set; }
-        public int CarbohydratesSum { get; set; }
-        public int ProteinSum { get; set; }
+
+        [DisplayName("Fat Total")]
+        public double FatSum { get; set; }
+
+        [DisplayName("Carbohydrates Total")]
+        public double CarbohydratesSum { get; set; }
+
+        [DisplayName("Protein Total")]
+        public double ProteinSum { get; set; }
+
         public List<ProductOnDietPlan> ProductListForDay { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace VirtusFitWeb.Logic
                         DayNumber = 1,
                         Date = new DateTime(2020,09,10),
                         ProductListForDay = new List<ProductOnDietPlan>()
-                    }, 
+                    },
                     new DailyDietPlan()
                     {
                         DietPlanId = 1,
@@ -34,7 +34,7 @@ namespace VirtusFitWeb.Logic
                 }
             }
         };
-        
+
         private readonly List<Product> _products = ProductLoader.GetProductsFromFile();
 
         public IEnumerable<DietPlan> ListAll()
@@ -47,7 +47,7 @@ namespace VirtusFitWeb.Logic
             return _dietPlans.FirstOrDefault(p => p.Id == id);
         }
 
-        public IEnumerable<Product> GetProductList()
+        public List<Product> GetProductList()
         {
             return _products;
         }
@@ -75,11 +75,12 @@ namespace VirtusFitWeb.Logic
             for (int i = 0; i < newDietPlan.Duration.Days; i++)
             {
                 newDietPlan.DailyDietPlanList.Add(new DailyDietPlan()
-                    {
-                        DietPlanId = newDietPlan.Id,
-                        DayNumber = i + 1,
-                        ProductListForDay = new List<ProductOnDietPlan>()
-                    }
+                {
+                    DietPlanId = newDietPlan.Id,
+                    DayNumber = i + 1,
+                    Date = newDietPlan.StartDate + new TimeSpan(i, 0, 0, 0),
+                    ProductListForDay = new List<ProductOnDietPlan>()
+                }
                 );
             }
             _dietPlans.Add(newDietPlan);
@@ -87,7 +88,7 @@ namespace VirtusFitWeb.Logic
             return newDietPlan;
         }
 
-        public IEnumerable<DailyDietPlan> ListDailyDietPlans(int id)
+        public List<DailyDietPlan> ListDailyDietPlans(int id)
         {
             return GetDietPlan(id).DailyDietPlanList;
         }
@@ -97,24 +98,35 @@ namespace VirtusFitWeb.Logic
             return ListDailyDietPlans(id).FirstOrDefault(d => d.DayNumber == dayNumber);
         }
 
-        public IEnumerable<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
+        public List<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
         {
             return _dietPlans[id - 1].DailyDietPlanList[dayNumber - 1].ProductListForDay;
         }
 
         public void AddProductToDailyDietPlan(int id, int dayNumber, ProductOnDietPlan productToAdd, Product product)
         {
-            _dietPlans[id - 1].DailyDietPlanList[dayNumber - 1].ProductListForDay.Add(new ProductOnDietPlan
+            var dailyToAddTo = _dietPlans[id - 1].DailyDietPlanList[dayNumber - 1];
+
+            dailyToAddTo.ProductListForDay.Add(new ProductOnDietPlan
             {
                 Product = product,
                 PortionSize = productToAdd.PortionSize,
                 NumberOfPortions = productToAdd.NumberOfPortions
             });
+
+            dailyToAddTo.CaloriesSum += product.Energy * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
+            dailyToAddTo.FatSum += product.Fat * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
+            dailyToAddTo.FatSum = Math.Round(dailyToAddTo.FatSum, 2);
+            dailyToAddTo.CarbohydratesSum += product.Carbohydrates * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
+            dailyToAddTo.CarbohydratesSum = Math.Round(dailyToAddTo.CarbohydratesSum, 2);
+            dailyToAddTo.ProteinSum += product.Protein * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
+            dailyToAddTo.ProteinSum = Math.Round(dailyToAddTo.ProteinSum, 2);
+
         }
 
         public void Edit(int id, DietPlan dietPlan)
         {
-            _dietPlans[id-1] = dietPlan;
+            _dietPlans[id - 1] = dietPlan;
         }
 
         public void DeleteById(int id)
@@ -122,6 +134,6 @@ namespace VirtusFitWeb.Logic
             _dietPlans.Remove(GetDietPlan(id));
         }
 
-        
+
     }
 }

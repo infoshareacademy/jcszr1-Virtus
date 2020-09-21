@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using VirtusFitWeb.Logic;
+using VirtusFitWeb.Models;
 
 namespace VirtusFitWeb.Controllers
 {
@@ -24,46 +25,86 @@ namespace VirtusFitWeb.Controllers
         // GET: DietPlanController/Details/5
         public ActionResult Details(int id)
         {
-            ViewBag.DietPlanId = _dietPlanService.GetDietPlan(id).Id;
-            ViewBag.Calories = _dietPlanService.GetDietPlan(id).CaloriesPerDay;
-            return View(_dietPlanService.ListDailyDietPlans(id));
+            var model = new PlanDetailsViewModel
+            {
+                DailyDietPlans = this._dietPlanService.ListDailyDietPlans(id)
+            };
+
+            var dietPlan = _dietPlanService.GetDietPlan(id);
+            if (dietPlan != null)
+            {
+                model.DietPlanId = dietPlan.Id;
+                model.PlanCaloriesPerDay = dietPlan.CaloriesPerDay;
+            }
+
+            return View(model);
         }
 
         public ActionResult DailyProductList(int id, int dayNumber)
         {
-            ViewBag.DietPlanId = _dietPlanService.GetDietPlan(id).Id;
-            ViewBag.DayNumber = _dietPlanService.GetDailyDietPlan(id,dayNumber).DayNumber;
-            return View(_dietPlanService.ListProductsOnDailyDietPlan(id,dayNumber));
+            var model = new DailyProductListViewModel()
+            {
+                ProductListForDay = this._dietPlanService.ListProductsOnDailyDietPlan(id, dayNumber)
+            };
+
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
+            if (dailyDietPlan != null)
+            {
+                model.DailyPlanId = dailyDietPlan.DietPlanId;
+                model.DayNumber = dailyDietPlan.DayNumber;
+            }
+            
+            return View(model);
         }
 
         public ActionResult ProductsToAdd(int id, int dayNumber)
         {
-            ViewBag.DietPlanId = id;
-            ViewBag.DayNumber = dayNumber;
-            return View(_dietPlanService.GetProductList());
+            var model = new ProductsToAddViewModel()
+            {
+                ProductList = this._dietPlanService.GetProductList()
+            };
+
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
+            if (dailyDietPlan != null)
+            {
+                model.DietPlanId = dailyDietPlan.DietPlanId;
+                model.DayNumber = dailyDietPlan.DayNumber;
+            }
+            
+            return View(model);
         }
 
         public ActionResult AddProductToPlan(int productId, int id, int dayNumber)
         {
-            ViewBag.DietPlanId = id;
-            ViewBag.DayNumber = dayNumber;
-            var productToAdd = _dietPlanService.GetProductToAdd(productId);
-            return View(productToAdd);
+            var model = new AddProductToPlanViewModel()
+            {
+                ProductToAdd = _dietPlanService.GetProductToAdd(productId)
+            };
+
+            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            if (dailyDietPlan != null)
+            {
+                model.DietPlanId = dailyDietPlan.DietPlanId;
+                model.DayNumber = dailyDietPlan.DayNumber;
+            }
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddProductToPlan(int id, int dayNumber, ProductOnDietPlan productToAdd, int productId)
+        public ActionResult AddProductToPlan(int id, int dayNumber, AddProductToPlanViewModel productToAddToPlan, int productId)
         {
             if (!ModelState.IsValid)
             {
-                return View(productToAdd);
+                return View(productToAddToPlan);
             }
             try
             {
                 var product = _dietPlanService.GetProductFromList(productId);
+                var productToAdd = productToAddToPlan.ProductToAdd;
                 _dietPlanService.AddProductToDailyDietPlan(id, dayNumber, productToAdd, product);
-                return RedirectToAction("DailyProductList", "DietPlan", 
+                return RedirectToAction("DailyProductList", "DietPlan",
                     new { id = id, dayNumber = dayNumber });
             }
             catch
@@ -85,7 +126,7 @@ namespace VirtusFitWeb.Controllers
         {
             var dateValidation = _validator.Validate(newDietPlan);
             dateValidation.AddToModelState(ModelState, null);
-            
+
             if (!dateValidation.IsValid)
             {
                 return View(newDietPlan);
@@ -166,6 +207,6 @@ namespace VirtusFitWeb.Controllers
                 return View();
             }
         }
-        
+
     }
 }

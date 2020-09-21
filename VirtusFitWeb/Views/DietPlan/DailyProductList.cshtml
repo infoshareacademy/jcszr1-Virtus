@@ -1,29 +1,29 @@
-﻿@model IEnumerable<BLL.ProductOnDietPlan>
+﻿@model DailyProductListViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Product List for - Diet Plan &#8470; @ViewBag.DietPlanId | Day &#8470; @ViewBag.DayNumber</h1>
-@if (Model.Any())
+<h1>Product List for - Diet Plan &#8470; @Model.DailyPlanId | Day &#8470; @Model.DayNumber</h1>
+@if (Model.ProductListForDay.Any())
 {
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Product.ProductName)
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].Product.ProductName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PortionSize)
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].PortionSize)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.NumberOfPortions)
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].NumberOfPortions)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.ProductListForDay)
             {
                 <tr>
                     <td>
@@ -51,13 +51,13 @@ else
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Product.ProductName)
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].Product.ProductName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PortionSize)
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].PortionSize)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.NumberOfPortions)
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].NumberOfPortions)
                 </th>
                 <th></th>
             </tr>
@@ -72,5 +72,5 @@ else
     </table>
 }
 <p>
-    <a asp-action="ProductsToAdd" asp-route-id=@ViewBag.DietPlanId asp-route-dayNumber=@ViewBag.DayNumber>Add product</a>
+    <a asp-action="ProductsToAdd" asp-route-id="@Model.DailyPlanId" asp-route-dayNumber="@Model.DayNumber">Add product</a>
 </p>
