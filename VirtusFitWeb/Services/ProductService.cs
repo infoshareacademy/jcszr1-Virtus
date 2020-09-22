@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace VirtusFitWeb.Logic
+namespace VirtusFitWeb.Services
 {
     public class ProductService : IProductService
     {

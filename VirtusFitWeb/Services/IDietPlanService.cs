@@ -1,7 +1,7 @@
 ﻿using BLL;
 using System.Collections.Generic;
 
-namespace VirtusFitWeb.Logic
+namespace VirtusFitWeb.Services
 {
     public interface IDietPlanService
     {

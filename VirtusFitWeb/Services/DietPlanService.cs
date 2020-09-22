@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace VirtusFitWeb.Logic
+namespace VirtusFitWeb.Services
 {
     public class DietPlanService : IDietPlanService
     {
@@ -126,7 +126,37 @@ namespace VirtusFitWeb.Logic
 
         public void Edit(int id, DietPlan dietPlan)
         {
-            _dietPlans[id - 1] = dietPlan;
+            var editedDietPlan = dietPlan;
+            var dietPlanToEdit = _dietPlans[id - 1];
+            
+            editedDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
+            for (var i = 0; i < editedDietPlan.Duration.Days; i++)
+            {
+                editedDietPlan.DailyDietPlanList.Add(new DailyDietPlan()
+                {
+                    DietPlanId = id,
+                    DayNumber = i+1,
+                    Date = editedDietPlan.StartDate + new TimeSpan(i,0,0,0),
+                    ProductListForDay = new List<ProductOnDietPlan>()
+                });
+            }
+
+            foreach (var dailyDietPlanInEdited in editedDietPlan.DailyDietPlanList)
+            {
+                foreach (var dailyDietPlanInToEdit in dietPlanToEdit.DailyDietPlanList)
+                {
+                    if (dailyDietPlanInEdited.Date == dailyDietPlanInToEdit.Date)
+                    {
+                        dailyDietPlanInEdited.ProductListForDay = dailyDietPlanInToEdit.ProductListForDay;
+                        dailyDietPlanInEdited.CaloriesSum = dailyDietPlanInToEdit.CaloriesSum;
+                        dailyDietPlanInEdited.FatSum = dailyDietPlanInToEdit.FatSum;
+                        dailyDietPlanInEdited.CarbohydratesSum = dailyDietPlanInToEdit.CarbohydratesSum;
+                        dailyDietPlanInEdited.ProteinSum = dailyDietPlanInToEdit.ProteinSum;
+                    }
+                }
+            }
+
+            _dietPlans[id - 1] = editedDietPlan;
         }
 
         public void DeleteById(int id)

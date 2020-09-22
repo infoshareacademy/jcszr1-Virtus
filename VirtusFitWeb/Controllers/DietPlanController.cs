@@ -2,8 +2,8 @@
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using VirtusFitWeb.Logic;
 using VirtusFitWeb.Models;
+using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
