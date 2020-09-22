@@ -30,15 +30,13 @@
                 <span asp-validation-for="CaloriesPerDay" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" /> &nbsp;
+                <a asp-controller="DietPlan" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-controller="DietPlan" asp-action="Index">Back to List</a>
-</div>
 
 
 @section Scripts {

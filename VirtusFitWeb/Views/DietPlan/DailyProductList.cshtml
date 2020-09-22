@@ -4,20 +4,26 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Product List for - Diet Plan &#8470; @Model.DailyPlanId | Day &#8470; @Model.DayNumber</h1>
+<h1>Product List - Diet Plan &#8470; @Model.DailyPlanId (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber</h1>
 @if (Model.ProductListForDay.Any())
 {
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ProductListForDay[0].Product.ProductName)
+                    &#8470;
+                </th>
+                <th>
+                    Product Name
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.ProductListForDay[0].PortionSize)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.ProductListForDay[0].NumberOfPortions)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].TotalCalories)
                 </th>
                 <th></th>
             </tr>
@@ -27,6 +33,9 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.OrdinalNumber)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Product.ProductName)
                     </td>
                     <td>
@@ -35,10 +44,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NumberOfPortions)
                     </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.TotalCalories)
+                    </th>
                     <td>
-   <!--                     @Html.ActionLink("Edit", "Edit", new { id = item.Product }) |
+                        @Html.ActionLink("Edit", "EditProductInPlan", new { id = Model.DailyPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber }) |
                         @Html.ActionLink("Details", "Details", new { id = item.Product }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Product })              -->
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Product })
                     </td>
                 </tr>
             }

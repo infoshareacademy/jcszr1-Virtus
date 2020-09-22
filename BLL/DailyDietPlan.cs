@@ -28,6 +28,6 @@ namespace BLL
         [DisplayName("Protein Total")]
         public double ProteinSum { get; set; }
 
-        public List<ProductOnDietPlan> ProductListForDay { get; set; }
+        public List<ProductInDietPlan> ProductListForDay { get; set; }
     }
 }

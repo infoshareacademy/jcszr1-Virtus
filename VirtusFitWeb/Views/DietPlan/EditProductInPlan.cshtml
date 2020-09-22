@@ -1,15 +1,15 @@
 ﻿@model ProductInPlanViewModel
 
 @{
-    ViewData["Title"] = "Add product to plan";
+    ViewData["Title"] = "Edit product in plan";
 }
 
 @{
-    var productId = Model.ProductInPlan.Product.ProductId;
+    var currentProductOrdinalNumber = Model.ProductInPlan.OrdinalNumber;
 }
-<h1>Add product to plan</h1>
+<h1>Edit product in daily diet plan</h1>
 
-<h4>You are adding following product to Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber</h4>
+<h4>You are editing following product in Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -96,7 +96,7 @@
                 </tr>
             </tbody>
         </table>
-        <form asp-controller="DietPlan" asp-action="AddProductToPlan" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" asp-route-productId="@productId" method="post">
+        <form asp-controller="DietPlan" asp-action="EditProductInPlan" asp-route-id="@Model.DietPlanId" asp-route-dailyPlanDayNumber="@Model.DayNumber" asp-route-currentProductOrdinalNumber="@currentProductOrdinalNumber" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ProductInPlan.PortionSize" class="control-label"></label>
@@ -109,7 +109,7 @@
                 <span asp-validation-for="ProductInPlan.NumberOfPortions" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Add" class="btn btn-primary" />
+                <input type="submit" value="Confirm" class="btn btn-primary" />
             </div>
         </form>
     </div>

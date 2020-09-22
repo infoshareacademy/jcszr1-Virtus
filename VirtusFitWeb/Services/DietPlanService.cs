@@ -22,14 +22,14 @@ namespace VirtusFitWeb.Services
                         DietPlanId = 1,
                         DayNumber = 1,
                         Date = new DateTime(2020,09,10),
-                        ProductListForDay = new List<ProductOnDietPlan>()
+                        ProductListForDay = new List<ProductInDietPlan>()
                     },
                     new DailyDietPlan()
                     {
                         DietPlanId = 1,
                         DayNumber = 2,
                         Date = new DateTime(2020,09,11),
-                        ProductListForDay = new List<ProductOnDietPlan>()
+                        ProductListForDay = new List<ProductInDietPlan>()
                     }
                 }
             }
@@ -52,10 +52,10 @@ namespace VirtusFitWeb.Services
             return _products;
         }
 
-        public ProductOnDietPlan GetProductToAdd(int id)
+        public ProductInDietPlan GetProductToAdd(int id)
         {
             var product = _products.FirstOrDefault(p => p.ProductId == id);
-            var productToAdd = new ProductOnDietPlan()
+            var productToAdd = new ProductInDietPlan()
             {
                 Product = product
             };
@@ -79,7 +79,7 @@ namespace VirtusFitWeb.Services
                     DietPlanId = newDietPlan.Id,
                     DayNumber = i + 1,
                     Date = newDietPlan.StartDate + new TimeSpan(i, 0, 0, 0),
-                    ProductListForDay = new List<ProductOnDietPlan>()
+                    ProductListForDay = new List<ProductInDietPlan>()
                 }
                 );
             }
@@ -98,46 +98,61 @@ namespace VirtusFitWeb.Services
             return ListDailyDietPlans(id).FirstOrDefault(d => d.DayNumber == dayNumber);
         }
 
-        public List<ProductOnDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
+        public List<ProductInDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
         {
             return _dietPlans[id - 1].DailyDietPlanList[dayNumber - 1].ProductListForDay;
         }
 
-        public void AddProductToDailyDietPlan(int id, int dayNumber, ProductOnDietPlan productToAdd, Product product)
+        public void AddProductToDailyDietPlan(int id, int dayNumber, ProductInDietPlan productToAdd, Product product)
         {
-            var dailyToAddTo = _dietPlans[id - 1].DailyDietPlanList[dayNumber - 1];
+            var dailyToAddTo = GetDailyDietPlan(id, dayNumber);
 
-            dailyToAddTo.ProductListForDay.Add(new ProductOnDietPlan
+            dailyToAddTo.ProductListForDay.Add(new ProductInDietPlan
             {
+                OrdinalNumber = dailyToAddTo.ProductListForDay.Count + 1,
                 Product = product,
                 PortionSize = productToAdd.PortionSize,
-                NumberOfPortions = productToAdd.NumberOfPortions
+                NumberOfPortions = productToAdd.NumberOfPortions,
+                TotalCalories = product.Energy * productToAdd.PortionSize * productToAdd.NumberOfPortions / 100
             });
 
-            dailyToAddTo.CaloriesSum += product.Energy * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
-            dailyToAddTo.FatSum += product.Fat * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
-            dailyToAddTo.FatSum = Math.Round(dailyToAddTo.FatSum, 2);
-            dailyToAddTo.CarbohydratesSum += product.Carbohydrates * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
-            dailyToAddTo.CarbohydratesSum = Math.Round(dailyToAddTo.CarbohydratesSum, 2);
-            dailyToAddTo.ProteinSum += product.Protein * productToAdd.PortionSize / 100 * productToAdd.NumberOfPortions;
-            dailyToAddTo.ProteinSum = Math.Round(dailyToAddTo.ProteinSum, 2);
+            CalculateDailyDietPlanCaloriesAndMacros(id, dayNumber);
+        }
 
+        private void CalculateDailyDietPlanCaloriesAndMacros(int id, int dayNumber)
+        {
+            var dailyPlanToCalc = GetDailyDietPlan(id, dayNumber);
+            dailyPlanToCalc.CaloriesSum = 0;
+            dailyPlanToCalc.FatSum = 0;
+            dailyPlanToCalc.CarbohydratesSum = 0;
+            dailyPlanToCalc.ProteinSum = 0;
+
+            foreach (var product in dailyPlanToCalc.ProductListForDay)
+            {
+                dailyPlanToCalc.CaloriesSum += product.Product.Energy * product.PortionSize * product.NumberOfPortions / 100;
+                dailyPlanToCalc.FatSum += product.Product.Fat * product.PortionSize * product.NumberOfPortions / 100;
+                dailyPlanToCalc.CarbohydratesSum += product.Product.Carbohydrates * product.PortionSize * product.NumberOfPortions / 100;
+                dailyPlanToCalc.ProteinSum += product.Product.Protein * product.PortionSize * product.NumberOfPortions / 100;
+            }
+            dailyPlanToCalc.FatSum = Math.Round(dailyPlanToCalc.FatSum, 2);
+            dailyPlanToCalc.CarbohydratesSum = Math.Round(dailyPlanToCalc.CarbohydratesSum, 2);
+            dailyPlanToCalc.ProteinSum = Math.Round(dailyPlanToCalc.ProteinSum, 2);
         }
 
         public void Edit(int id, DietPlan dietPlan)
         {
             var editedDietPlan = dietPlan;
             var dietPlanToEdit = _dietPlans[id - 1];
-            
+
             editedDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
             for (var i = 0; i < editedDietPlan.Duration.Days; i++)
             {
                 editedDietPlan.DailyDietPlanList.Add(new DailyDietPlan()
                 {
                     DietPlanId = id,
-                    DayNumber = i+1,
-                    Date = editedDietPlan.StartDate + new TimeSpan(i,0,0,0),
-                    ProductListForDay = new List<ProductOnDietPlan>()
+                    DayNumber = i + 1,
+                    Date = editedDietPlan.StartDate + new TimeSpan(i, 0, 0, 0),
+                    ProductListForDay = new List<ProductInDietPlan>()
                 });
             }
 
@@ -164,6 +179,26 @@ namespace VirtusFitWeb.Services
             _dietPlans.Remove(GetDietPlan(id));
         }
 
+        public ProductInDietPlan GetProductFromDietPlan(int id, int dayNumber, int ordinalNumber)
+        {
+            return this.GetDailyDietPlan(id, dayNumber).ProductListForDay[ordinalNumber - 1];
+        }
 
+        public void EditProductInDailyDietPlan(int id, int dayNumber, ProductInDietPlan editedProduct, int currentProductOrdinalNumber)
+        {
+            var oldProduct = this.GetDailyDietPlan(id, dayNumber).ProductListForDay[currentProductOrdinalNumber - 1];
+            var newProduct = new ProductInDietPlan()
+            {
+                OrdinalNumber = oldProduct.OrdinalNumber,
+                Product = oldProduct.Product,
+                PortionSize = editedProduct.PortionSize,
+                NumberOfPortions = editedProduct.NumberOfPortions,
+                TotalCalories = oldProduct.Product.Energy * editedProduct.PortionSize * editedProduct.NumberOfPortions / 100
+            };
+
+            this.GetDailyDietPlan(id, dayNumber).ProductListForDay[currentProductOrdinalNumber - 1] = newProduct;
+
+            CalculateDailyDietPlanCaloriesAndMacros(id, dayNumber);
+        }
     }
 }

@@ -22,8 +22,8 @@ namespace VirtusFitWeb.Controllers
             return View(_dietPlanService.ListAll().ToList());
         }
 
-        // GET: DietPlanController/Details/5
-        public ActionResult Details(int id)
+        // GET: DietPlanController/DayList/5
+        public ActionResult DayList(int id)
         {
             var model = new PlanDetailsViewModel
             {
@@ -47,11 +47,17 @@ namespace VirtusFitWeb.Controllers
                 ProductListForDay = this._dietPlanService.ListProductsOnDailyDietPlan(id, dayNumber)
             };
 
-            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
                 model.DailyPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
+            }
+
+            var dietPlan = this._dietPlanService.GetDietPlan(id);
+            if (dietPlan != null)
+            {
+                model.CaloriesPerDay = dietPlan.CaloriesPerDay;
             }
             
             return View(model);
@@ -76,9 +82,9 @@ namespace VirtusFitWeb.Controllers
 
         public ActionResult AddProductToPlan(int productId, int id, int dayNumber)
         {
-            var model = new AddProductToPlanViewModel()
+            var model = new ProductInPlanViewModel()
             {
-                ProductToAdd = _dietPlanService.GetProductToAdd(productId)
+                ProductInPlan = _dietPlanService.GetProductToAdd(productId)
             };
 
             var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
@@ -93,16 +99,16 @@ namespace VirtusFitWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddProductToPlan(int id, int dayNumber, AddProductToPlanViewModel productToAddToPlan, int productId)
+        public ActionResult AddProductToPlan(int id, int dayNumber, ProductInPlanViewModel productInPlanModel, int productId)
         {
             if (!ModelState.IsValid)
             {
-                return View(productToAddToPlan);
+                return View(productInPlanModel);
             }
             try
             {
                 var product = _dietPlanService.GetProductFromList(productId);
-                var productToAdd = productToAddToPlan.ProductToAdd;
+                var productToAdd = productInPlanModel.ProductInPlan;
                 _dietPlanService.AddProductToDailyDietPlan(id, dayNumber, productToAdd, product);
                 return RedirectToAction("DailyProductList", "DietPlan",
                     new { id = id, dayNumber = dayNumber });
@@ -208,5 +214,45 @@ namespace VirtusFitWeb.Controllers
             }
         }
 
+        // GET: DietPlanController/Edit/5
+        public ActionResult EditProductInPlan(int id, int dayNumber, int ordinalNumber)
+        {
+            var model = new ProductInPlanViewModel()
+            {
+                ProductInPlan = _dietPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber)
+            };
+
+            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            if (dailyDietPlan != null)
+            {
+                model.DietPlanId = dailyDietPlan.DietPlanId;
+                model.DayNumber = dailyDietPlan.DayNumber;
+            }
+            
+            return View(model);
+        }
+
+        // POST: DietPlanController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProductInPlan(int id, int dailyPlanDayNumber, ProductInPlanViewModel editedProductModel,
+            int currentProductOrdinalNumber)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(editedProductModel);
+            }
+            try
+            {
+                var editedProduct = editedProductModel.ProductInPlan;
+                _dietPlanService.EditProductInDailyDietPlan(id, dailyPlanDayNumber, editedProduct, currentProductOrdinalNumber);
+                return RedirectToAction("DailyProductList", "DietPlan",
+                    new { id = id, dayNumber = dailyPlanDayNumber });
+            }
+            catch
+            {
+                return View(editedProductModel);
+            }
+        }
     }
 }
