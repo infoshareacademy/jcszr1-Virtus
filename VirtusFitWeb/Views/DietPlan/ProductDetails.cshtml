@@ -105,7 +105,8 @@
         <div class="form-group">
             <a asp-controller="DietPlan" asp-action="EditProductInPlan" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
                asp-route-ordinalNumber="@Model.ProductInPlan.OrdinalNumber" class="btn btn-primary">Edit</a> &nbsp;
-
+            <a asp-controller="DietPlan" asp-action="DeleteProduct" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
+               asp-route-ordinalNumber="@Model.ProductInPlan.OrdinalNumber" class="btn btn-danger">Delete</a> &nbsp;
             <a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber">
                 Back to product list
             </a>

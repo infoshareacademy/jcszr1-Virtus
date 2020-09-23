@@ -52,6 +52,7 @@ namespace VirtusFitWeb.Controllers
             {
                 model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
+                model.TotalCalories = dailyDietPlan.CaloriesSum;
             }
 
             var dietPlan = this._dietPlanService.GetDietPlan(id);

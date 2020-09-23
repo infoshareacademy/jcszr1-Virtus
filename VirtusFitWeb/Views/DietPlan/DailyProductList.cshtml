@@ -44,9 +44,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NumberOfPortions)
                     </td>
-                    <th>
+                    <td>
                         @Html.DisplayFor(modelItem => item.TotalCalories)
-                    </th>
+                    </td>
                     <td>
                         @Html.ActionLink("Edit", "EditProductInPlan", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber }) |
                         @Html.ActionLink("Details", "ProductDetails", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber }) |
@@ -54,6 +54,14 @@
                     </td>
                 </tr>
             }
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Calories Sum</th>
+            <th>@Model.TotalCalories</th>
+            <th></th>
+        </tr>
         </tbody>
     </table>
 }

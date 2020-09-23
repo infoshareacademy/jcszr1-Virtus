@@ -212,6 +212,8 @@ namespace VirtusFitWeb.Services
                 product.OrdinalNumber = newOrdinalNumber + 1;
                 newOrdinalNumber++;
             }
+
+            CalculateDailyDietPlanCaloriesAndMacros(id, dayNumber);
         }
 
     }
