@@ -1,0 +1,116 @@
+﻿@model ProductInPlanViewModel
+
+@{
+    ViewData["Title"] = "Product details";
+}
+
+<h1>Product details</h1>
+
+<h4>You are looking at product &#8470; @Model.ProductInPlan.OrdinalNumber in Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.ProductId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Energy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Fat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Carbohydrates)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Protein)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Salt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Fiber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Sugar)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.PortionQuantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductInPlan.Product.PortionUnit)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Energy)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Fat)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Carbohydrates)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Protein)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Salt)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Fiber)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Sugar)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.PortionQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ProductInPlan.Product.PortionUnit)
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <label asp-for="ProductInPlan.PortionSize" class="control-label"></label>
+            <input value="@Model.ProductInPlan.PortionSize" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ProductInPlan.NumberOfPortions" class="control-label"></label>
+            <input value="@Model.ProductInPlan.NumberOfPortions" class="form-control" />
+
+        </div>
+        <div class="form-group">
+            <a asp-controller="DietPlan" asp-action="EditProductInPlan" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
+               asp-route-ordinalNumber="@Model.ProductInPlan.OrdinalNumber" class="btn btn-primary">Edit</a> &nbsp;
+
+            <a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber">
+                Back to product list
+            </a>
+        </div>
+
+    </div>
+</div>
+

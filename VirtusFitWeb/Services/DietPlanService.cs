@@ -69,7 +69,8 @@ namespace VirtusFitWeb.Services
 
         public DietPlan Create(DietPlan newDietPlan)
         {
-            newDietPlan.Id = _dietPlans.Count() + 1;
+            var highestId = _dietPlans.Select(dietPlan => dietPlan.Id).Max();
+            newDietPlan.Id = highestId + 1;
             newDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
 
             for (int i = 0; i < newDietPlan.Duration.Days; i++)
@@ -200,5 +201,18 @@ namespace VirtusFitWeb.Services
 
             CalculateDailyDietPlanCaloriesAndMacros(id, dayNumber);
         }
+
+        public void DeleteProductFromPlan(int id, int dayNumber, int ordinalNumber)
+        {
+            var currentDailyDietPlan = _dietPlans[id - 1].DailyDietPlanList[dayNumber - 1];
+            currentDailyDietPlan.ProductListForDay.Remove(GetProductFromDietPlan(id, dayNumber, ordinalNumber));
+            var newOrdinalNumber = 0;
+            foreach (var product in currentDailyDietPlan.ProductListForDay)
+            {
+                product.OrdinalNumber = newOrdinalNumber + 1;
+                newOrdinalNumber++;
+            }
+        }
+
     }
 }

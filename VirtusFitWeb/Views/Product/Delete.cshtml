@@ -2,10 +2,10 @@
 @using VirtusFitWeb.Controllers;
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "DeletePlan";
 }
 
-<h1>Delete</h1>
+<h1>DeletePlan</h1>
 
 <h3>Are you sure you want to delete @Model.ProductName?</h3>
 <div>
@@ -87,7 +87,7 @@
     </dl>
 
     <form asp-action="Delete" asp-controller="Product" method = "post">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="DeletePlan" class="btn btn-danger" /> |
         <a asp-action="ProductList" asp-controller="Product">Back to List</a>
     </form>
 </div>

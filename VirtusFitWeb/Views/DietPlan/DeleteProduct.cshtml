@@ -1,15 +1,13 @@
 ﻿@model ProductInPlanViewModel
 
 @{
-    ViewData["Title"] = "Edit product in plan";
+    ViewData["Title"] = "DeletePlan product";
 }
 
-@{
-    var currentProductOrdinalNumber = Model.ProductInPlan.OrdinalNumber;
-}
-<h1>Edit product in daily diet plan</h1>
+<h1>DeletePlan product</h1>
 
-<h4>You are editing following product in Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber</h4>
+<h4>You are looking at product &#8470; @Model.ProductInPlan.OrdinalNumber in Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber</h4>
+<h4>Are You sure You want to delete this?</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -96,24 +94,25 @@
                 </tr>
             </tbody>
         </table>
-        <form asp-controller="DietPlan" asp-action="EditProductInPlan" asp-route-id="@Model.DietPlanId" asp-route-dailyPlanDayNumber="@Model.DayNumber" asp-route-currentProductOrdinalNumber="@currentProductOrdinalNumber" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductInPlan.PortionSize" class="control-label"></label>
-                <input asp-for="ProductInPlan.PortionSize" class="form-control" />
-                <span asp-validation-for="ProductInPlan.PortionSize" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductInPlan.NumberOfPortions" class="control-label"></label>
-                <input asp-for="ProductInPlan.NumberOfPortions" class="form-control" />
-                <span asp-validation-for="ProductInPlan.NumberOfPortions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Confirm" class="btn btn-primary" />&nbsp;
+        <div class="form-group">
+            <label asp-for="ProductInPlan.PortionSize" class="control-label"></label>
+            <input value="@Model.ProductInPlan.PortionSize" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ProductInPlan.NumberOfPortions" class="control-label"></label>
+            <input value="@Model.ProductInPlan.NumberOfPortions" class="form-control" />
+
+        </div>
+        <div class="form-group">
+            <form asp-action="DeleteProduct" asp-controller="DietPlan" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" asp-route-ordinalNumber="@Model.ProductInPlan.OrdinalNumber" method="post">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                &nbsp;
                 <a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber">
                     Back to product list
                 </a>
-            </div>
-        </form>
+            </form>
+        </div>
+
     </div>
 </div>
+

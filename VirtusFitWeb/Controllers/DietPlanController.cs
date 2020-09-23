@@ -50,7 +50,7 @@ namespace VirtusFitWeb.Controllers
             var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
-                model.DailyPlanId = dailyDietPlan.DietPlanId;
+                model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
             }
 
@@ -190,17 +190,17 @@ namespace VirtusFitWeb.Controllers
             }
         }
 
-        // GET: DietPlanController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: DietPlanController/DeletePlan/5
+        public ActionResult DeletePlan(int id)
         {
             var dietPlan = _dietPlanService.GetDietPlan(id);
             return View(dietPlan);
         }
 
-        // POST: DietPlanController/Delete/5
+        // POST: DietPlanController/DeletePlan/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, DietPlan dietPlanToDelete)
+        public ActionResult DeletePlan(int id, DietPlan dietPlanToDelete)
         {
             try
             {
@@ -247,11 +247,54 @@ namespace VirtusFitWeb.Controllers
                 var editedProduct = editedProductModel.ProductInPlan;
                 _dietPlanService.EditProductInDailyDietPlan(id, dailyPlanDayNumber, editedProduct, currentProductOrdinalNumber);
                 return RedirectToAction("DailyProductList", "DietPlan",
-                    new { id = id, dayNumber = dailyPlanDayNumber });
+                    new { id, dayNumber = dailyPlanDayNumber });
             }
             catch
             {
                 return View(editedProductModel);
+            }
+        }
+
+        public ActionResult ProductDetails(int id, int dayNumber, int ordinalNumber)
+        {
+            var productInPlan = this._dietPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
+            var model = new ProductInPlanViewModel()
+            {
+                DietPlanId = id,
+                DayNumber = dayNumber,
+                ProductInPlan = productInPlan
+            };
+            return View(model);
+        }
+
+        // GET: DietPlanController/DeletePlan/5
+        public ActionResult DeleteProduct(int id, int dayNumber, int ordinalNumber)
+        {
+            var productInPlan = this._dietPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
+            var model = new ProductInPlanViewModel()
+            {
+                DietPlanId = id,
+                DayNumber = dayNumber,
+                ProductInPlan = productInPlan
+            };
+            return View(model);
+        }
+
+        // POST: DietPlanController/DeletePlan/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteProduct(int id, int dayNumber, int ordinalNumber, ProductInPlanViewModel productToDelete )
+        {
+            try
+            {
+                _dietPlanService.DeleteProductFromPlan(id, dayNumber, ordinalNumber);
+
+                return RedirectToAction("DailyProductList", "DietPlan",
+                    new { id, dayNumber });
+            }
+            catch
+            {
+                return View(productToDelete);
             }
         }
     }
