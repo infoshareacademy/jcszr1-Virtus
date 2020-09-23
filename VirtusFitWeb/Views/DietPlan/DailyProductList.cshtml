@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Product List</h1> 
+<h1>Product List</h1>
 <h3>Diet Plan &#8470; @Model.DietPlanId (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber (@Model.Date)</h3>
 @if (Model.ProductListForDay.Any())
 {
@@ -55,14 +55,14 @@
                     </td>
                 </tr>
             }
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>Calories Sum</th>
-            <th>@Model.TotalCalories</th>
-            <th></th>
-        </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Calories Sum</th>
+                <th>@Model.TotalCalories</th>
+                <th></th>
+            </tr>
         </tbody>
     </table>
 }
