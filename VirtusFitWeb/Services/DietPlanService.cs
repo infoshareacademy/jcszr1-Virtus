@@ -7,34 +7,8 @@ namespace VirtusFitWeb.Services
 {
     public class DietPlanService : IDietPlanService
     {
-        private readonly List<DietPlan> _dietPlans = new List<DietPlan>
-        {
-            new DietPlan()
-            {
-                StartDate = new DateTime(2020,09,10),
-                EndDate = new DateTime(2020,09,11),
-                Id = 1,
-                CaloriesPerDay = 2150,
-                DailyDietPlanList = new List<DailyDietPlan>()
-                {
-                    new DailyDietPlan()
-                    {
-                        DietPlanId = 1,
-                        DayNumber = 1,
-                        Date = new DateTime(2020,09,10),
-                        ProductListForDay = new List<ProductInDietPlan>()
-                    },
-                    new DailyDietPlan()
-                    {
-                        DietPlanId = 1,
-                        DayNumber = 2,
-                        Date = new DateTime(2020,09,11),
-                        ProductListForDay = new List<ProductInDietPlan>()
-                    }
-                }
-            }
-        };
-
+        private readonly List<DietPlan> _dietPlans = new List<DietPlan>();
+        
         private readonly List<Product> _products = ProductLoader.GetProductsFromFile();
 
         public IEnumerable<DietPlan> ListAll()
@@ -69,8 +43,12 @@ namespace VirtusFitWeb.Services
 
         public DietPlan Create(DietPlan newDietPlan)
         {
-            var highestId = _dietPlans.Select(dietPlan => dietPlan.Id).Max();
-            newDietPlan.Id = highestId + 1;
+            if (_dietPlans.Count > 0)
+            {
+                var highestId = _dietPlans.Select(dietPlan => dietPlan.Id).Max();
+                newDietPlan.Id = highestId + 1;
+            }
+            else newDietPlan.Id = 1;
             newDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
 
             for (int i = 0; i < newDietPlan.Duration.Days; i++)
