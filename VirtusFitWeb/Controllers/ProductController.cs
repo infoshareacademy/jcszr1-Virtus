@@ -106,5 +106,21 @@ namespace VirtusFitWeb.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public IActionResult AddToFavorites(int id)
+        {
+            var favorite = _productService.GetById(id);
+            _favoriteService.AddToFavorites(favorite);
+            return RedirectToAction(nameof(ProductList));
+        }
+
+        [HttpGet]
+        public IActionResult DeleteFromFavorites(int id)
+        {
+            var favorite = _productService.GetById(id);
+            _favoriteService.DeleteFromFavorites(favorite);
+            return RedirectToAction(nameof(ProductList));
+        }
     }
 }

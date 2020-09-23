@@ -22,7 +22,6 @@ namespace VirtusFitWeb.Controllers
         {
             return View(_favoriteService.GetAll());
         }
-
         [HttpGet]
         public IActionResult FavoriteDetails(int id)
         {
@@ -34,23 +33,13 @@ namespace VirtusFitWeb.Controllers
         public IActionResult AddToFavorites(int id)
         {
             var favorite = _productService.GetById(id);
-            if(_favoriteService.GetAll().Contains(favorite))
-            {
-                return RedirectToAction(nameof(FavoriteList));
-            }
-            return View(favorite);
-        }
-
-        [HttpPost]
-        public IActionResult AddToFavorites(int id, Product product)
-        {
             try
             {
-                var newFavorite = _productService.GetById(id);
-                _favoriteService.AddToFavorites(newFavorite);
+                    
+                _favoriteService.AddToFavorites(favorite);
                 return RedirectToAction(nameof(FavoriteList));
             }
-            catch
+            catch 
             {
                 return View();
             }
@@ -60,16 +49,10 @@ namespace VirtusFitWeb.Controllers
         public IActionResult DeleteFromFavorites(int id)
         {
             var favorite = _productService.GetById(id);
-            return View(favorite);
-        }
-
-        [HttpPost]
-        public IActionResult DeleteFromFavorites(int id, Product product)
-        {
             try
             {
-                var deleteFavorite = _productService.GetById(id);
-                _favoriteService.DeleteFromFavorites(deleteFavorite);
+
+                _favoriteService.DeleteFromFavorites(favorite);
                 return RedirectToAction(nameof(FavoriteList));
             }
             catch

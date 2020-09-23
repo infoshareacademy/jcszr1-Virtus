@@ -17,5 +17,9 @@ namespace VirtusFitWeb.Logic
         Product Create(Product newProduct);
 
         void Update(int id, Product product);
+
+        void DeleteFromFavorites(Product product);
+
+        void AddToFavorites(Product product);
     }
 }

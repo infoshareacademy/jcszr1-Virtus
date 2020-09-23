@@ -23,11 +23,13 @@ namespace VirtusFitWeb.Logic
 
         public void DeleteFromFavorites(Product favorite)
         {
+            favorite.IsFavourite = false;
             Favorites.Remove(favorite);
         }
 
         public void AddToFavorites(Product favorite)
         {
+            favorite.IsFavourite = true;
             Favorites.Add(favorite);
         }
 

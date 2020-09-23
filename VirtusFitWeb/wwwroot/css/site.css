@@ -51,6 +51,13 @@ button.accept-policy {
   line-height: inherit;
 }
 
+.button-star {
+    background: url('http://imgur.com/I0EwG.png') transparent;
+    height: 48px;
+    width: 45px;
+    border: none;
+}​
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
