@@ -11,12 +11,12 @@ namespace BLL
 
         [DisplayName("Portion Size")]
         [Required]
-        [Range(1,int.MaxValue)]
+        [Range(1,int.MaxValue, ErrorMessage = "Portion size must be a positive number")]
         public int PortionSize { get; set; }
         
         [DisplayName("Number of Portions")]
         [Required]
-        [Range(1, int.MaxValue)]
+        [Range(1, int.MaxValue,ErrorMessage = "Number of portions must be a positive number")]
         public int NumberOfPortions { get; set; }
 
         [DisplayName("Total Calories")]
