@@ -14,6 +14,7 @@
         public int Quantity { get; set; }
         public int PortionQuantity { get; set; }
         public string PortionUnit { get; set; }
+        public bool IsFavourite { get; set; }
     }
 }
 

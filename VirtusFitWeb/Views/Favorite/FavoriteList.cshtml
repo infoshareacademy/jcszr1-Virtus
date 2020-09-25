@@ -1,32 +1,22 @@
 ﻿@model IEnumerable<BLL.Product>
 @using VirtusFitWeb.Controllers;
-@using VirtusFitWeb.Logic
 
 @{
-    ViewData["Title"] = "ProductList";
-   
+    ViewData["Title"] = "FavoriteList";
 }
-    <style>
-        .btn-info {
-            background-color: rgb(28, 92, 51);
-            border-color: rgb(28, 92, 51);
-        }
+<style>
+    .btn-info {
+        background-color: rgb(28, 92, 51);
+        border-color: rgb(28, 92, 51);
+    }
 
-        .btn-info:hover {
-            background-color: rgb(67, 132, 36);
-            border-color: rgb(67, 132, 36);
-        }
+    .btn-info:hover {
+        background-color: rgb(67, 132, 36);
+        border-color: rgb(67, 132, 36);
+    }
+</style>
+<h1>Favorites</h1>
 
-        .btn-primary:hover {
-            background-color: rgb(36, 69, 169);
-            border-color: rgb(36, 69, 169);
-        }
-    </style>
-<h1>Product list</h1>
-
-<p>
-    <a class="btn btn-success"asp-action="Create" asp-controller="Product">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -110,24 +100,10 @@
                     @Html.DisplayFor(modelItem => item.PortionUnit)
                 </td>
                 <td>
-
-                    @if (item.IsFavourite == false)
-                    {
-                        <a asp-controller="Product" asp-action="AddToFavorites" asp-route-id=@item.ProductId><i class="fa fa-star" style="font-size: 36px; color: black"></i></a>
-                    }
-                    else
-                    {
-                        <a asp-controller="Product" asp-action="DeleteFromFavorites" asp-route-id=@item.ProductId><i class="fa fa-star" style="font-size: 36px; color: orange"></i></a>
-                    }
-                </td>
-                <td>
-                    <a class="btn btn-info btn-block" asp-controller="Product" asp-action="Details" asp-route-id=@item.ProductId>Details</a>
-                    <a class="btn btn-danger btn-block" asp-controller="Product" asp-action="Delete" asp-route-id=@item.ProductId>Delete</a>
-                    <a class="btn btn-primary btn-block" asp-controller="Product" asp-action="Edit" asp-route-id=@item.ProductId>Edit</a>
-
-
+                    <a class="btn btn-danger btn-block"asp-controller="Favorite" asp-action="DeleteFromFavorites" asp-route-id=@item.ProductId>Delete</a>
+                    <a class="btn btn-block btn-info"asp-controller="Favorite" asp-action="FavoriteDetails" asp-route-id=@item.ProductId>Details</a>
                 </td>
             </tr>
-}
+        }
     </tbody>
 </table>

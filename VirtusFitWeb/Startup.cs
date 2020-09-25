@@ -22,6 +22,7 @@ namespace VirtusFitWeb
             services.AddControllersWithViews();
             services.AddSingleton<IProductService, ProductService>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSingleton<IFavoriteService, FavoriteService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
