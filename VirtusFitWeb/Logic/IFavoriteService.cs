@@ -6,17 +6,11 @@ using BLL;
 
 namespace VirtusFitWeb.Logic
 {
-    public interface IProductService
+    public interface IFavoriteService
     {
-        IList<Product> GetAll();
+        List<Product> GetAll();
 
         Product GetById(int id);
-
-        void DeleteById(int id);
-
-        Product Create(Product newProduct);
-
-        void Update(int id, Product product);
 
         void DeleteFromFavorites(Product product);
 

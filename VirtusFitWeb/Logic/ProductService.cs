@@ -51,6 +51,17 @@ namespace VirtusFitWeb.Logic
             productToBeUpdated.Quantity = product.Quantity;
             productToBeUpdated.PortionQuantity = product.PortionQuantity;
             productToBeUpdated.PortionUnit = product.PortionUnit;
+            productToBeUpdated.IsFavourite = false;
+        }
+
+        public void DeleteFromFavorites(Product favorite)
+        {
+            favorite.IsFavourite = false;
+        }
+
+        public void AddToFavorites(Product favorite)
+        {
+            favorite.IsFavourite = true;
         }
 
     }
