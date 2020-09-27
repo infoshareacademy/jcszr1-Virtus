@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL;
 using Microsoft.AspNetCore.Mvc;
-using VirtusFitWeb.Logic;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
@@ -31,35 +30,14 @@ namespace VirtusFitWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddToFavorites(int id)
-        {
-            var favorite = _productService.GetById(id);
-            try
-            {
-                    
-                _favoriteService.AddToFavorites(favorite);
-                return RedirectToAction(nameof(FavoriteList));
-            }
-            catch 
-            {
-                return View();
-            }
-        }
-
-        [HttpGet]
         public IActionResult DeleteFromFavorites(int id)
         {
             var favorite = _productService.GetById(id);
-            try
-            {
 
-                _favoriteService.DeleteFromFavorites(favorite);
-                return RedirectToAction(nameof(FavoriteList));
-            }
-            catch
-            {
-                return View();
-            }
+
+            _favoriteService.DeleteFromFavorites(favorite);
+            return RedirectToAction(nameof(FavoriteList));
         }
+
     }
 }

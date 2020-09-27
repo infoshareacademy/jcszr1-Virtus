@@ -27,7 +27,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" asp-controller="Product" method ="post">
+        <form asp-action="Create" asp-controller="Product" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ProductName" class="control-label"></label>
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Energy" class="control-label"></label>
-                <input asp-for="Energy" class="form-control" />
+                <input type="text" asp-for="Energy" class="form-control" />
                 <span asp-validation-for="Energy" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -61,34 +61,37 @@
             </div>
             <div class="form-group">
                 <label asp-for="Fiber" class="control-label"></label>
-                <input asp-for="Fiber" class="form-control" />
+                <input type="text" asp-for="Fiber" class="form-control" />
                 <span asp-validation-for="Fiber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Sugar" class="control-label"></label>
-                <input asp-for="Sugar" class="form-control" />
+                <input type="text" asp-for="Sugar" class="form-control" />
                 <span asp-validation-for="Sugar" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
+                <input type="text" asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PortionQuantity" class="control-label"></label>
-                <input asp-for="PortionQuantity" class="form-control" />
+                <input type="text" asp-for="PortionQuantity" class="form-control" />
                 <span asp-validation-for="PortionQuantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PortionUnit" class="control-label"></label>
-                <input asp-for="PortionUnit" class="form-control" />
+                <select class="form-control" asp-for="PortionUnit">
+                    <option>g</option>
+                    <option>ml</option>
+                </select>
                 <span asp-validation-for="PortionUnit" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary btn-block" />
             </div>
             <div>
-                <a class="btn btn-info btn-block"asp-action="ProductList" asp-controller="Product">Back to List</a>
+                <a class="btn btn-info btn-block" asp-action="ProductList" asp-controller="Product">Back to List</a>
             </div>
         </form>
     </div>
