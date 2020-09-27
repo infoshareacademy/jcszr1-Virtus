@@ -12,10 +12,12 @@ namespace VirtusFitWeb.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IFavoriteService _favoriteService;
 
-        public ProductController(IProductService service)
+        public ProductController(IProductService productService, IFavoriteService favoriteService)
         {
-            _productService = service;
+            _productService = productService;
+            _favoriteService = favoriteService;
         }
 
         public IActionResult ProductList()
@@ -103,6 +105,22 @@ namespace VirtusFitWeb.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult AddToFavorites(int id)
+        {
+            var favorite = _productService.GetById(id);
+            _favoriteService.AddToFavorites(favorite);
+            return RedirectToAction(nameof(ProductList));
+        }
+
+        [HttpGet]
+        public IActionResult DeleteFromFavorites(int id)
+        {
+            var favorite = _productService.GetById(id);
+            _favoriteService.DeleteFromFavorites(favorite);
+            return RedirectToAction(nameof(ProductList));
         }
     }
 }

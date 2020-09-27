@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VirtusFitWeb.Logic;
 using VirtusFitWeb.Services;
 
 
@@ -25,6 +26,8 @@ namespace VirtusFitWeb
 
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IDietPlanService, DietPlanService>();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSingleton<IFavoriteService, FavoriteService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

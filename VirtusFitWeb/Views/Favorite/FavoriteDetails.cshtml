@@ -2,27 +2,21 @@
 @using VirtusFitWeb.Controllers;
 
 @{
-    ViewData["Title"] = "DayList";
+    ViewData["Title"] = "Details";
 }
+    <style>
+        .btn-info {
+            background-color: rgb(28, 92, 51);
+            border-color: rgb(28, 92, 51);
+            padding: 0.375rem 10rem;
+        }
 
-<<<<<<< HEAD
-<h1>DayList</h1>
-=======
-<style>
-    .btn-info {
-        background-color: rgb(28, 92, 51);
-        border-color: rgb(28, 92, 51);
-        padding: 0.375rem 10rem;
-    }
-
-    .btn-info:hover {
-        background-color: rgb(67, 132, 36);
-        border-color: rgb(67, 132, 36);
-    }
-</style>
-
+            .btn-info:hover {
+                background-color: rgb(67, 132, 36);
+                border-color: rgb(67, 132, 36);
+            }
+    </style>
 <h1>Details</h1>
->>>>>>> master
 
 <div>
     <h4>Product</h4>
@@ -100,11 +94,8 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PortionUnit)
         </dd>
-        
     </dl>
     <div class="row">
-        <a class="btn btn-info" asp-action="ProductList" asp-controller="Product">Back to List</a>
+        <a class="btn btn-info" asp-action="FavoriteList" asp-controller="Favorite">Back to List</a>
     </div>
-
 </div>
-
