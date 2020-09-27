@@ -1,16 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Reflection.Metadata.Ecma335;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using BLL;
 
 
 namespace BLL
@@ -42,6 +33,11 @@ namespace BLL
                     IsFavourite = false
                 }
                 );
+            }
+
+            foreach (var product in productsFromJson)
+            {
+                product.PortionUnit = product.PortionUnit.ToLower();
             }
 
             return productsFromJson;

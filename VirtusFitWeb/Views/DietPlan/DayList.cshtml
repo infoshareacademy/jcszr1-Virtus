@@ -1,0 +1,80 @@
+﻿@model PlanDetailsViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles {
+    <link href="~/css/dietPlan.css" rel="stylesheet" type="text/css" />
+
+}
+<h1>Day List for - Diet Plan &#8470; @Model.DietPlanId | @Model.PlanCaloriesPerDay Calories per day </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].DayNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].CaloriesSum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].FatSum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].CarbohydratesSum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DailyDietPlans[0].ProteinSum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DailyDietPlans)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+
+                @if (item.CaloriesSum + 100 < Model.PlanCaloriesPerDay || item.CaloriesSum - 100 > Model.PlanCaloriesPerDay)
+                {
+                    <td class="low-high-calories">
+                        @Html.DisplayFor(modelItem => item.CaloriesSum)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CaloriesSum)
+                    </td>
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FatSum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarbohydratesSum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProteinSum)
+                </td>
+                <td>
+                    @Html.ActionLink("Products", "DailyProductList", new { id = item.DietPlanId, dayNumber = item.DayNumber })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index" asp-controller="DietPlan">Back to Diet Plan list</a>
+</div>
+

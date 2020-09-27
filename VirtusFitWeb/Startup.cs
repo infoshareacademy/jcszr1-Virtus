@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VirtusFitWeb.Logic;
+using VirtusFitWeb.Services;
+
 
 namespace VirtusFitWeb
 {
@@ -20,7 +22,10 @@ namespace VirtusFitWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
             services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IDietPlanService, DietPlanService>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<IFavoriteService, FavoriteService>();
         }
