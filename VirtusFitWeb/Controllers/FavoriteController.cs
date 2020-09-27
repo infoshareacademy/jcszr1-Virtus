@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BLL;
 using Microsoft.AspNetCore.Mvc;
 using VirtusFitWeb.Logic;
+using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {

@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using BLL;
 using Microsoft.AspNetCore.Mvc;
 using VirtusFitWeb.Logic;
-using ProductService = VirtusFitWeb.Logic.ProductService;
+using VirtusFitWeb.Services;
+using ProductService = VirtusFitWeb.Services.ProductService;
 
 namespace VirtusFitWeb.Controllers
 {

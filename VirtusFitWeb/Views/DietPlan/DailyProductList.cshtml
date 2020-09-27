@@ -1,0 +1,99 @@
+﻿@model DailyProductListViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product List</h1>
+<h3>Diet Plan &#8470; @Model.DietPlanId (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber (@Model.Date)</h3>
+@if (Model.ProductListForDay.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    &#8470;
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].PortionSize)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].NumberOfPortions)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].TotalCalories)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ProductListForDay)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrdinalNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PortionSize)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfPortions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalCalories)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditProductInPlan", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber }) |
+                        @Html.ActionLink("Details", "ProductDetails", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber }) |
+                        @Html.ActionLink("Delete", "DeleteProduct", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber })
+                    </td>
+                </tr>
+            }
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Calories Sum</th>
+                <th>@Model.TotalCalories</th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].Product.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].PortionSize)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductListForDay[0].NumberOfPortions)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    There are no products on list. Add products.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+<p>
+    <a asp-action="ProductsToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" class="btn btn-primary">Add product</a> &nbsp;
+    <a asp-action="DayList" asp-route-id="@Model.DietPlanId">Back to day list</a>
+
+</p>

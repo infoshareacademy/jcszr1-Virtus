@@ -33,6 +33,7 @@
     <title>@ViewData["Title"] - VirtusFitWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", false)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -57,7 +58,7 @@
                             <a class="nav-link  disabled">BMI Calculator</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  disabled">Diet planner</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "FavoriteList" ? "active" : "")" asp-area="" asp-controller="DietPlan" asp-action="Index">Diet planner</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "FavoriteList" ? "active" : "")" asp-area="" asp-controller="Favorite" asp-action="FavoriteList">Favorites</a>
