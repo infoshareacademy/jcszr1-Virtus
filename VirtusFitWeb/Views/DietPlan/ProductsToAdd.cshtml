@@ -8,98 +8,99 @@
 
 <h6>Nutrients values refer to 100ml/100mg portions</h6>
 
-<a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber">
-    Back to product list
-</a>
+<a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
+   class="btn btn-info btn-block col-sm-2 btn-product-list">Back to product list</a>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].ProductId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Energy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Fat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Carbohydrates)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Protein)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Salt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Fiber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Sugar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].PortionQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].PortionUnit)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Energy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Fat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Carbohydrates)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Protein)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Salt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Fiber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Sugar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].PortionQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList[0].PortionUnit)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.ProductList)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Energy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Carbohydrates)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Protein)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Salt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fiber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sugar)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PortionQuantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PortionUnit)
-                </td>
-                <td>
+    @foreach (var item in Model.ProductList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Energy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carbohydrates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Protein)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sugar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortionQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortionUnit)
+            </td>
+            <td>
 
-                    <a asp-controller="DietPlan" asp-action="AddProductToPlan" asp-route-productId=@item.ProductId
-                       asp-route-id=@Model.DietPlanId asp-route-dayNumber=@Model.DayNumber>Add</a>
+                <a asp-controller="DietPlan" asp-action="AddProductToPlan" asp-route-productId=@item.ProductId
+                   asp-route-id=@Model.DietPlanId asp-route-dayNumber=@Model.DayNumber class="btn btn-primary btn-block">Add</a>
 
-                </td>
-            </tr>
-        }
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
+<a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
+   class="btn btn-info btn-block col-sm-2 btn-product-list">Back to product list</a>
