@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL;
 
-namespace VirtusFitWeb.Logic
+namespace VirtusFitWeb.Services
 {
     public interface IFavoriteService
     {

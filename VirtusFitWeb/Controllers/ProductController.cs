@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL;
 using Microsoft.AspNetCore.Mvc;
-using VirtusFitWeb.Logic;
+using Microsoft.CodeAnalysis.Operations;
 using VirtusFitWeb.Services;
 using ProductService = VirtusFitWeb.Services.ProductService;
 
@@ -46,6 +46,7 @@ namespace VirtusFitWeb.Controllers
             try
             {
                 _productService.DeleteById(id);
+                _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id));
                 return RedirectToAction(nameof(ProductList));
             }
             catch
