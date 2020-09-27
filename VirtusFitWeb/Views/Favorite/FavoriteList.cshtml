@@ -4,7 +4,17 @@
 @{
     ViewData["Title"] = "FavoriteList";
 }
+<style>
+    .btn-info {
+        background-color: rgb(28, 92, 51);
+        border-color: rgb(28, 92, 51);
+    }
 
+    .btn-info:hover {
+        background-color: rgb(67, 132, 36);
+        border-color: rgb(67, 132, 36);
+    }
+</style>
 <h1>Favorites</h1>
 
 <table class="table">
@@ -90,8 +100,8 @@
                     @Html.DisplayFor(modelItem => item.PortionUnit)
                 </td>
                 <td>
-                    <a asp-controller="Favorite" asp-action="DeleteFromFavorites" asp-route-id=@item.ProductId>Delete</a>
-                    <a asp-controller="Favorite" asp-action="FavoriteDetails" asp-route-id=@item.ProductId>Details</a>
+                    <a class="btn btn-danger btn-block"asp-controller="Favorite" asp-action="DeleteFromFavorites" asp-route-id=@item.ProductId>Delete</a>
+                    <a class="btn btn-block btn-info"asp-controller="Favorite" asp-action="FavoriteDetails" asp-route-id=@item.ProductId>Details</a>
                 </td>
             </tr>
         }
