@@ -15,11 +15,6 @@ namespace VirtusFitConsole
 
             try
             {
-                foreach (var item in loader.GetProductsFromFile())
-                {
-                    ListOfProducts.Add(item);
-                }
-
                 Console.WindowWidth = 150;
                 bool terminate = false;
                 while (terminate == false)

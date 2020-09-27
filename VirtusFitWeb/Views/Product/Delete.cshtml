@@ -4,10 +4,6 @@
 @{
     ViewData["Title"] = "DeletePlan";
 }
-
-<<<<<<< HEAD
-<h1>DeletePlan</h1>
-=======
 <style>
 
     .btn-danger {
@@ -25,9 +21,7 @@
         border-color: rgb(67, 132, 36);
     }
 </style>
-
 <h1>Delete</h1>
->>>>>>> master
 
 <h3>Are you sure you want to delete @Model.ProductName?</h3>
 <div>
@@ -109,14 +103,9 @@
     </dl>
 
     <form asp-action="Delete" asp-controller="Product" method = "post">
-<<<<<<< HEAD
-        <input type="submit" value="DeletePlan" class="btn btn-danger" /> |
-        <a asp-action="ProductList" asp-controller="Product">Back to List</a>
-=======
         <div>
             <button type="submit" value="Delete" class=" btn btn-danger btn-large">Delete</button> 
             <button class="btn btn-info btn-large" asp-action="ProductList" asp-controller="Product">Back to List</button>
         </div>
->>>>>>> master
     </form>
 </div>
