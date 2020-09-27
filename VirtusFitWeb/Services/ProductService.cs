@@ -6,7 +6,7 @@ namespace VirtusFitWeb.Services
 {
     public class ProductService : IProductService
     {
-        public List<Product> Products = BLL.ProductLoader.GetProductsFromFile();
+        public List<Product> Products = ProductLoader.GetProductsFromFile();
 
         public List<Product> GetAll()
         {
@@ -23,6 +23,7 @@ namespace VirtusFitWeb.Services
         public void DeleteById(int id)
         {
             var product = GetById(id);
+            product.IsFavourite = false;
             Products.Remove(product);
         }
 
@@ -59,6 +60,5 @@ namespace VirtusFitWeb.Services
         {
             favorite.IsFavourite = true;
         }
-
     }
 }
