@@ -101,7 +101,7 @@
               asp-route-currentProductOrdinalNumber="@currentProductOrdinalNumber" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProductInPlan.PortionSize" class="control-label"></label>
+                <label asp-for="ProductInPlan.PortionSize" class="control-label">Portion Size [@Model.ProductInPlan.Product.PortionUnit]</label>
                 <input asp-for="ProductInPlan.PortionSize" class="form-control" />
                 <span asp-validation-for="ProductInPlan.PortionSize" class="text-danger"></span>
             </div>
