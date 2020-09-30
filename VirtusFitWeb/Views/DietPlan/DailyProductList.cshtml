@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Product List</h1>
+<h1>Daily Plan's product list</h1>
 <h3>Diet Plan &#8470; @Model.DietPlanId (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber (@Model.Date)</h3>
 @if (Model.ProductListForDay.Any())
 {
@@ -96,7 +96,8 @@ else
     </table>
 }
 <p>
-    <a asp-controller="ProductInPlan" asp-action="ProductsToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" class="btn btn-primary btn-block col-sm-2">Add product</a>
+    <a asp-controller="ProductInPlan" asp-action="ProductsToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" 
+       class="btn btn-primary btn-block col-sm-2">Add product</a>
     <a asp-action="DayList" asp-route-id="@Model.DietPlanId" class="btn btn-info btn-block col-sm-2">Back to day list</a>
 
 </p>

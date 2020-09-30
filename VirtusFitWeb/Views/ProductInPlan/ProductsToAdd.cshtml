@@ -6,51 +6,57 @@
 
 <h1>Product list</h1>
 
-<h6>Nutrients values refer to 100ml/100mg portions</h6>
+<h4>List of products to add to Plan &#8470; @Model.DietPlanId (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber (@Model.Date)</h4>
 
 <a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
-   class="btn btn-info btn-block col-sm-2 btn-product-list">Back to product list</a>
+   class="btn btn-info col-sm-2 btn-product-list">To plan's product list</a>
+<a asp-controller="ProductInPlan" asp-action="FavoritesToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
+   class="btn btn-warning col-sm-2">To favorites</a>
+
+<h6>Nutrients values refer to 100ml/100mg portions</h6>
+
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].ProductId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Energy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Fat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Carbohydrates)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Protein)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Salt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Fiber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Sugar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].PortionQuantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductList[0].PortionUnit)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Energy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Carbohydrates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Salt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Fiber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Sugar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].PortionQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductList[0].PortionUnit)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
     @foreach (var item in Model.ProductList)
@@ -93,6 +99,20 @@
                 @Html.DisplayFor(modelItem => item.PortionUnit)
             </td>
             <td>
+                    @if (item.IsFavourite == false)
+                    {
+                        <a asp-controller="ProductInPlan" asp-action="AddToFavorites" asp-route-productId=@item.ProductId asp-route-planId="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber">
+                            <i class="fa fa-star" style="font-size: 36px; color: black"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="ProductInPlan" asp-action="DeleteFromFavorites" asp-route-productId=@item.ProductId asp-route-planId="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber">
+                            <i class="fa fa-star" style="font-size: 36px; color: orange"></i>
+                        </a>
+                    }
+                </td>
+            <td>
 
                 <a asp-controller="ProductInPlan" asp-action="AddProductToPlan" asp-route-productId=@item.ProductId
                    asp-route-id=@Model.DietPlanId asp-route-dayNumber=@Model.DayNumber class="btn btn-primary btn-block">Add</a>
@@ -103,4 +123,6 @@
     </tbody>
 </table>
 <a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
-   class="btn btn-info btn-block col-sm-2 btn-product-list">Back to product list</a>
+   class="btn btn-info col-sm-2 btn-product-list">To plan's product list</a>
+<a asp-controller="ProductInPlan" asp-action="FavoritesToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
+   class="btn btn-warning col-sm-2">To favorites</a>

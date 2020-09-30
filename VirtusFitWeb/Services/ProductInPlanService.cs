@@ -8,21 +8,22 @@ namespace VirtusFitWeb.Services
     public class ProductInPlanService : IProductInPlanService
     {
         private readonly IDietPlanService _dietPlanService;
-        private readonly List<Product> _products = ProductLoader.GetProductsFromFile();
+        private readonly IProductService _productService;
 
-        public ProductInPlanService(IDietPlanService dietPlanService)
+        public ProductInPlanService(IDietPlanService dietPlanService, IProductService productService)
         {
             _dietPlanService = dietPlanService;
+            _productService = productService;
         }
 
         public List<Product> GetProductList()
         {
-            return _products;
+            return _productService.GetAll();
         }
 
         public ProductInDietPlan GetProductToAdd(int id)
         {
-            var product = _products.FirstOrDefault(p => p.ProductId == id);
+            var product = _productService.GetAll().FirstOrDefault(p => p.ProductId == id);
             var productToAdd = new ProductInDietPlan()
             {
                 Product = product
@@ -32,7 +33,7 @@ namespace VirtusFitWeb.Services
 
         public Product GetProductFromList(int id)
         {
-            return _products.FirstOrDefault(p => p.ProductId == id);
+            return _productService.GetAll().FirstOrDefault(p => p.ProductId == id);
         }
 
         public void AddProductToDailyDietPlan(int id, int dayNumber, ProductInDietPlan productToAdd, Product product)

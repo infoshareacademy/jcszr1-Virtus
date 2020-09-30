@@ -1,7 +1,4 @@
-﻿using BLL;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
@@ -11,11 +8,16 @@ namespace VirtusFitWeb.Controllers
     {
         private readonly IProductInPlanService _productInPlanService;
         private readonly IDietPlanService _dietPlanService;
+        private readonly IFavoriteService _favoriteService;
+        private readonly IProductService _productService;
 
-        public ProductInPlanController(IProductInPlanService productInPlanService, IDietPlanService dietPlanService)
+        public ProductInPlanController(IProductInPlanService productInPlanService, IDietPlanService dietPlanService,
+            IFavoriteService favoriteService, IProductService productService)
         {
             _productInPlanService = productInPlanService;
             _dietPlanService = dietPlanService;
+            _favoriteService = favoriteService;
+            _productService = productService;
         }
         
         public ActionResult ProductsToAdd(int id, int dayNumber)
@@ -25,13 +27,60 @@ namespace VirtusFitWeb.Controllers
                 ProductList = this._productInPlanService.GetProductList()
             };
 
-            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
                 model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
+                model.Date = dailyDietPlan.Date.ToShortDateString();
             }
-            
+
+            var dietPlan = this._dietPlanService.GetDietPlan(id);
+            if (dietPlan != null)
+            {
+                model.CaloriesPerDay = dietPlan.CaloriesPerDay;
+            }
+
+            return View(model);
+        }
+        
+        public IActionResult AddToFavorites(int productId, int planId, int dayNumber)
+        {
+            var favorite = _productService.GetById(productId);
+            _favoriteService.AddToFavorites(favorite);
+            return RedirectToAction("ProductsToAdd", "productInPlan",
+                new { id = planId, dayNumber = dayNumber });
+        }
+
+        
+        public IActionResult DeleteFromFavorites(int productId, int planId, int dayNumber)
+        {
+            var favorite = _productService.GetById(productId);
+            _favoriteService.DeleteFromFavorites(favorite);
+            return RedirectToAction("ProductsToAdd", "productInPlan",
+                new { id = planId, dayNumber = dayNumber });
+        }
+        public ActionResult FavoritesToAdd(int id, int dayNumber)
+        {
+            var model = new ProductsToAddViewModel()
+            {
+                ProductList = this._favoriteService.GetAll()
+            };
+
+            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            if (dailyDietPlan != null)
+            {
+                model.DietPlanId = dailyDietPlan.DietPlanId;
+                model.DayNumber = dailyDietPlan.DayNumber;
+                model.Date = dailyDietPlan.Date.ToShortDateString();
+            }
+
+            var dietPlan = this._dietPlanService.GetDietPlan(id);
+            if (dietPlan != null)
+            {
+                model.CaloriesPerDay = dietPlan.CaloriesPerDay;
+            }
+
             return View(model);
         }
 
