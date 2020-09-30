@@ -1,13 +1,16 @@
 ﻿@model ProductInPlanViewModel
 
 @{
-    ViewData["Title"] = "DeletePlan product";
+    ViewData["Title"] = "Add product to plan";
 }
 
-<h1>DeletePlan product</h1>
+@{
+    var productId = Model.ProductInPlan.Product.ProductId;
+}
+<h1>Add product to plan</h1>
 
-<h4>Product &#8470; @Model.ProductInPlan.OrdinalNumber | Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber (@Model.Date)</h4>
-<h4>Are You sure You want to delete this?</h4>
+<h4>You are adding following product to Diet Plan &#8470; @Model.DietPlanId | Day &#8470; @Model.DayNumber (@Model.Date)</h4>
+
 <hr />
 <h6>Nutrients values refer to 100ml/100mg portions</h6>
 <div class="row">
@@ -95,24 +98,23 @@
                 </tr>
             </tbody>
         </table>
-        <div class="form-group">
-            <label asp-for="ProductInPlan.PortionSize" class="control-label"></label>
-            <input value="@Model.ProductInPlan.PortionSize" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="ProductInPlan.NumberOfPortions" class="control-label"></label>
-            <input value="@Model.ProductInPlan.NumberOfPortions" class="form-control" />
-
-        </div>
-        <div class="form-group">
-            <form asp-action="DeleteProduct" asp-controller="DietPlan" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" 
-                  asp-route-ordinalNumber="@Model.ProductInPlan.OrdinalNumber" method="post">
-                <input type="submit" value="Delete" class="btn btn-danger btn-block" />
-                <a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
-                   class="btn btn-info btn-block">Back to product list</a>
-            </form>
-        </div>
-
+        <form asp-controller="ProductInPlan" asp-action="AddProductToPlan" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" asp-route-productId="@productId" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductInPlan.PortionSize" class="control-label">Portion Size [@Model.ProductInPlan.Product.PortionUnit]</label>
+                <input asp-for="ProductInPlan.PortionSize" class="form-control" />
+                <span asp-validation-for="ProductInPlan.PortionSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductInPlan.NumberOfPortions" class="control-label"></label>
+                <input asp-for="ProductInPlan.NumberOfPortions" class="form-control" />
+                <span asp-validation-for="ProductInPlan.NumberOfPortions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary btn-block" />
+                <a asp-controller="ProductInPlan" asp-action="ProductsToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" 
+                   asp-route-productId="@productId" class="btn btn-info btn-block">Back to product list</a>
+            </div>
+        </form>
     </div>
 </div>
-
