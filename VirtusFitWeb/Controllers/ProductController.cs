@@ -86,7 +86,7 @@ namespace VirtusFitWeb.Controllers
                 return View();
             }
         }
-        [HttpGet] 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -109,14 +109,20 @@ namespace VirtusFitWeb.Controllers
             }
         }
 
-        [HttpGet] 
+        [HttpGet]
         public IActionResult Search()
         {
             return View();
         }
 
-        [HttpGet] 
+        [HttpGet]
         public IActionResult SearchByName()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult SearchByFat()
         {
             return View();
         }
@@ -131,6 +137,26 @@ namespace VirtusFitWeb.Controllers
             try
             {
                 return View(_productService.SearchByName(criteria.ProductName));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult SearchByFatResults(SearchCriteria criteria)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                double minfat = criteria.MinFat.HasValue ? criteria.MinFat.Value : 0;
+                double maxfat = criteria.MaxFat.HasValue ? criteria.MaxFat.Value : int.MaxValue;
+
+                return View(_productService.SearchByFat(minfat, maxfat));
             }
             catch
             {

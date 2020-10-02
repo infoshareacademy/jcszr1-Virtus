@@ -67,5 +67,9 @@ namespace VirtusFitWeb.Services
         {
             return searchProductLogic.SearchByName(Products, name);
         }
+        public List<Product> SearchByFat(double minfat, double maxfat)
+        {
+            return searchProductLogic.SearchByFat(Products, minfat, maxfat);
+        }
     }
 }

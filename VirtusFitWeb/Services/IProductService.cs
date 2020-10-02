@@ -20,5 +20,6 @@ namespace VirtusFitWeb.Services
         void AddToFavorites(Product product);
 
         List<Product> SearchByName(string name);
+        List<Product> SearchByFat(double minfat, double maxfat);
     }
 }

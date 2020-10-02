@@ -1,0 +1,55 @@
+﻿@model BLL.SearchCriteria
+@using VirtusFitWeb.Controllers;
+
+
+@{
+    ViewData["Title"] = "Search Product by fat amount";
+}
+<style>
+    .btn-info {
+        background-color: rgb(28, 92, 51);
+        border-color: rgb(28, 92, 51);
+    }
+
+        .btn-info:hover {
+            background-color: rgb(67, 132, 36);
+            border-color: rgb(67, 132, 36);
+        }
+
+    .btn-primary:hover {
+        background-color: rgb(36, 69, 169);
+        border-color: rgb(36, 69, 169);
+    }
+</style>
+<h1>Search Product by fat amount</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SearchByFatResults" asp-controller="Product" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MinFat" class="control-label"></label>
+                <input asp-for="MinFat" class="form-control" />
+                <span asp-validation-for="MinFat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxFat" class="control-label"></label>
+                <input asp-for="MaxFat" class="form-control" />
+                <span asp-validation-for="MaxFat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <a class="btn btn-info btn-block" asp-action="Search" asp-controller="Product">Back to Search</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
