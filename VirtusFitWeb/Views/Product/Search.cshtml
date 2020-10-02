@@ -1,0 +1,50 @@
+﻿@using VirtusFitWeb.Controllers;
+
+
+@{
+    ViewData["Title"] = "Search Product by...";
+}
+<style>
+    .btn-info {
+        background-color: rgb(28, 92, 51);
+        border-color: rgb(28, 92, 51);
+    }
+
+        .btn-info:hover {
+            background-color: rgb(67, 132, 36);
+            border-color: rgb(67, 132, 36);
+        }
+
+    .btn-primary:hover {
+        background-color: rgb(36, 69, 169);
+        border-color: rgb(36, 69, 169);
+    }
+</style>
+<h1>Search Product by...</h1>
+
+<hr />
+<div class="row mb-1">
+    <a class="btn btn-success" asp-action="SearchByName" asp-controller="Product">Name</a>
+</div>
+<div class="row mb-1">
+    <a class="btn btn-secondary" asp-action="" asp-controller="Product">Calories</a>
+</div>
+<div class="row mb-1">
+    <a class="btn btn-secondary" asp-action="" asp-controller="Product">Fat</a>
+</div>
+<div class="row mb-1">
+    <a class="btn btn-secondary" asp-action="" asp-controller="Product">Carbohydrate</a>
+</div>
+<div class="row mb-1">
+    <a class="btn btn-secondary" asp-action="" asp-controller="Product">Protein</a>
+</div>
+<hr />
+<div class="row mb-1">
+    <a class="btn btn-info btn-block" asp-action="ProductList" asp-controller="Product">Back to List</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

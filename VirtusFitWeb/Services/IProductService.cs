@@ -18,5 +18,7 @@ namespace VirtusFitWeb.Services
         void DeleteFromFavorites(Product product);
 
         void AddToFavorites(Product product);
+
+        List<Product> SearchByName(string name);
     }
 }

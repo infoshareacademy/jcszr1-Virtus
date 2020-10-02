@@ -6,6 +6,8 @@ namespace VirtusFitWeb.Services
 {
     public class ProductService : IProductService
     {
+        private readonly SearchProductLogic searchProductLogic = new SearchProductLogic();
+
         public List<Product> Products = ProductLoader.GetProductsFromFile();
 
         public List<Product> GetAll()
@@ -59,6 +61,11 @@ namespace VirtusFitWeb.Services
         public void AddToFavorites(Product favorite)
         {
             favorite.IsFavourite = true;
+        }
+
+        public List<Product> SearchByName(string name)
+        {
+            return searchProductLogic.SearchByName(Products, name);
         }
     }
 }
