@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BLL;
+using System.Collections.Generic;
 using System.Linq;
-using BLL;
 
 namespace VirtusFitWeb.Services
 {
