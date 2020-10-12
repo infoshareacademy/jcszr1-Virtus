@@ -55,7 +55,7 @@
                             <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "ProductList" ? "active" : "")" asp-area="" asp-controller="Product" asp-action="ProductList">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  disabled">BMI Calculator</a>
+                            <a class="nav-link" asp-area="" asp-controller="BMICalculator" asp-action="Calculator">BMI Calculator</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "FavoriteList" ? "active" : "")" asp-area="" asp-controller="DietPlan" asp-action="Index">Diet planner</a>

@@ -1,0 +1,18 @@
+﻿@{
+
+    ViewData["Title"] = "Calculator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Calculator</h1>
+
+<form asp-controller="BMICalculator" asp-action="BmiResult" method="post">
+    <div>
+        Height in cm
+        <input type="number" name ="height"/>
+        Weight in kg
+        <input type="number" name ="weight"/>
+        <input type="submit" value="calculate"/>
+
+    </div>
+</form>

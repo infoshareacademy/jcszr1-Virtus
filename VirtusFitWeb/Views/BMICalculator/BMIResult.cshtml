@@ -1,0 +1,38 @@
+﻿@model double
+@{
+
+    ViewData["Title"] = "BMI Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Result</h1>
+Your BMI is @Model
+
+@if (@Model < 18.5)
+{
+    <h1>Underweight</h1>
+
+    <h3>Your BMI is lower than healthy value.</h3>
+    <h3>Please consider changing your diet.</h3>
+    <h4>If you require any assistance in planning your diet, click <a class="btn btn-info" asp-action="Index" asp-controller="DietPlan">here</a>
+    </h4>
+}
+
+
+@if (18.5 <= @Model && @Model <= 24.9)
+{
+    <h1>You Ok</h1>
+
+}
+@if (25.0 <= @Model && @Model <= 29.9)
+{
+    <h1>Overweight</h1>
+
+}
+
+@if (@Model >=30)
+{
+    <h1>Obese</h1>
+
+}
