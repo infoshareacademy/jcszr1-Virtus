@@ -4,35 +4,77 @@
     ViewData["Title"] = "BMI Results";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    ul.a {
+        font-size: 25px;
+    }
+</style>
 
 <h1>Result</h1>
-Your BMI is @Model
+<h2>Your BMI is @Math.Round(Model, 2)</h2>
+<br />
 
 @if (@Model < 18.5)
 {
-    <h1>Underweight</h1>
-
-    <h3>Your BMI is lower than healthy value.</h3>
+    <h2>You are underweight</h2>
+    <br />
+    <h4>Your BMI is lower than healthy value.</h4>
+    <h4>Being underweight might lead to multiple health issues such as:</h4>
+    <ul class="a">
+        <li>Fragile bones</li>
+        <li>Anemia</li>
+        <li>Weakened immune system</li>
+    </ul>
     <h3>Please consider changing your diet.</h3>
-    <h4>If you require any assistance in planning your diet, click <a class="btn btn-info" asp-action="Index" asp-controller="DietPlan">here</a>
-    </h4>
+    <h3>
+        Our diet planner might be useful, please click <a class="btn btn-success" asp-action="Index" asp-controller="DietPlan">HERE</a> and try it out!
+    </h3>
 }
 
 
 @if (18.5 <= @Model && @Model <= 24.9)
 {
-    <h1>You Ok</h1>
+    <h2>Your weight is in normal range.</h2>
+    <br />
+    <h2>Keep it up!</h2>
+    <h3>
+        If you are struggling with planning your diet to remain healthy, our diet planner might be useful, please click <a class="btn btn-success" asp-action="Index" asp-controller="DietPlan">HERE</a> and try it out!
+    </h3>
 
 }
 @if (25.0 <= @Model && @Model <= 29.9)
 {
-    <h1>Overweight</h1>
+    <h2>You are overweight</h2>
+    <br />
+    <h4>Your BMI is higher than healthy value.</h4>
+    <h4>Being overweight might lead to multiple health issues such as:</h4>
+    <ul class="a">
+        <li>Type 2 diabetes</li>
+        <li>Heart diseases</li>
+        <li>Strokes</li>
+        <li>And many more</li>
+    </ul>
+    <h3>Please consider changing your diet.</h3>
+    <h3>
+        Our diet planner might be useful, please click <a class="btn btn-success" asp-action="Index" asp-controller="DietPlan">HERE</a> and try it out!
+    </h3>
 
 }
 
-@if (@Model >=30)
+@if (@Model >= 30)
 {
-    <h1>Obese</h1>
-
+    <h2>You are obese</h2>
+    <br />
+    <h4>Your BMI is way higher than healthy value.</h4>
+    <h4>Being obese might lead to multiple health issues such as:</h4>
+    <ul class="a">
+        <li>Type 2 diabetes</li>
+        <li>Heart diseases</li>
+        <li>Strokes</li>
+        <li>And many more</li>
+    </ul>
+    <h3>Please consider changing your diet.</h3>
+    <h3>
+        Our diet planner might be useful, please click <a class="btn btn-success" asp-action="Index" asp-controller="DietPlan">HERE</a> and try it out!
+    </h3>
 }
