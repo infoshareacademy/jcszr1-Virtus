@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BLL;
+﻿using BLL;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Operations;
+using System.Linq;
 using VirtusFitWeb.Services;
-using ProductService = VirtusFitWeb.Services.ProductService;
 
 namespace VirtusFitWeb.Controllers
 {
@@ -86,7 +81,7 @@ namespace VirtusFitWeb.Controllers
                 return View();
             }
         }
-        [HttpGet] 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -113,7 +108,7 @@ namespace VirtusFitWeb.Controllers
         public IActionResult AddToFavorites(int id)
         {
             var favorite = _productService.GetById(id);
-            _favoriteService.AddToFavorites(favorite);
+            _productService.AddToFavorites(favorite);
             return RedirectToAction(nameof(ProductList));
         }
 
@@ -121,7 +116,7 @@ namespace VirtusFitWeb.Controllers
         public IActionResult DeleteFromFavorites(int id)
         {
             var favorite = _productService.GetById(id);
-            _favoriteService.DeleteFromFavorites(favorite);
+            _productService.DeleteFromFavorites(favorite);
             return RedirectToAction(nameof(ProductList));
         }
     }

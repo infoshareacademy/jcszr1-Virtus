@@ -1,9 +1,11 @@
+using BLL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VirtusFitWeb.Services;
+using ProductService = VirtusFitWeb.Services.ProductService;
 
 
 namespace VirtusFitWeb
@@ -13,6 +15,10 @@ namespace VirtusFitWeb
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            using (var client = new ProductContext())
+            {
+                client.Database.EnsureCreated();
+            }
         }
 
         public IConfiguration Configuration { get; }
