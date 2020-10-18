@@ -102,10 +102,10 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete" asp-controller="Product" method = "post">
+    <form asp-action="Delete" asp-controller="Product" asp-route-id="@Model.ProductId" method="post">
         <div>
-            <button type="submit" value="Delete" class=" btn btn-danger btn-large">Delete</button> 
-            <button class="btn btn-info btn-large" asp-action="ProductList" asp-controller="Product">Back to List</button>
+            <button type="submit" value="Delete" class=" btn btn-danger">Delete</button>
+            <button class="btn btn-info" asp-action="ProductList" asp-controller="Product">Back to List</button>
         </div>
     </form>
 </div>

@@ -34,19 +34,24 @@ namespace VirtusFitWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteConfirm(int id)
         {
             var product = _productService.GetById(id);
-            return View(product);
+            return View("Delete", product);
         }
 
         [HttpPost]
-        public IActionResult Delete(int id, Product productToBeDeleted)
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
         {
             try
             {
+                if (_productService.GetById(id).IsFavourite)
+                {
+                    _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id));
+                }
+
                 _productService.DeleteById(id);
-                _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id));
                 return RedirectToAction(nameof(ProductList));
             }
             catch

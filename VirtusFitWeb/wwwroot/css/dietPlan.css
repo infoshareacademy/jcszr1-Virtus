@@ -2,3 +2,22 @@
     color: crimson;
     font-weight: bold;
 }
+
+.btn-product-list {
+    margin: 5px;
+}
+
+.btn-info {
+    background-color: rgb(28, 92, 51);
+    border-color: rgb(28, 92, 51);
+}
+
+.btn-info:hover {
+    background-color: rgb(67, 132, 36);
+    border-color: rgb(67, 132, 36);
+}
+
+.btn-primary:hover {
+    background-color: rgb(36, 69, 169);
+    border-color: rgb(36, 69, 169);
+}

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Product List</h1>
+<h1>Daily Plan's product list</h1>
 <h3>Diet Plan &#8470; @Model.DietPlanId (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber (@Model.Date)</h3>
 @if (Model.ProductListForDay.Any())
 {
@@ -49,9 +49,12 @@
                         @Html.DisplayFor(modelItem => item.TotalCalories)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditProductInPlan", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber }) |
-                        @Html.ActionLink("Details", "ProductDetails", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber }) |
-                        @Html.ActionLink("Delete", "DeleteProduct", new { id = Model.DietPlanId, daynumber = Model.DayNumber, ordinalNumber = item.OrdinalNumber })
+                        <a class="btn btn-info btn-block" asp-controller="ProductInPlan" asp-action="ProductDetails" asp-route-id=@Model.DietPlanId
+                           asp-route-dayNumber="@Model.DayNumber" asp-route-ordinalNumber="@item.OrdinalNumber">Details</a>
+                        <a class="btn btn-danger btn-block" asp-controller="ProductInPlan" asp-action="DeleteProduct" asp-route-id=@Model.DietPlanId
+                           asp-route-dayNumber="@Model.DayNumber" asp-route-ordinalNumber="@item.OrdinalNumber">Delete</a>
+                        <a class="btn btn-primary btn-block" asp-controller="ProductInPlan" asp-action="EditProductInPlan" asp-route-id=@Model.DietPlanId
+                           asp-route-dayNumber="@Model.DayNumber" asp-route-ordinalNumber="@item.OrdinalNumber">Edit</a>
                     </td>
                 </tr>
             }
@@ -93,7 +96,8 @@ else
     </table>
 }
 <p>
-    <a asp-action="ProductsToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" class="btn btn-primary">Add product</a> &nbsp;
-    <a asp-action="DayList" asp-route-id="@Model.DietPlanId">Back to day list</a>
+    <a asp-controller="ProductInPlan" asp-action="ProductsToAdd" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber" 
+       class="btn btn-primary btn-block col-sm-2">Add product</a>
+    <a asp-action="DayList" asp-route-id="@Model.DietPlanId" class="btn btn-info btn-block col-sm-2">Back to day list</a>
 
 </p>
