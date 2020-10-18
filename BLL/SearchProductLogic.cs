@@ -12,12 +12,12 @@ namespace BLL
                 product.ProductName.Contains(searchValue, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
 
-        public List<Product> SearchByCalories(List<Product> productList, int searchValue)
+        public List<Product> SearchByCalories(List<Product> productList, double searchValue)
         {
             return productList.Where(product => product.Energy == searchValue).ToList();
         }
 
-        public List<Product> SearchByCalories(List<Product> productList, int minValue, int maxValue)
+        public List<Product> SearchByCalories(List<Product> productList, double minValue, double maxValue)
         {
             return productList.Where(product => product.Energy >= minValue && product.Energy <= maxValue).ToList();
         }
@@ -41,12 +41,12 @@ namespace BLL
         {
             return productList.Where(product => product.Carbohydrates >= minValue && product.Carbohydrates <= maxValue).ToList();
         }
-        public List<Product> SearchByProtein(List<Product> productList, double searchValue)
+        public List<Product> SearchByProteins(List<Product> productList, double searchValue)
         {
             return productList.Where(product => product.Protein == searchValue).ToList();
         }
 
-        public List<Product> SearchByProtein(List<Product> productList, double minValue, double maxValue)
+        public List<Product> SearchByProteins(List<Product> productList, double minValue, double maxValue)
         {
             return productList.Where(product => product.Protein >= minValue && product.Protein <= maxValue).ToList();
         }

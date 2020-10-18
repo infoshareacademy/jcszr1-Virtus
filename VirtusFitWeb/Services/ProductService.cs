@@ -6,6 +6,8 @@ namespace VirtusFitWeb.Services
 {
     public class ProductService : IProductService
     {
+        private readonly SearchProductLogic searchProductLogic = new SearchProductLogic();
+
         public List<Product> Products = ProductLoader.GetProductsFromFile();
 
         public List<Product> GetAll()
@@ -59,6 +61,28 @@ namespace VirtusFitWeb.Services
         public void AddToFavorites(Product favorite)
         {
             favorite.IsFavourite = true;
+        }
+
+        public List<Product> SearchByName(string name)
+        {
+            return searchProductLogic.SearchByName(Products, name);
+        }
+        public List<Product> SearchByFat(double minfat, double maxfat)
+        {
+            return searchProductLogic.SearchByFat(Products, minfat, maxfat);
+        }
+
+        public List<Product> SearchByCalories(double minenergy, double maxenergy)
+        {
+            return searchProductLogic.SearchByCalories(Products, minenergy, maxenergy);
+        }
+        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb)
+        {
+            return searchProductLogic.SearchByCarbohydrates(Products, mincarb, maxcarb);
+        }
+        public List<Product> SearchByProteins(double minprotein, double maxprotein)
+        {
+            return searchProductLogic.SearchByProteins(Products, minprotein, maxprotein);
         }
     }
 }

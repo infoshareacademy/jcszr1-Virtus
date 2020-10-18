@@ -3,28 +3,29 @@
 
 @{
     ViewData["Title"] = "ProductList";
-   
+
 }
-    <style>
-        .btn-info {
-            background-color: rgb(28, 92, 51);
-            border-color: rgb(28, 92, 51);
-        }
+<style>
+    .btn-info {
+        background-color: rgb(28, 92, 51);
+        border-color: rgb(28, 92, 51);
+    }
 
         .btn-info:hover {
             background-color: rgb(67, 132, 36);
             border-color: rgb(67, 132, 36);
         }
 
-        .btn-primary:hover {
-            background-color: rgb(36, 69, 169);
-            border-color: rgb(36, 69, 169);
-        }
-    </style>
+    .btn-primary:hover {
+        background-color: rgb(36, 69, 169);
+        border-color: rgb(36, 69, 169);
+    }
+</style>
 <h1>Product list</h1>
 
 <p>
-    <a class="btn btn-success " asp-action="Create" asp-controller="Product">Create New</a>
+    <a class="btn btn-success" asp-action="Create" asp-controller="Product">Create New</a>
+    <a class="btn btn-primary" asp-action="Search" asp-controller="Product">Search</a>
 </p>
 
 <table class="table">
@@ -126,6 +127,6 @@
                     <a class="btn btn-primary btn-block" asp-controller="Product" asp-action="Edit" asp-route-id=@item.ProductId>Edit</a>
                 </td>
             </tr>
-}
+        }
     </tbody>
 </table>
