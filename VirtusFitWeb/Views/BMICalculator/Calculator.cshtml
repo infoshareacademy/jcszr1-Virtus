@@ -1,0 +1,30 @@
+﻿@{
+
+    ViewData["Title"] = "Calculator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .btn-info{
+        background-color: rgb(28, 92, 51);
+        border-color: rgb(28, 92, 51);
+    }
+
+    .btn-info:hover{ 
+        background-color: rgb(67, 132, 36);
+        border-color: rgb(67, 132, 36);
+        }
+
+        </style>
+
+<h1>Calculator</h1>
+
+<form asp-controller="BMICalculator" asp-action="BmiResult" method="post">
+    <div>
+        Height in cm
+        <input required min="0" max ="280"type="number" name ="height"/>
+        Weight in kg
+        <input required min="0" max ="450" type="number" name ="weight"/>
+        <input class="btn btn-info" type="submit" value="Calculate"/>
+    </div>
+</form>
