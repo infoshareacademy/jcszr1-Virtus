@@ -9,11 +9,11 @@ namespace BLL
         public string ProductName { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
-        public int? ExactEnergy { get; set; }
+        public double? ExactEnergy { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
-        public int? MinEnergy { get; set; }
+        public double? MinEnergy { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
-        public int? MaxEnergy { get; set; }
+        public double? MaxEnergy { get; set; }
         
         [Range(0, int.MaxValue, ErrorMessage = "Fat value must be a positive number")]
         public double? ExactFat { get; set; }

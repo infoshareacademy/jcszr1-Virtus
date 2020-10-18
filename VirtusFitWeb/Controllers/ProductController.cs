@@ -127,6 +127,24 @@ namespace VirtusFitWeb.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult SearchByCalories()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult SearchByCarbohydrates()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult SearchByProteins()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SearchByNameResults(SearchCriteria criteria)
         {
@@ -163,6 +181,67 @@ namespace VirtusFitWeb.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public IActionResult SearchByCaloriesResults(SearchCriteria criteria)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                double mincal = criteria.MinEnergy.HasValue ? criteria.MinEnergy.Value : 0;
+                double maxcal = criteria.MaxEnergy.HasValue ? criteria.MaxEnergy.Value : int.MaxValue;
+
+                return View(_productService.SearchByCalories(mincal, maxcal));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult SearchByCarbohydratesResults(SearchCriteria criteria)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                double mincarb = criteria.MinCarbohydrates.HasValue ? criteria.MinCarbohydrates.Value : 0;
+                double maxcarb = criteria.MaxCarbohydrates.HasValue ? criteria.MaxCarbohydrates.Value : int.MaxValue;
+
+                return View(_productService.SearchByCarbohydrates(mincarb, maxcarb));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult SearchByProteinsResults(SearchCriteria criteria)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                double minprotein = criteria.MinProtein.HasValue ? criteria.MinProtein.Value : 0;
+                double maxprotein = criteria.MaxProtein.HasValue ? criteria.MaxProtein.Value : int.MaxValue;
+
+                return View(_productService.SearchByProteins(minprotein, maxprotein));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         [HttpGet]
         public IActionResult AddToFavorites(int id)

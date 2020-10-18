@@ -28,12 +28,12 @@
         <form asp-action="SearchByFatResults" asp-controller="Product" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MinFat" class="control-label"></label>
+                <label asp-for="MinFat"></label>
                 <input asp-for="MinFat" class="form-control" />
                 <span asp-validation-for="MinFat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaxFat" class="control-label"></label>
+                <label asp-for="MaxFat"></label>
                 <input asp-for="MaxFat" class="form-control" />
                 <span asp-validation-for="MaxFat" class="text-danger"></span>
             </div>
@@ -42,8 +42,8 @@
             </div>
         </form>
     </div>
-
 </div>
+
 <div class="row">
     <div class="col-md-4">
         <a class="btn btn-info btn-block" asp-action="Search" asp-controller="Product">Back to Search</a>

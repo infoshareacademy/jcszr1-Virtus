@@ -41,12 +41,12 @@ namespace BLL
         {
             return productList.Where(product => product.Carbohydrates >= minValue && product.Carbohydrates <= maxValue).ToList();
         }
-        public List<Product> SearchByProtein(List<Product> productList, double searchValue)
+        public List<Product> SearchByProteins(List<Product> productList, double searchValue)
         {
             return productList.Where(product => product.Protein == searchValue).ToList();
         }
 
-        public List<Product> SearchByProtein(List<Product> productList, double minValue, double maxValue)
+        public List<Product> SearchByProteins(List<Product> productList, double minValue, double maxValue)
         {
             return productList.Where(product => product.Protein >= minValue && product.Protein <= maxValue).ToList();
         }

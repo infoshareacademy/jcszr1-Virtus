@@ -71,5 +71,18 @@ namespace VirtusFitWeb.Services
         {
             return searchProductLogic.SearchByFat(Products, minfat, maxfat);
         }
+
+        public List<Product> SearchByCalories(double minenergy, double maxenergy)
+        {
+            return searchProductLogic.SearchByCalories(Products, (int)minenergy, (int)maxenergy);
+        }
+        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb)
+        {
+            return searchProductLogic.SearchByCarbohydrates(Products, (int)mincarb, (int)maxcarb);
+        }
+        public List<Product> SearchByProteins(double minprotein, double maxprotein)
+        {
+            return searchProductLogic.SearchByProteins(Products, (int)minprotein, (int)maxprotein);
+        }
     }
 }
