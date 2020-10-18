@@ -87,24 +87,39 @@ namespace VirtusFitWeb.Services
 
         public List<Product> SearchByName(string name)
         {
-            return searchProductLogic.SearchByName(Products, name);
+            using (ProductContext entities = new ProductContext())
+            {
+                return searchProductLogic.SearchByName(entities.Products.ToList(), name);
+            }
         }
         public List<Product> SearchByFat(double minfat, double maxfat)
         {
-            return searchProductLogic.SearchByFat(Products, minfat, maxfat);
+            using (ProductContext entities = new ProductContext())
+            {
+                return searchProductLogic.SearchByFat(entities.Products.ToList(), minfat, maxfat);
+            }
         }
 
         public List<Product> SearchByCalories(double minenergy, double maxenergy)
         {
-            return searchProductLogic.SearchByCalories(Products, minenergy, maxenergy);
+            using (ProductContext entities = new ProductContext())
+            {
+                return searchProductLogic.SearchByCalories(entities.Products.ToList(), minenergy, maxenergy);
+            }
         }
         public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb)
         {
-            return searchProductLogic.SearchByCarbohydrates(Products, mincarb, maxcarb);
+            using (ProductContext entities = new ProductContext())
+            {
+                return searchProductLogic.SearchByCarbohydrates(entities.Products.ToList(), mincarb, maxcarb);
+            }
         }
         public List<Product> SearchByProteins(double minprotein, double maxprotein)
         {
-            return searchProductLogic.SearchByProteins(Products, minprotein, maxprotein);
+            using (ProductContext entities = new ProductContext())
+            {
+                return searchProductLogic.SearchByProteins(entities.Products.ToList(), minprotein, maxprotein);
+            }
         }
     }
 }

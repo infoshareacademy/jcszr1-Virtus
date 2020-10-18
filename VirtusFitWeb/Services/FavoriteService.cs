@@ -7,7 +7,6 @@ namespace VirtusFitWeb.Services
 {
     public class FavoriteService : IFavoriteService
     {
-
         public List<Product> GetAll()
         {
             using (ProductContext entities = new ProductContext())
