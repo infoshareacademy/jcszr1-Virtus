@@ -60,9 +60,9 @@
                 @Html.DisplayFor(modelItem => item.CaloriesPerDay)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Day List", "DayList", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "DeletePlan", new { id = item.Id })
+                <a class="btn btn-info btn-block" asp-controller="DietPlan" asp-action="DayList" asp-route-id=@item.Id>Details</a>
+                <a class="btn btn-danger btn-block" asp-controller="DietPlan" asp-action="DeletePlan" asp-route-id=@item.Id>Delete</a>
+                <a class="btn btn-primary btn-block" asp-controller="DietPlan" asp-action="Edit" asp-route-id=@item.Id>Edit</a>
             </td>
         </tr>
     }
@@ -70,5 +70,5 @@
 </table>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a class="btn btn-success" asp-action="Create">Create New</a>
 </p>

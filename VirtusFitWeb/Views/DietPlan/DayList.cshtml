@@ -4,10 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-@section Styles {
-    <link href="~/css/dietPlan.css" rel="stylesheet" type="text/css" />
-
-}
 <h1>Day List for - Diet Plan &#8470; @Model.DietPlanId | @Model.PlanCaloriesPerDay Calories per day </h1>
 
 <table class="table">
@@ -68,13 +64,13 @@
                     @Html.DisplayFor(modelItem => item.ProteinSum)
                 </td>
                 <td>
-                    @Html.ActionLink("Products", "DailyProductList", new { id = item.DietPlanId, dayNumber = item.DayNumber })
+                    <a class="btn btn-primary btn-block" asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id=@item.DietPlanId asp-route-dayNumber="@item.DayNumber">Products</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 <div>
-    <a asp-action="Index" asp-controller="DietPlan">Back to Diet Plan list</a>
+    <a class="btn btn-info" asp-action="Index" asp-controller="DietPlan">Back to Diet Plan list</a>
 </div>
 

@@ -24,7 +24,8 @@ namespace VirtusFitWeb
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddSingleton<IProductService, ProductService>();
-            services.AddSingleton<IDietPlanService, DietPlanService>();
+            services.AddSingleton<IDietPlanService, DietPlanService>(); 
+            services.AddSingleton<IProductInPlanService, ProductInPlanService>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<IFavoriteService, FavoriteService>();
         }
