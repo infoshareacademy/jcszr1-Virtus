@@ -16,9 +16,16 @@ namespace BLL.DAL
         {
             _context = context;
         }
+
+        public async Task<List<Product>> GetProductsAsync()
+        {
+            return await _context.Products.ToListAsync();
+        }
+
         public List<Product> GetProducts()
         {
-            return _context.Products.ToList();
+            var list = GetProductsAsync().Result;
+            return list;
         }
 
         public Product GetProductById(int productId)
@@ -28,6 +35,7 @@ namespace BLL.DAL
 
         public async Task InsertProduct(Product product, bool commit = true)
         {
+
             await _context.Products.AddAsync(product);
 
             if (commit)

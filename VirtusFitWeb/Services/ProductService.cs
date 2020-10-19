@@ -1,6 +1,7 @@
 ﻿using BLL;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using BLL.DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,8 @@ namespace VirtusFitWeb.Services
 
         public Product Create(Product newProduct)
         {
+            //int id = _repository.GetProducts().Max(product => product.ProductId);
+            //newProduct.ProductId = id;
             _repository.InsertProduct(newProduct);
             return newProduct;
         }
