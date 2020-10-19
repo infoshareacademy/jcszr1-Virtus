@@ -1,52 +1,45 @@
 ﻿using BLL;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.DAL;
 using Microsoft.EntityFrameworkCore;
 
 namespace VirtusFitWeb.Services
 {
     public class ProductService : IProductService
     {
-        private readonly SearchProductLogic searchProductLogic = new SearchProductLogic();
+        private readonly IProductRepository _repository;
+        private readonly SearchProductLogic _searchProductLogic = new SearchProductLogic();
+
+        public ProductService(IProductRepository repository)
+        {
+            _repository = repository;
+        }
 
         public List<Product> GetAll()
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                return entities.Products.ToList();
-            }
+            return _repository.GetProducts();
         }
 
         public Product GetById(int id)
-        {
-            return GetAll().FirstOrDefault(product => product.ProductId == id);
+        { 
+            return _repository.GetProductById(id);
         }
 
         public void DeleteById(int id)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                var product = entities.Products.Find(id);
-                entities.Products.Remove(product);
-                entities.SaveChanges();
-            }
+            var product = GetById(id);
+            _repository.DeleteProduct(product);
         }
 
         public Product Create(Product newProduct)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                entities.Products.Add(newProduct);
-                entities.Entry(newProduct).State = EntityState.Added;
-                entities.SaveChanges();
-                return newProduct;
-            }
+            _repository.InsertProduct(newProduct);
+            return newProduct;
         }
 
         public void Update(int id, Product product)
         {
-            using (ProductContext entities = new ProductContext())
-            {
                 var productToBeUpdated = GetById(id);
                 productToBeUpdated.ProductName = product.ProductName;
                 productToBeUpdated.Energy = product.Energy;
@@ -60,66 +53,45 @@ namespace VirtusFitWeb.Services
                 productToBeUpdated.PortionQuantity = product.PortionQuantity;
                 productToBeUpdated.PortionUnit = product.PortionUnit;
                 productToBeUpdated.IsFavourite = false;
-                entities.Entry(productToBeUpdated).State = EntityState.Modified;
-                entities.SaveChanges();
-            }
+                _repository.UpdateProduct(productToBeUpdated);
         }
 
         public void DeleteFromFavorites(Product favorite)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                var fav = entities.Products.Find(favorite.ProductId);
+                var fav = _repository.GetProductById(favorite.ProductId);
                 fav.IsFavourite = false;
-                entities.SaveChanges();
-            }
+                _repository.UpdateProduct(fav);
+                _repository.Save();
         }
 
         public void AddToFavorites(Product favorite)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                var fav = entities.Products.Find(favorite.ProductId);
+
+                var fav = _repository.GetProductById(favorite.ProductId);
                 fav.IsFavourite = true;
-                entities.SaveChanges();
-            }
+                _repository.UpdateProduct(fav);
+                _repository.Save();
         }
 
         public List<Product> SearchByName(string name)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                return searchProductLogic.SearchByName(entities.Products.ToList(), name);
-            }
+            return _searchProductLogic.SearchByName(_repository.GetProducts(), name);
         }
         public List<Product> SearchByFat(double minfat, double maxfat)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                return searchProductLogic.SearchByFat(entities.Products.ToList(), minfat, maxfat);
-            }
+            return _searchProductLogic.SearchByFat(_repository.GetProducts(), minfat, maxfat);
         }
-
         public List<Product> SearchByCalories(double minenergy, double maxenergy)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                return searchProductLogic.SearchByCalories(entities.Products.ToList(), minenergy, maxenergy);
-            }
+            return _searchProductLogic.SearchByCalories(_repository.GetProducts(), minenergy, maxenergy);
         }
         public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                return searchProductLogic.SearchByCarbohydrates(entities.Products.ToList(), mincarb, maxcarb);
-            }
+            return _searchProductLogic.SearchByCarbohydrates(_repository.GetProducts(), mincarb, maxcarb);
         }
         public List<Product> SearchByProteins(double minprotein, double maxprotein)
         {
-            using (ProductContext entities = new ProductContext())
-            {
-                return searchProductLogic.SearchByProteins(entities.Products.ToList(), minprotein, maxprotein);
-            }
+            return _searchProductLogic.SearchByProteins(_repository.GetProducts(), minprotein, maxprotein);
         }
     }
 }

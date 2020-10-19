@@ -18,7 +18,7 @@ namespace VirtusFitWeb.Controllers
 
         public IActionResult ProductList()
         {
-            return View(_productService.GetAll().ToList());
+            return View(_productService.GetAll());
         }
 
         [HttpGet]

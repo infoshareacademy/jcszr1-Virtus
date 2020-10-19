@@ -1,4 +1,5 @@
 using BLL;
+using BLL.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +16,7 @@ namespace VirtusFitWeb
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            using (var client = new ProductContext())
+            using (var client = new AppContext())
             {
                 client.Database.EnsureCreated();
             }
@@ -28,13 +29,13 @@ namespace VirtusFitWeb
         {
             services.AddControllersWithViews();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
-            services.AddSingleton<IProductService, ProductService>();
-            services.AddSingleton<IDietPlanService, DietPlanService>(); 
-            services.AddSingleton<IProductInPlanService, ProductInPlanService>();
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddSingleton<IFavoriteService, FavoriteService>();
-            services.AddSingleton<IBMICalculatorService, BMICalculatorService>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddDbContext<AppContext>(ServiceLifetime.Singleton);
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IDietPlanService, DietPlanService>();
+            services.AddTransient<IProductInPlanService, ProductInPlanService>();
+            services.AddTransient<IFavoriteService, FavoriteService>();
+            services.AddTransient<IBMICalculatorService, BMICalculatorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
