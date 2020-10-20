@@ -46,7 +46,7 @@ namespace BLL.DAL
 
         public async void DeleteProduct(Product product, bool commit = true)
         {
-            _context.Products.Remove(product);
+            _context.Products.Remove(product).Context.SaveChanges();
 
             if (commit)
             {
@@ -56,7 +56,7 @@ namespace BLL.DAL
 
         public async void UpdateProduct(Product product, bool commit = true)
         {
-            _context.Products.Update(product);
+            _context.Products.Update(product).Context.SaveChanges();
 
             if (commit)
             {

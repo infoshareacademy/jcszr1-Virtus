@@ -30,7 +30,7 @@ namespace VirtusFitWeb
             services.AddControllersWithViews();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddDbContext<AppContext>(ServiceLifetime.Singleton);
+            services.AddDbContext<AppContext>(ServiceLifetime.Transient);
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IDietPlanService, DietPlanService>();
             services.AddTransient<IProductInPlanService, ProductInPlanService>();

@@ -35,8 +35,8 @@ namespace VirtusFitWeb.Services
 
         public Product Create(Product newProduct)
         {
-            //int id = _repository.GetProducts().Max(product => product.ProductId);
-            //newProduct.ProductId = id;
+            int id = _repository.GetProducts().Max(product => product.ProductId);
+            newProduct.ProductId = id;
             _repository.InsertProduct(newProduct);
             return newProduct;
         }
@@ -69,8 +69,7 @@ namespace VirtusFitWeb.Services
 
         public void AddToFavorites(Product favorite)
         {
-
-                var fav = _repository.GetProductById(favorite.ProductId);
+            var fav = _repository.GetProductById(favorite.ProductId);
                 fav.IsFavourite = true;
                 _repository.UpdateProduct(fav);
                 _repository.Save();
