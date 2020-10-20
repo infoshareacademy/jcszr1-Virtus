@@ -30,12 +30,27 @@ namespace VirtusFitWeb.DAL
 
         public void DeleteDietPlan(DietPlan dietPlan)
         {
+            var dailyDietPlansToRemove = ListDailyDietPlans(dietPlan.Id);
+            foreach (var daily in dailyDietPlansToRemove)
+            {
+                _context.DailyDietPlans.Remove(daily).Context.SaveChanges();
+            }
             _context.DietPlans.Remove(dietPlan).Context.SaveChanges();
         }
 
         public void UpdateDietPlan(DietPlan dietPlan)
         {
+            var dailyDietPlansToRemove = ListDailyDietPlans(dietPlan.Id);
+            foreach (var daily in dailyDietPlansToRemove)
+            {
+                _context.DailyDietPlans.Remove(daily).Context.SaveChanges();
+            }
             _context.DietPlans.Update(dietPlan).Context.SaveChanges();
+        }
+
+        public List<DailyDietPlan> ListDailyDietPlans(int id)
+        {
+            return _context.DailyDietPlans.Where(x => x.DietPlanId == id).ToList();
         }
     }
 }
