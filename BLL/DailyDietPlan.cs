@@ -7,6 +7,7 @@ namespace BLL
 {
     public class DailyDietPlan
     {
+        [Key]
         public int DietPlanId { get; set; }
 
         [DisplayName("Day Number")]

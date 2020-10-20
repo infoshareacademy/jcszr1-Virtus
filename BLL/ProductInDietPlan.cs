@@ -5,6 +5,7 @@ namespace BLL
 {
     public class ProductInDietPlan
     {
+        [Key]
         public int OrdinalNumber { get; set; }
         
         public Product Product { get; set; }

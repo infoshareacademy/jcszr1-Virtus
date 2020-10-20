@@ -16,10 +16,8 @@ namespace VirtusFitWeb
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            using (var client = new AppContext())
-            {
-                client.Database.EnsureCreated();
-            }
+            using var client = new AppContext();
+            client.Database.EnsureCreated();
         }
 
         public IConfiguration Configuration { get; }
@@ -32,10 +30,10 @@ namespace VirtusFitWeb
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddDbContext<AppContext>(ServiceLifetime.Transient);
             services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<IDietPlanService, DietPlanService>();
-            services.AddTransient<IProductInPlanService, ProductInPlanService>();
+            services.AddSingleton<IDietPlanService, DietPlanService>();
+            services.AddSingleton<IProductInPlanService, ProductInPlanService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
-            services.AddTransient<IBMICalculatorService, BMICalculatorService>();
+            services.AddSingleton<IBMICalculatorService, BMICalculatorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,6 +9,7 @@ namespace BLL
     public class DietPlan
     {
         [DisplayName("Plan Id")]
+        [Key]
         public int Id { get; set; }
        
         [DisplayName("Start Date")]
