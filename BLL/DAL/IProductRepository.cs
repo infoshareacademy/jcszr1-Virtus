@@ -10,7 +10,7 @@ namespace BLL.DAL
     {
         List<Product> GetProducts();
         Product GetProductById(int productId);
-        Task InsertProduct(Product product, bool commit = true);
+        void InsertProduct(Product product, bool commit = true);
         void DeleteProduct(Product product, bool commit = true);
         void UpdateProduct(Product product, bool commit = true);
         Task Save();

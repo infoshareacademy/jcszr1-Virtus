@@ -33,10 +33,10 @@ namespace BLL.DAL
             return _context.Products.Find(productId);
         }
 
-        public async Task InsertProduct(Product product, bool commit = true)
+        public async void InsertProduct(Product product, bool commit = true)
         {
 
-            await _context.Products.AddAsync(product);
+            _context.Products.Add(product).Context.SaveChanges();
 
             if (commit)
             {
