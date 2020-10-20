@@ -5,7 +5,7 @@ namespace VirtusFitWeb.Services
 {
     public interface IDietPlanService
     {
-        IEnumerable<DietPlan> ListAll();
+        IEnumerable<DietPlan> ListAllDietPlans();
         DietPlan GetDietPlan(int id);
         void Edit(int id, DietPlan dietPlan);
         void DeleteById(int id);

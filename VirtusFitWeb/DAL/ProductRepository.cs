@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.EntityFrameworkCore;
+using BLL;
 
-namespace BLL.DAL
+namespace VirtusFitWeb.DAL
 {
     public class ProductRepository : IProductRepository
     {
@@ -27,24 +23,24 @@ namespace BLL.DAL
             return _context.Products.Find(productId);
         }
 
-        public void InsertProduct(Product product, bool commit = true)
+        public void InsertProduct(Product product)
         {
             _context.Products.Add(product).Context.SaveChanges();
         }
 
-        public void DeleteProduct(Product product, bool commit = true)
+        public void DeleteProduct(Product product)
         {
             _context.Products.Remove(product).Context.SaveChanges();
         }
 
-        public void UpdateProduct(Product product, bool commit = true)
+        public void UpdateProduct(Product product)
         {
             _context.Products.Update(product).Context.SaveChanges();
         }
 
         public void Save()
         {
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

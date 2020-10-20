@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace VirtusFitWeb.Migrations
+namespace VirtusFitWeb.DAL.Migrations
 {
     public partial class DietPlans : Migration
     {

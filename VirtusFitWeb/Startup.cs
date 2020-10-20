@@ -1,11 +1,13 @@
-using BLL;
-using BLL.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VirtusFitWeb.DAL;
 using VirtusFitWeb.Services;
+using AppContext = VirtusFitWeb.DAL.AppContext;
+using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
+using ProductRepository = VirtusFitWeb.DAL.ProductRepository;
 using ProductService = VirtusFitWeb.Services.ProductService;
 
 
@@ -28,9 +30,10 @@ namespace VirtusFitWeb
             services.AddControllersWithViews();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IDietPlanRepository, DietPlanRepository>();
             services.AddDbContext<AppContext>(ServiceLifetime.Transient);
             services.AddTransient<IProductService, ProductService>();
-            services.AddSingleton<IDietPlanService, DietPlanService>();
+            services.AddTransient<IDietPlanService, DietPlanService>();
             services.AddSingleton<IProductInPlanService, ProductInPlanService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
             services.AddSingleton<IBMICalculatorService, BMICalculatorService>();

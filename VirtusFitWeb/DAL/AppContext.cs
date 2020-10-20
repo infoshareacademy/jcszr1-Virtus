@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BLL;
+using Microsoft.EntityFrameworkCore;
 
-namespace BLL.DAL
+namespace VirtusFitWeb.DAL
 {
     public class AppContext : DbContext
     {
@@ -8,8 +9,8 @@ namespace BLL.DAL
 
         public DbSet<Product> Products { get; set; }
         public DbSet<DietPlan> DietPlans { get; set; }
-        public DbSet<DietPlan> DailyDietPlans { get; set; }
-        public DbSet<DietPlan> ProductsInDietPlans { get; set; }
+        public DbSet<DailyDietPlan> DailyDietPlans { get; set; }
+        public DbSet<ProductInDietPlan> ProductsInDietPlans { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

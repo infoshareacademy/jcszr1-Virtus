@@ -19,7 +19,7 @@ namespace VirtusFitWeb.Controllers
         // GET: DietPlanController
         public ActionResult Index()
         {
-            return View(_dietPlanService.ListAll().ToList());
+            return View(_dietPlanService.ListAllDietPlans().ToList());
         }
 
         // GET: DietPlanController/DayList/5

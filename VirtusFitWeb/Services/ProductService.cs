@@ -1,9 +1,6 @@
 ﻿using BLL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using BLL.DAL;
-using Microsoft.EntityFrameworkCore;
+using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
 
 namespace VirtusFitWeb.Services
 {

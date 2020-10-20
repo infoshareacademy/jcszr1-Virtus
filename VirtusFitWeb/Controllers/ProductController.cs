@@ -1,6 +1,5 @@
 ﻿using BLL;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers

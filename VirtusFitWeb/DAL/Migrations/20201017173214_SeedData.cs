@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace VirtusFitWeb.Migrations
+namespace VirtusFitWeb.DAL.Migrations
 {
     public partial class SeedData : Migration
     {

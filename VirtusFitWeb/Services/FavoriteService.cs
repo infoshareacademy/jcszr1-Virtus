@@ -1,8 +1,7 @@
 ﻿using BLL;
 using System.Collections.Generic;
 using System.Linq;
-using BLL.DAL;
-using VirtusFitWeb.Models;
+using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
 
 namespace VirtusFitWeb.Services
 {

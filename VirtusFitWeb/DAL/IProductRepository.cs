@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using BLL;
 
-namespace BLL.DAL
+namespace VirtusFitWeb.DAL
 {
     public interface IProductRepository
     {
         List<Product> GetProducts();
         Product GetProductById(int productId);
-        void InsertProduct(Product product, bool commit = true);
-        void DeleteProduct(Product product, bool commit = true);
-        void UpdateProduct(Product product, bool commit = true);
+        void InsertProduct(Product product);
+        void DeleteProduct(Product product);
+        void UpdateProduct(Product product);
         void Save();
     }
 }

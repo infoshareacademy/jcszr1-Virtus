@@ -2,34 +2,43 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VirtusFitWeb.DAL;
 
 namespace VirtusFitWeb.Services
 {
     public class DietPlanService : IDietPlanService
     {
-        private readonly List<DietPlan> _dietPlans = new List<DietPlan>();
-        
-        public IEnumerable<DietPlan> ListAll()
+        private readonly IDietPlanRepository _dietPlanRepository;
+
+        public DietPlanService(IDietPlanRepository dietPlanRepository)
         {
-            return _dietPlans;
+            _dietPlanRepository = dietPlanRepository;
+        }
+
+
+        public IEnumerable<DietPlan> ListAllDietPlans()
+        {
+            return _dietPlanRepository.ListAllDietPlans();
         }
 
         public DietPlan GetDietPlan(int id)
         {
-            return _dietPlans.FirstOrDefault(p => p.Id == id);
+            return _dietPlanRepository.GetDietPlanById(id);
         }
 
         public DietPlan Create(DietPlan newDietPlan)
         {
-            if (_dietPlans.Count > 0)
+            var dietPlans = _dietPlanRepository.ListAllDietPlans();
+            
+            if (dietPlans.Count > 0)
             {
-                var highestId = _dietPlans.Select(dietPlan => dietPlan.Id).Max();
+                var highestId = dietPlans.Select(dietPlan => dietPlan.Id).Max();
                 newDietPlan.Id = highestId + 1;
             }
             else newDietPlan.Id = 1;
             newDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
 
-            for (int i = 0; i < newDietPlan.Duration.Days; i++)
+            for (var i = 0; i < newDietPlan.Duration.Days; i++)
             {
                 newDietPlan.DailyDietPlanList.Add(new DailyDietPlan()
                 {
@@ -40,14 +49,14 @@ namespace VirtusFitWeb.Services
                 }
                 );
             }
-            _dietPlans.Add(newDietPlan);
+            _dietPlanRepository.InsertDietPlan(newDietPlan);
 
             return newDietPlan;
         }
 
         public List<DailyDietPlan> ListDailyDietPlans(int id)
         {
-            return GetDietPlan(id).DailyDietPlanList;
+            return _dietPlanRepository.GetDietPlanById(id).DailyDietPlanList;
         }
 
         public DailyDietPlan GetDailyDietPlan(int id, int dayNumber)
@@ -57,13 +66,13 @@ namespace VirtusFitWeb.Services
 
         public List<ProductInDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
         {
-            return _dietPlans[id - 1].DailyDietPlanList[dayNumber - 1].ProductListForDay;
+            return _dietPlanRepository.GetDietPlanById(id).DailyDietPlanList[dayNumber - 1].ProductListForDay;
         }
 
         public void Edit(int id, DietPlan dietPlan)
         {
             var editedDietPlan = dietPlan;
-            var dietPlanToEdit = _dietPlans[id - 1];
+            var dietPlanToEdit = _dietPlanRepository.GetDietPlanById(id);
 
             editedDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
             for (var i = 0; i < editedDietPlan.Duration.Days; i++)
@@ -92,12 +101,12 @@ namespace VirtusFitWeb.Services
                 }
             }
 
-            _dietPlans[id - 1] = editedDietPlan;
+            _dietPlanRepository.UpdateDietPlan(editedDietPlan);
         }
 
         public void DeleteById(int id)
         {
-            _dietPlans.Remove(GetDietPlan(id));
+            _dietPlanRepository.DeleteDietPlan(GetDietPlan(id));
         }
     }
 }
