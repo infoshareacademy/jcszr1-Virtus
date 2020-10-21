@@ -26,7 +26,7 @@ namespace VirtusFitWeb.DAL.Migrations
                 name: "DailyDietPlan",
                 columns: table => new
                 {
-                    DietPlanId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DayNumber = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -34,14 +34,14 @@ namespace VirtusFitWeb.DAL.Migrations
                     FatSum = table.Column<double>(type: "float", nullable: false),
                     CarbohydratesSum = table.Column<double>(type: "float", nullable: false),
                     ProteinSum = table.Column<double>(type: "float", nullable: false),
-                    DietPlanId1 = table.Column<int>(type: "int", nullable: false)
+                    DietPlanId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DailyDietPlan", x => x.DietPlanId);
                     table.ForeignKey(
                         name: "FK_DailyDietPlan_DietPlans_DietPlanId1",
-                        column: x => x.DietPlanId1,
+                        column: x => x.DietPlanId,
                         principalTable: "DietPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);

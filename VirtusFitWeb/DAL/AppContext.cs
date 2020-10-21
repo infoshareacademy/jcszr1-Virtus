@@ -5,7 +5,7 @@ namespace VirtusFitWeb.DAL
 {
     public class AppContext : DbContext
     {
-        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDBtest2;Trusted_Connection=True;";
+        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDBtest4;Trusted_Connection=True;";
 
         public DbSet<Product> Products { get; set; }
         public DbSet<DietPlan> DietPlans { get; set; }
