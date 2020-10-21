@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtusFitWeb.DAL;
 
 namespace VirtusFitWeb.DAL.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class ProductContextModelSnapshot : ModelSnapshot
+    [Migration("20201020210053_ModifiedDailyDietPlanId")]
+    partial class ModifiedDailyDietPlanId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace VirtusFitWeb.DAL.Migrations
                     b.Property<int>("DayNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("DietPlanId")
+                    b.Property<int?>("DietPlanId")
                         .HasColumnType("int");
 
                     b.Property<double>("FatSum")
@@ -611,9 +613,7 @@ namespace VirtusFitWeb.DAL.Migrations
                 {
                     b.HasOne("BLL.DietPlan", null)
                         .WithMany("DailyDietPlanList")
-                        .HasForeignKey("DietPlanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DietPlanId");
                 });
 
             modelBuilder.Entity("BLL.ProductInDietPlan", b =>

@@ -66,7 +66,7 @@ namespace VirtusFitWeb.DAL.Migrations
                         name: "FK_ProductInDietPlan_DailyDietPlan_DailyDietPlanDietPlanId",
                         column: x => x.DailyDietPlanDietPlanId,
                         principalTable: "DailyDietPlan",
-                        principalColumn: "DietPlanId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductInDietPlan_Products_ProductId",

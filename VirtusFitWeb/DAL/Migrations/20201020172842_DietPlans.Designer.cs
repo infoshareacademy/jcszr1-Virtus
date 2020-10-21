@@ -21,7 +21,7 @@ namespace VirtusFitWeb.DAL.Migrations
 
             modelBuilder.Entity("BLL.DailyDietPlan", b =>
                 {
-                    b.Property<int>("DietPlanId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -47,7 +47,7 @@ namespace VirtusFitWeb.DAL.Migrations
                     b.Property<double>("ProteinSum")
                         .HasColumnType("float");
 
-                    b.HasKey("DietPlanId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DietPlanId1");
 

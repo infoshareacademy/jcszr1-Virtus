@@ -10,5 +10,6 @@ namespace VirtusFitWeb.DAL
         void InsertDietPlan(DietPlan dietPlan);
         void DeleteDietPlan(DietPlan dietPlan);
         void UpdateDietPlan(DietPlan dietPlan);
+        List<DailyDietPlan> ListDailyDietPlans(int id);
     }
 }

@@ -28,21 +28,12 @@ namespace VirtusFitWeb.Services
 
         public DietPlan Create(DietPlan newDietPlan)
         {
-            var dietPlans = _dietPlanRepository.ListAllDietPlans();
-            
-            if (dietPlans.Count > 0)
-            {
-                var highestId = dietPlans.Select(dietPlan => dietPlan.Id).Max();
-                newDietPlan.Id = highestId + 1;
-            }
-            else newDietPlan.Id = 1;
             newDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
 
             for (var i = 0; i < newDietPlan.Duration.Days; i++)
             {
                 newDietPlan.DailyDietPlanList.Add(new DailyDietPlan()
                 {
-                    DietPlanId = newDietPlan.Id,
                     DayNumber = i + 1,
                     Date = newDietPlan.StartDate + new TimeSpan(i, 0, 0, 0),
                     ProductListForDay = new List<ProductInDietPlan>()
@@ -56,15 +47,15 @@ namespace VirtusFitWeb.Services
 
         public List<DailyDietPlan> ListDailyDietPlans(int id)
         {
-            return _dietPlanRepository.GetDietPlanById(id).DailyDietPlanList;
+            return _dietPlanRepository.ListDailyDietPlans(id);
         }
 
-        public DailyDietPlan GetDailyDietPlan(int id, int dayNumber)
+        public DailyDietPlan GetDailyDietPlan(int id, int dayNumber)    //do poprawy
         {
             return ListDailyDietPlans(id).FirstOrDefault(d => d.DayNumber == dayNumber);
         }
 
-        public List<ProductInDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
+        public List<ProductInDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)     //do poprawy
         {
             return _dietPlanRepository.GetDietPlanById(id).DailyDietPlanList[dayNumber - 1].ProductListForDay;
         }
@@ -72,14 +63,13 @@ namespace VirtusFitWeb.Services
         public void Edit(int id, DietPlan dietPlan)
         {
             var editedDietPlan = dietPlan;
-            var dietPlanToEdit = _dietPlanRepository.GetDietPlanById(id);
+            var dailyDietPlanList = ListDailyDietPlans(id);     //list of DailyDietPlans in DietPlan to edit
 
             editedDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
             for (var i = 0; i < editedDietPlan.Duration.Days; i++)
             {
                 editedDietPlan.DailyDietPlanList.Add(new DailyDietPlan()
                 {
-                    DietPlanId = id,
                     DayNumber = i + 1,
                     Date = editedDietPlan.StartDate + new TimeSpan(i, 0, 0, 0),
                     ProductListForDay = new List<ProductInDietPlan>()
@@ -88,7 +78,7 @@ namespace VirtusFitWeb.Services
 
             foreach (var dailyDietPlanInEdited in editedDietPlan.DailyDietPlanList)
             {
-                foreach (var dailyDietPlanInToEdit in dietPlanToEdit.DailyDietPlanList)
+                foreach (var dailyDietPlanInToEdit in dailyDietPlanList)
                 {
                     if (dailyDietPlanInEdited.Date == dailyDietPlanInToEdit.Date)
                     {
