@@ -64,7 +64,7 @@
                     @Html.DisplayFor(modelItem => item.ProteinSum)
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-block" asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id=@item.Id asp-route-dayNumber="@item.DayNumber">Products</a>
+                    <a class="btn btn-primary btn-block" asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id=@item.DietPlanId asp-route-dayNumber="@item.DayNumber">Products</a>
                 </td>
             </tr>
         }

@@ -27,7 +27,7 @@ namespace VirtusFitWeb.Controllers
         {
             var model = new PlanDetailsViewModel
             {
-                DailyDietPlans = this._dietPlanService.ListDailyDietPlans(id)
+                DailyDietPlans = _dietPlanService.ListDailyDietPlans(id)
             };
 
             var dietPlan = _dietPlanService.GetDietPlan(id);
@@ -44,19 +44,19 @@ namespace VirtusFitWeb.Controllers
         {
             var model = new DailyProductListViewModel()
             {
-                ProductListForDay = this._dietPlanService.ListProductsOnDailyDietPlan(id, dayNumber)
+                ProductListForDay = _dietPlanService.ListProductsOnDailyDietPlan(id, dayNumber)
             };
 
-            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
-                model.DietPlanId = dailyDietPlan.Id;
+                model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.TotalCalories = dailyDietPlan.CaloriesSum;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
             }
 
-            var dietPlan = this._dietPlanService.GetDietPlan(id);
+            var dietPlan = _dietPlanService.GetDietPlan(id);
             if (dietPlan != null)
             {
                 model.CaloriesPerDay = dietPlan.CaloriesPerDay;

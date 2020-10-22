@@ -1,16 +1,17 @@
 ﻿using BLL;
+using BLL.Db_Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace VirtusFitWeb.DAL
 {
     public class AppContext : DbContext
     {
-        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDBtest2;Trusted_Connection=True;";
+        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDBtest101;Trusted_Connection=True;";
 
         public DbSet<Product> Products { get; set; }
         public DbSet<DietPlan> DietPlans { get; set; }
         public DbSet<DailyDietPlan> DailyDietPlans { get; set; }
-        public DbSet<ProductInDietPlan> ProductsInDietPlans { get; set; }
+        public DbSet<ProductInDietPlanDb> ProductsInDietPlans { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

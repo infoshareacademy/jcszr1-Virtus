@@ -34,7 +34,7 @@ namespace VirtusFitWeb
             services.AddDbContext<AppContext>(ServiceLifetime.Transient);
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IDietPlanService, DietPlanService>();
-            services.AddSingleton<IProductInPlanService, ProductInPlanService>();
+            services.AddTransient<IProductInPlanService, ProductInPlanService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
             services.AddSingleton<IBMICalculatorService, BMICalculatorService>();
         }
