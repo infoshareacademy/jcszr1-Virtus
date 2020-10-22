@@ -39,7 +39,7 @@ namespace VirtusFitWeb.DAL
             var dailyDietPlansToRemove = ListDailyDietPlans(dietPlan.Id);
             foreach (var daily in dailyDietPlansToRemove)
             {
-                _context.DailyDietPlans.Remove(daily).Context.SaveChanges();
+                DeleteDailyDietPlan(daily);
             }
             _context.DietPlans.Remove(dietPlan).Context.SaveChanges();
         }

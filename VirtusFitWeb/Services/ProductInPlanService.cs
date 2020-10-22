@@ -9,15 +9,11 @@ namespace VirtusFitWeb.Services
 {
     public class ProductInPlanService : IProductInPlanService
     {
-        private readonly IDietPlanService _dietPlanService;
-        private readonly IProductService _productService;
         private readonly IProductRepository _productRepository;
         private readonly IDietPlanRepository _dietPlanRepository;
 
-        public ProductInPlanService(IDietPlanService dietPlanService, IProductService productService, IProductRepository productRepository, IDietPlanRepository dietPlanRepository)
+        public ProductInPlanService(IProductRepository productRepository, IDietPlanRepository dietPlanRepository)
         {
-            _dietPlanService = dietPlanService;
-            _productService = productService;
             _productRepository = productRepository;
             _dietPlanRepository = dietPlanRepository;
         }
