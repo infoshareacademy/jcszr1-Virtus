@@ -57,7 +57,7 @@ namespace VirtusFitWeb.Services
             CalculateDailyDietPlanCaloriesAndMacros(dailyToAddTo);
         }
 
-        private void CalculateDailyDietPlanCaloriesAndMacros(DailyDietPlan dailyToCalculate)
+        public void CalculateDailyDietPlanCaloriesAndMacros(DailyDietPlan dailyToCalculate)
         {
             dailyToCalculate.CaloriesSum = 0;
             dailyToCalculate.FatSum = 0;

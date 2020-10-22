@@ -1,38 +1,74 @@
 ﻿using BLL;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using VirtusFitWeb.DAL;
 using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
 
 namespace VirtusFitWeb.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _repository;
+        private readonly IProductRepository _productRepository;
+        private readonly IDietPlanRepository _dietPlanRepository;
+        private readonly IProductInPlanService _productInPlanService;
         private readonly SearchProductLogic _searchProductLogic = new SearchProductLogic();
 
-        public ProductService(IProductRepository repository)
+        public ProductService(IProductRepository productRepository, IDietPlanRepository dietPlanRepository, IProductInPlanService productInPlanService)
         {
-            _repository = repository;
+            _productRepository = productRepository;
+            _dietPlanRepository = dietPlanRepository;
+            _productInPlanService = productInPlanService;
         }
 
         public List<Product> GetAll()
         {
-            return _repository.GetProducts();
+            return _productRepository.GetProducts();
         }
 
         public Product GetById(int id)
         { 
-            return _repository.GetProductById(id);
+            return _productRepository.GetProductById(id);
         }
 
         public void DeleteById(int id)
         {
             var product = GetById(id);
-            _repository.DeleteProduct(product);
+            void DeleteFromExistingPlan(Product productToBeDeleted)
+            {
+                var plans = _dietPlanRepository.ListAllDietPlans();
+                List<DailyDietPlan> dailyLists = new List<DailyDietPlan>();
+                foreach (var plan in plans)
+                {
+                    int i = 1;
+                    while (i <= plan.DailyDietPlanList.Count)
+                    {
+                        dailyLists.Add(_dietPlanRepository.GetDailyDietPlan(plan.Id, i));
+                        i++;
+                    }
+                }
+                foreach (var dailyList in dailyLists)
+                {
+                    var listOfProductsInDailyPlans = _dietPlanRepository.ListDbProductsInDailyDietPlan(dailyList);
+                    foreach (var item in listOfProductsInDailyPlans)
+                    {
+                        if (item.ProductId == productToBeDeleted.ProductId)
+                        {
+                            _dietPlanRepository.DeleteProductInPlan(item);
+                            _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(dailyList);
+                        }
+                    }
+
+                }
+            }
+            DeleteFromExistingPlan(product);
+            _productRepository.DeleteProduct(product);
         }
 
         public Product Create(Product newProduct)
         {
-            _repository.InsertProduct(newProduct);
+            _productRepository.InsertProduct(newProduct);
             return newProduct;
         }
 
@@ -51,44 +87,44 @@ namespace VirtusFitWeb.Services
                 productToBeUpdated.PortionQuantity = product.PortionQuantity;
                 productToBeUpdated.PortionUnit = product.PortionUnit;
                 productToBeUpdated.IsFavourite = false;
-                _repository.UpdateProduct(productToBeUpdated);
+                _productRepository.UpdateProduct(productToBeUpdated);
         }
 
         public void DeleteFromFavorites(Product favorite)
         {
-                var fav = _repository.GetProductById(favorite.ProductId);
+                var fav = _productRepository.GetProductById(favorite.ProductId);
                 fav.IsFavourite = false;
-                _repository.UpdateProduct(fav);
-                _repository.Save();
+                _productRepository.UpdateProduct(fav);
+                _productRepository.Save();
         }
 
         public void AddToFavorites(Product favorite)
         {
-                var fav = _repository.GetProductById(favorite.ProductId);
+                var fav = _productRepository.GetProductById(favorite.ProductId);
                 fav.IsFavourite = true;
-                _repository.UpdateProduct(fav);
-                _repository.Save();
+                _productRepository.UpdateProduct(fav);
+                _productRepository.Save();
         }
 
         public List<Product> SearchByName(string name)
         {
-            return _searchProductLogic.SearchByName(_repository.GetProducts(), name);
+            return _searchProductLogic.SearchByName(_productRepository.GetProducts(), name);
         }
         public List<Product> SearchByFat(double minfat, double maxfat)
         {
-            return _searchProductLogic.SearchByFat(_repository.GetProducts(), minfat, maxfat);
+            return _searchProductLogic.SearchByFat(_productRepository.GetProducts(), minfat, maxfat);
         }
         public List<Product> SearchByCalories(double minenergy, double maxenergy)
         {
-            return _searchProductLogic.SearchByCalories(_repository.GetProducts(), minenergy, maxenergy);
+            return _searchProductLogic.SearchByCalories(_productRepository.GetProducts(), minenergy, maxenergy);
         }
         public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb)
         {
-            return _searchProductLogic.SearchByCarbohydrates(_repository.GetProducts(), mincarb, maxcarb);
+            return _searchProductLogic.SearchByCarbohydrates(_productRepository.GetProducts(), mincarb, maxcarb);
         }
         public List<Product> SearchByProteins(double minprotein, double maxprotein)
         {
-            return _searchProductLogic.SearchByProteins(_repository.GetProducts(), minprotein, maxprotein);
+            return _searchProductLogic.SearchByProteins(_productRepository.GetProducts(), minprotein, maxprotein);
         }
     }
 }
