@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
@@ -24,18 +25,18 @@ namespace VirtusFitWeb.Controllers
         {
             var model = new ProductsToAddViewModel()
             {
-                ProductList = this._productInPlanService.GetProductList()
+                ProductList = _productInPlanService.GetProductList()
             };
 
-            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
-                model.DietPlanId = dailyDietPlan.Id;
+                model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
             }
 
-            var dietPlan = this._dietPlanService.GetDietPlan(id);
+            var dietPlan = _dietPlanService.GetDietPlan(id);
             if (dietPlan != null)
             {
                 model.CaloriesPerDay = dietPlan.CaloriesPerDay;
@@ -64,18 +65,18 @@ namespace VirtusFitWeb.Controllers
         {
             var model = new ProductsToAddViewModel()
             {
-                ProductList = this._favoriteService.GetAll()
+                ProductList = _favoriteService.GetAll()
             };
 
-            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
-                model.DietPlanId = dailyDietPlan.Id;
+                model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
             }
 
-            var dietPlan = this._dietPlanService.GetDietPlan(id);
+            var dietPlan = _dietPlanService.GetDietPlan(id);
             if (dietPlan != null)
             {
                 model.CaloriesPerDay = dietPlan.CaloriesPerDay;
@@ -91,10 +92,10 @@ namespace VirtusFitWeb.Controllers
                 ProductInPlan = _productInPlanService.GetProductToAdd(productId)
             };
 
-            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
-                model.DietPlanId = dailyDietPlan.Id;
+                model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
             }
@@ -106,10 +107,10 @@ namespace VirtusFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddProductToPlan(int id, int dayNumber, ProductInPlanViewModel productInPlanModel, int productId)
         {
-            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
-                productInPlanModel.DietPlanId = dailyDietPlan.Id;
+                productInPlanModel.DietPlanId = dailyDietPlan.DietPlanId;
                 productInPlanModel.DayNumber = dailyDietPlan.DayNumber;
                 productInPlanModel.Date = dailyDietPlan.Date.ToShortDateString();
                 productInPlanModel.ProductInPlan.Product = _productInPlanService.GetProductFromList(productId);
@@ -128,7 +129,7 @@ namespace VirtusFitWeb.Controllers
             }
             catch
             {
-                return View();
+                return View(productInPlanModel);
             }
         }
         
@@ -140,10 +141,10 @@ namespace VirtusFitWeb.Controllers
                 ProductInPlan = _productInPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber)
             };
 
-            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
-                model.DietPlanId = dailyDietPlan.Id;
+                model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
             }
@@ -157,13 +158,16 @@ namespace VirtusFitWeb.Controllers
         public ActionResult EditProductInPlan(int id, int dayNumber, ProductInPlanViewModel editedProductModel,
             int currentProductOrdinalNumber)
         {
-            var dailyDietPlan = this._dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
+            var dailyDietPlansProduct = _dietPlanService.ListProductsOnDailyDietPlan(id, dayNumber)
+                .FirstOrDefault(x => x.OrdinalNumber == currentProductOrdinalNumber);
+            if (dailyDietPlansProduct == null) return View(editedProductModel);
             if (dailyDietPlan != null)
             {
-                editedProductModel.DietPlanId = dailyDietPlan.Id;
+                editedProductModel.DietPlanId = dailyDietPlan.DietPlanId;
                 editedProductModel.DayNumber = dailyDietPlan.DayNumber;
                 editedProductModel.Date = dailyDietPlan.Date.ToShortDateString();
-                editedProductModel.ProductInPlan.Product = dailyDietPlan.ProductListForDay[currentProductOrdinalNumber - 1].Product;
+                editedProductModel.ProductInPlan.Product = dailyDietPlansProduct.Product;
                 editedProductModel.ProductInPlan.OrdinalNumber = currentProductOrdinalNumber;
             }
 
@@ -186,13 +190,13 @@ namespace VirtusFitWeb.Controllers
 
         public ActionResult ProductDetails(int id, int dayNumber, int ordinalNumber)
         {
-            var productInPlan = this._productInPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
+            var productInPlan = _productInPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
             var model = new ProductInPlanViewModel()
             {
                 DietPlanId = id,
                 DayNumber = dayNumber,
                 ProductInPlan = productInPlan,
-                Date = this._dietPlanService.GetDailyDietPlan(id,dayNumber).Date.ToShortDateString()
+                Date = _dietPlanService.GetDailyDietPlan(id,dayNumber).Date.ToShortDateString()
             };
             return View(model);
         }
@@ -200,13 +204,13 @@ namespace VirtusFitWeb.Controllers
         // GET: DietPlanController/DeletePlan/5
         public ActionResult DeleteProduct(int id, int dayNumber, int ordinalNumber)
         {
-            var productInPlan = this._productInPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
+            var productInPlan = _productInPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
             var model = new ProductInPlanViewModel()
             {
                 DietPlanId = id,
                 DayNumber = dayNumber,
                 ProductInPlan = productInPlan,
-                Date = this._dietPlanService.GetDailyDietPlan(id, dayNumber).Date.ToShortDateString()
+                Date = _dietPlanService.GetDailyDietPlan(id, dayNumber).Date.ToShortDateString()
             };
             return View(model);
         }

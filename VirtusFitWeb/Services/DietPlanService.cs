@@ -47,51 +47,64 @@ namespace VirtusFitWeb.Services
 
         public List<DailyDietPlan> ListDailyDietPlans(int id)
         {
-            return _dietPlanRepository.ListDailyDietPlans(id);
+            var dailyDietPlanList = _dietPlanRepository.ListDailyDietPlans(id).OrderBy(x=>x.DayNumber).ToList();
+            return dailyDietPlanList;
         }
 
-        public DailyDietPlan GetDailyDietPlan(int id, int dayNumber)    //do poprawy
+        public DailyDietPlan GetDailyDietPlan(int id, int dayNumber)
         {
             return ListDailyDietPlans(id).FirstOrDefault(d => d.DayNumber == dayNumber);
         }
 
-        public List<ProductInDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)     //do poprawy
+        public List<ProductInDietPlan> ListProductsOnDailyDietPlan(int id, int dayNumber)
         {
-            return _dietPlanRepository.GetDietPlanById(id).DailyDietPlanList[dayNumber - 1].ProductListForDay;
+            var dailyDietPlan = GetDailyDietPlan(id, dayNumber);
+            var productList = _dietPlanRepository.ListProductsInDailyDietPlan(dailyDietPlan)
+                .OrderBy(x => x.OrdinalNumber).ToList();
+            return productList;
         }
 
         public void Edit(int id, DietPlan dietPlan)
         {
-            var editedDietPlan = dietPlan;
-            var dailyDietPlanList = ListDailyDietPlans(id);     //list of DailyDietPlans in DietPlan to edit
+            var oldDailyDietPlanList = ListDailyDietPlans(id);
 
-            editedDietPlan.DailyDietPlanList = new List<DailyDietPlan>();
-            for (var i = 0; i < editedDietPlan.Duration.Days; i++)
+            dietPlan.DailyDietPlanList = new List<DailyDietPlan>();
+            for (var i = 0; i < dietPlan.Duration.Days; i++)
             {
-                editedDietPlan.DailyDietPlanList.Add(new DailyDietPlan()
+                dietPlan.DailyDietPlanList.Add(new DailyDietPlan()
                 {
                     DayNumber = i + 1,
-                    Date = editedDietPlan.StartDate + new TimeSpan(i, 0, 0, 0),
-                    ProductListForDay = new List<ProductInDietPlan>()
+                    Date = dietPlan.StartDate + new TimeSpan(i, 0, 0, 0),
+                    DietPlanId = id
                 });
             }
 
-            foreach (var dailyDietPlanInEdited in editedDietPlan.DailyDietPlanList)
+            foreach (var daily in oldDailyDietPlanList.Where(daily => !dietPlan.DailyDietPlanList.Exists(x=>x.Date == daily.Date)))
             {
-                foreach (var dailyDietPlanInToEdit in dailyDietPlanList)
+                _dietPlanRepository.DeleteDailyDietPlan(daily);
+            }
+
+            foreach (var daily in dietPlan.DailyDietPlanList.Where(daily =>
+                !oldDailyDietPlanList.Exists(x => x.Date == daily.Date)))
+            {
+                _dietPlanRepository.AddDailyDietPlan(daily);
+            }
+
+            foreach (var oldDaily in oldDailyDietPlanList)
+            {
+                foreach (var newDaily in dietPlan.DailyDietPlanList)
                 {
-                    if (dailyDietPlanInEdited.Date == dailyDietPlanInToEdit.Date)
+                    if (oldDaily.Date == newDaily.Date)
                     {
-                        dailyDietPlanInEdited.ProductListForDay = dailyDietPlanInToEdit.ProductListForDay;
-                        dailyDietPlanInEdited.CaloriesSum = dailyDietPlanInToEdit.CaloriesSum;
-                        dailyDietPlanInEdited.FatSum = dailyDietPlanInToEdit.FatSum;
-                        dailyDietPlanInEdited.CarbohydratesSum = dailyDietPlanInToEdit.CarbohydratesSum;
-                        dailyDietPlanInEdited.ProteinSum = dailyDietPlanInToEdit.ProteinSum;
+                        oldDaily.DayNumber = newDaily.DayNumber;
+                        _dietPlanRepository.UpdateDailyDietPlan(oldDaily);
                     }
                 }
             }
 
-            _dietPlanRepository.UpdateDietPlan(editedDietPlan);
+            dietPlan.DailyDietPlanList = null;
+
+            _dietPlanRepository.UpdateDietPlan(dietPlan);
         }
 
         public void DeleteById(int id)
