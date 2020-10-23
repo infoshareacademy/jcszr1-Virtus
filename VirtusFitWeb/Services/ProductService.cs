@@ -35,33 +35,6 @@ namespace VirtusFitWeb.Services
         public void DeleteById(int id)
         {
             var product = GetById(id);
-            void DeleteFromExistingPlan(Product productToBeDeleted)
-            {
-                var plans = _dietPlanRepository.ListAllDietPlans();
-                List<DailyDietPlan> dailyLists = new List<DailyDietPlan>();
-                foreach (var plan in plans)
-                {
-                    int i = 1;
-                    while (i <= plan.DailyDietPlanList.Count)
-                    {
-                        dailyLists.Add(_dietPlanRepository.GetDailyDietPlan(plan.Id, i));
-                        i++;
-                    }
-                }
-                foreach (var dailyList in dailyLists)
-                {
-                    var listOfProductsInDailyPlans = _dietPlanRepository.ListDbProductsInDailyDietPlan(dailyList);
-                    foreach (var item in listOfProductsInDailyPlans)
-                    {
-                        if (item.ProductId == productToBeDeleted.ProductId)
-                        {
-                            _dietPlanRepository.DeleteProductInPlan(item);
-                            _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(dailyList);
-                        }
-                    }
-
-                }
-            }
             DeleteFromExistingPlan(product);
             _productRepository.DeleteProduct(product);
         }
@@ -105,6 +78,35 @@ namespace VirtusFitWeb.Services
                 _productRepository.UpdateProduct(fav);
                 _productRepository.Save();
         }
+
+        private void DeleteFromExistingPlan(Product productToBeDeleted)
+        {
+            var plans = _dietPlanRepository.ListAllDietPlans();
+            var dailyLists = new List<DailyDietPlan>();
+            foreach (var plan in plans)
+            {
+                var i = 1;
+                while (i <= plan.DailyDietPlanList.Count)
+                {
+                    dailyLists.Add(_dietPlanRepository.GetDailyDietPlan(plan.Id, i));
+                    i++;
+                }
+            }
+            foreach (var dailyList in dailyLists)
+            {
+                var listOfProductsInDailyPlans = _dietPlanRepository.ListDbProductsInDailyDietPlan(dailyList);
+                foreach (var item in listOfProductsInDailyPlans)
+                {
+                    if (item.ProductId == productToBeDeleted.ProductId)
+                    {
+                        _dietPlanRepository.DeleteProductInPlan(item);
+                        _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(dailyList);
+                    }
+                }
+
+            }
+        }
+
 
         public List<Product> SearchByName(string name)
         {
