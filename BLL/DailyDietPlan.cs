@@ -7,7 +7,8 @@ namespace BLL
 {
     public class DailyDietPlan
     {
-        public int DietPlanId { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         [DisplayName("Day Number")]
         public int DayNumber { get; set; }
@@ -29,5 +30,6 @@ namespace BLL
         public double ProteinSum { get; set; }
 
         public List<ProductInDietPlan> ProductListForDay { get; set; }
+        public int DietPlanId { get; set; }
     }
 }

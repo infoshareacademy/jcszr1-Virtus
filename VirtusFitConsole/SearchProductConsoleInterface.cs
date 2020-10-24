@@ -132,12 +132,12 @@ namespace VirtusFitConsole
                     var searchValue = _newData.GetDataFromUser(macro, out var minValue, out var maxValue);
                     if (searchValue != 0)
                     {
-                        var searchList = _newSearch.SearchByProtein(productList, searchValue);
+                        var searchList = _newSearch.SearchByProteins(productList, searchValue);
                         DisplayProductList.DisplayList(searchList);
                     }
                     else
                     {
-                        var searchList = _newSearch.SearchByProtein(productList, minValue, maxValue);
+                        var searchList = _newSearch.SearchByProteins(productList, minValue, maxValue);
                         DisplayProductList.DisplayList(searchList);
                     }
                     break;

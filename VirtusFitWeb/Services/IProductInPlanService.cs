@@ -13,5 +13,7 @@ namespace VirtusFitWeb.Services
         void EditProductInDailyDietPlan(int id, int dayNumber, ProductInDietPlan editedProduct,
             int currentProductOrdinalNumber);
         void DeleteProductFromPlan(int id, int dayNumber, int ordinalNumber);
+
+        void CalculateDailyDietPlanCaloriesAndMacros(DailyDietPlan dailyToCalculate);
     }
 }
