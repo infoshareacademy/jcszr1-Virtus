@@ -60,6 +60,7 @@ namespace VirtusFitWeb.Services
                 productToBeUpdated.PortionQuantity = product.PortionQuantity;
                 productToBeUpdated.PortionUnit = product.PortionUnit;
                 productToBeUpdated.IsFavourite = false;
+                UpdateProductInExistingPlan(productToBeUpdated);
                 _productRepository.UpdateProduct(productToBeUpdated);
         }
 
@@ -78,6 +79,36 @@ namespace VirtusFitWeb.Services
                 _productRepository.UpdateProduct(fav);
                 _productRepository.Save();
         }
+
+        private void UpdateProductInExistingPlan(Product productToBeUpdated)
+        {
+            var plans = _dietPlanRepository.ListAllDietPlans();
+            var dailyList = new List<DailyDietPlan>();
+            foreach (var plan in plans)
+            {
+                var dailyListInPlan = _dietPlanRepository.ListDailyDietPlans(plan.Id);
+                foreach (var daily in dailyListInPlan)
+                {
+                    dailyList.Add(daily);
+                }
+            }
+            foreach (var daily in dailyList)
+            {
+                _dietPlanRepository.UpdateDailyDietPlan(daily);
+                var listOfProductsInDailyPlans = _dietPlanRepository.ListDbProductsInDailyDietPlan(daily);
+                foreach (var item in listOfProductsInDailyPlans)
+                {
+                    _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(daily);
+                    if (item.ProductId == productToBeUpdated.ProductId)
+                    {
+                        _dietPlanRepository.UpdateProductInPlan(item);
+                        _dietPlanRepository.UpdateDailyDietPlan(daily);
+                    }
+                }
+            }
+
+        }
+
 
         private void DeleteFromExistingPlan(Product productToBeDeleted)
         {

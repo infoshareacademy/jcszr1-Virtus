@@ -1,19 +1,15 @@
-﻿using BLL;
-using BLL.Db_Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 
-namespace VirtusFitWeb.DAL
+namespace BLL
 {
-    public class AppContext : DbContext
+    public class ProductContext : DbContext
     {
-
-        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDB1;Trusted_Connection=True;";
+        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDB;Trusted_Connection=True;";
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<DietPlan> DietPlans { get; set; }
-        public DbSet<DailyDietPlan> DailyDietPlans { get; set; }
-        public DbSet<ProductInDietPlanDb> ProductsInDietPlans { get; set; }
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,7 +18,6 @@ namespace VirtusFitWeb.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             var seedData = ProductLoader.GetProductsFromFile();
             foreach (var product in seedData)
             {
