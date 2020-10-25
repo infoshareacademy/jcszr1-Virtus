@@ -82,25 +82,24 @@ namespace VirtusFitWeb.Services
         private void DeleteFromExistingPlan(Product productToBeDeleted)
         {
             var plans = _dietPlanRepository.ListAllDietPlans();
-            var dailyLists = new List<DailyDietPlan>();
+            var dailyList = new List<DailyDietPlan>();
             foreach (var plan in plans)
             {
-                var i = 1;
-                while (i <= plan.DailyDietPlanList.Count)
+                var dailyListInPlan = _dietPlanRepository.ListDailyDietPlans(plan.Id);
+                foreach (var daily in dailyListInPlan)
                 {
-                    dailyLists.Add(_dietPlanRepository.GetDailyDietPlan(plan.Id, i));
-                    i++;
+                    dailyList.Add(daily);
                 }
             }
-            foreach (var dailyList in dailyLists)
+            foreach (var daily in dailyList)
             {
-                var listOfProductsInDailyPlans = _dietPlanRepository.ListDbProductsInDailyDietPlan(dailyList);
+                var listOfProductsInDailyPlans = _dietPlanRepository.ListDbProductsInDailyDietPlan(daily);
                 foreach (var item in listOfProductsInDailyPlans)
                 {
                     if (item.ProductId == productToBeDeleted.ProductId)
                     {
                         _dietPlanRepository.DeleteProductInPlan(item);
-                        _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(dailyList);
+                        _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(daily);
                     }
                 }
 
