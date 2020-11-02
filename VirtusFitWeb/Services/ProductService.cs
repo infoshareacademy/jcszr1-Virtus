@@ -1,8 +1,5 @@
 ﻿using BLL;
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using VirtusFitWeb.DAL;
 using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
 
@@ -28,7 +25,7 @@ namespace VirtusFitWeb.Services
         }
 
         public Product GetById(int id)
-        { 
+        {
             return _productRepository.GetProductById(id);
         }
 
@@ -47,37 +44,38 @@ namespace VirtusFitWeb.Services
 
         public void Update(int id, Product product)
         {
-                var productToBeUpdated = GetById(id);
-                productToBeUpdated.ProductName = product.ProductName;
-                productToBeUpdated.Energy = product.Energy;
-                productToBeUpdated.Fat = product.Fat;
-                productToBeUpdated.Carbohydrates = product.Carbohydrates;
-                productToBeUpdated.Protein = product.Protein;
-                productToBeUpdated.Salt = product.Salt;
-                productToBeUpdated.Fiber = product.Fiber;
-                productToBeUpdated.Sugar = product.Sugar;
-                productToBeUpdated.Quantity = product.Quantity;
-                productToBeUpdated.PortionQuantity = product.PortionQuantity;
-                productToBeUpdated.PortionUnit = product.PortionUnit;
-                productToBeUpdated.IsFavourite = false;
-                UpdateProductInExistingPlan(productToBeUpdated);
-                _productRepository.UpdateProduct(productToBeUpdated);
+            var productToBeUpdated = GetById(id);
+            productToBeUpdated.ProductName = product.ProductName;
+            productToBeUpdated.Energy = product.Energy;
+            productToBeUpdated.Fat = product.Fat;
+            productToBeUpdated.Carbohydrates = product.Carbohydrates;
+            productToBeUpdated.Protein = product.Protein;
+            productToBeUpdated.Salt = product.Salt;
+            productToBeUpdated.Fiber = product.Fiber;
+            productToBeUpdated.Sugar = product.Sugar;
+            productToBeUpdated.Quantity = product.Quantity;
+            productToBeUpdated.PortionQuantity = product.PortionQuantity;
+            productToBeUpdated.PortionUnit = product.PortionUnit;
+            productToBeUpdated.IsFavourite = false;
+            _productRepository.UpdateProduct(productToBeUpdated);
+            UpdateProductInExistingPlan(productToBeUpdated);
+
         }
 
         public void DeleteFromFavorites(Product favorite)
         {
-                var fav = _productRepository.GetProductById(favorite.ProductId);
-                fav.IsFavourite = false;
-                _productRepository.UpdateProduct(fav);
-                _productRepository.Save();
+            var fav = _productRepository.GetProductById(favorite.ProductId);
+            fav.IsFavourite = false;
+            _productRepository.UpdateProduct(fav);
+            _productRepository.Save();
         }
 
         public void AddToFavorites(Product favorite)
         {
-                var fav = _productRepository.GetProductById(favorite.ProductId);
-                fav.IsFavourite = true;
-                _productRepository.UpdateProduct(fav);
-                _productRepository.Save();
+            var fav = _productRepository.GetProductById(favorite.ProductId);
+            fav.IsFavourite = true;
+            _productRepository.UpdateProduct(fav);
+            _productRepository.Save();
         }
 
         private void UpdateProductInExistingPlan(Product productToBeUpdated)
@@ -94,15 +92,16 @@ namespace VirtusFitWeb.Services
             }
             foreach (var daily in dailyList)
             {
-                _dietPlanRepository.UpdateDailyDietPlan(daily);
                 var listOfProductsInDailyPlans = _dietPlanRepository.ListDbProductsInDailyDietPlan(daily);
                 foreach (var item in listOfProductsInDailyPlans)
                 {
-                    _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(daily);
                     if (item.ProductId == productToBeUpdated.ProductId)
                     {
-                        _dietPlanRepository.UpdateProductInPlan(item);
-                        _dietPlanRepository.UpdateDailyDietPlan(daily);
+                        var oldProduct = _dietPlanRepository.GetProductFromDailyDietPlan(daily, item.OrdinalNumber);
+                        oldProduct.TotalCalories = productToBeUpdated.Energy * oldProduct.PortionSize *
+                            oldProduct.NumberOfPortions / 100;
+                        _dietPlanRepository.UpdateProductInPlan(oldProduct);
+                        _productInPlanService.CalculateDailyDietPlanCaloriesAndMacros(daily);
                     }
                 }
             }
