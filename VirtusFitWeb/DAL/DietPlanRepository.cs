@@ -70,6 +70,10 @@ namespace VirtusFitWeb.DAL
                 .ToList();
             return list;
         }
+        public List<ProductInDietPlanDb> ListDbProductsInDailyDietPlan(DailyDietPlan dailyDietPlan)
+        {
+            return _context.ProductsInDietPlans.Where(x => x.DailyDietPlanId == dailyDietPlan.Id).ToList();
+        }
 
         public void AddDailyDietPlan(DailyDietPlan dailyDietPlan)
         {
@@ -95,10 +99,7 @@ namespace VirtusFitWeb.DAL
                 x.DailyDietPlanId == dailyDietPlan.Id && x.OrdinalNumber == ordinalNumber);
         }
 
-        public List<ProductInDietPlanDb> ListDbProductsInDailyDietPlan(DailyDietPlan dailyDietPlan)
-        {
-            return _context.ProductsInDietPlans.Where(x => x.DailyDietPlanId == dailyDietPlan.Id).ToList();
-        }
+        
         public void AddProductInPlan(ProductInDietPlanDb product)
         {
             _context.ProductsInDietPlans.Add(product).Context.SaveChanges();
