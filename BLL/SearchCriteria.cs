@@ -10,9 +10,9 @@ namespace BLL
 
         [Range(1, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
         public double? ExactEnergy { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
+        [Range(0, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
         public double? MinEnergy { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
+        [Range(0, int.MaxValue, ErrorMessage = "Energy value must be a positive number")]
         public double? MaxEnergy { get; set; }
         
         [Range(0, int.MaxValue, ErrorMessage = "Fat value must be a positive number")]
