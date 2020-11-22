@@ -15,7 +15,6 @@ namespace VirtusFitWeb.Services
             _dietPlanRepository = dietPlanRepository;
         }
 
-
         public IEnumerable<DietPlan> ListAllDietPlans()
         {
             return _dietPlanRepository.ListAllDietPlans();

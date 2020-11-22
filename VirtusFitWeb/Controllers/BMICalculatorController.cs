@@ -1,10 +1,10 @@
-﻿using System.Runtime.InteropServices.WindowsRuntime;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
+    [AllowAnonymous]
     public class BMICalculatorController : Controller
     {
         private readonly IBMICalculatorService _bmiCalculatorService;
@@ -15,7 +15,7 @@ namespace VirtusFitWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Calculator ()
+        public ActionResult Calculator()
         {
             return View();
         }
