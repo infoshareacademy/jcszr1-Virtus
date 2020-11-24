@@ -1,4 +1,5 @@
 ﻿using BLL;
+using BLL.Db_Models;
 using FluentAssertions;
 using Moq;
 using System.Collections.Generic;
@@ -55,7 +56,6 @@ namespace UnitTests
             dietPlanRepositoryMock.Setup(dietPlanRepo => dietPlanRepo.ListAllDietPlans()).Returns(new List<DietPlan>());
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
-
             sut.DeleteById(id);
 
             productRepositoryMock.Verify(repository => repository.DeleteProduct(product));
@@ -102,7 +102,7 @@ namespace UnitTests
 
         public void DeleteFromFavorites_ProductIsFavouriteIsSetToFalse_UpdateProductCalledInRepository_SaveCalledInRepository(int id)
         {
-            var product = new Product {ProductId = id};
+            var product = new Product {ProductId = id, IsFavourite = true};
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProductById(id)).Returns(product);
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
@@ -244,10 +244,35 @@ namespace UnitTests
             productRepositoryMock.Verify(repository => repository.GetProducts());
             actual.Should().Equal(ExpectedProduct);
         }
-        //public List<Product> SearchByProteins(double minprotein, double maxprotein)
-        //{
-        //    return _searchProductLogic.SearchByProteins(_productRepository.GetProducts(), minprotein, maxprotein);
-        //}
 
+        [Fact]
+        public void DeleteFromExistingPlan()
+        {
+            var testProduct = new Product(){ProductName = "Product1", Energy = 50, ProductId = 1};
+            var dietPlan = new DietPlan(){Id = 1};
+            var productInDietPlan = new ProductInDietPlan(){Product = testProduct, Id = testProduct.ProductId};
+            var productListForDay = new List<ProductInDietPlan>();
+            productListForDay.Add(productInDietPlan);
+            var dailyDietPlan = new DailyDietPlan(){ProductListForDay = productListForDay};
+            var dailyDietPlanList = new List<DailyDietPlan>(){dailyDietPlan};
+            dietPlan.DailyDietPlanList = dailyDietPlanList;
+            var listOfDietPlans = new List<DietPlan>(){dietPlan};
+            var productFromDB = new ProductInDietPlanDb() {DailyDietPlanId = dietPlan.Id, ProductId = testProduct.ProductId};
+            var productRepositoryMock = new Mock<IProductRepository>();
+            productRepositoryMock.Setup(repository => repository.GetProductById(1)).Returns(testProduct);
+            var productInPlanServiceMock = new Mock<IProductInPlanService>();
+            var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
+            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans())
+                .Returns(listOfDietPlans);
+            dietPlanRepositoryMock.Setup(repository => repository.ListDailyDietPlans(1)).Returns(dailyDietPlanList);
+            dietPlanRepositoryMock.Setup(repository => repository.ListDbProductsInDailyDietPlan(dailyDietPlan)).Returns(new List<ProductInDietPlanDb>(){productFromDB});
+
+            var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
+
+            sut.DeleteById(testProduct.ProductId);
+
+            dietPlanRepositoryMock.Verify(repository => repository.DeleteProductInPlan(productFromDB));
+
+        }
     }
 }
