@@ -20,8 +20,6 @@ namespace VirtusFitWeb.Controllers
         // GET: DietPlanController
         public ActionResult Index()
         {
-            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             return View(_dietPlanService.ListAllDietPlans().ToList());
         }
 

@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
@@ -8,6 +9,8 @@ namespace VirtusFitWeb.Controllers
     {
         private readonly IProductService _productService;
         private readonly IFavoriteService _favoriteService;
+
+        public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         public ProductController(IProductService productService, IFavoriteService favoriteService)
         {
@@ -40,7 +43,7 @@ namespace VirtusFitWeb.Controllers
         {
             try
             {
-                if (_productService.GetById(id).IsFavourite)
+                if (_productService.GetById(id).IsFavorite)
                 {
                     _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id));
                 }

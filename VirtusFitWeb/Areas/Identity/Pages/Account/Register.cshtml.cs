@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+﻿using BLL;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
+using VirtusFitWeb.DAL;
 
 namespace VirtusFitWeb.Areas.Identity.Pages.Account
 {
@@ -22,17 +24,20 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IProductRepository _productRepository;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IProductRepository productRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _productRepository = productRepository;
         }
 
         [BindProperty]
@@ -79,6 +84,27 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    var seedData = ProductLoader.GetProductsFromFile();
+                    foreach (var product in seedData)
+                    {
+                        _productRepository.InsertProduct(new Product
+                        {
+                            ProductName = product.ProductName,
+                            Energy = product.Energy,
+                            Fat = product.Fat,
+                            Carbohydrates = product.Carbohydrates,
+                            Protein = product.Protein,
+                            Salt = product.Salt,
+                            Fiber = product.Fiber,
+                            Sugar = product.Sugar,
+                            Quantity = product.Quantity,
+                            PortionQuantity = product.PortionQuantity,
+                            PortionUnit = product.PortionUnit,
+                            IsFavorite = product.IsFavorite,
+                            UserId = user.Id
+                        });
+                    }
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -90,7 +116,7 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                   if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
