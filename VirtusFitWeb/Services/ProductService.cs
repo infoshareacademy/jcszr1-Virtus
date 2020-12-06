@@ -56,7 +56,7 @@ namespace VirtusFitWeb.Services
             productToBeUpdated.Quantity = product.Quantity;
             productToBeUpdated.PortionQuantity = product.PortionQuantity;
             productToBeUpdated.PortionUnit = product.PortionUnit;
-            productToBeUpdated.IsFavourite = false;
+            productToBeUpdated.IsFavorite = false;
             _productRepository.UpdateProduct(productToBeUpdated);
             UpdateProductInExistingPlan(productToBeUpdated);
 
@@ -65,7 +65,7 @@ namespace VirtusFitWeb.Services
         public void DeleteFromFavorites(Product favorite)
         {
             var fav = _productRepository.GetProductById(favorite.ProductId);
-            fav.IsFavourite = false;
+            fav.IsFavorite = false;
             _productRepository.UpdateProduct(fav);
             _productRepository.Save();
         }
@@ -73,7 +73,7 @@ namespace VirtusFitWeb.Services
         public void AddToFavorites(Product favorite)
         {
             var fav = _productRepository.GetProductById(favorite.ProductId);
-            fav.IsFavourite = true;
+            fav.IsFavorite = true;
             _productRepository.UpdateProduct(fav);
             _productRepository.Save();
         }

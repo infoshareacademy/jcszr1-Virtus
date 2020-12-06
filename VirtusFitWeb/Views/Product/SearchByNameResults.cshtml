@@ -120,7 +120,7 @@
                                 @Html.DisplayFor(modelItem => item.PortionUnit)
                             </td>
                             <td>
-                                @if (item.IsFavourite == false)
+                                @if (item.IsFavorite == false)
                                 {
                                     <a asp-controller="Product" asp-action="AddToFavorites" asp-route-id=@item.ProductId><i class="fa fa-star" style="font-size: 36px; color: black"></i></a>
                                 }

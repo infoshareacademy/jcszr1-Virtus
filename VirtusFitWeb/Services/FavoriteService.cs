@@ -15,7 +15,7 @@ namespace VirtusFitWeb.Services
         }
         public List<Product> GetAll()
         {
-            return _repository.GetProducts().Where(product => product.IsFavourite).ToList();
+            return _repository.GetProducts().Where(product => product.IsFavorite).ToList();
         }
 
         public Product GetById(int id)
@@ -26,7 +26,7 @@ namespace VirtusFitWeb.Services
         public void DeleteFromFavorites(Product favorite)
         {
             var fav = _repository.GetProductById(favorite.ProductId);
-            fav.IsFavourite = false;
+            fav.IsFavorite = false;
             _repository.UpdateProduct(fav);
             _repository.Save();
         }
@@ -34,7 +34,7 @@ namespace VirtusFitWeb.Services
         public void AddToFavorites(Product favorite)
         {
             var fav = _repository.GetProductById(favorite.ProductId);
-            fav.IsFavourite = true;
+            fav.IsFavorite = true;
             _repository.UpdateProduct(fav);
             _repository.Save();
         }

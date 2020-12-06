@@ -38,7 +38,8 @@ namespace BLL
         public int PortionQuantity { get; set; }
         [Required]
         public string PortionUnit { get; set; }
-        public bool IsFavourite { get; set; }
+        public bool IsFavorite { get; set; }
+        public string UserId { get; set; }
     }
 }
 
