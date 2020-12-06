@@ -1,5 +1,6 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Security.Claims;
 using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
@@ -12,6 +13,8 @@ namespace VirtusFitWeb.Controllers
         private readonly IFavoriteService _favoriteService;
         private readonly IProductService _productService;
 
+        public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+        
         public ProductInPlanController(IProductInPlanService productInPlanService, IDietPlanService dietPlanService,
             IFavoriteService favoriteService, IProductService productService)
         {
@@ -25,7 +28,7 @@ namespace VirtusFitWeb.Controllers
         {
             var model = new ProductsToAddViewModel()
             {
-                ProductList = _productInPlanService.GetProductList()
+                ProductList = _productInPlanService.GetProductList(UserId)
             };
 
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
@@ -65,7 +68,7 @@ namespace VirtusFitWeb.Controllers
         {
             var model = new ProductsToAddViewModel()
             {
-                ProductList = _favoriteService.GetAll()
+                ProductList = _favoriteService.GetAll(UserId)
             };
 
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);

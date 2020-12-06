@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using BLL;
+﻿using BLL;
+using System.Collections.Generic;
 
 namespace VirtusFitWeb.DAL
 {
     public interface IProductRepository
     {
-        List<Product> GetProducts();
+        List<Product> GetProducts(string userId);
         Product GetProductById(int productId);
         void InsertProduct(Product product);
         void DeleteProduct(Product product);

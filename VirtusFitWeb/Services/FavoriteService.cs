@@ -13,14 +13,14 @@ namespace VirtusFitWeb.Services
         {
             _repository = repository;
         }
-        public List<Product> GetAll()
+        public List<Product> GetAll(string userId)
         {
-            return _repository.GetProducts().Where(product => product.IsFavorite).ToList();
+            return _repository.GetProducts(userId).Where(product => product.IsFavorite).ToList();
         }
 
         public Product GetById(int id)
         {
-            return GetAll().FirstOrDefault(product => product.ProductId == id);
+            return _repository.GetProductById(id);
         }
 
         public void DeleteFromFavorites(Product favorite)

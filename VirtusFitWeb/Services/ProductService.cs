@@ -19,9 +19,9 @@ namespace VirtusFitWeb.Services
             _productInPlanService = productInPlanService;
         }
 
-        public List<Product> GetAll()
+        public List<Product> GetAll(string userId)
         {
-            return _productRepository.GetProducts();
+            return _productRepository.GetProducts(userId);
         }
 
         public Product GetById(int id)
@@ -56,7 +56,6 @@ namespace VirtusFitWeb.Services
             productToBeUpdated.Quantity = product.Quantity;
             productToBeUpdated.PortionQuantity = product.PortionQuantity;
             productToBeUpdated.PortionUnit = product.PortionUnit;
-            productToBeUpdated.IsFavorite = false;
             _productRepository.UpdateProduct(productToBeUpdated);
             UpdateProductInExistingPlan(productToBeUpdated);
 
@@ -137,25 +136,25 @@ namespace VirtusFitWeb.Services
         }
 
 
-        public List<Product> SearchByName(string name)
+        public List<Product> SearchByName(string name, string userId)
         {
-            return _searchProductLogic.SearchByName(_productRepository.GetProducts(), name);
+            return _searchProductLogic.SearchByName(_productRepository.GetProducts(userId), name);
         }
-        public List<Product> SearchByFat(double minfat, double maxfat)
+        public List<Product> SearchByFat(double minfat, double maxfat, string userId)
         {
-            return _searchProductLogic.SearchByFat(_productRepository.GetProducts(), minfat, maxfat);
+            return _searchProductLogic.SearchByFat(_productRepository.GetProducts(userId), minfat, maxfat);
         }
-        public List<Product> SearchByCalories(double minenergy, double maxenergy)
+        public List<Product> SearchByCalories(double minenergy, double maxenergy, string userId)
         {
-            return _searchProductLogic.SearchByCalories(_productRepository.GetProducts(), minenergy, maxenergy);
+            return _searchProductLogic.SearchByCalories(_productRepository.GetProducts(userId), minenergy, maxenergy);
         }
-        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb)
+        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb, string userId)
         {
-            return _searchProductLogic.SearchByCarbohydrates(_productRepository.GetProducts(), mincarb, maxcarb);
+            return _searchProductLogic.SearchByCarbohydrates(_productRepository.GetProducts(userId), mincarb, maxcarb);
         }
-        public List<Product> SearchByProteins(double minprotein, double maxprotein)
+        public List<Product> SearchByProteins(double minprotein, double maxprotein, string userId)
         {
-            return _searchProductLogic.SearchByProteins(_productRepository.GetProducts(), minprotein, maxprotein);
+            return _searchProductLogic.SearchByProteins(_productRepository.GetProducts(userId), minprotein, maxprotein);
         }
     }
 }

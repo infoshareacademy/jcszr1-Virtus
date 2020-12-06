@@ -5,7 +5,7 @@ namespace VirtusFitWeb.Services
 {
     public interface IProductService
     {
-        List<Product> GetAll();
+        List<Product> GetAll(string userId);
 
         Product GetById(int id);
 
@@ -19,11 +19,11 @@ namespace VirtusFitWeb.Services
 
         void AddToFavorites(Product product);
 
-        List<Product> SearchByName(string name);
-        List<Product> SearchByFat(double minfat, double maxfat);
-        List<Product> SearchByCalories(double minenergy, double maxenergy);
-        List<Product> SearchByCarbohydrates(double mincarb, double maxcarb);
-        List<Product> SearchByProteins(double minprotein, double maxeprotein);
+        List<Product> SearchByName(string name, string userId);
+        List<Product> SearchByFat(double minfat, double maxfat, string userId);
+        List<Product> SearchByCalories(double minenergy, double maxenergy, string userId);
+        List<Product> SearchByCarbohydrates(double mincarb, double maxcarb, string userId);
+        List<Product> SearchByProteins(double minprotein, double maxeprotein, string userId);
 
 
     }
