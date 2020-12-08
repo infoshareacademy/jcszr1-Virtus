@@ -1,5 +1,6 @@
 ﻿using BLL;
 using System.Collections.Generic;
+using System.Linq;
 using VirtusFitWeb.DAL;
 using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
 
@@ -36,8 +37,9 @@ namespace VirtusFitWeb.Services
             _productRepository.DeleteProduct(product);
         }
 
-        public Product Create(Product newProduct)
+        public Product Create(Product newProduct, string userId)
         {
+            newProduct.ProductNo = GetAll(userId).Max(p => p.ProductNo) + 1;
             _productRepository.InsertProduct(newProduct);
             return newProduct;
         }
@@ -45,6 +47,7 @@ namespace VirtusFitWeb.Services
         public void Update(int id, Product product)
         {
             var productToBeUpdated = GetById(id);
+            productToBeUpdated.ProductNo = product.ProductNo;
             productToBeUpdated.ProductName = product.ProductName;
             productToBeUpdated.Energy = product.Energy;
             productToBeUpdated.Fat = product.Fat;

@@ -11,7 +11,7 @@ namespace VirtusFitWeb.Services
 
         void DeleteById(int id);
 
-        Product Create(Product newProduct);
+        Product Create(Product newProduct, string userId);
 
         void Update(int id, Product product);
 

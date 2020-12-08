@@ -103,7 +103,7 @@ namespace VirtusFitWeb.Controllers
             try
             {
                 newProduct.UserId = UserId;
-                newProduct = _productService.Create(newProduct);
+                newProduct = _productService.Create(newProduct, UserId);
                 return RedirectToAction("Details", "Product", new { id = newProduct.ProductId });
             }
             catch

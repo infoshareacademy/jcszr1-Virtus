@@ -89,6 +89,7 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
                     {
                         _productRepository.InsertProduct(new Product
                         {
+                            ProductNo = product.ProductId,
                             ProductName = product.ProductName,
                             Energy = product.Energy,
                             Fat = product.Fat,
