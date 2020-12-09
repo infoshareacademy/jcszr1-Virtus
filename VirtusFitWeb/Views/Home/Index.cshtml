@@ -3,8 +3,19 @@
     Layout = "_Layout";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <h5 class="display-4">Sign in or try our BMI Calculator!</h5>
+    <h5 class="display-4">It's a great day to plan Your diet today!</h5>
     <p></p>
 </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <h5 class="display-4">Sign in or try our BMI Calculator!</h5>
+        <p></p>
+    </div>
+}
