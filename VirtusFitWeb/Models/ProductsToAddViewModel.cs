@@ -6,6 +6,7 @@ namespace VirtusFitWeb.Models
     public class ProductsToAddViewModel
     {
         public int DietPlanId { get; set; }
+        public int DietPlanNo { get; set; }
         public int DayNumber { get; set; }
         public string Date { get; set; }
         public int CaloriesPerDay { get; set; }

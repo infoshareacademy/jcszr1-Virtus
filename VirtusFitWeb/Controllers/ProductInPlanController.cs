@@ -34,6 +34,7 @@ namespace VirtusFitWeb.Controllers
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
+                model.DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo;
                 model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
@@ -74,6 +75,7 @@ namespace VirtusFitWeb.Controllers
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
+                model.DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo;
                 model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
@@ -98,6 +100,7 @@ namespace VirtusFitWeb.Controllers
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
+                model.DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo;
                 model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
@@ -113,6 +116,7 @@ namespace VirtusFitWeb.Controllers
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
+                productInPlanModel.DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo;
                 productInPlanModel.DietPlanId = dailyDietPlan.DietPlanId;
                 productInPlanModel.DayNumber = dailyDietPlan.DayNumber;
                 productInPlanModel.Date = dailyDietPlan.Date.ToShortDateString();
@@ -147,6 +151,7 @@ namespace VirtusFitWeb.Controllers
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
+                model.DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo;
                 model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.Date = dailyDietPlan.Date.ToShortDateString();
@@ -167,6 +172,7 @@ namespace VirtusFitWeb.Controllers
             if (dailyDietPlansProduct == null) return View(editedProductModel);
             if (dailyDietPlan != null)
             {
+                editedProductModel.DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo;
                 editedProductModel.DietPlanId = dailyDietPlan.DietPlanId;
                 editedProductModel.DayNumber = dailyDietPlan.DayNumber;
                 editedProductModel.Date = dailyDietPlan.Date.ToShortDateString();
@@ -196,6 +202,7 @@ namespace VirtusFitWeb.Controllers
             var productInPlan = _productInPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
             var model = new ProductInPlanViewModel()
             {
+                DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo,
                 DietPlanId = id,
                 DayNumber = dayNumber,
                 ProductInPlan = productInPlan,
@@ -210,6 +217,7 @@ namespace VirtusFitWeb.Controllers
             var productInPlan = _productInPlanService.GetProductFromDietPlan(id, dayNumber, ordinalNumber);
             var model = new ProductInPlanViewModel()
             {
+                DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo,
                 DietPlanId = id,
                 DayNumber = dayNumber,
                 ProductInPlan = productInPlan,

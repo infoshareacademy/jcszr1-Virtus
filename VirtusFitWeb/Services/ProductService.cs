@@ -30,10 +30,10 @@ namespace VirtusFitWeb.Services
             return _productRepository.GetProductById(id);
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(int id, string userId)
         {
             var product = GetById(id);
-            DeleteFromExistingPlan(product);
+            DeleteFromExistingPlan(product, userId);
             _productRepository.DeleteProduct(product);
         }
 
@@ -44,7 +44,7 @@ namespace VirtusFitWeb.Services
             return newProduct;
         }
 
-        public void Update(int id, Product product)
+        public void Update(int id, Product product, string userId)
         {
             var productToBeUpdated = GetById(id);
             productToBeUpdated.ProductNo = product.ProductNo;
@@ -60,7 +60,7 @@ namespace VirtusFitWeb.Services
             productToBeUpdated.PortionQuantity = product.PortionQuantity;
             productToBeUpdated.PortionUnit = product.PortionUnit;
             _productRepository.UpdateProduct(productToBeUpdated);
-            UpdateProductInExistingPlan(productToBeUpdated);
+            UpdateProductInExistingPlan(productToBeUpdated, userId);
 
         }
 
@@ -80,9 +80,9 @@ namespace VirtusFitWeb.Services
             _productRepository.Save();
         }
 
-        private void UpdateProductInExistingPlan(Product productToBeUpdated)
+        private void UpdateProductInExistingPlan(Product productToBeUpdated, string userId)
         {
-            var plans = _dietPlanRepository.ListAllDietPlans();
+            var plans = _dietPlanRepository.ListAllDietPlans(userId);
             var dailyList = new List<DailyDietPlan>();
             foreach (var plan in plans)
             {
@@ -111,9 +111,9 @@ namespace VirtusFitWeb.Services
         }
 
 
-        private void DeleteFromExistingPlan(Product productToBeDeleted)
+        private void DeleteFromExistingPlan(Product productToBeDeleted, string userId)
         {
-            var plans = _dietPlanRepository.ListAllDietPlans();
+            var plans = _dietPlanRepository.ListAllDietPlans(userId);
             var dailyList = new List<DailyDietPlan>();
             foreach (var plan in plans)
             {

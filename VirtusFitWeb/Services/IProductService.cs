@@ -9,11 +9,11 @@ namespace VirtusFitWeb.Services
 
         Product GetById(int id);
 
-        void DeleteById(int id);
+        void DeleteById(int id, string userId);
 
         Product Create(Product newProduct, string userId);
 
-        void Update(int id, Product product);
+        void Update(int id, Product product, string userId);
 
         void DeleteFromFavorites(Product product);
 

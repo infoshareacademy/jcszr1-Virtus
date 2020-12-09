@@ -48,7 +48,7 @@ namespace VirtusFitWeb.Controllers
                     _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id));
                 }
 
-                _productService.DeleteById(id);
+                _productService.DeleteById(id, UserId);
                 return RedirectToAction(nameof(ProductList));
             }
             catch
@@ -80,7 +80,7 @@ namespace VirtusFitWeb.Controllers
 
             try
             {
-                _productService.Update(id, product);
+                _productService.Update(id, product, UserId);
                 return RedirectToAction(nameof(ProductList));
             }
             catch

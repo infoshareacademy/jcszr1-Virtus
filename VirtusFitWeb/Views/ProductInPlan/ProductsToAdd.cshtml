@@ -6,7 +6,7 @@
 
 <h1>Product list</h1>
 
-<h4>List of products to add to Plan &#8470; @Model.DietPlanId (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber (@Model.Date)</h4>
+<h4>List of products to add to Plan &#8470; @Model.DietPlanNo (@Model.CaloriesPerDay Calories/Day) | Day &#8470; @Model.DayNumber (@Model.Date)</h4>
 
 <a asp-controller="DietPlan" asp-action="DailyProductList" asp-route-id="@Model.DietPlanId" asp-route-dayNumber="@Model.DayNumber"
    class="btn btn-info col-sm-2 btn-product-list">To plan's product list</a>
@@ -19,7 +19,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductList[0].ProductId)
+                @Html.DisplayNameFor(model => model.ProductList[0].ProductNo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductList[0].ProductName)
@@ -63,7 +63,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductId)
+                @Html.DisplayFor(modelItem => item.ProductNo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
