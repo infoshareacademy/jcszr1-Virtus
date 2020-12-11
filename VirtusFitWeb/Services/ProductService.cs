@@ -1,5 +1,6 @@
 ﻿using BLL;
 using System.Collections.Generic;
+using System.Linq;
 using VirtusFitWeb.DAL;
 using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
 
@@ -19,9 +20,9 @@ namespace VirtusFitWeb.Services
             _productInPlanService = productInPlanService;
         }
 
-        public List<Product> GetAll()
+        public List<Product> GetAll(string userId)
         {
-            return _productRepository.GetProducts();
+            return _productRepository.GetProducts(userId);
         }
 
         public Product GetById(int id)
@@ -29,22 +30,24 @@ namespace VirtusFitWeb.Services
             return _productRepository.GetProductById(id);
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(int id, string userId)
         {
             var product = GetById(id);
-            DeleteFromExistingPlan(product);
+            DeleteFromExistingPlan(product, userId);
             _productRepository.DeleteProduct(product);
         }
 
-        public Product Create(Product newProduct)
+        public Product Create(Product newProduct, string userId)
         {
+            newProduct.ProductNo = GetAll(userId).Max(p => p.ProductNo) + 1;
             _productRepository.InsertProduct(newProduct);
             return newProduct;
         }
 
-        public void Update(int id, Product product)
+        public void Update(int id, Product product, string userId)
         {
             var productToBeUpdated = GetById(id);
+            productToBeUpdated.ProductNo = product.ProductNo;
             productToBeUpdated.ProductName = product.ProductName;
             productToBeUpdated.Energy = product.Energy;
             productToBeUpdated.Fat = product.Fat;
@@ -56,16 +59,15 @@ namespace VirtusFitWeb.Services
             productToBeUpdated.Quantity = product.Quantity;
             productToBeUpdated.PortionQuantity = product.PortionQuantity;
             productToBeUpdated.PortionUnit = product.PortionUnit;
-            productToBeUpdated.IsFavourite = false;
             _productRepository.UpdateProduct(productToBeUpdated);
-            UpdateProductInExistingPlan(productToBeUpdated);
+            UpdateProductInExistingPlan(productToBeUpdated, userId);
 
         }
 
         public void DeleteFromFavorites(Product favorite)
         {
             var fav = _productRepository.GetProductById(favorite.ProductId);
-            fav.IsFavourite = false;
+            fav.IsFavorite = false;
             _productRepository.UpdateProduct(fav);
             _productRepository.Save();
         }
@@ -73,14 +75,14 @@ namespace VirtusFitWeb.Services
         public void AddToFavorites(Product favorite)
         {
             var fav = _productRepository.GetProductById(favorite.ProductId);
-            fav.IsFavourite = true;
+            fav.IsFavorite = true;
             _productRepository.UpdateProduct(fav);
             _productRepository.Save();
         }
 
-        private void UpdateProductInExistingPlan(Product productToBeUpdated)
+        private void UpdateProductInExistingPlan(Product productToBeUpdated, string userId)
         {
-            var plans = _dietPlanRepository.ListAllDietPlans();
+            var plans = _dietPlanRepository.ListAllDietPlans(userId);
             var dailyList = new List<DailyDietPlan>();
             foreach (var plan in plans)
             {
@@ -109,9 +111,9 @@ namespace VirtusFitWeb.Services
         }
 
 
-        private void DeleteFromExistingPlan(Product productToBeDeleted)
+        private void DeleteFromExistingPlan(Product productToBeDeleted, string userId)
         {
-            var plans = _dietPlanRepository.ListAllDietPlans();
+            var plans = _dietPlanRepository.ListAllDietPlans(userId);
             var dailyList = new List<DailyDietPlan>();
             foreach (var plan in plans)
             {
@@ -137,25 +139,25 @@ namespace VirtusFitWeb.Services
         }
 
 
-        public List<Product> SearchByName(string name)
+        public List<Product> SearchByName(string name, string userId)
         {
-            return _searchProductLogic.SearchByName(_productRepository.GetProducts(), name);
+            return _searchProductLogic.SearchByName(_productRepository.GetProducts(userId), name);
         }
-        public List<Product> SearchByFat(double minfat, double maxfat)
+        public List<Product> SearchByFat(double minfat, double maxfat, string userId)
         {
-            return _searchProductLogic.SearchByFat(_productRepository.GetProducts(), minfat, maxfat);
+            return _searchProductLogic.SearchByFat(_productRepository.GetProducts(userId), minfat, maxfat);
         }
-        public List<Product> SearchByCalories(double minenergy, double maxenergy)
+        public List<Product> SearchByCalories(double minenergy, double maxenergy, string userId)
         {
-            return _searchProductLogic.SearchByCalories(_productRepository.GetProducts(), minenergy, maxenergy);
+            return _searchProductLogic.SearchByCalories(_productRepository.GetProducts(userId), minenergy, maxenergy);
         }
-        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb)
+        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb, string userId)
         {
-            return _searchProductLogic.SearchByCarbohydrates(_productRepository.GetProducts(), mincarb, maxcarb);
+            return _searchProductLogic.SearchByCarbohydrates(_productRepository.GetProducts(userId), mincarb, maxcarb);
         }
-        public List<Product> SearchByProteins(double minprotein, double maxprotein)
+        public List<Product> SearchByProteins(double minprotein, double maxprotein, string userId)
         {
-            return _searchProductLogic.SearchByProteins(_productRepository.GetProducts(), minprotein, maxprotein);
+            return _searchProductLogic.SearchByProteins(_productRepository.GetProducts(userId), minprotein, maxprotein);
         }
     }
 }

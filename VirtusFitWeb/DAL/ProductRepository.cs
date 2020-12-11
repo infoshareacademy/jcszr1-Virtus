@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BLL;
+using System.Collections.Generic;
 using System.Linq;
-using BLL;
 
 namespace VirtusFitWeb.DAL
 {
@@ -13,9 +13,9 @@ namespace VirtusFitWeb.DAL
             _context = context;
         }
 
-        public List<Product> GetProducts()
+        public List<Product> GetProducts(string userId)
         {
-            return _context.Products.ToList(); ;
+            return _context.Products.Where(p=>p.UserId == userId).ToList();
         }
 
         public Product GetProductById(int productId)

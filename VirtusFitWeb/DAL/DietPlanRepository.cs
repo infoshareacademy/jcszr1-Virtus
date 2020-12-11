@@ -14,9 +14,9 @@ namespace VirtusFitWeb.DAL
             _context = context;
         }
 
-        public List<DietPlan> ListAllDietPlans()
+        public List<DietPlan> ListAllDietPlans(string userId)
         {
-            return _context.DietPlans.ToList();
+            return _context.DietPlans.Where(d=>d.UserId == userId).ToList();
         }
 
         public DietPlan GetDietPlanById(int id)

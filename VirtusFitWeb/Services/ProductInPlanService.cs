@@ -1,8 +1,8 @@
 ﻿using BLL;
+using BLL.Db_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BLL.Db_Models;
 using VirtusFitWeb.DAL;
 
 namespace VirtusFitWeb.Services
@@ -18,15 +18,15 @@ namespace VirtusFitWeb.Services
             _dietPlanRepository = dietPlanRepository;
         }
 
-        public List<Product> GetProductList()
+        public List<Product> GetProductList(string userId)
         {
-            return _productRepository.GetProducts();
+            return _productRepository.GetProducts(userId);
         }
 
         public ProductInDietPlan GetProductToAdd(int id)
         {
-            var product = GetProductList().FirstOrDefault(p => p.ProductId == id);
-            var productToAdd = new ProductInDietPlan()
+            var product = _productRepository.GetProductById(id);
+            var productToAdd = new ProductInDietPlan
             {
                 Product = product
             };
@@ -35,7 +35,7 @@ namespace VirtusFitWeb.Services
 
         public Product GetProductFromList(int id)
         {
-            return GetProductList().FirstOrDefault(p => p.ProductId == id);
+            return _productRepository.GetProductById(id);
         }
 
         public void AddProductToDailyDietPlan(int id, int dayNumber, ProductInDietPlan productToAdd, Product product)

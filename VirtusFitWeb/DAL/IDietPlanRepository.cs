@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using BLL;
+﻿using BLL;
 using BLL.Db_Models;
+using System.Collections.Generic;
 
 namespace VirtusFitWeb.DAL
 {
     public interface IDietPlanRepository
     {
-        List<DietPlan> ListAllDietPlans();
+        List<DietPlan> ListAllDietPlans(string userId);
         DietPlan GetDietPlanById(int id);
         DailyDietPlan GetDailyDietPlan(int id, int dayNumber);
         void InsertDietPlan(DietPlan dietPlan);

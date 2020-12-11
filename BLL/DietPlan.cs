@@ -8,10 +8,10 @@ namespace BLL
 
     public class DietPlan
     {
-        [DisplayName("Plan Id")]
         [Key]
         public int Id { get; set; }
-       
+        [DisplayName("Plan No.")]
+        public int PlanNo { get; set; }
         [DisplayName("Start Date")]
         [Required(ErrorMessage = "Enter start date.")]
         [DataType(DataType.Date)]
@@ -31,5 +31,6 @@ namespace BLL
         public int CaloriesPerDay { get; set; }
 
         public List<DailyDietPlan> DailyDietPlanList { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
+﻿using BLL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BLL;
 
 namespace VirtusFitWeb.Services
 {
     public interface IFavoriteService
     {
-        List<Product> GetAll();
+        List<Product> GetAll(string userId);
 
         Product GetById(int id);
 

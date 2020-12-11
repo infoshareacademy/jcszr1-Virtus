@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BLL;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
@@ -13,6 +9,8 @@ namespace VirtusFitWeb.Controllers
         private readonly IProductService _productService;
         private readonly IFavoriteService _favoriteService;
 
+        public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+        
         public FavoriteController(IProductService productService, IFavoriteService favoriteService)
         {
             _productService = productService;
@@ -20,7 +18,7 @@ namespace VirtusFitWeb.Controllers
         }
         public IActionResult FavoriteList()
         {
-            return View(_favoriteService.GetAll());
+            return View(_favoriteService.GetAll(UserId));
         }
         [HttpGet]
         public IActionResult FavoriteDetails(int id)

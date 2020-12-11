@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
@@ -9,6 +10,8 @@ namespace VirtusFitWeb.Controllers
         private readonly IProductService _productService;
         private readonly IFavoriteService _favoriteService;
 
+        public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+
         public ProductController(IProductService productService, IFavoriteService favoriteService)
         {
             _productService = productService;
@@ -17,7 +20,7 @@ namespace VirtusFitWeb.Controllers
 
         public IActionResult ProductList()
         {
-            return View(_productService.GetAll());
+            return View(_productService.GetAll(UserId));
         }
 
         [HttpGet]
@@ -40,12 +43,12 @@ namespace VirtusFitWeb.Controllers
         {
             try
             {
-                if (_productService.GetById(id).IsFavourite)
+                if (_productService.GetById(id).IsFavorite)
                 {
                     _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id));
                 }
 
-                _productService.DeleteById(id);
+                _productService.DeleteById(id, UserId);
                 return RedirectToAction(nameof(ProductList));
             }
             catch
@@ -77,7 +80,7 @@ namespace VirtusFitWeb.Controllers
 
             try
             {
-                _productService.Update(id, product);
+                _productService.Update(id, product, UserId);
                 return RedirectToAction(nameof(ProductList));
             }
             catch
@@ -99,7 +102,8 @@ namespace VirtusFitWeb.Controllers
             }
             try
             {
-                newProduct = _productService.Create(newProduct);
+                newProduct.UserId = UserId;
+                newProduct = _productService.Create(newProduct, UserId);
                 return RedirectToAction("Details", "Product", new { id = newProduct.ProductId });
             }
             catch
@@ -153,7 +157,7 @@ namespace VirtusFitWeb.Controllers
             }
             try
             {
-                return View(_productService.SearchByName(criteria.ProductName));
+                return View(_productService.SearchByName(criteria.ProductName, UserId));
             }
             catch
             {
@@ -173,7 +177,7 @@ namespace VirtusFitWeb.Controllers
                 double minfat = criteria.MinFat.HasValue ? criteria.MinFat.Value : 0;
                 double maxfat = criteria.MaxFat.HasValue ? criteria.MaxFat.Value : int.MaxValue;
 
-                return View(_productService.SearchByFat(minfat, maxfat));
+                return View(_productService.SearchByFat(minfat, maxfat, UserId));
             }
             catch
             {
@@ -193,7 +197,7 @@ namespace VirtusFitWeb.Controllers
                 double mincal = criteria.MinEnergy.HasValue ? criteria.MinEnergy.Value : 0;
                 double maxcal = criteria.MaxEnergy.HasValue ? criteria.MaxEnergy.Value : int.MaxValue;
 
-                return View(_productService.SearchByCalories(mincal, maxcal));
+                return View(_productService.SearchByCalories(mincal, maxcal, UserId));
             }
             catch
             {
@@ -213,7 +217,7 @@ namespace VirtusFitWeb.Controllers
                 double mincarb = criteria.MinCarbohydrates.HasValue ? criteria.MinCarbohydrates.Value : 0;
                 double maxcarb = criteria.MaxCarbohydrates.HasValue ? criteria.MaxCarbohydrates.Value : int.MaxValue;
 
-                return View(_productService.SearchByCarbohydrates(mincarb, maxcarb));
+                return View(_productService.SearchByCarbohydrates(mincarb, maxcarb, UserId));
             }
             catch
             {
@@ -233,7 +237,7 @@ namespace VirtusFitWeb.Controllers
                 double minprotein = criteria.MinProtein.HasValue ? criteria.MinProtein.Value : 0;
                 double maxprotein = criteria.MaxProtein.HasValue ? criteria.MaxProtein.Value : int.MaxValue;
 
-                return View(_productService.SearchByProteins(minprotein, maxprotein));
+                return View(_productService.SearchByProteins(minprotein, maxprotein, UserId));
             }
             catch
             {

@@ -17,7 +17,7 @@ namespace VirtusFitWeb.DAL.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("BLL.DailyDietPlan", b =>
                 {
@@ -54,6 +54,36 @@ namespace VirtusFitWeb.DAL.Migrations
                     b.ToTable("DailyDietPlans");
                 });
 
+            modelBuilder.Entity("BLL.Db_Models.ProductInDietPlanDb", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("DailyDietPlanId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfPortions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrdinalNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PortionSize")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalCalories")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductsInDietPlans");
+                });
+
             modelBuilder.Entity("BLL.DietPlan", b =>
                 {
                     b.Property<int>("Id")
@@ -67,8 +97,14 @@ namespace VirtusFitWeb.DAL.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PlanNo")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -94,7 +130,7 @@ namespace VirtusFitWeb.DAL.Migrations
                     b.Property<int>("Fiber")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsFavourite")
+                    b.Property<bool>("IsFavorite")
                         .HasColumnType("bit");
 
                     b.Property<int>("PortionQuantity")
@@ -109,6 +145,9 @@ namespace VirtusFitWeb.DAL.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
+                    b.Property<int>("ProductNo")
+                        .HasColumnType("int");
+
                     b.Property<double>("Protein")
                         .HasColumnType("float");
 
@@ -120,6 +159,9 @@ namespace VirtusFitWeb.DAL.Migrations
 
                     b.Property<int>("Sugar")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
 
@@ -133,10 +175,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 179,
                             Fat = 0.20999999999999999,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 50,
                             PortionUnit = "g",
                             ProductName = "Bio Spaghetti ",
+                            ProductNo = 0,
                             Protein = 5.5,
                             Quantity = 500,
                             Salt = 0.0,
@@ -149,10 +192,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 181,
                             Fat = 13.5,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 75,
                             PortionUnit = "g",
                             ProductName = "Naturaplan Mozzarella",
+                            ProductNo = 0,
                             Protein = 14.25,
                             Quantity = 150,
                             Salt = 0.38,
@@ -165,10 +209,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "g",
                             ProductName = "Caffè Mauro - Roasted organic coffee blend",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -181,10 +226,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 197,
                             Fat = 15.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 75,
                             PortionUnit = "g",
                             ProductName = "Naturaplan Bio Mozzarella ",
+                            ProductNo = 0,
                             Protein = 15.0,
                             Quantity = 450,
                             Salt = 0.29999999999999999,
@@ -197,10 +243,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "g",
                             ProductName = "LEAVITT'S AMERICANA, Fancy Mixed Nuts",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 284,
                             Salt = 0.0,
@@ -213,10 +260,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 124,
                             Fat = 10.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 50,
                             PortionUnit = "g",
                             ProductName = "Vieniese Sausages",
+                            ProductNo = 0,
                             Protein = 8.0,
                             Quantity = 200,
                             Salt = 0.90000000000000002,
@@ -229,10 +277,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 184,
                             Fat = 16.199999999999999,
                             Fiber = 4,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 30,
                             PortionUnit = "g",
                             ProductName = "Naturaplan Bio whole Almonds ",
+                            ProductNo = 0,
                             Protein = 6.5999999999999996,
                             Quantity = 200,
                             Salt = 0.0,
@@ -245,10 +294,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 103,
                             Fat = 9.0299999999999994,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 43,
                             PortionUnit = "g",
                             ProductName = "Naturaplan Cipollata veal",
+                            ProductNo = 0,
                             Protein = 5.1600000000000001,
                             Quantity = 150,
                             Salt = 0.72999999999999998,
@@ -261,10 +311,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "g",
                             ProductName = "Jean Hervé - Almond Purée",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 700,
                             Salt = 0.0,
@@ -277,10 +328,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 15,
                             PortionUnit = "g",
                             ProductName = "Raw health Bio - White Chia Seeds ",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 450,
                             Salt = 0.0,
@@ -293,10 +345,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 59,
                             Fat = 2.5,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 100,
                             PortionUnit = "g",
                             ProductName = "PANZANI",
+                            ProductNo = 0,
                             Protein = 1.3,
                             Quantity = 400,
                             Salt = 1.1799999999999999,
@@ -309,10 +362,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "Lou mas: Sunflower oil",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -325,10 +379,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "g",
                             ProductName = "Barilla: the Pesti, red pesto",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 200,
                             Salt = 0.0,
@@ -341,10 +396,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "g",
                             ProductName = "Barilla: the Pesti, Calabrian",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 190,
                             Salt = 0.0,
@@ -357,10 +413,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "Belle France: cider vinegar, Normandy",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 750,
                             Salt = 0.0,
@@ -373,10 +430,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: orange-mango",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -389,10 +447,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: pineapple",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -405,10 +464,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: peach",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -421,10 +481,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: Orange 100%, without pulp",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -437,10 +498,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini : Fruchtcocktail",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -453,10 +515,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: pink grapefruit",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 1000,
                             Salt = 0.0,
@@ -469,10 +532,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: My Moment, Pink Grapefruit - Cranberry",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 330,
                             Salt = 0.0,
@@ -485,10 +549,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: My Moment, Lemon-Lemon",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 330,
                             Salt = 0.0,
@@ -501,10 +566,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 109,
                             Fat = 1.25,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 250,
                             PortionUnit = "ml",
                             ProductName = "GRANINI: 100% ORANGE",
+                            ProductNo = 0,
                             Protein = 2.5,
                             Quantity = 330,
                             Salt = 0.0,
@@ -517,10 +583,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 114,
                             Fat = 0.5,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 250,
                             PortionUnit = "ml",
                             ProductName = "RAMSEIER: APPLE JUICE, natural",
+                            ProductNo = 0,
                             Protein = 0.5,
                             Quantity = 500,
                             Salt = 0.0,
@@ -533,10 +600,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "RAMSEIER : HOCHSTÄMMER, obstsaft naturtrüe",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 500,
                             Salt = 0.0,
@@ -549,10 +617,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "granini: Fruity & tingling, apple",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 500,
                             Salt = 0.0,
@@ -565,10 +634,11 @@ namespace VirtusFitWeb.DAL.Migrations
                             Energy = 0,
                             Fat = 0.0,
                             Fiber = 0,
-                            IsFavourite = false,
+                            IsFavorite = false,
                             PortionQuantity = 0,
                             PortionUnit = "ml",
                             ProductName = "CRISTALP",
+                            ProductNo = 0,
                             Protein = 0.0,
                             Quantity = 500,
                             Salt = 0.0,
@@ -578,7 +648,7 @@ namespace VirtusFitWeb.DAL.Migrations
 
             modelBuilder.Entity("BLL.ProductInDietPlan", b =>
                 {
-                    b.Property<int>("OrdinalNumber")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -587,6 +657,9 @@ namespace VirtusFitWeb.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfPortions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrdinalNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("PortionSize")
@@ -598,13 +671,209 @@ namespace VirtusFitWeb.DAL.Migrations
                     b.Property<int>("TotalCalories")
                         .HasColumnType("int");
 
-                    b.HasKey("OrdinalNumber");
+                    b.HasKey("Id");
 
                     b.HasIndex("DailyDietPlanId");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductsInDietPlans");
+                    b.ToTable("ProductInDietPlan");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("BLL.DailyDietPlan", b =>
@@ -627,6 +896,57 @@ namespace VirtusFitWeb.DAL.Migrations
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BLL.DailyDietPlan", b =>

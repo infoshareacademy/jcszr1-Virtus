@@ -4,28 +4,7 @@
     .bg-custom
     {
         background-color:rgb(28, 92, 51)
-        }
-/* 
-   #topheader .navbar-nav li > a {
-        text-transform: capitalize;
-        transition: color .2s;
-	
-     &:hover,
-     &:focus {
-          color: #fff;
-      }
     }
-   
-    #topheader .navbar-nav li.unactive > a {
-        color: #fff;
-        opacity: 0.5;
-    }  
-
-    #topheader .navbar-nav li.active > a {
-        color: #fff;
-    }
-*/
-
 </style>
 <head>
     <meta charset="utf-8"/>
@@ -49,24 +28,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Product" ? "active" : "")" asp-area="" asp-controller="Product" asp-action="ProductList">Products</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Product" ? "active" : "")" asp-area="" asp-controller="Product" asp-action="ProductList">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "BMICalculator" ? "active" : "")" asp-area="" asp-controller="BMICalculator" asp-action="Calculator">BMI Calculator</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "BMICalculator" ? "active" : "")" asp-area="" asp-controller="BMICalculator" asp-action="Calculator">BMI Calculator</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "DietPlan" ? "active" : "")" asp-area="" asp-controller="DietPlan" asp-action="Index">Diet planner</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "DietPlan" ? "active" : "")" asp-area="" asp-controller="DietPlan" asp-action="Index">Diet planner</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Favorite" ? "active" : "")" asp-area="" asp-controller="Favorite" asp-action="FavoriteList">Favorites</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Favorite" ? "active" : "")" asp-area="" asp-controller="Favorite" asp-action="FavoriteList">Favorites</a>
                         </li>
                     </ul>
                     <span class="navbar-text text-right">
-                        Force yourself to eat healthy.
+                        Force yourself to eat healthy.&nbsp;
                     </span>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

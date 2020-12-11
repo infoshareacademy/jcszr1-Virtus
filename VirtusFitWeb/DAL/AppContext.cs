@@ -1,10 +1,11 @@
 ﻿using BLL;
 using BLL.Db_Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace VirtusFitWeb.DAL
 {
-    public class AppContext : DbContext
+    public class AppContext : IdentityDbContext
     {
 
         private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDB1;Trusted_Connection=True;";
@@ -22,6 +23,7 @@ namespace VirtusFitWeb.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
             var seedData = ProductLoader.GetProductsFromFile();
             foreach (var product in seedData)
@@ -40,7 +42,7 @@ namespace VirtusFitWeb.DAL
                     Quantity = product.Quantity,
                     PortionQuantity = product.PortionQuantity,
                     PortionUnit = product.PortionUnit,
-                    IsFavourite = product.IsFavourite
+                    IsFavorite = product.IsFavorite
                 });
             }
         }
