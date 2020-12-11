@@ -14,6 +14,7 @@ namespace VirtusFitWeb.Controllers
         private readonly DateValidator _validator = new DateValidator();
 
         public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+        public string Username => User.FindFirstValue(ClaimTypes.Name);
 
         public DietPlanController(IDietPlanService dietPlanService)
         {
@@ -97,8 +98,9 @@ namespace VirtusFitWeb.Controllers
 
             try
             {
+                var username = Username;
                 newDietPlan.UserId = UserId;
-                _dietPlanService.Create(newDietPlan);
+                _dietPlanService.Create(newDietPlan, username);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -134,7 +136,8 @@ namespace VirtusFitWeb.Controllers
 
             try
             {
-                _dietPlanService.Edit(id, dietPlan);
+                var username = Username;
+                _dietPlanService.Edit(id, dietPlan, username);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -157,7 +160,10 @@ namespace VirtusFitWeb.Controllers
         {
             try
             {
-                _dietPlanService.DeleteById(id);
+                var userId = UserId;
+                var username = Username;
+
+                _dietPlanService.DeleteById(id, userId, username);
                 return RedirectToAction(nameof(Index));
             }
             catch

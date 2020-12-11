@@ -9,21 +9,21 @@ namespace VirtusFitWeb.Services
 
         Product GetById(int id);
 
-        void DeleteById(int id, string userId);
+        void DeleteById(int id, string userId, string username);
 
-        Product Create(Product newProduct, string userId);
+        Product Create(Product newProduct, string userId, string username);
 
-        void Update(int id, Product product, string userId);
+        void Update(int id, Product product, string userId, string username);
 
-        void DeleteFromFavorites(Product product);
+        void DeleteFromFavorites(Product product, string userId, string username);
 
-        void AddToFavorites(Product product);
+        void AddToFavorites(Product product, string userId, string username);
 
-        List<Product> SearchByName(string name, string userId);
-        List<Product> SearchByFat(double minfat, double maxfat, string userId);
-        List<Product> SearchByCalories(double minenergy, double maxenergy, string userId);
-        List<Product> SearchByCarbohydrates(double mincarb, double maxcarb, string userId);
-        List<Product> SearchByProteins(double minprotein, double maxeprotein, string userId);
+        List<Product> SearchByName(string name, string userId, string username);
+        List<Product> SearchByFat(double minfat, double maxfat, string userId, string username);
+        List<Product> SearchByCalories(double minenergy, double maxenergy, string userId, string username);
+        List<Product> SearchByCarbohydrates(double mincarb, double maxcarb, string userId, string username);
+        List<Product> SearchByProteins(double minprotein, double maxeprotein, string userId, string username);
 
 
     }

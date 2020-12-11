@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿using System;
+using BLL;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -10,9 +11,12 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Threading.Tasks;
+using VirtusFitApi.Models;
 using VirtusFitWeb.DAL;
 
 namespace VirtusFitWeb.Areas.Identity.Pages.Account
@@ -25,19 +29,36 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IProductRepository _productRepository;
+        private readonly IHttpClientFactory _httpClientFactory;
+
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            IProductRepository productRepository)
+            IProductRepository productRepository,
+            IHttpClientFactory httpClientFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             _productRepository = productRepository;
+            _httpClientFactory = httpClientFactory;
+        }
+
+        public CreateUserAccountAction CreateAction(string userName, UserAccountActionType type)
+        {
+            var action = new CreateUserAccountAction
+            {
+                UserId = userName,
+                ActionType = type,
+                Created = DateTime.UtcNow
+            };
+
+            return action;
+
         }
 
         [BindProperty]
@@ -83,6 +104,11 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    var client = _httpClientFactory.CreateClient();
+                    var action = CreateAction(user.UserName, UserAccountActionType.AccountCreated);
+                    await client.PostAsync("https://localhost:5001/VirtusFit/user",
+                        new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
 
                     var seedData = ProductLoader.GetProductsFromFile();
                     foreach (var product in seedData)

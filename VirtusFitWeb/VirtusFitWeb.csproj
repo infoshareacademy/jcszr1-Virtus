@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj" />
+    <ProjectReference Include="..\VirtusFitApi\VirtusFitApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

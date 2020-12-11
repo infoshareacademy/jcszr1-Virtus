@@ -14,7 +14,8 @@ namespace VirtusFitWeb.Controllers
         private readonly IProductService _productService;
 
         public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
-        
+        public string Username => User.FindFirstValue(ClaimTypes.Name);
+
         public ProductInPlanController(IProductInPlanService productInPlanService, IDietPlanService dietPlanService,
             IFavoriteService favoriteService, IProductService productService)
         {
@@ -52,7 +53,7 @@ namespace VirtusFitWeb.Controllers
         public IActionResult AddToFavorites(int productId, int planId, int dayNumber)
         {
             var favorite = _productService.GetById(productId);
-            _favoriteService.AddToFavorites(favorite);
+            _favoriteService.AddToFavorites(favorite, UserId, Username);
             return RedirectToAction("ProductsToAdd", "productInPlan",
                 new { id = planId, dayNumber = dayNumber });
         }
@@ -61,7 +62,7 @@ namespace VirtusFitWeb.Controllers
         public IActionResult DeleteFromFavorites(int productId, int planId, int dayNumber)
         {
             var favorite = _productService.GetById(productId);
-            _favoriteService.DeleteFromFavorites(favorite);
+            _favoriteService.DeleteFromFavorites(favorite, UserId, Username);
             return RedirectToAction("ProductsToAdd", "productInPlan",
                 new { id = planId, dayNumber = dayNumber });
         }
@@ -113,6 +114,8 @@ namespace VirtusFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddProductToPlan(int id, int dayNumber, ProductInPlanViewModel productInPlanModel, int productId)
         {
+            var user = UserId;
+            var username = Username;
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
@@ -130,7 +133,7 @@ namespace VirtusFitWeb.Controllers
             {
                 var product = _productInPlanService.GetProductFromList(productId);
                 var productToAdd = productInPlanModel.ProductInPlan;
-                _productInPlanService.AddProductToDailyDietPlan(id, dayNumber, productToAdd, product);
+                _productInPlanService.AddProductToDailyDietPlan(id, dayNumber, productToAdd, product, user, username);
                 return RedirectToAction("DailyProductList", "DietPlan",
                     new { id = id, dayNumber = dayNumber });
             }
@@ -166,6 +169,8 @@ namespace VirtusFitWeb.Controllers
         public ActionResult EditProductInPlan(int id, int dayNumber, ProductInPlanViewModel editedProductModel,
             int currentProductOrdinalNumber)
         {
+            var user = UserId;
+            var username = Username;
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             var dailyDietPlansProduct = _dietPlanService.ListProductsOnDailyDietPlan(id, dayNumber)
                 .FirstOrDefault(x => x.OrdinalNumber == currentProductOrdinalNumber);
@@ -187,7 +192,7 @@ namespace VirtusFitWeb.Controllers
             try
             {
                 var editedProduct = editedProductModel.ProductInPlan;
-                _productInPlanService.EditProductInDailyDietPlan(id, dayNumber, editedProduct, currentProductOrdinalNumber);
+                _productInPlanService.EditProductInDailyDietPlan(id, dayNumber, editedProduct, currentProductOrdinalNumber, user, username);
                 return RedirectToAction("DailyProductList", "DietPlan",
                     new { id, dayNumber });
             }
@@ -231,9 +236,11 @@ namespace VirtusFitWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteProduct(int id, int dayNumber, int ordinalNumber, ProductInPlanViewModel productToDelete )
         {
+            var user = UserId;
+            var username = Username;
             try
             {
-                _productInPlanService.DeleteProductFromPlan(id, dayNumber, ordinalNumber);
+                _productInPlanService.DeleteProductFromPlan(id, dayNumber, ordinalNumber, user, username);
 
                 return RedirectToAction("DailyProductList", "DietPlan",
                     new { id, dayNumber });

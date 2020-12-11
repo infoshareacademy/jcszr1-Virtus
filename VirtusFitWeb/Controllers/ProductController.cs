@@ -11,6 +11,7 @@ namespace VirtusFitWeb.Controllers
         private readonly IFavoriteService _favoriteService;
 
         public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+        public string Username => User.FindFirstValue(ClaimTypes.Name);
 
         public ProductController(IProductService productService, IFavoriteService favoriteService)
         {
@@ -45,10 +46,10 @@ namespace VirtusFitWeb.Controllers
             {
                 if (_productService.GetById(id).IsFavorite)
                 {
-                    _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id));
+                    _favoriteService.DeleteFromFavorites(_favoriteService.GetById(id), UserId, Username);
                 }
 
-                _productService.DeleteById(id, UserId);
+                _productService.DeleteById(id, UserId, Username);
                 return RedirectToAction(nameof(ProductList));
             }
             catch
@@ -80,7 +81,7 @@ namespace VirtusFitWeb.Controllers
 
             try
             {
-                _productService.Update(id, product, UserId);
+                _productService.Update(id, product, UserId, Username);
                 return RedirectToAction(nameof(ProductList));
             }
             catch
@@ -103,7 +104,7 @@ namespace VirtusFitWeb.Controllers
             try
             {
                 newProduct.UserId = UserId;
-                newProduct = _productService.Create(newProduct, UserId);
+                newProduct = _productService.Create(newProduct, UserId, Username);
                 return RedirectToAction("Details", "Product", new { id = newProduct.ProductId });
             }
             catch
@@ -157,7 +158,7 @@ namespace VirtusFitWeb.Controllers
             }
             try
             {
-                return View(_productService.SearchByName(criteria.ProductName, UserId));
+                return View(_productService.SearchByName(criteria.ProductName, UserId, Username));
             }
             catch
             {
@@ -177,7 +178,7 @@ namespace VirtusFitWeb.Controllers
                 double minfat = criteria.MinFat.HasValue ? criteria.MinFat.Value : 0;
                 double maxfat = criteria.MaxFat.HasValue ? criteria.MaxFat.Value : int.MaxValue;
 
-                return View(_productService.SearchByFat(minfat, maxfat, UserId));
+                return View(_productService.SearchByFat(minfat, maxfat, UserId, Username));
             }
             catch
             {
@@ -197,7 +198,7 @@ namespace VirtusFitWeb.Controllers
                 double mincal = criteria.MinEnergy.HasValue ? criteria.MinEnergy.Value : 0;
                 double maxcal = criteria.MaxEnergy.HasValue ? criteria.MaxEnergy.Value : int.MaxValue;
 
-                return View(_productService.SearchByCalories(mincal, maxcal, UserId));
+                return View(_productService.SearchByCalories(mincal, maxcal, UserId, Username));
             }
             catch
             {
@@ -217,7 +218,7 @@ namespace VirtusFitWeb.Controllers
                 double mincarb = criteria.MinCarbohydrates.HasValue ? criteria.MinCarbohydrates.Value : 0;
                 double maxcarb = criteria.MaxCarbohydrates.HasValue ? criteria.MaxCarbohydrates.Value : int.MaxValue;
 
-                return View(_productService.SearchByCarbohydrates(mincarb, maxcarb, UserId));
+                return View(_productService.SearchByCarbohydrates(mincarb, maxcarb, UserId, Username));
             }
             catch
             {
@@ -237,7 +238,7 @@ namespace VirtusFitWeb.Controllers
                 double minprotein = criteria.MinProtein.HasValue ? criteria.MinProtein.Value : 0;
                 double maxprotein = criteria.MaxProtein.HasValue ? criteria.MaxProtein.Value : int.MaxValue;
 
-                return View(_productService.SearchByProteins(minprotein, maxprotein, UserId));
+                return View(_productService.SearchByProteins(minprotein, maxprotein, UserId, Username));
             }
             catch
             {
@@ -249,16 +250,20 @@ namespace VirtusFitWeb.Controllers
         [HttpGet]
         public IActionResult AddToFavorites(int id)
         {
+            var userId = UserId;
+            var username = Username;
             var favorite = _productService.GetById(id);
-            _productService.AddToFavorites(favorite);
+            _productService.AddToFavorites(favorite, userId, username);
             return RedirectToAction(nameof(ProductList));
         }
 
         [HttpGet]
         public IActionResult DeleteFromFavorites(int id)
         {
+            var userId = UserId;
+            var username = Username;
             var favorite = _productService.GetById(id);
-            _productService.DeleteFromFavorites(favorite);
+            _productService.DeleteFromFavorites(favorite, userId, username);
             return RedirectToAction(nameof(ProductList));
         }
     }

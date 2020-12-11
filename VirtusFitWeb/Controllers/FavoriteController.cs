@@ -10,7 +10,8 @@ namespace VirtusFitWeb.Controllers
         private readonly IFavoriteService _favoriteService;
 
         public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
-        
+        public string Username => User.FindFirstValue(ClaimTypes.Name);
+
         public FavoriteController(IProductService productService, IFavoriteService favoriteService)
         {
             _productService = productService;
@@ -31,9 +32,11 @@ namespace VirtusFitWeb.Controllers
         public IActionResult DeleteFromFavorites(int id)
         {
             var favorite = _productService.GetById(id);
+            var userId = UserId;
+            var username = Username;
 
 
-            _favoriteService.DeleteFromFavorites(favorite);
+            _favoriteService.DeleteFromFavorites(favorite, userId, username);
             return RedirectToAction(nameof(FavoriteList));
         }
 

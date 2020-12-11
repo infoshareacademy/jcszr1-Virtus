@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C080398F-1D4D-4FDF-9D1F-566C3B54D4DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C080398F-1D4D-4FDF-9D1F-566C3B54D4DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtusFitApi", "VirtusFitApi\VirtusFitApi.csproj", "{CF812F2B-B659-4A18-BCF4-17F79913AF6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{C080398F-1D4D-4FDF-9D1F-566C3B54D4DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C080398F-1D4D-4FDF-9D1F-566C3B54D4DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C080398F-1D4D-4FDF-9D1F-566C3B54D4DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF812F2B-B659-4A18-BCF4-17F79913AF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF812F2B-B659-4A18-BCF4-17F79913AF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF812F2B-B659-4A18-BCF4-17F79913AF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF812F2B-B659-4A18-BCF4-17F79913AF6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
