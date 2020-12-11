@@ -38,6 +38,16 @@ namespace VirtusFitApi
             services.AddTransient<IPlanActionsRepository, PlanActionsRepository>();
             services.AddTransient<IReportBuilder, ReportBuilder>();
             services.AddTransient<IUserAccountActionsRepository, UserAccountActionsRepository>();
+            services.AddOpenApiDocument(options =>
+            {
+                options.PostProcess = doc =>
+                {
+                    doc.Info.Version = "v1";
+                    doc.Info.Title = "VirtusFit Reporting API";
+                    doc.Info.Description = "Api developed in order to track all actions in VirtusFit diet planner";
+                    doc.Info.TermsOfService = "None";
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +63,9 @@ namespace VirtusFitApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseEndpoints(endpoints =>
             {
