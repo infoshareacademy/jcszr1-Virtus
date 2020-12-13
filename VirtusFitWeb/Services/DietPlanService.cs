@@ -104,7 +104,7 @@ namespace VirtusFitWeb.Services
             }
 
             dietPlan.DailyDietPlanList = null;
-
+            
             _dietPlanRepository.UpdateDietPlan(dietPlan);
         }
 
