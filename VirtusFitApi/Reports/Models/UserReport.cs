@@ -10,6 +10,7 @@ namespace VirtusFitApi.Reports.Models
         public string Username { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastLogon { get; set; }
+        public int TotalLogonCount { get; set; }
         public int TotalAddedProducts { get; set; }
         public int TotalAddedPlans { get; set; }
         public int MostUsedProduct { get; set; }

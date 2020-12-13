@@ -44,7 +44,7 @@ namespace VirtusFitWeb.Services
             _productRepository.DeleteProduct(product);
 
             var client = _httpClientFactory.CreateClient();
-            var action = CreateAction(ActionType.RemovedProduct, product.ProductId, product.ProductName, username);
+            var action = CreateAction(ActionType.RemovedProduct, product.ProductNo, product.ProductName, username);
             client.PostAsync("https://localhost:5001/VirtusFit/product",
                 new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
         }
@@ -55,7 +55,7 @@ namespace VirtusFitWeb.Services
             _productRepository.InsertProduct(newProduct);
 
             var client = _httpClientFactory.CreateClient();
-            var action = CreateAction(ActionType.AddedNewProduct, newProduct.ProductId, newProduct.ProductName, username);
+            var action = CreateAction(ActionType.AddedNewProduct, newProduct.ProductNo, newProduct.ProductName, username);
             client.PostAsync("https://localhost:5001/VirtusFit/product",
                 new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
 
@@ -81,7 +81,7 @@ namespace VirtusFitWeb.Services
             UpdateProductInExistingPlan(productToBeUpdated, userId);
 
             var client = _httpClientFactory.CreateClient();
-            var action = CreateAction(ActionType.EditedProduct, productToBeUpdated.ProductId, productToBeUpdated.ProductName, username);
+            var action = CreateAction(ActionType.EditedProduct, productToBeUpdated.ProductNo, productToBeUpdated.ProductName, username);
             client.PostAsync("https://localhost:5001/VirtusFit/product",
                 new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
 
@@ -95,7 +95,7 @@ namespace VirtusFitWeb.Services
             _productRepository.Save();
 
             var client = _httpClientFactory.CreateClient();
-            var action = CreateAction(ActionType.ProductRemovedFromFavorites, fav.ProductId, fav.ProductName, username);
+            var action = CreateAction(ActionType.ProductRemovedFromFavorites, fav.ProductNo, fav.ProductName, username);
             client.PostAsync("https://localhost:5001/VirtusFit/product",
                 new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
         }
@@ -108,7 +108,7 @@ namespace VirtusFitWeb.Services
             _productRepository.Save();
 
             var client = _httpClientFactory.CreateClient();
-            var action = CreateAction(ActionType.ProductAddedToFavorites, fav.ProductId, fav.ProductName, username);
+            var action = CreateAction(ActionType.ProductAddedToFavorites, fav.ProductNo, fav.ProductName, username);
             client.PostAsync("https://localhost:5001/VirtusFit/product",
                 new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
         }

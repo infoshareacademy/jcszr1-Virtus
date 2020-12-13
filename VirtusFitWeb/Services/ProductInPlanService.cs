@@ -29,7 +29,7 @@ namespace VirtusFitWeb.Services
             var action = new CreateProductInPlanAction
             {
                 Username = username,
-                ProductId = product.Product.ProductId,
+                ProductId = product.Product.ProductNo,
                 ProductName = product.Product.ProductName,
                 DailyDietPlanId = dailyPlanId,
                 DietPlanId = planId,

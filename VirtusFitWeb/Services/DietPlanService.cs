@@ -128,10 +128,12 @@ namespace VirtusFitWeb.Services
                 }
             }
 
+            var dayCount = dietPlan.DailyDietPlanList.Count;
+
             dietPlan.DailyDietPlanList = null;
 
             var client = _httpClientFactory.CreateClient();
-            var action = CreateAction(ActionType.EditedDietPlan, dietPlan.Id, dietPlan.DailyDietPlanList.Count, username, dietPlan.CaloriesPerDay);
+            var action = CreateAction(ActionType.EditedDietPlan, dietPlan.Id, dayCount, username, dietPlan.CaloriesPerDay);
             client.PostAsync("https://localhost:5001/VirtusFit/plan/dietplan",
                 new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
 
