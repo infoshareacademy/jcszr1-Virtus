@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics.Tracing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using VirtusFitWeb.Filters;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
+    [ExceptionFilter]
     [AllowAnonymous]
     public class BMICalculatorController : Controller
     {
@@ -17,6 +20,8 @@ namespace VirtusFitWeb.Controllers
         [HttpGet]
         public ActionResult Calculator()
         {
+            throw new EventSourceException();
+
             return View();
         }
 
