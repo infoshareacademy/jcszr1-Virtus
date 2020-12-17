@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Serilog;
+using System;
 
 namespace VirtusFitWeb.Filters
 {
@@ -8,10 +8,10 @@ namespace VirtusFitWeb.Filters
     {
         public override void OnException(ExceptionContext context)
         {
-
             Console.WriteLine("Filter works");
 
-            Log.Error("Error");
+
+            Log.Fatal(context.Exception, $"Unhandled exception");
 
             base.OnException(context);
         }

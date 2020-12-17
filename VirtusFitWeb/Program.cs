@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualBasic;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.MSSqlServer;
-using Serilog.Sinks.MSSqlServer.Sinks.MSSqlServer.Options;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.IO;
+using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb
 {
@@ -38,18 +34,18 @@ namespace VirtusFitWeb
                 }
             };
 
-
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
                 .WriteTo.Console()
-               // .WriteTo.MSSqlServer(connectionString, new MSSqlServerSinkOptions { TableName = "Exceptions",AutoCreateSqlTable = true }, restrictedToMinimumLevel: LogEventLevel.Error, columnOptions: columnOptions)
-                .ReadFrom.Configuration(Configuration)
+                .WriteTo.MSSqlServer(connectionString, new MSSqlServerSinkOptions { TableName = "Exceptions", AutoCreateSqlTable = true }, restrictedToMinimumLevel: LogEventLevel.Fatal, columnOptions: columnOptions)
                 //sinkOptions:
+                .Enrich.With<LogEnricher>()
                 .CreateLogger();
+
 
             CreateHostBuilder(args).Build().Run();
 
-           
+            
 
         }
 

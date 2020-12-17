@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.Tracing;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using VirtusFitWeb.Filters;
 using VirtusFitWeb.Services;
 
@@ -20,7 +22,7 @@ namespace VirtusFitWeb.Controllers
         [HttpGet]
         public ActionResult Calculator()
         {
-            throw new EventSourceException();
+            throw new AdalException();
 
             return View();
         }
