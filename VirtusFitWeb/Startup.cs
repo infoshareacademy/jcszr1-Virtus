@@ -113,6 +113,9 @@ namespace VirtusFitWeb
 
             var result = await userManager.CreateAsync(admin, await File.ReadAllTextAsync("password.txt"));
 
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(admin);
+            await userManager.ConfirmEmailAsync(admin, token);
+
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(admin, "Admin");
