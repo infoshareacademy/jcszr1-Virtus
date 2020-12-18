@@ -25,7 +25,7 @@ namespace VirtusFitWeb.Services
 
         public void BlockUser(string email)
         {
-            throw new System.NotImplementedException();
+            _repository.BlockUser(email);
         }
 
         public void RemoveUser(string email)

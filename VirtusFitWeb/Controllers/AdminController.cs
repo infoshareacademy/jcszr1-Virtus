@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
-
         public AdminController(IAdminService adminService)
         {
             _adminService = adminService;
@@ -23,23 +24,23 @@ namespace VirtusFitWeb.Controllers
             return View();
         }
 
-        //public ActionResult OperationFailed()
-        //{
-        //    return View();
-        //}
+        public ActionResult OperationFailed()
+        {
+            return View();
+        }
         public ActionResult ListUsers()
         {
             var model = _adminService.ListAllUsers();
             return View(model);
         }
 
-        // GET: AdminController/ChangePassword/5
+        // GET: AdminController/ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
 
-        // POST: AdminController/ChangePassword/5
+        // POST: AdminController/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(ChangePasswordViewModel newPasswordModel)
@@ -51,30 +52,31 @@ namespace VirtusFitWeb.Controllers
             }
             catch
             {
-                return RedirectToAction(nameof(Index)); /*RedirectToAction(nameof(OperationFailed))*/;
+                return RedirectToAction(nameof(OperationFailed));
             }
         }
 
-        //// GET: AdminController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: AdminController/BlockUser
+        public ActionResult BlockUser()
+        {
+            return View();
+        }
 
-        //// POST: AdminController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: AdminController/BlockUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BlockUser(ChangePasswordViewModel userModel)
+        {
+            try
+            {
+                _adminService.BlockUser(userModel.Email);
+                return RedirectToAction(nameof(ConfirmOperation));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(OperationFailed));
+            }
+        }
 
 
 

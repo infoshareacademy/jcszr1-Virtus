@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BLL;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace VirtusFitWeb.DAL
@@ -34,7 +36,11 @@ namespace VirtusFitWeb.DAL
 
         public void BlockUser(string email)
         {
-            throw new System.NotImplementedException();
+            if (_context.Users.All(u => u.Email != email))
+            {
+                throw new InvalidDataException();
+            }
+            _context.BlockedUsers.Add(new BlockedUser {Email = email}).Context.SaveChanges();
         }
 
         public void RemoveUser(string email)
