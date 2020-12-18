@@ -44,11 +44,13 @@ namespace VirtusFitWeb
             }).AddRazorRuntimeCompilation();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IDietPlanRepository, DietPlanRepository>();
+            services.AddTransient<IAdminRepository, AdminRepository>();
             services.AddDbContext<AppContext>(ServiceLifetime.Transient);
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IDietPlanService, DietPlanService>();
             services.AddTransient<IProductInPlanService, ProductInPlanService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
+            services.AddTransient<IAdminService, AdminService>();
             services.AddSingleton<IBMICalculatorService, BMICalculatorService>();
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(

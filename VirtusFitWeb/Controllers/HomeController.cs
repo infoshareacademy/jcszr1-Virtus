@@ -14,6 +14,18 @@ namespace VirtusFitWeb.Controllers
         {
             _logger = logger;
         }
+
+        
+        
+        
+        
+        
+        //enter index for admin here
+        //[Authorize(Roles = "Admin")]
+
+
+
+
         [AllowAnonymous]
         public IActionResult Index()
         {
