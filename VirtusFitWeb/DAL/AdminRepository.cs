@@ -7,24 +7,29 @@ namespace VirtusFitWeb.DAL
     public class AdminRepository : IAdminRepository
     {
         private readonly AppContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public AdminRepository(AppContext context)
+        public AdminRepository(AppContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         public List<IdentityUser> GetAllUsers()
         {
             return _context.Users.ToList();
         }
 
-        public IdentityUser GetUserByEmail()
+        public IdentityUser GetUserByEmail(string email)
         {
-            throw new System.NotImplementedException();
+            return _context.Users.FirstOrDefault(u => u.Email == email);
         }
 
         public void ChangePassword(string email, string newPassword)
         {
-            throw new System.NotImplementedException();
+            var user = GetUserByEmail(email);
+            var newPasswordHash = _userManager.PasswordHasher.HashPassword(user, newPassword);
+            user.PasswordHash = newPasswordHash;
+            _context.Users.Update(user).Context.SaveChanges();
         }
 
         public void BlockUser(string email)

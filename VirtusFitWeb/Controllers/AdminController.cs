@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
@@ -17,6 +18,15 @@ namespace VirtusFitWeb.Controllers
             return View();
         }
 
+        public ActionResult ConfirmOperation()
+        {
+            return View();
+        }
+
+        //public ActionResult OperationFailed()
+        //{
+        //    return View();
+        //}
         public ActionResult ListUsers()
         {
             var model = _adminService.ListAllUsers();
@@ -24,7 +34,7 @@ namespace VirtusFitWeb.Controllers
         }
 
         // GET: AdminController/ChangePassword/5
-        public ActionResult ChangePassword(int id)
+        public ActionResult ChangePassword()
         {
             return View();
         }
@@ -32,16 +42,16 @@ namespace VirtusFitWeb.Controllers
         // POST: AdminController/ChangePassword/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangePassword(int id, string newPassword)
+        public ActionResult ChangePassword(ChangePasswordViewModel newPasswordModel)
         {
             try
             {
-
-                return RedirectToAction(nameof(Index));
+                _adminService.ChangePassword(newPasswordModel.Email, newPasswordModel.Password);
+                return RedirectToAction(nameof(ConfirmOperation));
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index)); /*RedirectToAction(nameof(OperationFailed))*/;
             }
         }
 

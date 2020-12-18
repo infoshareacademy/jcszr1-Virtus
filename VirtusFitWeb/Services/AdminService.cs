@@ -18,14 +18,9 @@ namespace VirtusFitWeb.Services
             return _repository.GetAllUsers();
         }
 
-        public IdentityUser GetUserByEmail(string email)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void ChangePassword(string email, string newPassword)
         {
-            throw new System.NotImplementedException();
+            _repository.ChangePassword(email,newPassword);
         }
 
         public void BlockUser(string email)
