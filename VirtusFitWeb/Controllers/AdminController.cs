@@ -65,11 +65,25 @@ namespace VirtusFitWeb.Controllers
         // POST: AdminController/BlockUser
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BlockUser(ChangePasswordViewModel userModel)
+        public ActionResult BlockUser(ChangePasswordViewModel userModel, string decision)
         {
+            if (decision == "block")
+            {
+                try
+                {
+                    _adminService.BlockUser(userModel.Email);
+                    return RedirectToAction(nameof(ConfirmOperation));
+                }
+
+                catch
+
+                {
+                    return RedirectToAction(nameof(OperationFailed));
+                }
+            }
             try
             {
-                _adminService.BlockUser(userModel.Email);
+                _adminService.UnblockUser(userModel.Email);
                 return RedirectToAction(nameof(ConfirmOperation));
             }
             catch

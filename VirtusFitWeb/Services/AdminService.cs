@@ -28,6 +28,11 @@ namespace VirtusFitWeb.Services
             _repository.BlockUser(email);
         }
 
+        public void UnblockUser(string email)
+        {
+            _repository.UnblockUser(email);
+        }
+
         public void DeleteUser(string email)
         {
             _repository.DeleteUser(email);
