@@ -78,27 +78,26 @@ namespace VirtusFitWeb.Controllers
             }
         }
 
+        // GET: AdminController/DeleteUser
+        public ActionResult DeleteUser()
+        {
+            return View();
+        }
 
-
-        //// GET: AdminController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: AdminController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: AdminController/DeleteUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteUser(ChangePasswordViewModel userModel)
+        {
+            try
+            {
+                _adminService.DeleteUser(userModel.Email);
+                return RedirectToAction(nameof(ConfirmOperation));
+            }
+            catch
+            {
+                return RedirectToAction(nameof(OperationFailed));
+            }
+        }
     }
 }

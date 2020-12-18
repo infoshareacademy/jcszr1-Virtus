@@ -28,9 +28,9 @@ namespace VirtusFitWeb.Services
             _repository.BlockUser(email);
         }
 
-        public void RemoveUser(string email)
+        public void DeleteUser(string email)
         {
-            throw new System.NotImplementedException();
+            _repository.DeleteUser(email);
         }
     }
 }

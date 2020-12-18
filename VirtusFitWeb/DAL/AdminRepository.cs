@@ -43,9 +43,15 @@ namespace VirtusFitWeb.DAL
             _context.BlockedUsers.Add(new BlockedUser {Email = email}).Context.SaveChanges();
         }
 
-        public void RemoveUser(string email)
+        public void DeleteUser(string email)
         {
-            throw new System.NotImplementedException();
+            var user = GetUserByEmail(email);
+            if (user == null)
+            {
+                throw new InvalidDataException();
+            }
+
+            _context.Users.Remove(user).Context.SaveChanges();
         }
     }
 }
