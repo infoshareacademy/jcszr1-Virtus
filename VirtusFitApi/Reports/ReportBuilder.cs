@@ -346,9 +346,14 @@ namespace VirtusFitApi.Reports
 
             report.Username = username;
 
-            report.LastLogon = _userAccountActionsRepository.GetAllUserAccountActionsById(username)
-                .Where(action => action.ActionType == UserAccountActionType.SuccessfulLogonAttempt)
-                .Select(action => action.Created).Last();
+
+            if (_userAccountActionsRepository
+                .GetAllUserAccountActionsById(username).Any(action => action.ActionType == UserAccountActionType.SuccessfulLogonAttempt))
+            {
+                report.LastLogon = _userAccountActionsRepository.GetAllUserAccountActionsById(username)
+                    .Where(action => action.ActionType == UserAccountActionType.SuccessfulLogonAttempt)
+                    .Select(action => action.Created).Last();
+            }
 
             report.TotalLogonCount = _userAccountActionsRepository.GetAllUserAccountActionsById(username)
                 .Where(action => action.ActionType == UserAccountActionType.SuccessfulLogonAttempt)
