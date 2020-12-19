@@ -99,75 +99,75 @@ namespace VirtusFitApi.Reports
 
             if (_userAccountActionsRepository
                 .GetAllUserAccountActions()
-                .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date).Any(accountAction => accountAction.ActionType == UserAccountActionType.AccountCreated) == true)
+                .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date).Any(accountAction => accountAction.ActionType == UserAccountActionType.AccountCreated) == true)
             {
                 report.CreatedUserAccounts = _userAccountActionsRepository.GetAllUserAccountActions()
-                    .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                    .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                     .Where(accountAction => accountAction.ActionType == UserAccountActionType.AccountCreated).ToList().Count;
             }
 
             if (_userAccountActionsRepository
                 .GetAllUserAccountActions()
-                .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                 .Any(accountAction => accountAction.ActionType == UserAccountActionType.SuccessfulLogonAttempt) == true)
             {
                 report.TotalLogonCount = _userAccountActionsRepository.GetAllUserAccountActions()
-                    .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                    .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                     .Where(accountAction => accountAction.ActionType == UserAccountActionType.SuccessfulLogonAttempt).ToList().Count;
             }
 
             if (_productActionsRepository
                 .GetAllProductActions()
-                .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date).Any(productAction => productAction.Action == ActionType.AddedNewProduct)==true)
+                .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date).Any(productAction => productAction.Action == ActionType.AddedNewProduct)==true)
             {
                 report.AddedProducts = _productActionsRepository.GetAllProductActions()
-                    .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                    .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                     .Where(productAction => productAction.Action == ActionType.AddedNewProduct).ToList().Count;
             }
 
             if (_productActionsRepository.GetAllProductActions()
-                .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                 .Where(productAction => productAction.Action == ActionType.RemovedProduct).ToList().Any() == true)
             {
                 report.RemovedProducts = _productActionsRepository.GetAllProductActions()
-                    .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                    .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                     .Where(productAction => productAction.Action == ActionType.RemovedProduct).ToList().Count;
             }
 
             if (_planActionsRepository.GetAllDietPlanActions()
-                .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                 .ToList().Any() == true)
             {
                 report.AddedPlans = _planActionsRepository.GetAllDietPlanActions()
-                    .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                    .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                     .ToList().Count;
             }
 
             report.ProductsAddedToFav = _productActionsRepository
-                .GetAllProductActions().Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                .GetAllProductActions().Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                 .Count(productAction => productAction.Action == ActionType.ProductAddedToFavorites);
 
             report.ProductsRemovedFromFav = _productActionsRepository
                 .GetAllProductActions()
-                .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                 .Count(productAction => productAction.Action == ActionType.ProductRemovedFromFavorites);
 
             report.ProductsAddedToPlans = _planActionsRepository
                 .GetAllProductInPlanActions()
-                .Where(actions => actions.Created.Date > start.Date && actions.Created.Date < finish.Date)
+                .Where(actions => actions.Created.Date >= start.Date && actions.Created.Date <= finish.Date)
                 .Count(productInPlanAction => productInPlanAction.Action == ActionType.AddedProductToExistingDailyPlan);
 
             report.SearchesDone = _productActionsRepository
-                                      .GetAllSearchValueActions().Count(search => search.Created.Date > start.Date && search.Created.Date < finish.Date) +
+                                      .GetAllSearchValueActions().Count(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date) +
                                   _productActionsRepository
-                                      .GetAllSearchStringActions().Count(search => search.Created.Date > start.Date && search.Created.Date < finish.Date);
+                                      .GetAllSearchStringActions().Count(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date);
             
 
             if (_productActionsRepository
-                .GetAllSearchStringActions().Any(search => search.Created.Date > start.Date && search.Created.Date < finish.Date)==true)
+                .GetAllSearchStringActions().Any(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)==true)
             {
                 report.TopStringSearch = _productActionsRepository.GetAllSearchStringActions()
-                    .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date)
+                    .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .GroupBy(x => x.SearchString)
                     .Select(x => new { SearchString = x.Key, TimesAppeared = x.Count() }).ToList()
                     .OrderByDescending(x => x.TimesAppeared).First().SearchString;
@@ -175,50 +175,50 @@ namespace VirtusFitApi.Reports
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
-                .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date).Any(action => action.SearchType == SearchActionType.SearchByCalories) == true)
+                .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByCalories) == true)
             {
                 report.AvgCaloriesSearch = _productActionsRepository.GetAllSearchValueActions()
-                    .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date)
+                    .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByCalories).ToList()
                     .Average(value => value.SearchValue);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
-                .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date).Any(action => action.SearchType == SearchActionType.SearchByCarbohydrates)==true)
+                .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByCarbohydrates)==true)
             {
                 report.AvgCarbohydratesSearch = _productActionsRepository.GetAllSearchValueActions()
-                    .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date)
+                    .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByCarbohydrates).ToList()
                     .Average(value => value.SearchValue);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
-                .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date).Any(action => action.SearchType == SearchActionType.SearchByFat)==true)
+                .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByFat)==true)
             {
                 report.AvgFatSearch = _productActionsRepository.GetAllSearchValueActions()
-                    .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date)
+                    .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByFat).ToList()
                     .Average(value => value.SearchValue);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
-                .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date).Any(action => action.SearchType == SearchActionType.SearchByProtein)==true)
+                .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByProtein)==true)
             {
                 report.AvgProteinsSearch = _productActionsRepository.GetAllSearchValueActions()
-                    .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date)
+                    .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByProtein).ToList()
                     .Average(value => value.SearchValue);
             }
 
             if (_productActionsRepository
                 .GetAllProductActions()
-                .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date).Any(action => action.Action == ActionType.ProductAddedToFavorites)==true)
+                .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.Action == ActionType.ProductAddedToFavorites)==true)
             {
                 report.TopFavId = _productActionsRepository.GetAllProductActions()
-                    .Where(search => search.Created.Date > start.Date && search.Created.Date < finish.Date)
+                    .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.Action == ActionType.ProductAddedToFavorites)
                     .GroupBy(action => action.ProductId)
                     .Select(x => new { ProductId = x.Key, TimesAppeared = x.Count() }).ToList()
@@ -226,28 +226,28 @@ namespace VirtusFitApi.Reports
             }
 
             if (_planActionsRepository
-                .GetAllBmiActions().Any(bmi => bmi.Created.Date > start.Date && bmi.Created.Date < finish.Date)==true)
+                .GetAllBmiActions().Any(bmi => bmi.Created.Date >= start.Date && bmi.Created.Date <= finish.Date)==true)
             {
                 report.AvgUserBmi = _planActionsRepository.GetAllBmiActions()
-                    .Where(bmi => bmi.Created.Date > start.Date && bmi.Created.Date < finish.Date)
+                    .Where(bmi => bmi.Created.Date >= start.Date && bmi.Created.Date <= finish.Date)
                     .ToList().Average(bmi => bmi.Bmi);
             }
 
             if (_planActionsRepository
                 .GetAllDietPlanActions()
-                .Where(action => action.Created.Date > start.Date && action.Created.Date < finish.Date).Any(action => action.Action == ActionType.AddedDietPlan)==true)
+                .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date).Any(action => action.Action == ActionType.AddedDietPlan)==true)
             {
                 report.AvgPlanLength = _planActionsRepository.GetAllDietPlanActions()
-                    .Where(action => action.Created.Date > start.Date && action.Created.Date < finish.Date)
+                    .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date)
                     .Where(action => action.Action == ActionType.AddedDietPlan).ToList().Average(action => action.Length);
             }
 
             if (_planActionsRepository
                 .GetAllDietPlanActions()
-                .Where(action => action.Created.Date > start.Date && action.Created.Date < finish.Date).Any(action => action.Action == ActionType.AddedDietPlan)==true)
+                .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date).Any(action => action.Action == ActionType.AddedDietPlan)==true)
             {
                 report.AvgPlanCalories = _planActionsRepository.GetAllDietPlanActions()
-                    .Where(action => action.Created.Date > start.Date && action.Created.Date < finish.Date)
+                    .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date)
                     .Where(action => action.Action == ActionType.AddedDietPlan).ToList()
                     .Average(action => action.CaloriesPerDay);
             }
@@ -266,8 +266,8 @@ namespace VirtusFitApi.Reports
             report.Username = username;
 
             report.LastLogon = _userAccountActionsRepository.GetAllUserAccountActionsById(username)
-                .Where(action => action.ActionType == UserAccountActionType.AccountCreated)
-                .Select(action => action.Created).OrderByDescending(action => action.Date).FirstOrDefault();
+                .Where(action => action.ActionType == UserAccountActionType.SuccessfulLogonAttempt)
+                .Select(action => action.Created).Last();
 
             report.TotalLogonCount = _userAccountActionsRepository.GetAllUserAccountActionsById(username)
                 .Where(action => action.ActionType == UserAccountActionType.SuccessfulLogonAttempt)
