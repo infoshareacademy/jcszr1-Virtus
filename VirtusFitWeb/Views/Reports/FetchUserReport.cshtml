@@ -1,0 +1,51 @@
+﻿@using VirtusFitWeb.Controllers;
+@model BLL.ReportParameters
+
+
+@{
+    ViewData["Title"] = "Fetch user specific report";
+    Layout = "_AdminLayout";
+}
+<style>
+    .btn-info {
+        background-color: rgb(28, 92, 51);
+        border-color: rgb(28, 92, 51);
+    }
+
+        .btn-info:hover {
+            background-color: rgb(67, 132, 36);
+            border-color: rgb(67, 132, 36);
+        }
+
+    .btn-primary:hover {
+        background-color: rgb(36, 69, 169);
+        border-color: rgb(36, 69, 169);
+    }
+</style>
+<h1>Fetch user report by name</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FetchUserReportResult" asp-controller="Reports" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <a class="btn btn-info btn-block" asp-action="Index" asp-controller="Reports">Back</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using VirtusFitWeb.DAL;
 using VirtusFitWeb.Services;
 using AppContext = VirtusFitWeb.DAL.AppContext;
@@ -41,22 +44,26 @@ namespace VirtusFitWeb
             }).AddRazorRuntimeCompilation();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IDietPlanRepository, DietPlanRepository>();
+            services.AddTransient<IAdminRepository, AdminRepository>();
             services.AddDbContext<AppContext>(ServiceLifetime.Transient);
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IDietPlanService, DietPlanService>();
             services.AddTransient<IProductInPlanService, ProductInPlanService>();
             services.AddTransient<IFavoriteService, FavoriteService>();
+            services.AddTransient<IAdminService, AdminService>();
             services.AddSingleton<IBMICalculatorService, BMICalculatorService>();
+            services.AddTransient<IReportService, ReportService>();
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppContext>();
             services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -83,6 +90,41 @@ namespace VirtusFitWeb
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            GenerateAdmin(userManager, roleManager).GetAwaiter().GetResult();
+        }
+
+        private static async Task GenerateAdmin(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            await using var client = new AppContext();
+
+            if (await client.UserRoles.AnyAsync(x =>
+                x.RoleId == client.Roles.FirstOrDefault(r => r.Name == "Admin").Id))
+            {
+                return;
+            }
+
+            if (!roleManager.Roles.Any(x => x.Name == "Admin"))
+            {
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            var admin = new IdentityUser
+            {
+                UserName = "admin@admin.ad",
+                Email = "admin@admin.ad",
+                LockoutEnabled = false
+            };
+
+            var result = await userManager.CreateAsync(admin, await File.ReadAllTextAsync("password.txt"));
+
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(admin);
+            await userManager.ConfirmEmailAsync(admin, token);
+
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(admin, "Admin");
+            }
         }
     }
 }

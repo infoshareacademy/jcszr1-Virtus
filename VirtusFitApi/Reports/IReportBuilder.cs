@@ -9,7 +9,7 @@ namespace VirtusFitApi.Reports
     public interface IReportBuilder
     {
         public OverallReport CreateOverallReport();
-        public OverallReport CreateDailyReport();
+        public OverallReport CreateDailyReport(DateTime start, DateTime finish);
         public UserReport CreateUserReport(string id);
     }
 }

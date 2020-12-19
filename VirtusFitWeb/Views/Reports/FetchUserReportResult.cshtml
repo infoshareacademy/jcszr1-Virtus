@@ -1,0 +1,59 @@
+﻿@model VirtusFitApi.Reports.Models.UserReport
+
+@{
+    ViewData["Title"] = "User report";
+    Layout = "_AdminLayout";
+}
+
+<h1>User report</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Username: </th>
+        <td>@Html.DisplayFor(model => model.Username)</td>
+    </tr>
+    <tr>
+        <th scope="col">Account creation date: </th>
+        <td>@Html.DisplayFor(model => model.Created)</td>
+    </tr>
+    <tr>
+        <th scope="col">Last successful logon attempt: </th>
+        <td>@Html.DisplayFor(model => model.LastLogon)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total logon count: </th>
+        <td>@Html.DisplayFor(model => model.TotalLogonCount)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total products added to product list: </th>
+        <td>@Html.DisplayFor(model => model.TotalAddedProducts)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total plans added: </th>
+        <td>@Html.DisplayFor(model => model.TotalAddedPlans)</td>
+    </tr>
+    <tr>
+        <th scope="col">Product most often added to plans: </th>
+        <td>@Html.DisplayFor(model => model.MostUsedProduct)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average calories in plan: </th>
+        <td>@Html.DisplayFor(model => model.AvgPlanCalories)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average plan length: </th>
+        <td>@Html.DisplayFor(model => model.AvgPlanLength)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total products added to favorites: </th>
+        <td>@Html.DisplayFor(model => model.TotalFav)</td>
+    </tr>
+    </thead>
+</table>
+
+<div class="row">
+    <div class="col-md-4">
+        <a class="btn btn-info btn-block" asp-action="Index" asp-controller="Reports">Back</a>
+    </div>
+</div>

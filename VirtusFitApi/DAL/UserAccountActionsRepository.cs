@@ -21,9 +21,9 @@ namespace VirtusFitApi.DAL
             return _context.UserAccountActions.ToList();
         }
 
-        public List<UserAccountAction> GetAllUserAccountActionsById(string id)
+        public List<UserAccountAction> GetAllUserAccountActionsById(string username)
         {
-            return _context.UserAccountActions.Where(user => user.UserId==id).ToList();
+            return _context.UserAccountActions.Where(user => user.UserId==username).ToList();
         }
 
         public UserAccountAction GetUserAccountActionById(int id)

@@ -28,16 +28,17 @@ namespace VirtusFitApi.Controllers
         }
 
         [HttpGet("report/daily")]
-        public ActionResult<OverallReport> DailyReport()
+        public ActionResult<OverallReport> DailyReport([FromHeader]string start,[FromHeader]string finish)
         {
-            var report = _builder.CreateDailyReport();
+
+            var report = _builder.CreateDailyReport(Convert.ToDateTime(start), Convert.ToDateTime(finish));
             return Accepted(report);
         }
 
-        [HttpGet("report/user/{id}")]
-        public ActionResult<UserReport> UserReport(string id)
+        [HttpGet("report/user/{username}")]
+        public ActionResult<UserReport> UserReport(string username)
         {
-            var report = _builder.CreateUserReport(id);
+            var report = _builder.CreateUserReport(username);
             return Accepted(report);
         }
     }
