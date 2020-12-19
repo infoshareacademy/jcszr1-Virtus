@@ -67,6 +67,7 @@ namespace UnitTests
         {
             var product = new Product();
             var productRepositoryMock = new Mock<IProductRepository>();
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(new List<Product>{new Product()});
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
