@@ -9,7 +9,7 @@ namespace VirtusFitApi.DAL
 {
     public class ApiContext : DbContext
     {
-        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitApiTest1;Trusted_Connection=True;";
+        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitApiTest2;Trusted_Connection=True;";
 
         public DbSet<ProductAction> ProductActions { get; set; }
         public DbSet<DietPlanAction> DietPlanActions { get; set; }

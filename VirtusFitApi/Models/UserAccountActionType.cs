@@ -11,7 +11,10 @@ namespace VirtusFitApi.Models
         SuccessfulLogonAttempt,
         FailedLogonAttempt,
         UserLoggedOut,
-        PasswordChanged
+        PasswordChanged,
+        UserUnlocked,
+        UserLocked,
+        UserDeleted
 
     }
 }

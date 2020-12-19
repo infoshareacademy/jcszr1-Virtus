@@ -110,6 +110,14 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
                     await client.PostAsync("https://localhost:5001/VirtusFit/user",
                         new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
 
+                    var accountStatus = CreateAction(user.UserName, UserAccountActionType.UserUnlocked);
+                    await client.PostAsync("https://localhost:5001/VirtusFit/user",
+                        new StringContent(JsonSerializer.Serialize(accountStatus), Encoding.UTF8, "application/json"));
+
+                    var passwordStatus = CreateAction(user.UserName, UserAccountActionType.PasswordChanged);
+                    await client.PostAsync("https://localhost:5001/VirtusFit/user",
+                        new StringContent(JsonSerializer.Serialize(passwordStatus), Encoding.UTF8, "application/json"));
+
                     var seedData = ProductLoader.GetProductsFromFile();
                     foreach (var product in seedData)
                     {

@@ -14,6 +14,14 @@
         <td>@Html.DisplayFor(model => model.Username)</td>
     </tr>
     <tr>
+        <th scope="col">Account status: </th>
+        <td>@Html.DisplayFor(model => model.State)</td>
+    </tr>
+    <tr>
+        <th scope="col">Last password change: </th>
+        <td>@Html.DisplayFor(model => model.LastPasswordChange)</td>
+    </tr>
+    <tr>
         <th scope="col">Account creation date: </th>
         <td>@Html.DisplayFor(model => model.Created)</td>
     </tr>

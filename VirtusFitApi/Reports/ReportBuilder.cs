@@ -17,7 +17,9 @@ namespace VirtusFitApi.Reports
         private readonly IProductActionsRepository _productActionsRepository;
         private readonly IUserAccountActionsRepository _userAccountActionsRepository;
 
-        public ReportBuilder(IPlanActionsRepository planActionsRepository, IProductActionsRepository productActionsRepository, IUserAccountActionsRepository userAccountActionsRepository)
+        public ReportBuilder(IPlanActionsRepository planActionsRepository,
+            IProductActionsRepository productActionsRepository,
+            IUserAccountActionsRepository userAccountActionsRepository)
         {
             _productActionsRepository = productActionsRepository;
             _planActionsRepository = planActionsRepository;
@@ -28,66 +30,145 @@ namespace VirtusFitApi.Reports
         {
             var report = new OverallReport();
 
-            report.CreatedUserAccounts = _userAccountActionsRepository.GetAllUserAccountActions()
-                .Where(accountAction => accountAction.ActionType == UserAccountActionType.AccountCreated).ToList().Count;
+            if (_userAccountActionsRepository
+                .GetAllUserAccountActions().Any(accountAction =>
+                    accountAction.ActionType == UserAccountActionType.AccountCreated) == true)
+            {
+                report.CreatedUserAccounts = _userAccountActionsRepository.GetAllUserAccountActions()
+                    .Where(accountAction => accountAction.ActionType == UserAccountActionType.AccountCreated).ToList()
+                    .Count;
+            }
 
-            report.TotalLogonCount = _userAccountActionsRepository.GetAllUserAccountActions()
-                .Where(accountAction => accountAction.ActionType == UserAccountActionType.SuccessfulLogonAttempt).ToList().Count;
+            if (_userAccountActionsRepository
+                    .GetAllUserAccountActions()
+                    .Any(accountAction => accountAction.ActionType == UserAccountActionType.SuccessfulLogonAttempt) ==
+                true)
+            {
+                report.TotalLogonCount = _userAccountActionsRepository.GetAllUserAccountActions()
+                    .Where(accountAction => accountAction.ActionType == UserAccountActionType.SuccessfulLogonAttempt)
+                    .ToList().Count;
+            }
 
-            report.AddedProducts = _productActionsRepository.GetAllProductActions()
-                .Where(productAction => productAction.Action == ActionType.AddedNewProduct).ToList().Count;
+            if (_productActionsRepository
+                    .GetAllProductActions().Any(productAction => productAction.Action == ActionType.AddedNewProduct) ==
+                true)
+            {
+                report.AddedProducts = _productActionsRepository.GetAllProductActions()
+                    .Where(productAction => productAction.Action == ActionType.AddedNewProduct).ToList().Count;
+            }
 
-            report.RemovedProducts = _productActionsRepository.GetAllProductActions()
-                .Where(productAction => productAction.Action == ActionType.RemovedProduct).ToList().Count;
+            if (_productActionsRepository.GetAllProductActions()
+                .Where(productAction => productAction.Action == ActionType.RemovedProduct).ToList().Any() == true)
+            {
+                report.RemovedProducts = _productActionsRepository.GetAllProductActions()
+                    .Where(productAction => productAction.Action == ActionType.RemovedProduct).ToList().Count;
+            }
 
-            report.AddedPlans = _planActionsRepository.GetAllDietPlanActions().ToList().Count;
+            if (_planActionsRepository.GetAllDietPlanActions()
+                .ToList().Any() == true)
+            {
+                report.AddedPlans = _planActionsRepository.GetAllDietPlanActions()
+                    .ToList().Count;
+            }
 
             report.ProductsAddedToFav = _productActionsRepository
-                .GetAllProductActions().Count(productAction => productAction.Action == ActionType.ProductAddedToFavorites);
+                .GetAllProductActions()
+                .Count(productAction => productAction.Action == ActionType.ProductAddedToFavorites);
 
             report.ProductsRemovedFromFav = _productActionsRepository
-                .GetAllProductActions().Count(productAction => productAction.Action == ActionType.ProductRemovedFromFavorites);
+                .GetAllProductActions()
+                .Count(productAction => productAction.Action == ActionType.ProductRemovedFromFavorites);
 
-            report.ProductsAddedToPlans = _planActionsRepository.GetAllProductInPlanActions()
+            report.ProductsAddedToPlans = _planActionsRepository
+                .GetAllProductInPlanActions()
                 .Count(productInPlanAction => productInPlanAction.Action == ActionType.AddedProductToExistingDailyPlan);
 
-            report.SearchesDone = _productActionsRepository.GetAllSearchValueActions().Count +
-                                  _productActionsRepository.GetAllSearchStringActions().Count;
+            report.SearchesDone = _productActionsRepository
+                                      .GetAllSearchValueActions().Count() +
+                                  _productActionsRepository
+                                      .GetAllSearchStringActions().Count();
 
-            report.TopStringSearch = _productActionsRepository.GetAllSearchStringActions().GroupBy(x => x.SearchString)
-                .Select(x => new {SearchString = x.Key, TimesAppeared = x.Count()}).ToList()
-                .OrderByDescending(x => x.TimesAppeared).First().SearchString;
 
-            report.AvgCaloriesSearch = _productActionsRepository.GetAllSearchValueActions()
-                .Where(action => action.SearchType == SearchActionType.SearchByCalories).ToList()
-                .Average(value => value.SearchValue);
+            if (_productActionsRepository
+                .GetAllSearchStringActions().Any())
+            {
+                report.TopStringSearch = _productActionsRepository.GetAllSearchStringActions()
+                    .GroupBy(x => x.SearchString)
+                    .Select(x => new {SearchString = x.Key, TimesAppeared = x.Count()}).ToList()
+                    .OrderByDescending(x => x.TimesAppeared).First().SearchString;
+            }
 
-            report.AvgCarbohydratesSearch = _productActionsRepository.GetAllSearchValueActions()
-                .Where(action => action.SearchType == SearchActionType.SearchByCarbohydrates).ToList()
-                .Average(value => value.SearchValue);
+            if (_productActionsRepository
+                .GetAllSearchValueActions()
+                .Any(action => action.SearchType == SearchActionType.SearchByCalories) == true)
+            {
+                report.AvgCaloriesSearch = _productActionsRepository.GetAllSearchValueActions()
+                    .Where(action => action.SearchType == SearchActionType.SearchByCalories).ToList()
+                    .Average(value => value.SearchValue);
+            }
 
-            report.AvgFatSearch = _productActionsRepository.GetAllSearchValueActions()
-                .Where(action => action.SearchType == SearchActionType.SearchByFat).ToList()
-                .Average(value => value.SearchValue);
+            if (_productActionsRepository
+                .GetAllSearchValueActions()
+                .Any(action => action.SearchType == SearchActionType.SearchByCarbohydrates) == true)
+            {
+                report.AvgCarbohydratesSearch = _productActionsRepository.GetAllSearchValueActions()
+                    .Where(action => action.SearchType == SearchActionType.SearchByCarbohydrates).ToList()
+                    .Average(value => value.SearchValue);
+            }
 
-            report.AvgProteinsSearch = _productActionsRepository.GetAllSearchValueActions()
-                .Where(action => action.SearchType == SearchActionType.SearchByProtein).ToList()
-                .Average(value => value.SearchValue);
+            if (_productActionsRepository
+                .GetAllSearchValueActions()
+                .Any(action => action.SearchType == SearchActionType.SearchByFat) == true)
+            {
+                report.AvgFatSearch = _productActionsRepository.GetAllSearchValueActions()
+                    .Where(action => action.SearchType == SearchActionType.SearchByFat).ToList()
+                    .Average(value => value.SearchValue);
+            }
 
-            report.TopFavId = _productActionsRepository.GetAllProductActions()
-                .Where(action => action.Action == ActionType.ProductAddedToFavorites).ToList()
-                .GroupBy(action => action.ProductId)
-                .Select(x => new {ProductId = x.Key, TimesAppeared = x.Count()}).ToList()
-                .OrderByDescending(x => x.TimesAppeared).First().ProductId;
+            if (_productActionsRepository
+                .GetAllSearchValueActions()
+                .Any(action => action.SearchType == SearchActionType.SearchByProtein) == true)
+            {
+                report.AvgProteinsSearch = _productActionsRepository.GetAllSearchValueActions()
+                    .Where(action => action.SearchType == SearchActionType.SearchByProtein).ToList()
+                    .Average(value => value.SearchValue);
+            }
 
-            report.AvgUserBmi = _planActionsRepository.GetAllBmiActions().Average(bmi => bmi.Bmi);
+            if (_productActionsRepository
+                .GetAllProductActions()
+                .Any(action => action.Action == ActionType.ProductAddedToFavorites) == true)
+            {
+                report.TopFavId = _productActionsRepository.GetAllProductActions()
+                    .Where(action => action.Action == ActionType.ProductAddedToFavorites)
+                    .GroupBy(action => action.ProductId)
+                    .Select(x => new {ProductId = x.Key, TimesAppeared = x.Count()}).ToList()
+                    .OrderByDescending(x => x.TimesAppeared).First().ProductId;
+            }
 
-            report.AvgPlanLength = _planActionsRepository.GetAllDietPlanActions()
-                .Where(action => action.Action == ActionType.AddedDietPlan).ToList().Average(action => action.Length);
+            if (_planActionsRepository
+                .GetAllBmiActions().Any() == true)
+            {
+                report.AvgUserBmi = _planActionsRepository.GetAllBmiActions()
+                    .ToList().Average(bmi => bmi.Bmi);
+            }
 
-            report.AvgPlanCalories = _planActionsRepository.GetAllDietPlanActions()
-                .Where(action => action.Action == ActionType.AddedDietPlan).ToList()
-                .Average(action => action.CaloriesPerDay);
+            if (_planActionsRepository
+                .GetAllDietPlanActions()
+                .Any(action => action.Action == ActionType.AddedDietPlan) == true)
+            {
+                report.AvgPlanLength = _planActionsRepository.GetAllDietPlanActions()
+                    .Where(action => action.Action == ActionType.AddedDietPlan).ToList()
+                    .Average(action => action.Length);
+            }
+
+            if (_planActionsRepository
+                .GetAllDietPlanActions()
+                .Any(action => action.Action == ActionType.AddedDietPlan) == true)
+            {
+                report.AvgPlanCalories = _planActionsRepository.GetAllDietPlanActions()
+                    .Where(action => action.Action == ActionType.AddedDietPlan).ToList()
+                    .Average(action => action.CaloriesPerDay);
+            }
 
             return report;
         }
@@ -273,6 +354,11 @@ namespace VirtusFitApi.Reports
                 .Where(action => action.ActionType == UserAccountActionType.SuccessfulLogonAttempt)
                 .ToList().Count;
 
+            report.State = GetAccountStatus(username);
+
+            report.LastPasswordChange = _userAccountActionsRepository
+                .GetAllUserAccountActionsById(username).Last(action => action.ActionType == UserAccountActionType.PasswordChanged).Created;
+
             report.TotalAddedProducts = _productActionsRepository.GetAllProductActions()
                 .Where(action => action.Username == username)
                 .Where(action => action.Action == ActionType.AddedNewProduct)
@@ -321,6 +407,41 @@ namespace VirtusFitApi.Reports
                 .Count(action => action.Action == ActionType.ProductAddedToFavorites);
 
             return report;
+        }
+
+        private string GetAccountStatus(string username)
+        {
+            var status = "";
+
+            if (username == "admin@admin.ad")
+            {
+                status = "Active";
+                return status;
+            }
+
+            var lastUserAction = _userAccountActionsRepository
+                .GetAllUserAccountActionsById(username)
+                .Where(action =>
+                    action.ActionType == UserAccountActionType.UserDeleted ||
+                    action.ActionType == UserAccountActionType.UserUnlocked ||
+                    action.ActionType == UserAccountActionType.UserLocked).ToList();
+
+
+            switch (lastUserAction.Last().ActionType)
+            {
+                case UserAccountActionType.UserUnlocked:
+                    status = "Active";
+                    break;
+                case UserAccountActionType.UserDeleted:
+                    status = "Deleted";
+                    break;
+                case UserAccountActionType.UserLocked:
+                    status = "Locked";
+                    break;
+            }
+
+
+            return status;
         }
     }
 }

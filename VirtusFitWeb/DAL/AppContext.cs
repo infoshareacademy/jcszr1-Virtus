@@ -8,7 +8,7 @@ namespace VirtusFitWeb.DAL
     public class AppContext : IdentityDbContext
     {
 
-        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDB2;Trusted_Connection=True;";
+        private static readonly string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Database=VirtusFitDB3;Trusted_Connection=True;";
 
         public DbSet<Product> Products { get; set; }
         public DbSet<DietPlan> DietPlans { get; set; }
