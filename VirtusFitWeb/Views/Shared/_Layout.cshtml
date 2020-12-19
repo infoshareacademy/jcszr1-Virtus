@@ -1,9 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <style>
-    .bg-custom
-    {
-        background-color:rgb(28, 92, 51)
+    .bg-custom {
+        background-color: rgb(28, 92, 51)
+    }
+
+    .nav-title {
+        width: 100%;
+        font-size: 24px;
     }
 </style>
 <head>
@@ -16,56 +20,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<header>
-    <div id="topheader">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-custom border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/logo9.png" width="125" height="125" /></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex">
-                    <ul class="navbar-nav nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Product" ? "active" : "")" asp-area="" asp-controller="Product" asp-action="ProductList">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "BMICalculator" ? "active" : "")" asp-area="" asp-controller="BMICalculator" asp-action="Calculator">BMI Calculator</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "DietPlan" ? "active" : "")" asp-area="" asp-controller="DietPlan" asp-action="Index">Diet planner</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Favorite" ? "active" : "")" asp-area="" asp-controller="Favorite" asp-action="FavoriteList">Favorites</a>
-                        </li>
-                    </ul>
-                    <span class="navbar-text text-right">
-                        Force yourself to eat healthy.&nbsp;
-                    </span>
-                    <partial name="_LoginPartial" />
+    <header>
+        <div id="topheader">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-custom border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/logo9.png" width="125" height="125" /></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex">
+                        <div class="navbar-nav nav mr-auto">
+                            <span class="navbar-text nav-title">Virtus Fit</span>
+                            <span class="navbar-text">Force yourself to eat healthy.</span>
+                        </div>
+                        <ul class="navbar-nav nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Product" ? "active" : "")" asp-area="" asp-controller="Product" asp-action="ProductList">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "BMICalculator" ? "active" : "")" asp-area="" asp-controller="BMICalculator" asp-action="Calculator">BMI Calculator</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "DietPlan" ? "active" : "")" asp-area="" asp-controller="DietPlan" asp-action="Index">Diet planner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Favorite" ? "active" : "")" asp-area="" asp-controller="Favorite" asp-action="FavoriteList">Favorites</a>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+                                </li>
+                            }
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-<script>
-    $('#topheader .navbar-nav a').on('click', function () {
-        $('#topheader .navbar-nav').find('li.active').removeClass('active');
-        $(this).parent('li').addClass('active');
-    });
-</script>
-@RenderSection("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $('#topheader .navbar-nav a').on('click', function () {
+            $('#topheader .navbar-nav').find('li.active').removeClass('active');
+            $(this).parent('li').addClass('active');
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

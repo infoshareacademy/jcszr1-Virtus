@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using VirtusFitWeb.DAL;
 
 namespace VirtusFitWeb.Areas.Identity.Pages.Account
 {
@@ -15,14 +16,17 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly AppContext _context;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            AppContext context)
         {
             _userManager = userManager;
+            _context = context;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -71,6 +75,13 @@ namespace VirtusFitWeb.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+
+            if (_context.BlockedUsers.Any(b=>b.Email==Input.Email))
+            {
+
+                ModelState.AddModelError(string.Empty, "Your account has been blocked. Contact administrator");
+                return Page();
+            }
 
             if (ModelState.IsValid)
             {

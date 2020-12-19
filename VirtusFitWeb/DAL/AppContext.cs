@@ -14,6 +14,7 @@ namespace VirtusFitWeb.DAL
         public DbSet<DietPlan> DietPlans { get; set; }
         public DbSet<DailyDietPlan> DailyDietPlans { get; set; }
         public DbSet<ProductInDietPlanDb> ProductsInDietPlans { get; set; }
+        public DbSet<BlockedUser> BlockedUsers { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
