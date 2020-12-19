@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.MSSqlServer;
+using System.Collections.ObjectModel;
+using System.Data;
 using VirtusFitWeb.DAL;
 using VirtusFitWeb.Services;
 using AppContext = VirtusFitWeb.DAL.AppContext;
@@ -26,6 +29,7 @@ namespace VirtusFitWeb
             Configuration = configuration;
             using var client = new AppContext();
             client.Database.EnsureCreated();
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -54,6 +58,24 @@ namespace VirtusFitWeb
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AppContext>();
+
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            var columnOptions = new ColumnOptions()
+            {
+                AdditionalColumns = new Collection<SqlColumn>
+                {
+                    new SqlColumn("User", SqlDbType.VarChar),
+                }
+            };
+
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.MSSqlServer(connectionString, new MSSqlServerSinkOptions { TableName = "Exceptions", AutoCreateSqlTable = true }, restrictedToMinimumLevel: LogEventLevel.Fatal, columnOptions: columnOptions)
+                .Enrich.With<LogEnricher>()
+                .CreateLogger();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -30,7 +30,6 @@ namespace VirtusFitWeb.Services
                     logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty("User", userName));
                 }
             }
-            logEvent.AddOrUpdateProperty(propertyFactory.CreateProperty("Date time", DateTime.Now));
         }
     }
 }
