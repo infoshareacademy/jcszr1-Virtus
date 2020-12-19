@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VirtusFitApi.DAL;
 using VirtusFitApi.Reports;
 using VirtusFitApi.Reports.Models;
 
@@ -14,10 +15,12 @@ namespace VirtusFitApi.Controllers
     public class ReportController : ControllerBase
     {
         private readonly IReportBuilder _builder;
+        private readonly IUserAccountActionsRepository _userAccountActionsRepository;
 
-        public ReportController(IReportBuilder reportBuilder)
+        public ReportController(IReportBuilder reportBuilder, IUserAccountActionsRepository userAccountActionsRepository)
         {
             _builder = reportBuilder;
+            _userAccountActionsRepository = userAccountActionsRepository;
         }
 
         [HttpGet("report/overall")]
@@ -38,6 +41,11 @@ namespace VirtusFitApi.Controllers
         [HttpGet("report/user/{username}")]
         public ActionResult<UserReport> UserReport(string username)
         {
+            var userActions = _userAccountActionsRepository.GetAllUserAccountActionsById(username);
+            if (userActions == null)
+            {
+                return BadRequest();
+            }
             var report = _builder.CreateUserReport(username);
             return Accepted(report);
         }
