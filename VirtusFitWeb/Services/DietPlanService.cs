@@ -140,7 +140,7 @@ namespace VirtusFitWeb.Services
 
         public void DeleteById(int id, string userid, string username)
         {
-            var length = Convert.ToInt32(GetDietPlan(id).Duration);
+            var length = GetDietPlan(id).Duration.Days;
             var client = _httpClientFactory.CreateClient();
             var action = CreateAction(ActionType.RemovedDietPlan, id, length, username, GetDietPlan(id).CaloriesPerDay);
             client.PostAsync("https://localhost:5001/VirtusFit/plan/dietplan",
