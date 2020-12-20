@@ -74,7 +74,7 @@ namespace UnitTests
         [InlineData(943233)]
         public void AddToFavorites_IsAddedToFavorites(int id)
         {
-            var product = new Product { ProductId = id, IsFavourite = false };
+            var product = new Product { ProductId = id, IsFavorite = false };
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProductById(id)).Returns(product);
 
@@ -82,7 +82,7 @@ namespace UnitTests
 
             sut.AddToFavorites(product);
 
-            product.IsFavourite.Should().BeTrue();
+            product.IsFavorite.Should().BeTrue();
         }
 
         [Theory]
@@ -109,7 +109,7 @@ namespace UnitTests
         [InlineData(943233)]
         public void GetById_CheckIsNullIfNotFavorite(int id)
         {
-            var product = new Product { ProductId = id, IsFavourite = false};
+            var product = new Product { ProductId = id, IsFavorite = false};
             var list = new List<Product> { product };
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(list);
@@ -127,7 +127,7 @@ namespace UnitTests
         [InlineData(943233)]
         public void GetById_IsProductIdValid(int id)
         {
-            var product = new Product { ProductId = id, IsFavourite = true};
+            var product = new Product { ProductId = id, IsFavorite = true};
             var list = new List<Product> { product };
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(list);
@@ -145,7 +145,7 @@ namespace UnitTests
         [InlineData(943233)]
         public void GetById_IsResultProductFavorite(int id)
         {
-            var product = new Product { ProductId = id, IsFavourite = true};
+            var product = new Product { ProductId = id, IsFavorite = true};
             var list = new List<Product> { product };
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(list);
@@ -154,7 +154,7 @@ namespace UnitTests
 
             var result = sut.GetById(id);
 
-            result.Should().BeOfType<Product>().And.Match(p=> ((Product)p).IsFavourite);
+            result.Should().BeOfType<Product>().And.Match(p=> ((Product)p).IsFavorite);
         }
 
         [Theory]
@@ -197,7 +197,7 @@ namespace UnitTests
         [InlineData(943233)]
         public void DeleteFromFavorites_IsRemovedFromFavorites(int id)
         {
-            var product = new Product { ProductId = id, IsFavourite = true };
+            var product = new Product { ProductId = id, IsFavorite = true };
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProductById(id)).Returns(product);
 
@@ -205,7 +205,7 @@ namespace UnitTests
 
             sut.DeleteFromFavorites(product);
 
-            product.IsFavourite.Should().BeFalse();
+            product.IsFavorite.Should().BeFalse();
         }
 
     }
