@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using VirtusFitWeb.Filters;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
+    [ExceptionFilter]
     [AllowAnonymous]
     public class BMICalculatorController : Controller
     {

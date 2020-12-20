@@ -3,11 +3,13 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Security.Claims;
+using VirtusFitWeb.Filters;
 using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
+    [ExceptionFilter]
     public class DietPlanController : Controller
     {
         private readonly IDietPlanService _dietPlanService;

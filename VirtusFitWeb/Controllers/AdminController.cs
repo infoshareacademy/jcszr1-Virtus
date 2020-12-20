@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using VirtusFitWeb.Filters;
 using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
+    [ExceptionFilter]
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {

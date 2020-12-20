@@ -7,6 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.MSSqlServer;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +32,7 @@ namespace VirtusFitWeb
             Configuration = configuration;
             using var client = new AppContext();
             client.Database.EnsureCreated();
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -59,7 +65,27 @@ namespace VirtusFitWeb
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppContext>();
+
             services.AddHttpClient();
+
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            var columnOptions = new ColumnOptions()
+            {
+                AdditionalColumns = new Collection<SqlColumn>
+                {
+                    new SqlColumn("User", SqlDbType.VarChar),
+                }
+            };
+
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.MSSqlServer(connectionString, new MSSqlServerSinkOptions { TableName = "Exceptions", AutoCreateSqlTable = true }, restrictedToMinimumLevel: LogEventLevel.Fatal, columnOptions: columnOptions)
+                .Enrich.With<LogEnricher>()
+                .CreateLogger();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,12 +103,10 @@ namespace VirtusFitWeb
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSerilogRequestLogging();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
