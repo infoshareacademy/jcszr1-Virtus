@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using VirtusFitWeb.Filters;
 using VirtusFitWeb.Models;
 
 namespace VirtusFitWeb.Controllers
 {
+    [ExceptionFilter]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
