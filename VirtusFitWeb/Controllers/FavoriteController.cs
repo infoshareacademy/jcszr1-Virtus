@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using VirtusFitWeb.Filters;
 using VirtusFitWeb.Services;
 
 namespace VirtusFitWeb.Controllers
 {
+    [ExceptionFilter]
     public class FavoriteController : Controller
     {
         private readonly IProductService _productService;
