@@ -102,36 +102,36 @@ namespace VirtusFitApi.Reports
                 .GetAllSearchValueActions()
                 .Any(action => action.SearchType == SearchActionType.SearchByCalories) == true)
             {
-                report.AvgCaloriesSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgCaloriesSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(action => action.SearchType == SearchActionType.SearchByCalories).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
                 .Any(action => action.SearchType == SearchActionType.SearchByCarbohydrates) == true)
             {
-                report.AvgCarbohydratesSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgCarbohydratesSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(action => action.SearchType == SearchActionType.SearchByCarbohydrates).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
                 .Any(action => action.SearchType == SearchActionType.SearchByFat) == true)
             {
-                report.AvgFatSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgFatSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(action => action.SearchType == SearchActionType.SearchByFat).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
                 .Any(action => action.SearchType == SearchActionType.SearchByProtein) == true)
             {
-                report.AvgProteinsSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgProteinsSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(action => action.SearchType == SearchActionType.SearchByProtein).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
@@ -140,34 +140,34 @@ namespace VirtusFitApi.Reports
             {
                 report.TopFavId = _productActionsRepository.GetAllProductActions()
                     .Where(action => action.Action == ActionType.ProductAddedToFavorites)
-                    .GroupBy(action => action.ProductId)
-                    .Select(x => new {ProductId = x.Key, TimesAppeared = x.Count()}).ToList()
-                    .OrderByDescending(x => x.TimesAppeared).First().ProductId;
+                    .GroupBy(action => action.ProductName)
+                    .Select(x => new {ProductName = x.Key, TimesAppeared = x.Count()}).ToList()
+                    .OrderByDescending(x => x.TimesAppeared).First().ProductName;
             }
 
             if (_planActionsRepository
                 .GetAllBmiActions().Any() == true)
             {
-                report.AvgUserBmi = _planActionsRepository.GetAllBmiActions()
-                    .ToList().Average(bmi => bmi.Bmi);
+                report.AvgUserBmi = Math.Round(_planActionsRepository.GetAllBmiActions()
+                    .ToList().Average(bmi => bmi.Bmi), 2);
             }
 
             if (_planActionsRepository
                 .GetAllDietPlanActions()
                 .Any(action => action.Action == ActionType.AddedDietPlan) == true)
             {
-                report.AvgPlanLength = _planActionsRepository.GetAllDietPlanActions()
+                report.AvgPlanLength = Math.Round(_planActionsRepository.GetAllDietPlanActions()
                     .Where(action => action.Action == ActionType.AddedDietPlan).ToList()
-                    .Average(action => action.Length);
+                    .Average(action => action.Length), 2);
             }
 
             if (_planActionsRepository
                 .GetAllDietPlanActions()
                 .Any(action => action.Action == ActionType.AddedDietPlan) == true)
             {
-                report.AvgPlanCalories = _planActionsRepository.GetAllDietPlanActions()
+                report.AvgPlanCalories = Math.Round(_planActionsRepository.GetAllDietPlanActions()
                     .Where(action => action.Action == ActionType.AddedDietPlan).ToList()
-                    .Average(action => action.CaloriesPerDay);
+                    .Average(action => action.CaloriesPerDay), 2);
             }
 
             return report;
@@ -258,40 +258,40 @@ namespace VirtusFitApi.Reports
                 .GetAllSearchValueActions()
                 .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByCalories) == true)
             {
-                report.AvgCaloriesSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgCaloriesSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByCalories).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
                 .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByCarbohydrates)==true)
             {
-                report.AvgCarbohydratesSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgCarbohydratesSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByCarbohydrates).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
                 .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByFat)==true)
             {
-                report.AvgFatSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgFatSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByFat).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
                 .GetAllSearchValueActions()
                 .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date).Any(action => action.SearchType == SearchActionType.SearchByProtein)==true)
             {
-                report.AvgProteinsSearch = _productActionsRepository.GetAllSearchValueActions()
+                report.AvgProteinsSearch = Math.Round(_productActionsRepository.GetAllSearchValueActions()
                     .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.SearchType == SearchActionType.SearchByProtein).ToList()
-                    .Average(value => value.SearchValue);
+                    .Average(value => value.SearchValue), 2);
             }
 
             if (_productActionsRepository
@@ -301,36 +301,36 @@ namespace VirtusFitApi.Reports
                 report.TopFavId = _productActionsRepository.GetAllProductActions()
                     .Where(search => search.Created.Date >= start.Date && search.Created.Date <= finish.Date)
                     .Where(action => action.Action == ActionType.ProductAddedToFavorites)
-                    .GroupBy(action => action.ProductId)
-                    .Select(x => new { ProductId = x.Key, TimesAppeared = x.Count() }).ToList()
-                    .OrderByDescending(x => x.TimesAppeared).First().ProductId;
+                    .GroupBy(action => action.ProductName)
+                    .Select(x => new { ProductName = x.Key, TimesAppeared = x.Count() }).ToList()
+                    .OrderByDescending(x => x.TimesAppeared).First().ProductName;
             }
 
             if (_planActionsRepository
                 .GetAllBmiActions().Any(bmi => bmi.Created.Date >= start.Date && bmi.Created.Date <= finish.Date)==true)
             {
-                report.AvgUserBmi = _planActionsRepository.GetAllBmiActions()
+                report.AvgUserBmi = Math.Round(_planActionsRepository.GetAllBmiActions()
                     .Where(bmi => bmi.Created.Date >= start.Date && bmi.Created.Date <= finish.Date)
-                    .ToList().Average(bmi => bmi.Bmi);
+                    .ToList().Average(bmi => bmi.Bmi), 2);
             }
 
             if (_planActionsRepository
                 .GetAllDietPlanActions()
                 .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date).Any(action => action.Action == ActionType.AddedDietPlan)==true)
             {
-                report.AvgPlanLength = _planActionsRepository.GetAllDietPlanActions()
+                report.AvgPlanLength = Math.Round(_planActionsRepository.GetAllDietPlanActions()
                     .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date)
-                    .Where(action => action.Action == ActionType.AddedDietPlan).ToList().Average(action => action.Length);
+                    .Where(action => action.Action == ActionType.AddedDietPlan).ToList().Average(action => action.Length), 2);
             }
 
             if (_planActionsRepository
                 .GetAllDietPlanActions()
                 .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date).Any(action => action.Action == ActionType.AddedDietPlan)==true)
             {
-                report.AvgPlanCalories = _planActionsRepository.GetAllDietPlanActions()
+                report.AvgPlanCalories = Math.Round(_planActionsRepository.GetAllDietPlanActions()
                     .Where(action => action.Created.Date >= start.Date && action.Created.Date <= finish.Date)
                     .Where(action => action.Action == ActionType.AddedDietPlan).ToList()
-                    .Average(action => action.CaloriesPerDay);
+                    .Average(action => action.CaloriesPerDay), 2);
             }
 
             return report;
@@ -383,19 +383,19 @@ namespace VirtusFitApi.Reports
                 report.MostUsedProduct = _planActionsRepository.GetAllProductInPlanActions()
                     .Where(action => action.Username == username)
                     .Where(action => action.Action == ActionType.AddedProductToExistingDailyPlan)
-                    .GroupBy(action => action.ProductId)
-                    .Select(x => new { ProductId = x.Key, TimesAppeared = x.Count() })
-                    .OrderByDescending(x => x.TimesAppeared).First().ProductId;
+                    .GroupBy(action => action.ProductName)
+                    .Select(x => new { ProductName = x.Key, TimesAppeared = x.Count() })
+                    .OrderByDescending(x => x.TimesAppeared).First().ProductName;
             }
 
             if (_planActionsRepository.GetAllDietPlanActions()
                 .Where(action => action.Username == username)
                 .Where(action => action.Action == ActionType.AddedDietPlan).Any() == true)
             {
-                report.AvgPlanCalories = _planActionsRepository.GetAllDietPlanActions()
+                report.AvgPlanCalories = Math.Round(_planActionsRepository.GetAllDietPlanActions()
                     .Where(action => action.Username == username)
                     .Where(action => action.Action == ActionType.AddedDietPlan)
-                    .Average(action => action.CaloriesPerDay);
+                    .Average(action => action.CaloriesPerDay), 2);
             }
 
             if (_planActionsRepository.GetAllDietPlanActions()
@@ -403,10 +403,10 @@ namespace VirtusFitApi.Reports
                 .Where(action => action.Action == ActionType.AddedDietPlan).Any() == true)
             {
 
-                report.AvgPlanLength = _planActionsRepository.GetAllDietPlanActions()
+                report.AvgPlanLength = Math.Round(_planActionsRepository.GetAllDietPlanActions()
                     .Where(action => action.Username == username)
                     .Where(action => action.Action == ActionType.AddedDietPlan)
-                    .Average(action => action.Length);
+                    .Average(action => action.Length), 2);
             }
 
             report.TotalFav = _productActionsRepository
