@@ -21,7 +21,7 @@ namespace VirtusFitApi.Reports.Models
         public double AvgCaloriesSearch { get; set; }
         public double AvgCarbohydratesSearch { get; set; }
         public double AvgProteinsSearch { get; set; }
-        public int TopFavId { get; set; }
+        public string TopFavId { get; set; }
         public double AvgUserBmi { get; set; }
         public double AvgPlanLength { get; set; }
         public double AvgPlanCalories { get; set; }
