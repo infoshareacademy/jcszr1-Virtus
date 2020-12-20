@@ -9,8 +9,8 @@ namespace VirtusFitWeb.Services
 
         Product GetById(int id);
 
-        void DeleteFromFavorites(Product product);
+        void DeleteFromFavorites(Product product, string userid, string username);
 
-        void AddToFavorites(Product product);
+        void AddToFavorites(Product product, string userid, string username);
     }
 }

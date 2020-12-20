@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace VirtusFitWeb.Services
 {
     public interface IAdminService
     {
         List<IdentityUser> ListAllUsers();
-        void ChangePassword(string email, string newPassword);
-        void BlockUser(string email);
-        void UnblockUser(string email);
-        void DeleteUser(string email);
+        Task ChangePassword(string email, string newPassword);
+        Task BlockUser(string email);
+        Task UnblockUser(string email);
+        Task DeleteUser(string email);
     }
 }

@@ -1,0 +1,91 @@
+﻿@model VirtusFitApi.Reports.Models.OverallReport
+
+@{
+    ViewData["Title"] = "All-time report";
+    Layout = "_AdminLayout";
+}
+
+    <h1>All-time report</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Total user accounts created: </th>
+        <td>@Html.DisplayFor(modelItem => Model.CreatedUserAccounts)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total successful logon attempts: </th>
+        <td>@Html.DisplayFor(modelItem => Model.TotalLogonCount)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total amount of products added: </th>
+        <td>@Html.DisplayFor(modelItem => Model.AddedProducts)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total amount of products removed: </th>
+        <td>@Html.DisplayFor(modelItem => Model.RemovedProducts)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total amount of added plans: </th>
+        <td>@Html.DisplayFor(modelItem => Model.AddedPlans)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total amount of products added to favorites: </th>
+        <td>@Html.DisplayFor(modelItem => Model.ProductsAddedToFav)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total amount of products removed from favorites: </th>
+        <td>@Html.DisplayFor(modelItem => Model.ProductsRemovedFromFav)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total amount of products added to diet plans: </th>
+        <td>@Html.DisplayFor(modelItem => Model.ProductsAddedToPlans)</td>
+    </tr>
+    <tr>
+        <th scope="col">Total searches done: </th>
+        <td>@Html.DisplayFor(modelItem => Model.SearchesDone)</td>
+    </tr>
+    <tr>
+        <th scope="col">Top search by name: </th>
+        <td>@Html.DisplayFor(modelItem => Model.TopStringSearch)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average fat value search: </th>
+        <td>@Html.DisplayFor(modelItem => Model.AvgFatSearch)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average calories value search</th>
+        <td>@Html.DisplayFor(modelItem => Model.AvgCaloriesSearch)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average carbohydrates value search</th>
+        <td>@Html.DisplayFor(modelItem => Model.AvgCarbohydratesSearch)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average proteins value search</th>
+        <td>@Html.DisplayFor(modelItem => Model.AvgProteinsSearch)</td>
+    </tr>
+    <tr>
+        <th scope="col">Product most often added to favorites: </th>
+        <td>@Html.DisplayFor(modelItem => Model.TopFavId)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average user BMI: </th>
+        <td>@Html.DisplayFor(modelItem => Model.AvgUserBmi)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average plan length: </th>
+        <td>@Html.DisplayFor(modelItem => Model.AvgPlanLength)</td>
+    </tr>
+    <tr>
+        <th scope="col">Average plan calories: </th>
+        <td>@Html.DisplayFor(modelItem => Model.AvgPlanCalories)</td>
+    </tr>
+    </thead>
+</table>
+
+<div class="row">
+    <div class="col-md-4">
+        <a class="btn btn-info btn-block" asp-action="Index" asp-controller="Reports">Back</a>
+    </div>
+</div>

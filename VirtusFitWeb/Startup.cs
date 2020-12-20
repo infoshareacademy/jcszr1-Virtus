@@ -58,12 +58,15 @@ namespace VirtusFitWeb
             services.AddTransient<IFavoriteService, FavoriteService>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddSingleton<IBMICalculatorService, BMICalculatorService>();
+            services.AddTransient<IReportService, ReportService>();
             services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppContext>();
+
+            services.AddHttpClient();
 
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
@@ -81,6 +84,7 @@ namespace VirtusFitWeb
                 .WriteTo.MSSqlServer(connectionString, new MSSqlServerSinkOptions { TableName = "Exceptions", AutoCreateSqlTable = true }, restrictedToMinimumLevel: LogEventLevel.Fatal, columnOptions: columnOptions)
                 .Enrich.With<LogEnricher>()
                 .CreateLogger();
+
 
         }
 
@@ -132,7 +136,8 @@ namespace VirtusFitWeb
             var admin = new IdentityUser
             {
                 UserName = "admin@admin.ad",
-                Email = "admin@admin.ad"
+                Email = "admin@admin.ad",
+                LockoutEnabled = false
             };
 
             var result = await userManager.CreateAsync(admin, await File.ReadAllTextAsync("password.txt"));

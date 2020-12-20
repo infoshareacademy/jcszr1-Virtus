@@ -3,6 +3,10 @@ using BLL.Db_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using VirtusFitApi.Models;
 using VirtusFitWeb.DAL;
 
 namespace VirtusFitWeb.Services
@@ -11,11 +15,28 @@ namespace VirtusFitWeb.Services
     {
         private readonly IProductRepository _productRepository;
         private readonly IDietPlanRepository _dietPlanRepository;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public ProductInPlanService(IProductRepository productRepository, IDietPlanRepository dietPlanRepository)
+        public ProductInPlanService(IProductRepository productRepository, IDietPlanRepository dietPlanRepository, IHttpClientFactory httpClientFactory)
         {
             _productRepository = productRepository;
             _dietPlanRepository = dietPlanRepository;
+            _httpClientFactory = httpClientFactory;
+        }
+
+        private CreateProductInPlanAction CreateAction(ActionType type, int planId, int dailyPlanId, ProductInDietPlan product, string username)
+        {
+            var action = new CreateProductInPlanAction
+            {
+                Username = username,
+                ProductId = product.Product.ProductNo,
+                ProductName = product.Product.ProductName,
+                DailyDietPlanId = dailyPlanId,
+                DietPlanId = planId,
+                Action = type,
+                Created = DateTime.UtcNow
+            };
+            return action;
         }
 
         public List<Product> GetProductList(string userId)
@@ -38,7 +59,7 @@ namespace VirtusFitWeb.Services
             return _productRepository.GetProductById(id);
         }
 
-        public void AddProductToDailyDietPlan(int id, int dayNumber, ProductInDietPlan productToAdd, Product product)
+        public void AddProductToDailyDietPlan(int id, int dayNumber, ProductInDietPlan productToAdd, Product product, string user, string username)
         {
             var dailyToAddTo = _dietPlanRepository.GetDailyDietPlan(id,dayNumber);
             
@@ -53,6 +74,13 @@ namespace VirtusFitWeb.Services
             };
 
             _dietPlanRepository.AddProductInPlan(productToDb);
+
+
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.AddedProductToExistingDailyPlan, dailyToAddTo.DietPlanId, dailyToAddTo.Id, productToAdd, username);
+
+            client.PostAsync("https://localhost:5001/VirtusFit/plan/productinplan",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
 
             CalculateDailyDietPlanCaloriesAndMacros(dailyToAddTo);
         }
@@ -87,7 +115,7 @@ namespace VirtusFitWeb.Services
                 .FirstOrDefault(x => x.OrdinalNumber == ordinalNumber);
         }
 
-        public void EditProductInDailyDietPlan(int id, int dayNumber, ProductInDietPlan editedProduct, int currentProductOrdinalNumber)
+        public void EditProductInDailyDietPlan(int id, int dayNumber, ProductInDietPlan editedProduct, int currentProductOrdinalNumber, string user, string username)
         {
             var dailyDietPlan = _dietPlanRepository.GetDailyDietPlan(id, dayNumber);
             var oldProduct = _dietPlanRepository.GetProductFromDailyDietPlan(dailyDietPlan,currentProductOrdinalNumber);
@@ -98,14 +126,22 @@ namespace VirtusFitWeb.Services
                 
             _dietPlanRepository.UpdateProductInPlan(oldProduct);
 
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.EditedProductInExistingDailyPlan, id, dailyDietPlan.DietPlanId, editedProduct, username);
+
+            client.PostAsync("https://localhost:5001/VirtusFit/plan/productinplan",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
+
             CalculateDailyDietPlanCaloriesAndMacros(dailyDietPlan);
         }
 
-        public void DeleteProductFromPlan(int id, int dayNumber, int ordinalNumber)
+        public void DeleteProductFromPlan(int id, int dayNumber, int ordinalNumber, string user, string username)
         {
             var currentDailyDietPlan = _dietPlanRepository.GetDailyDietPlan(id, dayNumber);
             var productToDelete = _dietPlanRepository.GetProductFromDailyDietPlan(currentDailyDietPlan, ordinalNumber);
-            
+
+            var productToAddToApi = GetProductFromDietPlan(id, dayNumber, ordinalNumber);
+
             _dietPlanRepository.DeleteProductInPlan(productToDelete);
 
             var newProductList = _dietPlanRepository.ListDbProductsInDailyDietPlan(currentDailyDietPlan);
@@ -116,6 +152,12 @@ namespace VirtusFitWeb.Services
                 _dietPlanRepository.UpdateProductInPlan(product);
                 newOrdinalNumber++;
             }
+
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.RemovedProductFromExistingDailyPlan, id, currentDailyDietPlan.DietPlanId, productToAddToApi, username);
+
+            client.PostAsync("https://localhost:5001/VirtusFit/plan/productinplan",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
 
             CalculateDailyDietPlanCaloriesAndMacros(currentDailyDietPlan);
         }

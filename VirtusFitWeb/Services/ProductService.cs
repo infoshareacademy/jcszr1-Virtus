@@ -1,6 +1,11 @@
-﻿using BLL;
+﻿using System;
+using BLL;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using VirtusFitApi.Models;
 using VirtusFitWeb.DAL;
 using IProductRepository = VirtusFitWeb.DAL.IProductRepository;
 
@@ -12,12 +17,14 @@ namespace VirtusFitWeb.Services
         private readonly IDietPlanRepository _dietPlanRepository;
         private readonly IProductInPlanService _productInPlanService;
         private readonly SearchProductLogic _searchProductLogic = new SearchProductLogic();
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public ProductService(IProductRepository productRepository, IDietPlanRepository dietPlanRepository, IProductInPlanService productInPlanService)
+        public ProductService(IProductRepository productRepository, IDietPlanRepository dietPlanRepository, IProductInPlanService productInPlanService, IHttpClientFactory httpClientFactory)
         {
             _productRepository = productRepository;
             _dietPlanRepository = dietPlanRepository;
             _productInPlanService = productInPlanService;
+            _httpClientFactory = httpClientFactory;
         }
 
         public List<Product> GetAll(string userId)
@@ -30,21 +37,32 @@ namespace VirtusFitWeb.Services
             return _productRepository.GetProductById(id);
         }
 
-        public void DeleteById(int id, string userId)
+        public void DeleteById(int id, string userId, string username)
         {
             var product = GetById(id);
             DeleteFromExistingPlan(product, userId);
             _productRepository.DeleteProduct(product);
+
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.RemovedProduct, product.ProductNo, product.ProductName, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/product",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
         }
 
-        public Product Create(Product newProduct, string userId)
+        public Product Create(Product newProduct, string userId, string username)
         {
             newProduct.ProductNo = GetAll(userId).Max(p => p.ProductNo) + 1;
             _productRepository.InsertProduct(newProduct);
+
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.AddedNewProduct, newProduct.ProductNo, newProduct.ProductName, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/product",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
+
             return newProduct;
         }
 
-        public void Update(int id, Product product, string userId)
+        public void Update(int id, Product product, string userId, string username)
         {
             var productToBeUpdated = GetById(id);
             productToBeUpdated.ProductNo = product.ProductNo;
@@ -62,22 +80,37 @@ namespace VirtusFitWeb.Services
             _productRepository.UpdateProduct(productToBeUpdated);
             UpdateProductInExistingPlan(productToBeUpdated, userId);
 
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.EditedProduct, productToBeUpdated.ProductNo, productToBeUpdated.ProductName, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/product",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
+
         }
 
-        public void DeleteFromFavorites(Product favorite)
+        public void DeleteFromFavorites(Product favorite, string userId, string username)
         {
             var fav = _productRepository.GetProductById(favorite.ProductId);
             fav.IsFavorite = false;
             _productRepository.UpdateProduct(fav);
             _productRepository.Save();
+
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.ProductRemovedFromFavorites, fav.ProductNo, fav.ProductName, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/product",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
         }
 
-        public void AddToFavorites(Product favorite)
+        public void AddToFavorites(Product favorite, string userId, string username)
         {
             var fav = _productRepository.GetProductById(favorite.ProductId);
             fav.IsFavorite = true;
             _productRepository.UpdateProduct(fav);
             _productRepository.Save();
+
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateAction(ActionType.ProductAddedToFavorites, fav.ProductNo, fav.ProductName, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/product",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
         }
 
         private void UpdateProductInExistingPlan(Product productToBeUpdated, string userId)
@@ -139,25 +172,90 @@ namespace VirtusFitWeb.Services
         }
 
 
-        public List<Product> SearchByName(string name, string userId)
+        public List<Product> SearchByName(string name, string userId, string username)
         {
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateSearchStringAction(SearchActionType.SearchByName, name, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/search/string",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
+
             return _searchProductLogic.SearchByName(_productRepository.GetProducts(userId), name);
         }
-        public List<Product> SearchByFat(double minfat, double maxfat, string userId)
+        public List<Product> SearchByFat(double minfat, double maxfat, string userId, string username)
         {
+            var avg = (minfat + maxfat) / 2;
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateSearchValueAction(SearchActionType.SearchByFat, avg, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/search/value",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
             return _searchProductLogic.SearchByFat(_productRepository.GetProducts(userId), minfat, maxfat);
         }
-        public List<Product> SearchByCalories(double minenergy, double maxenergy, string userId)
+        public List<Product> SearchByCalories(double minenergy, double maxenergy, string userId, string username)
         {
+            var avg = (minenergy + maxenergy) / 2;
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateSearchValueAction(SearchActionType.SearchByCalories, avg, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/search/value",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
             return _searchProductLogic.SearchByCalories(_productRepository.GetProducts(userId), minenergy, maxenergy);
         }
-        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb, string userId)
+        public List<Product> SearchByCarbohydrates(double mincarb, double maxcarb, string userId, string username)
         {
+            var avg = (mincarb + maxcarb) / 2;
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateSearchValueAction(SearchActionType.SearchByCarbohydrates, avg, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/search/value",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
             return _searchProductLogic.SearchByCarbohydrates(_productRepository.GetProducts(userId), mincarb, maxcarb);
         }
-        public List<Product> SearchByProteins(double minprotein, double maxprotein, string userId)
+        public List<Product> SearchByProteins(double minprotein, double maxprotein, string userId, string username)
         {
+            var avg = (minprotein + maxprotein) / 2;
+            var client = _httpClientFactory.CreateClient();
+            var action = CreateSearchValueAction(SearchActionType.SearchByProtein, avg, username);
+            client.PostAsync("https://localhost:5001/VirtusFit/search/value",
+                new StringContent(JsonSerializer.Serialize(action), Encoding.UTF8, "application/json"));
             return _searchProductLogic.SearchByProteins(_productRepository.GetProducts(userId), minprotein, maxprotein);
+        }
+
+        private CreateProductAction CreateAction(ActionType type, int productId, string name, string username)
+        {
+            var action = new CreateProductAction
+            {
+                Username = username,
+                ProductId = productId,
+                ProductName = name,
+                Action = type,
+                Created = DateTime.UtcNow
+            };
+
+            return action;
+        }
+
+        private CreateSearchStringAction CreateSearchStringAction(SearchActionType type, string searchString, string username)
+        {
+            var action = new CreateSearchStringAction
+            {
+                Username = username,
+                Created = DateTime.UtcNow,
+                SearchType = type,
+                SearchString = searchString
+            };
+
+            return action;
+        }
+
+        private CreateSearchValueAction CreateSearchValueAction(SearchActionType type, double avg, string username)
+        {
+            var action = new CreateSearchValueAction
+            {
+                Username = username,
+                Created = DateTime.UtcNow,
+                SearchType = type,
+                SearchValue = avg
+            };
+
+            return action;
         }
     }
 }
