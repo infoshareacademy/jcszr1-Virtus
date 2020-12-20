@@ -8,11 +8,13 @@
 
 <h1>Edit</h1>
 
-<h4>You are editing Diet Plan &#8470; @Model.Id</h4>
+<h4>You are editing Diet Plan &#8470; @Model.PlanNo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-antiforgery="true" asp-controller="DietPlan" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="PlanNo"/>
+            <input type="hidden" asp-for="UserId"/>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
@@ -21,16 +23,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
+                <input asp-for="EndDate" class="form-control"/>
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CaloriesPerDay" class="control-label"></label>
-                <input asp-for="CaloriesPerDay" class="form-control" />
+                <input asp-for="CaloriesPerDay" class="form-control"/>
                 <span asp-validation-for="CaloriesPerDay" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                <input type="submit" value="Save" class="btn btn-primary btn-block"/>
                 <a class="btn btn-info btn-block" asp-controller="DietPlan" asp-action="Index">Back to List</a>
             </div>
         </form>

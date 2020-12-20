@@ -2,6 +2,7 @@
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Security.Claims;
 using VirtusFitWeb.Models;
 using VirtusFitWeb.Services;
 
@@ -12,14 +13,17 @@ namespace VirtusFitWeb.Controllers
         private readonly IDietPlanService _dietPlanService;
         private readonly DateValidator _validator = new DateValidator();
 
+        public string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier);
+
         public DietPlanController(IDietPlanService dietPlanService)
         {
             _dietPlanService = dietPlanService;
         }
+
         // GET: DietPlanController
         public ActionResult Index()
         {
-            return View(_dietPlanService.ListAllDietPlans().ToList());
+            return View(_dietPlanService.ListAllDietPlans(UserId).ToList());
         }
 
         // GET: DietPlanController/DayList/5
@@ -33,6 +37,7 @@ namespace VirtusFitWeb.Controllers
             var dietPlan = _dietPlanService.GetDietPlan(id);
             if (dietPlan != null)
             {
+                model.DietPlanNo = dietPlan.PlanNo;
                 model.DietPlanId = dietPlan.Id;
                 model.PlanCaloriesPerDay = dietPlan.CaloriesPerDay;
             }
@@ -50,6 +55,7 @@ namespace VirtusFitWeb.Controllers
             var dailyDietPlan = _dietPlanService.GetDailyDietPlan(id, dayNumber);
             if (dailyDietPlan != null)
             {
+                model.DietPlanNo = _dietPlanService.GetDietPlan(id).PlanNo;
                 model.DietPlanId = dailyDietPlan.DietPlanId;
                 model.DayNumber = dailyDietPlan.DayNumber;
                 model.TotalCalories = dailyDietPlan.CaloriesSum;
@@ -91,6 +97,7 @@ namespace VirtusFitWeb.Controllers
 
             try
             {
+                newDietPlan.UserId = UserId;
                 _dietPlanService.Create(newDietPlan);
                 return RedirectToAction(nameof(Index));
             }

@@ -5,7 +5,7 @@ namespace VirtusFitWeb.Services
 {
     public interface IProductInPlanService
     {
-        List<Product> GetProductList();
+        List<Product> GetProductList(string userId);
         ProductInDietPlan GetProductToAdd(int id);
         void AddProductToDailyDietPlan(int id, int dayNumber, ProductInDietPlan productToAdd, Product product);
         Product GetProductFromList(int id);

@@ -18,12 +18,12 @@ namespace UnitTests
         {
 
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(new List<Product>());
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(new List<Product>());
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var _sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
-            _sut.GetAll().Should().BeOfType(typeof(List<Product>));
+            _sut.GetAll("DummyId").Should().BeOfType(typeof(List<Product>));
         }
 
         [Theory]
@@ -53,10 +53,10 @@ namespace UnitTests
             productRepositoryMock.Setup(repository => repository.GetProductById(id)).Returns(product);
             productRepositoryMock.Setup(repository => repository.DeleteProduct(It.IsAny<Product>()));
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
-            dietPlanRepositoryMock.Setup(dietPlanRepo => dietPlanRepo.ListAllDietPlans()).Returns(new List<DietPlan>());
+            dietPlanRepositoryMock.Setup(dietPlanRepo => dietPlanRepo.ListAllDietPlans("DummyId")).Returns(new List<DietPlan>());
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
-            sut.DeleteById(id);
+            sut.DeleteById(id, "DummyId");
 
             productRepositoryMock.Verify(repository => repository.DeleteProduct(product));
 
@@ -67,14 +67,15 @@ namespace UnitTests
         {
             var product = new Product();
             var productRepositoryMock = new Mock<IProductRepository>();
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(new List<Product>{new Product()});
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
-            sut.Create(product);
+            sut.Create(product, "DummyId");
 
             productRepositoryMock.Verify(repository => repository.InsertProduct(product));
-            sut.Create(product).Should().BeOfType(typeof(Product));
+            sut.Create(product, "DummyId").Should().BeOfType(typeof(Product));
         }
 
         [Theory]
@@ -87,10 +88,11 @@ namespace UnitTests
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProductById(id)).Returns(product);
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
+            dietPlanRepositoryMock.Setup(repo => repo.ListAllDietPlans("DummyId")).Returns(new List<DietPlan>());
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
-            sut.Update(id, product);
+            sut.Update(id, product, "DummyId");
 
             productRepositoryMock.Verify(repository => repository.UpdateProduct(product));
         }
@@ -102,7 +104,7 @@ namespace UnitTests
 
         public void DeleteFromFavorites_ProductIsFavouriteIsSetToFalse_UpdateProductCalledInRepository_SaveCalledInRepository(int id)
         {
-            var product = new Product {ProductId = id, IsFavourite = true};
+            var product = new Product {ProductId = id, IsFavorite = true};
             var productRepositoryMock = new Mock<IProductRepository>();
             productRepositoryMock.Setup(repository => repository.GetProductById(id)).Returns(product);
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
@@ -111,7 +113,7 @@ namespace UnitTests
 
             sut.DeleteFromFavorites(product);
 
-            product.IsFavourite.Should().BeFalse();
+            product.IsFavorite.Should().BeFalse();
             productRepositoryMock.Verify(repository => repository.UpdateProduct(product));
             productRepositoryMock.Verify(repository => repository.Save());
         }
@@ -132,7 +134,7 @@ namespace UnitTests
 
             sut.AddToFavorites(product);
 
-            product.IsFavourite.Should().BeTrue();
+            product.IsFavorite.Should().BeTrue();
             productRepositoryMock.Verify(repository => repository.UpdateProduct(product));
             productRepositoryMock.Verify(repository => repository.Save());
         }
@@ -145,15 +147,15 @@ namespace UnitTests
 
             var ExpectedProduct = new Product { ProductName = name };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts())
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId"))
                 .Returns(new List<Product> { ExpectedProduct });
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
-            var actual = sut.SearchByName(name);
+            var actual = sut.SearchByName(name, "DummyId");
 
-            productRepositoryMock.Verify(repository => repository.GetProducts());
+            productRepositoryMock.Verify(repository => repository.GetProducts("DummyId"));
             actual.Should().Equal(ExpectedProduct);
         }
 
@@ -166,16 +168,16 @@ namespace UnitTests
 
             var ExpectedProduct = new Product { Fat = 15 };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts())
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId"))
                 .Returns(new List<Product> { ExpectedProduct });
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
 
-            var actual = sut.SearchByFat(minfat, maxfat);
+            var actual = sut.SearchByFat(minfat, maxfat, "DummyId");
 
-            productRepositoryMock.Verify(repository => repository.GetProducts());
+            productRepositoryMock.Verify(repository => repository.GetProducts("DummyId"));
             actual.Should().Equal(ExpectedProduct);
         }
 
@@ -188,16 +190,16 @@ namespace UnitTests
 
             var ExpectedProduct = new Product { Energy = 200 };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts())
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId"))
                 .Returns(new List<Product> { ExpectedProduct });
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
 
-            var actual = sut.SearchByCalories(minenergy, maxenergy);
+            var actual = sut.SearchByCalories(minenergy, maxenergy, "DummyId");
 
-            productRepositoryMock.Verify(repository => repository.GetProducts());
+            productRepositoryMock.Verify(repository => repository.GetProducts("DummyId"));
             actual.Should().Equal(ExpectedProduct);
         }
 
@@ -210,16 +212,16 @@ namespace UnitTests
 
             var ExpectedProduct = new Product { Carbohydrates = 15 };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts())
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId"))
                 .Returns(new List<Product> { ExpectedProduct });
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
 
-            var actual = sut.SearchByCarbohydrates(mincarb, maxcarb);
+            var actual = sut.SearchByCarbohydrates(mincarb, maxcarb, "DummyId");
 
-            productRepositoryMock.Verify(repository => repository.GetProducts());
+            productRepositoryMock.Verify(repository => repository.GetProducts("DummyId"));
             actual.Should().Equal(ExpectedProduct);
         }
 
@@ -232,16 +234,16 @@ namespace UnitTests
 
             var ExpectedProduct = new Product { Protein = 15 };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts())
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId"))
                 .Returns(new List<Product> { ExpectedProduct });
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
 
-            var actual = sut.SearchByProteins(minprotein, maxprotein);
+            var actual = sut.SearchByProteins(minprotein, maxprotein, "DummyId");
 
-            productRepositoryMock.Verify(repository => repository.GetProducts());
+            productRepositoryMock.Verify(repository => repository.GetProducts("DummyId"));
             actual.Should().Equal(ExpectedProduct);
         }
 
@@ -262,14 +264,14 @@ namespace UnitTests
             productRepositoryMock.Setup(repository => repository.GetProductById(1)).Returns(testProduct);
             var productInPlanServiceMock = new Mock<IProductInPlanService>();
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
-            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans())
+            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans("DummyId"))
                 .Returns(listOfDietPlans);
             dietPlanRepositoryMock.Setup(repository => repository.ListDailyDietPlans(1)).Returns(dailyDietPlanList);
             dietPlanRepositoryMock.Setup(repository => repository.ListDbProductsInDailyDietPlan(dailyDietPlan)).Returns(new List<ProductInDietPlanDb>(){productFromDB});
 
             var sut = new ProductService(productRepositoryMock.Object, dietPlanRepositoryMock.Object, productInPlanServiceMock.Object);
 
-            sut.DeleteById(testProduct.ProductId);
+            sut.DeleteById(testProduct.ProductId, "DummyId");
 
             dietPlanRepositoryMock.Verify(repository => repository.DeleteProductInPlan(productFromDB));
 
