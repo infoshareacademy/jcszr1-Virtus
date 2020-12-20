@@ -14,24 +14,24 @@ namespace UnitTests
         public void GetAll_IsOfTypeProductList()
         {
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(new List<Product>());
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(new List<Product>());
 
             var sut = new FavoriteService(productRepositoryMock.Object);
 
-            sut.GetAll().Should().BeOfType(typeof(List<Product>));
+            sut.GetAll("DummyId").Should().BeOfType(typeof(List<Product>));
         }
 
         [Fact]
         public void GetAll_CallsGetProducts()
         {
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(new List<Product>());
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(new List<Product>());
 
             var sut = new FavoriteService(productRepositoryMock.Object);
 
-            sut.GetAll();
+            sut.GetAll("DummyId");
 
-            productRepositoryMock.Verify(repository => repository.GetProducts());
+            productRepositoryMock.Verify(repository => repository.GetProducts("DummyId"));
         }
 
         [Theory]
@@ -94,13 +94,13 @@ namespace UnitTests
             var product = new Product { ProductId = id };
             var list = new List<Product> { product };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(list);
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(list);
 
             var sut = new FavoriteService(productRepositoryMock.Object);
 
             sut.GetById(id);
 
-            productRepositoryMock.Verify(repository => repository.GetProducts());
+            productRepositoryMock.Verify(repository => repository.GetProducts("DummyId"));
         }
 
         [Theory]
@@ -112,7 +112,7 @@ namespace UnitTests
             var product = new Product { ProductId = id, IsFavorite = false};
             var list = new List<Product> { product };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(list);
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(list);
 
             var sut = new FavoriteService(productRepositoryMock.Object);
 
@@ -130,7 +130,7 @@ namespace UnitTests
             var product = new Product { ProductId = id, IsFavorite = true};
             var list = new List<Product> { product };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(list);
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(list);
 
             var sut = new FavoriteService(productRepositoryMock.Object);
 
@@ -148,7 +148,7 @@ namespace UnitTests
             var product = new Product { ProductId = id, IsFavorite = true};
             var list = new List<Product> { product };
             var productRepositoryMock = new Mock<IProductRepository>();
-            productRepositoryMock.Setup(repository => repository.GetProducts()).Returns(list);
+            productRepositoryMock.Setup(repository => repository.GetProducts("DummyId")).Returns(list);
 
             var sut = new FavoriteService(productRepositoryMock.Object);
 

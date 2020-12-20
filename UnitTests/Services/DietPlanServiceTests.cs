@@ -16,24 +16,24 @@ namespace UnitTests.Services
         public void ListAllDietPlans_IsOfTypeDietPlanList()
         {
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
-            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans()).Returns(new List<DietPlan>());
+            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans("DummyId")).Returns(new List<DietPlan>());
 
             var sut = new DietPlanService(dietPlanRepositoryMock.Object);
 
-            sut.ListAllDietPlans().Should().BeOfType(typeof(List<DietPlan>));
+            sut.ListAllDietPlans("DummyId").Should().BeOfType(typeof(List<DietPlan>));
         }
 
         [Fact]
         public void ListAllDietPlans_CallsListAllDietPlans()
         {
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
-            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans()).Returns(new List<DietPlan>());
+            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans("DummyId")).Returns(new List<DietPlan>());
 
             var sut = new DietPlanService(dietPlanRepositoryMock.Object);
 
-            sut.ListAllDietPlans();
+            sut.ListAllDietPlans("DummyId");
 
-            dietPlanRepositoryMock.Verify(repository => repository.ListAllDietPlans());
+            dietPlanRepositoryMock.Verify(repository => repository.ListAllDietPlans("DummyId"));
         }
 
         [Theory]
@@ -47,11 +47,11 @@ namespace UnitTests.Services
             }
 
             var dietPlanRepositoryMock = new Mock<IDietPlanRepository>();
-            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans()).Returns(listOfThreePlans);
+            dietPlanRepositoryMock.Setup(repository => repository.ListAllDietPlans("DummyId")).Returns(listOfThreePlans);
 
             var sut = new DietPlanService(dietPlanRepositoryMock.Object);
 
-            sut.ListAllDietPlans().Should().HaveCount(dietPlansCount);
+            sut.ListAllDietPlans("DummyId").Should().HaveCount(dietPlansCount);
 
         }
 
