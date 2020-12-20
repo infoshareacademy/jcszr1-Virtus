@@ -361,8 +361,11 @@ namespace VirtusFitApi.Reports
 
             report.State = GetAccountStatus(username);
 
-            report.LastPasswordChange = _userAccountActionsRepository
-                .GetAllUserAccountActionsById(username).Last(action => action.ActionType == UserAccountActionType.PasswordChanged).Created;
+            if (_userAccountActionsRepository.GetAllUserAccountActionsById(username).Any(action => action.ActionType == UserAccountActionType.PasswordChanged))
+            {
+                report.LastPasswordChange = _userAccountActionsRepository
+                    .GetAllUserAccountActionsById(username).Last(action => action.ActionType == UserAccountActionType.PasswordChanged).Created;
+            }
 
             report.TotalAddedProducts = _productActionsRepository.GetAllProductActions()
                 .Where(action => action.Username == username)
